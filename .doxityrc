@@ -1,0 +1,25 @@
+{
+  "target": "./scripts/doxity",
+  "src": "./contracts/*",
+  "dir": "pages/docs",
+  "source": "https://github.com/DigixGlobal/doxity-gatsby-starter-project/archive/74df3b2b7a2484714540e4a9153a8f1d0f95a380.tar.gz",
+  "out": "./doc/apidocs/",
+  "interaction": {
+    "network": "85588558",
+    "providerUrl": "http://localhost:8558"
+  },
+  "whitelist": {
+    "CryptoStartup": {
+      "abi": true,
+      "methods": true,
+      "bytecode": true,
+      "source": false
+    },
+    "InvestmentRound": {
+      "abi": true,
+      "methods": true,
+      "bytecode": true,
+      "source": false
+    }
+  }
+}

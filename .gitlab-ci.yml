@@ -1,0 +1,23 @@
+image: luongnguyen/oyente #alpine:latest    # Ideally, a dedicated docker image with Truffle on it
+
+before_script:
+ #- apk add --no-cache nodejs nodejs-npm git python g++ make
+ - npm install -g yarn
+ - yarn
+
+stages:
+ - build
+ - test
+
+build:
+ stage: build
+ script:
+   - yarn build
+   - yarn lint
+   - for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+
+test:
+ stage: test
+ script:
+   - yarn testrpc &
+   - yarn test
