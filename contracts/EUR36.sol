@@ -3,14 +3,14 @@ pragma solidity 0.4.19;
 import "zeppelin-solidity/contracts/token/StandardToken.sol";
 
 
-/// @title CHF36 Contract
+/// @title EUR36 Contract
 /// @author element36.io
-contract CHF36 is StandardToken {
+contract EUR36 is StandardToken, Controlled {
 
-    //Controlled tokenController;
+    Controlled tokenController;
 
-    string public constant NAME = "CHF36 Token";
-    string public constant SYMBOL = "CHF36";
+    string public constant NAME = "EUR36 Token";
+    string public constant SYMBOL = "EUR36";
     uint8 public constant DECIMALS = 18;
 
     uint256 public constant INITIAL_SUPPLY = 1000000 * (10 ** uint256(DECIMALS));
@@ -18,7 +18,7 @@ contract CHF36 is StandardToken {
     /**
      * @dev Constructor that gives msg.sender all of existing tokens.
      */
-    function CHF36() {
+    function EUR36() {
         totalSupply = INITIAL_SUPPLY;
         balances[msg.sender] = INITIAL_SUPPLY;
     }

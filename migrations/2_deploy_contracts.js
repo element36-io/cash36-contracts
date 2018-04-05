@@ -1,5 +1,5 @@
-var CHFT = artifacts.require("./CHFT.sol");
+var CHF36 = artifacts.require("./CHF36.sol");
 
 module.exports = function(deployer) {
-    deployer.deploy(CHFT);
+    deployer.deploy(CHF36);
 };
