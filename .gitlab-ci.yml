@@ -14,7 +14,7 @@ build:
  script:
    - yarn build
    - yarn lint
-   - for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+   #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
 
 test:
  stage: test
