@@ -29,7 +29,7 @@ contract CHF36 is StandardToken {
      * @param _value The amount to be transferred.
      */
     function transfer(address _to, uint256 _value) public returns (bool) {
-        require(tokenController.onTransfer(msg.sender, -to));
+        //require(tokenController.onTransfer(msg.sender, -to));
 
         super.transfer(_to, _value);
 
@@ -44,7 +44,7 @@ contract CHF36 is StandardToken {
      * @param _value uint256 the amount of tokens to be transferred
      */
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
-        require(tokenController.onTransfer(msg.sender, -to));
+        //require(tokenController.onTransfer(msg.sender, -to));
 
         super.transferFrom(_from, _to, _value);
 
