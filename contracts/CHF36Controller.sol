@@ -1,5 +1,7 @@
 pragma solidity 0.4.19;
 
+import "./Controlled.sol";
+
 
 /// @title
 /// @author element36.io
