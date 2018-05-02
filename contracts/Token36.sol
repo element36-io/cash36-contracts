@@ -1,6 +1,6 @@
 pragma solidity 0.4.21;
 
-import "zeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "./Controlled.sol";
 import "./IToken36Controller.sol";
 
