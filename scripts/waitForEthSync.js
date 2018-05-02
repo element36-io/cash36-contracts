@@ -1,6 +1,6 @@
 const Web3 = require('web3')
 
-attemptConnection('http://167.99.243.81:8666').then(waitForSync).catch(console.log)
+attemptConnection('http://localhost:8666').then(waitForSync).catch(console.log)
 
 function attemptConnection(uri){
     return new Promise((resolve, reject) => {
