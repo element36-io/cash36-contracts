@@ -29,6 +29,12 @@ module.exports = {
             network_id: 10,
             gas: 0x2fefd0
         },
+        local_dev: {
+            host: "localhost",
+            port: 8666,
+            network_id: 10,
+            gas: 0x2fefd5
+        },
         dev: {
             host: "167.99.243.81",
             port: 8666,
