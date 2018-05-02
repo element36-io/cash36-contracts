@@ -1,5 +1,8 @@
-var CHF36 = artifacts.require("./CHF36.sol");
+var Cash36 = artifacts.require("./Cash36.sol");
+var SimpleKYC = artifacts.require("./SimpleKYC.sol");
 
-module.exports = function(deployer) {
-    deployer.deploy(CHF36);
+
+module.exports = function (deployer) {
+    deployer.deploy(SimpleKYC);
+    deployer.deploy(Cash36);
 };

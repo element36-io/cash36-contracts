@@ -1,9 +1,13 @@
 'use strict';
 
-var CryptoStartup = require('./build/contracts/CryptoStartup.json');
+var Cash36 = require('./build/contracts/Cash36');
+var SimpleKyc = require('./build/contracts/SimpleKYC');
+var Token36 = require('./build/contracts/Token36.json');
+var Token36Controller = require('./build/contracts/Token36Controller.json');
 
-var Contracts = {
-  CryptoStartupContract: CryptoStartup
-}
-
-module.exports = Contracts
+module.exports = {
+    Cash36Contract: Cash36,
+    SimpleKyc: SimpleKyc,
+    Token36Contract: Token36,
+    Token36ControllerContract: Token36Controller,
+};

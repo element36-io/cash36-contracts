@@ -8,6 +8,8 @@ before_script:
 stages:
  - build
  - test
+ - deploy
+ - publish
 
 build:
  stage: build
@@ -21,3 +23,19 @@ test:
  script:
    - yarn testrpc &
    - yarn test
+
+deploy:
+ stage: deploy
+ image: docker:latest
+ services:
+   - docker:dind
+ script:
+   - docker run -it -v $(pwd):/app ethereum/client-go --datadir /app/geth/data init /app/genesis.json
+   - docker run -d -p 8545:8545 -v $(pwd):/app ethereum/client-go --datadir /app/geth/data --networkid 20170123 --rpc --unlock 0x322ba17d251afdb6d84fd288b5aef518208cccb9 --password /app/password --rpcaddr "0.0.0.0" --verbosity 5
+   - node scripts/waitForEthSync.js
+   - yarn deploy:dev
+
+publish:
+ stage: publish
+ script:
+   - yarn publish
