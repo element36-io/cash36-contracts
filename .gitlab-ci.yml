@@ -9,6 +9,7 @@ stages:
  - build
  - test
  - deploy
+ - release
  - publish
 
 build:
@@ -17,6 +18,9 @@ build:
    - yarn build
    - yarn lint
    #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+ artifacts:
+   paths:
+     - build
 
 test:
  stage: test
@@ -36,6 +40,15 @@ deploy:
    #- ./node_modules/.bin/truffle migrate --network local_dev
    - yarn deploy:dev
 
+release:
+  stage: release
+  script:
+    - npm install -g semantic-release-gitlab
+    - semantic-release-gitlab
+  artifacts:
+    paths:
+      - build
+
 publish:
   stage: publish
   script:
@@ -43,10 +56,6 @@ publish:
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
-  cache:
-    policy: pull
-    paths:
-      - node_modules
   artifacts:
     paths:
-      - lib
+      - build
