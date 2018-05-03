@@ -27,6 +27,9 @@ test:
  script:
    - yarn testrpc &
    - yarn test
+ artifacts:
+   paths:
+     - build
 
 deploy:
  stage: deploy
@@ -39,6 +42,9 @@ deploy:
    - node scripts/waitForEthSync.js
    #- ./node_modules/.bin/truffle migrate --network local_dev
    - yarn deploy:dev
+ artifacts:
+   paths:
+     - build
 
 release:
   stage: release
