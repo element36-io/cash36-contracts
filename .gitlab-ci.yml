@@ -21,6 +21,8 @@ build:
  artifacts:
    paths:
      - build
+ only:
+   - master
 
 test:
  stage: test
@@ -30,6 +32,8 @@ test:
  artifacts:
    paths:
      - build
+ only:
+   - master
 
 deploy:
  stage: deploy
@@ -45,6 +49,8 @@ deploy:
  artifacts:
    paths:
      - build
+ only:
+   - master
 
 release:
   stage: release
@@ -54,6 +60,8 @@ release:
   artifacts:
     paths:
       - build
+ only:
+   - master
 
 publish:
   stage: publish
@@ -65,3 +73,5 @@ publish:
   artifacts:
     paths:
       - build
+ only:
+   - master
