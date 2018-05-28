@@ -40,7 +40,7 @@ deploy to dev:
  script:
    #- docker run -v $(pwd):/app ethereum/client-go --datadir /app/geth/data init /app/geth/genesis.json
    #- docker run -d -p 8666:8666 -v $(pwd):/app ethereum/client-go --datadir /app/geth/data --fast --networkid 10 --rpc --unlock 0x8c5f7c9940e3d612703edbe8dfac8eb080709f3f --password ${GETH_PASSWORD} --rpcaddr "0.0.0.0" --verbosity 5
-   - node scripts/waitForEthSync.js
+   - node scripts/waitForEthSyncDev.js
    #- ./node_modules/.bin/truffle migrate --network local_dev
    - yarn deploy:dev
  artifacts:
@@ -84,7 +84,7 @@ deploy to test:
  script:
    #- docker run -v $(pwd):/app ethereum/client-go --datadir /app/geth/data init /app/geth/genesis.json
    #- docker run -d -p 8666:8666 -v $(pwd):/app ethereum/client-go --datadir /app/geth/data --fast --networkid 10 --rpc --unlock 0x8c5f7c9940e3d612703edbe8dfac8eb080709f3f --password ${GETH_PASSWORD} --rpcaddr "0.0.0.0" --verbosity 5
-   - node scripts/waitForEthSync.js
+   - node scripts/waitForEthSyncTest.js
    #- ./node_modules/.bin/truffle migrate --network local_dev
    - yarn deploy:test
  artifacts:

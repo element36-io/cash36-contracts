@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js lint
+  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js deploy:test
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:/usr/local/go/bin:/Users/bum/ethereum/bin:/Users/bum/ti8m/tools/apache-maven-3.3.9/bin
@@ -5461,7 +5461,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c ./node_modules/.bin/solium --dir contracts --reporter=pretty
+  Arguments: -c ./node_modules/.bin/truffle migrate --compile-all --network test
   Directory: /Users/bum/element36/dev/cash36/contracts
   Output:
   
