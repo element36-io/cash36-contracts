@@ -38,10 +38,7 @@ deploy to dev:
  services:
    - docker:dind
  script:
-   #- docker run -v $(pwd):/app ethereum/client-go --datadir /app/geth/data init /app/geth/genesis.json
-   #- docker run -d -p 8666:8666 -v $(pwd):/app ethereum/client-go --datadir /app/geth/data --fast --networkid 10 --rpc --unlock 0x8c5f7c9940e3d612703edbe8dfac8eb080709f3f --password ${GETH_PASSWORD} --rpcaddr "0.0.0.0" --verbosity 5
    - node scripts/waitForEthSyncDev.js
-   #- ./node_modules/.bin/truffle migrate --network local_dev
    - yarn deploy:dev
  artifacts:
    paths:
@@ -53,8 +50,9 @@ release dev contracts:
   environment: dev
   stage: release
   script:
-    - npm install -g semantic-release-gitlab
-    - semantic-release-gitlab
+    - LAST_VERSION=$(npm view cash36-contracts version)
+    - git tag -a $LAST_VERSION-alpha -m "Version for dev"
+    - git push origin --tags
   artifacts:
     paths:
       - build
@@ -82,12 +80,8 @@ deploy to test:
  services:
    - docker:dind
  script:
-   - curl --header --form "job-token=$CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/cash36%2Fcontracts/jobs/artifacts/develop/download?job=publish"
-   #- docker run -v $(pwd):/app ethereum/client-go --datadir /app/geth/data init /app/geth/genesis.json
-   #- docker run -d -p 8666:8666 -v $(pwd):/app ethereum/client-go --datadir /app/geth/data --fast --networkid 10 --rpc --unlock 0x8c5f7c9940e3d612703edbe8dfac8eb080709f3f --password ${GETH_PASSWORD} --rpcaddr "0.0.0.0" --verbosity 5
    - node scripts/waitForEthSyncTest.js
-   #- ./node_modules/.bin/truffle migrate --network local_dev
-   - yarn deploy:test
+   - ./node_modules/.bin/truffle migrate --reset --compile-all --network test
  artifacts:
    paths:
      - build
@@ -118,4 +112,4 @@ publish test contracts:
     paths:
       - build
   only:
-    - master
+    - tags
