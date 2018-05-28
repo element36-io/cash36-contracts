@@ -50,7 +50,7 @@ release dev contracts:
   environment: dev
   stage: release
   script:
-    - LAST_VERSION=$(npm view -r http://167.99.243.81:4873/ cash36-contracts version)
+    - LAST_VERSION=$(npm --registry http://167.99.243.81:4873/ view cash36-contracts version)
     - git tag -a $LAST_VERSION-alpha -m "Version for dev"
     - git push origin --tags
   artifacts:
