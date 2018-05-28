@@ -31,9 +31,9 @@ test:
    paths:
      - build
 
-deploy:
- stage: deploy
+deploy to dev:
  environment: dev
+ stage: deploy
  image: docker:latest
  services:
    - docker:dind
@@ -49,9 +49,9 @@ deploy:
  only:
    - develop
 
-release:
-  stage: release
+release dev contracts:
   environment: dev
+  stage: release
   script:
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
@@ -61,9 +61,9 @@ release:
   only:
     - develop
 
-publish:
-  stage: publish
+publish dev contracts:
   environment: dev
+  stage: publish
   script:
     - npm install -g npm-publish-git-tag
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
@@ -75,9 +75,9 @@ publish:
   only:
     - develop
 
-deploy:
- stage: deploy
+deploy to test:
  environment: test
+ stage: deploy
  image: docker:latest
  services:
    - docker:dind
@@ -93,9 +93,9 @@ deploy:
  only:
    - master
 
-release:
-  stage: release
+release test contracts:
   environment: test
+  stage: release
   script:
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
@@ -105,9 +105,9 @@ release:
   only:
     - master
 
-publish:
-  stage: publish
+publish test contracts:
   environment: test
+  stage: publish
   script:
     - npm install -g npm-publish-git-tag
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
