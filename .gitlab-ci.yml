@@ -50,6 +50,8 @@ release dev contracts:
   environment: dev
   stage: release
   script:
+    - git config --global user.email "m@element36.io"
+    - git config --global user.name "mb-element36"
     - LAST_VERSION=$(npm --registry http://167.99.243.81:4873/ view cash36-contracts version)
     - git tag -a $LAST_VERSION-alpha -m "Version for dev"
     - git push origin --tags
