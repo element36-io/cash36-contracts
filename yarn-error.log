@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js build
+  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js deploy:test
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:/usr/local/go/bin:/Users/bum/ethereum/bin:/Users/bum/ti8m/tools/apache-maven-3.3.9/bin
@@ -23,6 +23,9 @@ npm manifest:
     "contributors": [
       "m@element36.io"
     ],
+    "publishConfig": {
+      "registry": "http://167.99.243.81:4873"
+    },
     "license": "MIT",
     "scripts": {
       "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
@@ -33,16 +36,18 @@ npm manifest:
       "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
       "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_parity",
       "deploy:testrpc": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_testrpc",
-      "deploy:dev": "./node_modules/.bin/truffle migrate --reset --compile-all --network dev",
+      "deploy:dev": "./node_modules/.bin/truffle migrate --compile-all --network dev",
+      "deploy:test": "./node_modules/.bin/truffle migrate --compile-all --network test",
       "generate-readme": "./scripts/generate-readme.js",
       "docs": "node_modules/.bin/doxity init && node_modules/.bin/doxity build && rm -rf ./scripts/doxity",
       "graph": "./scripts/runSolGraph.sh",
       "all": "yarn build && yarn lint && yarn deploy:testrpc && yarn test"
     },
     "dependencies": {
+      "ethereum-claims-registry": "^0.0.4",
       "ethereumjs-testrpc": "6.0.3",
-      "truffle": "^4.1.5",
-      "openzeppelin-solidity": "1.9.0"
+      "openzeppelin-solidity": "1.9.0",
+      "truffle": "^4.1.5"
     },
     "devDependencies": {
       "@digix/doxity": "^0.5.2",
@@ -1639,10 +1644,6 @@ Lockfile:
     version "1.1.7"
     resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
   
-  dotenv@^4.0.0:
-    version "4.0.0"
-    resolved "http://167.99.243.81:4873/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
-  
   duplexer3@^0.1.4:
     version "0.1.4"
     resolved "http://167.99.243.81:4873/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -1831,6 +1832,10 @@ Lockfile:
   esutils@^2.0.2:
     version "2.0.2"
     resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
+  
+  ethereum-claims-registry@^0.0.4:
+    version "0.0.4"
+    resolved "http://167.99.243.81:4873/ethereum-claims-registry/-/ethereum-claims-registry-0.0.4.tgz#208cd44923e64f0ea30107bf7c44c5a008f3293d"
   
   ethereumjs-testrpc-sc@6.1.2:
     version "6.1.2"
@@ -3544,6 +3549,10 @@ Lockfile:
     resolved "http://167.99.243.81:4873/onetime/-/onetime-2.0.1.tgz#067428230fd67443b2794b22bba528b6867962d4"
     dependencies:
       mimic-fn "^1.0.0"
+  
+  openzeppelin-solidity@1.9.0:
+    version "1.9.0"
+    resolved "http://167.99.243.81:4873/openzeppelin-solidity/-/openzeppelin-solidity-1.9.0.tgz#929c2e8eab5d1935a048390a77645b36dfc5cfad"
   
   optimist@^0.6.1:
     version "0.6.1"
@@ -5447,18 +5456,12 @@ Lockfile:
       text-table "^0.2.0"
       through2 "^2.0.0"
       yeoman-environment "^2.0.5"
-  
-  "zeppelin-solidity@git+https://github.com/OpenZeppelin/zeppelin-solidity.git":
-    version "1.8.0"
-    resolved "git+https://github.com/OpenZeppelin/zeppelin-solidity.git#0926729c8f19f6ed147c46f5c893a012be815a5a"
-    dependencies:
-      dotenv "^4.0.0"
 
 Trace: 
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c rm -rf ./build && ./node_modules/.bin/truffle compile --all
+  Arguments: -c ./node_modules/.bin/truffle migrate --compile-all --network test
   Directory: /Users/bum/element36/dev/cash36/contracts
   Output:
   

@@ -37,8 +37,14 @@ module.exports = {
         },
         dev: {
             host: "167.99.243.81",
-            port: 8666,
+            port: 6688,
             network_id: 10,
+            gas: 0x2fefd5
+        },
+        test: {
+            host: "167.99.243.81",
+            port: 8866,
+            network_id: 4,
             gas: 0x2fefd5
         }
     }

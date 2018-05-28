@@ -20,16 +20,18 @@
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
     "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_parity",
     "deploy:testrpc": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_testrpc",
-    "deploy:dev": "./node_modules/.bin/truffle migrate --reset --compile-all --network dev",
+    "deploy:dev": "./node_modules/.bin/truffle migrate --compile-all --network dev",
+    "deploy:test": "./node_modules/.bin/truffle migrate --compile-all --network test",
     "generate-readme": "./scripts/generate-readme.js",
     "docs": "node_modules/.bin/doxity init && node_modules/.bin/doxity build && rm -rf ./scripts/doxity",
     "graph": "./scripts/runSolGraph.sh",
     "all": "yarn build && yarn lint && yarn deploy:testrpc && yarn test"
   },
   "dependencies": {
+    "ethereum-claims-registry": "^0.0.4",
     "ethereumjs-testrpc": "6.0.3",
-    "truffle": "^4.1.5",
-    "openzeppelin-solidity": "1.9.0"
+    "openzeppelin-solidity": "1.9.0",
+    "truffle": "^4.1.5"
   },
   "devDependencies": {
     "@digix/doxity": "^0.5.2",

@@ -2,7 +2,7 @@ pragma solidity 0.4.21;
 
 import "./Token36.sol";
 import "./IToken36Controller.sol";
-import "./SimpleKYC.sol";
+import "./Cash36KYC.sol";
 
 
 /// @title
@@ -10,7 +10,7 @@ import "./SimpleKYC.sol";
 contract Token36Controller is IToken36Controller {
 
     Token36 public token;
-    SimpleKYC kycProvider;
+    Cash36KYC kycProvider;
 
     // Returns all holders the token had (since managing it).
     // Some of them can have a balance of 0.
@@ -20,7 +20,7 @@ contract Token36Controller is IToken36Controller {
     // Constructor
     function Token36Controller(Token36 _token, address _kycProvider) public {
         token = _token;
-        kycProvider = SimpleKYC(_kycProvider);
+        kycProvider = Cash36KYC(_kycProvider);
     }
 
     function allHolders() public view returns (address[]) {
@@ -64,7 +64,7 @@ contract Token36Controller is IToken36Controller {
         token.enableTransfers(_transfersEnabled);
     }
 
-    function changeKycProvider(SimpleKYC _newProvider) external onlyOwner {
+    function changeKycProvider(Cash36KYC _newProvider) external onlyOwner {
         kycProvider = _newProvider;
     }
 
