@@ -45,6 +45,7 @@ module.exports = {
             host: "167.99.243.81",
             port: 8866,
             network_id: 4,
+            gas: 0x2fefd5
         }
     }
 };
