@@ -5,25 +5,27 @@ import expectThrow from "./helpers/expectThrow";
 
 
 const Cash36 = artifacts.require("./Cash36.sol");
-const SimpleKYC = artifacts.require("./SimpleKYC.sol");
+const Cash36KYC = artifacts.require("./Cash36KYC.sol");
 const Token36 = artifacts.require("./Token36.sol");
 const Token36Controller = artifacts.require("./Token36Controller.sol");
-
 
 contract('Create and Test CHF36', function (accounts) {
 
     var Cash36Instance;
-    var SimpleKYCInstance;
+    var Cash36KYCInstance;
     var CHF36Instance;
     var CHF36ControllerInstance;
+    var blockNumber;
 
     before("...get invest36Instance.", async function () {
         Cash36Instance = await Cash36.deployed();
-        SimpleKYCInstance = await SimpleKYC.deployed();
+        Cash36KYCInstance = await Cash36KYC.deployed();
 
         await Cash36Instance.addExchange(accounts[ 0 ]);
 
-        await Cash36Instance.createNewToken('CHF36 Token', 'CHF36', SimpleKYCInstance.address, { from: accounts[ 0 ] });
+        await Cash36Instance.createNewToken('CHF36 Token', 'CHF36', Cash36KYCInstance.address, { from: accounts[ 0 ] });
+        blockNumber = web3.eth.blockNumber;
+
         var tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36');
         CHF36Instance = await Token36.at(tokenAddress);
 
@@ -32,7 +34,12 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
-        await SimpleKYCInstance.attestUser(accounts[ 1 ]);
+        var initBlock = await CHF36Instance.getInitializationBlock({ from: accounts[ 0 ] });
+        assert.equal(initBlock.toNumber(), blockNumber, "The init blocknumber was not correct.");
+    });
+
+    it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
+        await Cash36KYCInstance.attestUser(accounts[ 1 ]);
 
         await CHF36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 0 ] });
 
@@ -51,7 +58,13 @@ contract('Create and Test CHF36', function (accounts) {
         //await expectThrow(CHF36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 1 ] }));
     });
 
+    it("...it should not allow to burn 50 CHF36.", async function () {
+        // TODO: figure out how to test throws in JS, otherwise write Sol Tests
+        //await expectThrow(CHF36ControllerInstance.burn(accounts[ 1 ], 50, { from: accounts[ 0 ] }));
+    });
+
     it("...it should burn 50 CHF36 and remove it from accounts[1].", async function () {
+        //await CHF36Instance.approve(CHF36ControllerInstance.address, 50, { form: accounts[ 1 ] });
         await CHF36ControllerInstance.burn(accounts[ 1 ], 50, { from: accounts[ 0 ] });
 
         var newBalanceFor1 = await CHF36Instance.balanceOf(accounts[ 1 ]);
@@ -71,7 +84,7 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should allow to transfer 25 CHF36 to accounts[2].", async function () {
-        await SimpleKYCInstance.attestUser(accounts[ 2 ]);
+        await Cash36KYCInstance.attestUser(accounts[ 2 ]);
 
         await CHF36Instance.transfer(accounts[ 2 ], 25, { from: accounts[ 1 ] });
 

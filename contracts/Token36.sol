@@ -3,11 +3,12 @@ pragma solidity 0.4.21;
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "./Controlled.sol";
 import "./IToken36Controller.sol";
+import "./Initializable.sol";
 
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20, Controlled {
+contract Token36 is ERC20, Controlled, Initializable {
 
     string public name;
     string public symbol;
@@ -36,6 +37,7 @@ contract Token36 is ERC20, Controlled {
         name = _name;
         symbol = _symbol;
         transfersEnabled = true;
+        initialized();
     }
 
     /**
@@ -194,6 +196,11 @@ contract Token36 is ERC20, Controlled {
     /// @param _amount The quantity of tokens to burn
     /// @return True if the tokens are burned correctly
     function destroyTokens(address _owner, uint _amount) onlyController public returns (bool) {
+        // Controller, who calls this, needs approval to actually do that
+        //require(_amount >= allowed[_owner][msg.sender]);
+        // Update approval
+        //allowed[_owner][msg.sender] = allowed[_owner][msg.sender] - _amount;
+
         uint curTotalSupply = totalSupply();
         require(curTotalSupply >= _amount);
         uint previousBalanceFrom = balanceOf(_owner);
