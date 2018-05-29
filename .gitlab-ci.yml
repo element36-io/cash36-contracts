@@ -50,25 +50,9 @@ release dev contracts:
   environment: dev
   stage: release
   script:
-    - git config --global user.email "m@element36.io"
-    - git config --global user.name "mb-element36"
     - LAST_VERSION=$(npm --registry http://167.99.243.81:4873/ view cash36-contracts version)
     - git tag -a $LAST_VERSION-alpha -m "Version for dev"
-    - git push http://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git --tags
-  artifacts:
-    paths:
-      - build
-  only:
-    - develop
-
-publish dev contracts:
-  environment: dev
-  stage: publish
-  script:
-    - npm install -g npm-publish-git-tag
-    - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
-    - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
-    - npm-publish-git-tag --access public
+    - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git --tags
   artifacts:
     paths:
       - build
@@ -94,6 +78,9 @@ release test contracts:
   environment: test
   stage: release
   script:
+    - LAST_VERSION=$(npm --registry http://167.99.243.81:4873/ view cash36-contracts version)
+    - git tag -d $LAST_VERSION-alpha
+    - git push --delete https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git $LAST_VERSION-alpha
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
   artifacts:
@@ -102,8 +89,7 @@ release test contracts:
   only:
     - master
 
-publish test contracts:
-  environment: test
+publish contracts:
   stage: publish
   script:
     - npm install -g npm-publish-git-tag
