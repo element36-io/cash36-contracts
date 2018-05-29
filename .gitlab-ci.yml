@@ -54,7 +54,7 @@ release dev contracts:
     - git config --global user.name "mb-element36"
     - LAST_VERSION=$(npm --registry http://167.99.243.81:4873/ view cash36-contracts version)
     - git tag -a $LAST_VERSION-alpha -m "Version for dev"
-    #- git push origin --tags
+    - git push http://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git --tags
   artifacts:
     paths:
       - build
