@@ -96,7 +96,6 @@ release test contracts:
   environment: test
   stage: release
   script:
-    - NEW_VERSION=$(semver -i $LAST_VERSION)
     - npm install -g semver
     - git config --global user.email "m@element36.io"
     - git config --global user.name "mb-element36"
