@@ -63,7 +63,7 @@ release dev contracts:
   only:
     - develop
 
-publish contracts:
+publish dev contracts:
   environment: dev
   stage: publish
   script:
@@ -112,7 +112,7 @@ release test contracts:
   only:
     - master
 
-publish contracts:
+publish test contracts:
   environment: test
   stage: publish
   script:
