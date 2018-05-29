@@ -61,6 +61,20 @@ release dev contracts:
   only:
     - develop
 
+publish contracts:
+  environment: dev
+  stage: publish
+  script:
+    - npm install -g npm-publish-git-tag
+    - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
+    - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
+    - npm-publish-git-tag --access public
+  artifacts:
+    paths:
+      - build
+  only:
+    - develop
+
 deploy to test:
  environment: test
  stage: deploy
@@ -94,6 +108,7 @@ release test contracts:
     - master
 
 publish contracts:
+  environment: test
   stage: publish
   script:
     - npm install -g npm-publish-git-tag
@@ -104,4 +119,4 @@ publish contracts:
     paths:
       - build
   only:
-    - tags
+    - master
