@@ -36,7 +36,7 @@ deploy to dev:
    - yarn deploy:dev
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
-   - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git
+   - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git HEAD:develop
  only:
    - develop
 
