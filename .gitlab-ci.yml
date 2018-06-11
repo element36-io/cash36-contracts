@@ -76,6 +76,8 @@ deploy to test:
    - ./node_modules/.bin/truffle migrate --reset --compile-all --network test
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
+   - git add .
+   - git commit -m "ci: push contracts after dev deploy"
    - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git
  only:
    - master
