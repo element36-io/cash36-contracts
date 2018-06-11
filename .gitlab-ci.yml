@@ -27,9 +27,6 @@ test:
  script:
    - yarn testrpc &
    - yarn test
- artifacts:
-   paths:
-     - build
 
 deploy to dev:
  environment: dev
@@ -40,9 +37,9 @@ deploy to dev:
  script:
    - node scripts/waitForEthSyncDev.js
    - yarn deploy:dev
- artifacts:
-   paths:
-     - build
+   - git config --global user.email "m@element36.io"
+   - git config --global user.name "mb-element36"
+   - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git
  only:
    - develop
 
@@ -57,9 +54,6 @@ release dev contracts:
     - NEW_VERSION=$(semver -i $LAST_VERSION)
     - git tag -a $NEW_VERSION-alpha -m "Version for dev"
     - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git --tags
-  artifacts:
-    paths:
-      - build
   only:
     - develop
 
@@ -71,9 +65,6 @@ publish dev contracts:
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
-  artifacts:
-    paths:
-      - build
   only:
     - develop
 
@@ -86,9 +77,9 @@ deploy to test:
  script:
    - node scripts/waitForEthSyncTest.js
    - ./node_modules/.bin/truffle migrate --reset --compile-all --network test
- artifacts:
-   paths:
-     - build
+   - git config --global user.email "m@element36.io"
+   - git config --global user.name "mb-element36"
+   - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git
  only:
    - master
 
@@ -105,9 +96,6 @@ release test contracts:
     - git push --delete https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git $NEW_VERSION-alpha
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
-  artifacts:
-    paths:
-      - build
   only:
     - master
 
@@ -119,8 +107,5 @@ publish test contracts:
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
-  artifacts:
-    paths:
-      - build
   only:
     - master

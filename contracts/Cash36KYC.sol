@@ -1,21 +1,23 @@
 pragma solidity 0.4.21;
 
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./lib/uport/EthereumClaimsRegistry.sol";
 
-contract Cash36KYC {
 
-    address registry = 0xAcA1BCd8D0f5A9BFC95aFF331Da4c250CD9ac2Da;
-    mapping(address => bool) users;
+/// @title Cash36 Index Contract
+/// @author element36.io
+contract Cash36KYC is Ownable {
 
-    function updateRegistry(address _registryAddress) public {
-        registry = _registryAddress;
-    }
+    address cash36MNID = 0x122bd1a75ae8c741f7e2ab0a28bd30b8dbb1a67e;
+    address registryAddress;
 
-    function attestUser(address _user) public {
-        users[_user] = true;
+    function Cash36KYC(address _registryAddress) {
+        registryAddress = _registryAddress;
     }
 
     function checkUser(address _user) public view returns(bool) {
-        bool claim = registry.call(bytes4(keccak256("getClaim(address,address,bytes32)")), "2ozGXFqx3eKzmg7zQQZuTnEW6EeAVUzyUu6", _user, "cash36KYC");
-        return claim;
+        EthereumClaimsRegistry registry = EthereumClaimsRegistry(registry);
+        bytes32 claim = registry.getClaim(cash36MNID, _user, "cash36KYC");
+        return claim != "";
     }
 }
