@@ -18,9 +18,6 @@ build:
    - yarn build
    - yarn lint
    #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
- artifacts:
-   paths:
-     - build
 
 test:
  stage: test

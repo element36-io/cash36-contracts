@@ -7,7 +7,7 @@ const Cash36 = artifacts.require("./Cash36.sol");
 const Cash36KYC = artifacts.require("./Cash36KYC.sol");
 const Token36 = artifacts.require("./Token36.sol");
 const Token36Controller = artifacts.require("./Token36Controller.sol");
-const EthereumClaimRegistry = artifacts.require("./Token36Controller.sol");
+const EthereumClaimsRegistry = artifacts.require("./lib/uport/EthereumClaimsRegistry.sol");
 
 contract('Create and Test CHF36', function (accounts) {
 
@@ -21,7 +21,7 @@ contract('Create and Test CHF36', function (accounts) {
     before("...get invest36Instance.", async function () {
         Cash36Instance = await Cash36.deployed();
         Cash36KYCInstance = await Cash36KYC.deployed();
-        RegistryInstance = await EthereumClaimRegistry.deployed();
+        RegistryInstance = await EthereumClaimsRegistry.deployed();
 
         await Cash36Instance.addExchange(accounts[ 0 ]);
 
@@ -41,7 +41,7 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
-        await RegistryInstance.setClaim(accounts[ 1 ], 'cash36KYC', 'verified', {from: 0x122bd1a75ae8c741f7e2ab0a28bd30b8dbb1a67e });
+        await RegistryInstance.setClaim(accounts[ 1 ], 'cash36KYC', 'verified', {from: accounts[3] });
 
         await CHF36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 0 ] });
 
@@ -86,7 +86,7 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should allow to transfer 25 CHF36 to accounts[2].", async function () {
-        await RegistryInstance.setClaim(accounts[ 2 ], 'cash36KYC', 'verified', {from: 0x122bd1a75ae8c741f7e2ab0a28bd30b8dbb1a67e });
+        await RegistryInstance.setClaim(accounts[ 2 ], 'cash36KYC', 'verified', {from: accounts[3] });
 
         await CHF36Instance.transfer(accounts[ 2 ], 25, { from: accounts[ 1 ] });
 
