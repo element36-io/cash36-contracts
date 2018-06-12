@@ -3,11 +3,11 @@
  */
 import expectThrow from "./helpers/expectThrow";
 
-
 const Cash36 = artifacts.require("./Cash36.sol");
 const Cash36KYC = artifacts.require("./Cash36KYC.sol");
 const Token36 = artifacts.require("./Token36.sol");
 const Token36Controller = artifacts.require("./Token36Controller.sol");
+const EthereumClaimsRegistry = artifacts.require("./lib/uport/EthereumClaimsRegistry.sol");
 
 contract('Create and Test CHF36', function (accounts) {
 
@@ -15,11 +15,13 @@ contract('Create and Test CHF36', function (accounts) {
     var Cash36KYCInstance;
     var CHF36Instance;
     var CHF36ControllerInstance;
+    var RegistryInstance;
     var blockNumber;
 
     before("...get invest36Instance.", async function () {
         Cash36Instance = await Cash36.deployed();
         Cash36KYCInstance = await Cash36KYC.deployed();
+        RegistryInstance = await EthereumClaimsRegistry.deployed();
 
         await Cash36Instance.addExchange(accounts[ 0 ]);
 
@@ -33,13 +35,13 @@ contract('Create and Test CHF36', function (accounts) {
         CHF36ControllerInstance = await Token36Controller.at(tokenControllerAddress);
     });
 
-    it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
+    it("...it should set the correct initialization block.", async function () {
         var initBlock = await CHF36Instance.getInitializationBlock({ from: accounts[ 0 ] });
         assert.equal(initBlock.toNumber(), blockNumber, "The init blocknumber was not correct.");
     });
 
     it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
-        await Cash36KYCInstance.attestUser(accounts[ 1 ]);
+        await RegistryInstance.setClaim(accounts[ 1 ], 'cash36KYC', 'verified', {from: accounts[3] });
 
         await CHF36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 0 ] });
 
@@ -53,7 +55,7 @@ contract('Create and Test CHF36', function (accounts) {
         assert.equal(tokenHolders.length, 1, "The tokenHolders were not correct.");
     });
 
-    it("...it should not allow minitng from another account.", async function () {
+    it("...it should not allow minting from another account.", async function () {
         // TODO: figure out how to test throws in JS, otherwise write Sol Tests
         //await expectThrow(CHF36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 1 ] }));
     });
@@ -84,7 +86,7 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should allow to transfer 25 CHF36 to accounts[2].", async function () {
-        await Cash36KYCInstance.attestUser(accounts[ 2 ]);
+        await RegistryInstance.setClaim(accounts[ 2 ], 'cash36KYC', 'verified', {from: accounts[3] });
 
         await CHF36Instance.transfer(accounts[ 2 ], 25, { from: accounts[ 1 ] });
 

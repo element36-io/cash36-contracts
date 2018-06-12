@@ -89,7 +89,7 @@ contract Cash36 is Ownable {
       @notice Get the TokenController address
       @param _tokenAddress Address of the Token
     */
-    function getTokenController(address _tokenAddress) external view returns (address) {
+    function getTokenController(address _tokenAddress) external view onlyAllowedExchanges returns (address) {
         return tokenControllerByTokenAddress[_tokenAddress];
     }
 

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js deploy:test
+  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:/usr/local/go/bin:/Users/bum/ethereum/bin:/Users/bum/ti8m/tools/apache-maven-3.3.9/bin
@@ -34,10 +34,8 @@ npm manifest:
       "test": "./node_modules/.bin/truffle test --network local_testrpc",
       "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
       "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
-      "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_parity",
       "deploy:testrpc": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_testrpc",
       "deploy:dev": "./node_modules/.bin/truffle migrate --compile-all --network dev",
-      "deploy:test": "./node_modules/.bin/truffle migrate --compile-all --network test",
       "generate-readme": "./scripts/generate-readme.js",
       "docs": "node_modules/.bin/doxity init && node_modules/.bin/doxity build && rm -rf ./scripts/doxity",
       "graph": "./scripts/runSolGraph.sh",
@@ -5459,9 +5457,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 2
   Command: sh
-  Arguments: -c ./node_modules/.bin/truffle migrate --compile-all --network test
+  Arguments: -c ./node_modules/.bin/truffle test --network local_testrpc
   Directory: /Users/bum/element36/dev/cash36/contracts
   Output:
   
