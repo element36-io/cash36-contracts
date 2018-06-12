@@ -18,6 +18,8 @@ build:
    - yarn build
    - yarn lint
    #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+ artifacts:
+   - build
 
 test:
  stage: test
@@ -36,10 +38,11 @@ deploy to dev:
    - yarn deploy:dev
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
-   #- 'git checkout -b CI${CI_JOB_ID}'
    - 'git add .'
    - 'git commit -m "ci: push contracts after dev deploy"'
    - 'git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git HEAD:develop'
+ artifacts:
+    - build
  only:
    - develop
 
@@ -54,6 +57,8 @@ release dev contracts:
     - NEW_VERSION=$(semver -i $LAST_VERSION)
     - git tag -a $NEW_VERSION-alpha -m "Version for dev"
     - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git --tags
+  artifacts:
+     - build
   only:
     - develop
 
@@ -79,6 +84,9 @@ deploy to test:
    - ./node_modules/.bin/truffle migrate --reset --compile-all --network test
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
+   - 'git add .'
+   - 'git commit -m "ci: push contracts after dev deploy"'
+   - 'git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git HEAD:develop'
  only:
    - master
 
