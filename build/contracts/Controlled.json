@@ -36,14 +36,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b60008054600160a060020a033316600160a060020a03199091161790556101668061003b6000396000f30060606040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c47911461007e575b600080fd5b341561005b57600080fd5b61007c73ffffffffffffffffffffffffffffffffffffffff600435166100ba565b005b341561008957600080fd5b61009161011e565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000543373ffffffffffffffffffffffffffffffffffffffff9081169116146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a723058201bccd1b8cf7412de7aa7d3c3ec69316b3abce3ff12c8231ce73e48db9d4e5c2b0029",
-  "deployedBytecode": "0x60606040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c47911461007e575b600080fd5b341561005b57600080fd5b61007c73ffffffffffffffffffffffffffffffffffffffff600435166100ba565b005b341561008957600080fd5b61009161011e565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000543373ffffffffffffffffffffffffffffffffffffffff9081169116146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a723058201bccd1b8cf7412de7aa7d3c3ec69316b3abce3ff12c8231ce73e48db9d4e5c2b0029",
+  "bytecode": "0x6060604052341561000f57600080fd5b60008054600160a060020a033316600160a060020a03199091161790556101668061003b6000396000f30060606040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c47911461007e575b600080fd5b341561005b57600080fd5b61007c73ffffffffffffffffffffffffffffffffffffffff600435166100ba565b005b341561008957600080fd5b61009161011e565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000543373ffffffffffffffffffffffffffffffffffffffff9081169116146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582077d422c10b370a2f4b3f40eaf977ebbfdc81096b998d5805072c7906142474a40029",
+  "deployedBytecode": "0x60606040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c47911461007e575b600080fd5b341561005b57600080fd5b61007c73ffffffffffffffffffffffffffffffffffffffff600435166100ba565b005b341561008957600080fd5b61009161011e565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200160405180910390f35b6000543373ffffffffffffffffffffffffffffffffffffffff9081169116146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582077d422c10b370a2f4b3f40eaf977ebbfdc81096b998d5805072c7906142474a40029",
   "sourceMap": "62:572:2:-;;;320:70;;;;;;;;360:10;:23;;-1:-1:-1;;;;;373:10:2;360:23;-1:-1:-1;;;;;;360:23:2;;;;;;62:572;;;;;;",
   "deployedSourceMap": "62:572:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;516:116;;;;;;;;;;;;;;;;;;122:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;516:116;266:10;;252;266;252:24;;;266:10;;252:24;244:33;;;;;;598:10;:27;;-1:-1:-1;;598:27:2;;;;;;;;;;;;516:116::o;122:25::-;;;;;;:::o",
   "source": "pragma solidity 0.4.21;\n\n\n/// @title\n/// @author element36.io\ncontract Controlled {\n\n    // Address of the controller\n    address public controller;\n\n    /// @notice Allow only controller address to access\n    modifier onlyController {\n        require(msg.sender == controller);\n        _;\n    }\n\n    // Constructor\n    function Controlled()  public {\n        controller = msg.sender;\n    }\n\n    /// @notice Changes the controller of the contract\n    /// @param _newController The new controller of the contract\n    function changeController(address _newController) onlyController public {\n        controller = _newController;\n    }\n}",
-  "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
+  "sourcePath": "/builds/cash36/contracts/contracts/Controlled.sol",
   "ast": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
+    "absolutePath": "/builds/cash36/contracts/contracts/Controlled.sol",
     "exportedSymbols": {
       "Controlled": [
         383
@@ -462,7 +462,7 @@
     "src": "0:634:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
+    "absolutePath": "/builds/cash36/contracts/contracts/Controlled.sol",
     "exportedSymbols": {
       "Controlled": [
         383
@@ -886,5 +886,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-11T22:09:35.283Z"
+  "updatedAt": "2018-06-12T08:41:47.493Z"
 }
