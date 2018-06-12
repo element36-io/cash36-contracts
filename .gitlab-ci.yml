@@ -42,7 +42,7 @@ deploy to dev:
    - 'git commit -m "ci: push contracts after dev deploy"'
    - 'git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git HEAD:develop'
  artifacts:
-    - build
+   - build
  only:
    - develop
 
@@ -58,7 +58,7 @@ release dev contracts:
     - git tag -a $NEW_VERSION-alpha -m "Version for dev"
     - git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git --tags
   artifacts:
-     - build
+    - build
   only:
     - develop
 
@@ -85,7 +85,7 @@ deploy to test:
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
    - 'git add .'
-   - 'git commit -m "ci: push contracts after dev deploy"'
+   - 'git commit -m "ci: push contracts after test deploy"'
    - 'git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git HEAD:develop'
  only:
    - master
