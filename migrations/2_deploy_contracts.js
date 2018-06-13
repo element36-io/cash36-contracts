@@ -5,7 +5,7 @@ var EthereumClaimsRegistry = artifacts.require("./lib/uport/EthereumClaimsRegist
 module.exports = function (deployer, network, accounts) {
     // On private network, we will deploy our own instance of
     // EthereumClaimsRegistry, otherwise we use the official one.
-    if (network !== 1 || network !== 4) {
+    if (network !== 'main' || network !== 'test') {
         deployer.deploy(EthereumClaimsRegistry).then(function() {
             return deployer.deploy(Cash36KYC, EthereumClaimsRegistry.address, accounts[3]);
         });
