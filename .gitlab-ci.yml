@@ -43,14 +43,6 @@ release:dev:
   only:
     - develop
 
-deploy:dev:
-  environment: dev
-  stage: deploy
-  script:
-    - echo "Dummy job to make ci valid. Please deploy dev changes locally."
-  only:
-    - develop
-
 publish:dev:
   environment: dev
   stage: publish
@@ -72,7 +64,8 @@ deploy:test:
    - docker:dind
  script:
    - node scripts/waitForEthSyncTest.js
-   - ./node_modules/.bin/truffle migrate --compile-all --network test
+   - ./node_modules/.bin/truffle migrate --network test
+   - ./node_modules/.bin/truffle networks
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
    - 'git add .'
@@ -93,10 +86,6 @@ release test contracts:
     - npm install -g semver
     - git config --global user.email "m@element36.io"
     - git config --global user.name "mb-element36"
-    - LAST_VERSION=$(npm --registry http://167.99.243.81:4873/ view cash36-contracts version)
-    - NEW_VERSION=$(semver -i $LAST_VERSION)
-    - git tag -d $NEW_VERSION-alpha
-    - git push --delete https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git $NEW_VERSION-alpha
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
   dependencies:
@@ -117,4 +106,4 @@ publish:test:
   only:
     - master
   except:
-     - pushes
+    - pushes
