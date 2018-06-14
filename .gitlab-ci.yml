@@ -116,3 +116,5 @@ publish:test:
     - npm-publish-git-tag --access public
   only:
     - master
+  except:
+     - pushes
