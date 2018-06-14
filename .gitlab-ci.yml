@@ -71,6 +71,7 @@ deploy:test:
  services:
    - docker:dind
  script:
+   - ./node_modules/.bin/truffle networks
    - node scripts/waitForEthSyncTest.js
    - ./node_modules/.bin/truffle migrate --network test
    - ./node_modules/.bin/truffle networks
