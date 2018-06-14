@@ -43,6 +43,14 @@ release dev contracts:
   only:
     - develop
 
+deploy for dev:
+  environment: dev
+  stage: deploy
+  script:
+    - echo "Dummy job to make ci valid. Please deploy dev changes locally."
+  only:
+    - develop
+
 publish dev contracts:
   environment: dev
   stage: publish
