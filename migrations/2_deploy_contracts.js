@@ -7,7 +7,7 @@ module.exports = function (deployer, network, accounts) {
     // EthereumClaimsRegistry, otherwise we use the official one.
     if (network !== 1 || network !== 4) {
         deployer.deploy(EthereumClaimsRegistry).then(() => {
-            deployer.deploy(Cash36KYC, EthereumClaimsRegistry.address, accounts[3]);
+            return deployer.deploy(Cash36KYC, EthereumClaimsRegistry.address, accounts[3]);
         });
     } else {
         deployer.deploy(Cash36KYC, 0xAcA1BCd8D0f5A9BFC95aFF331Da4c250CD9ac2Da, 0x122bd1a75ae8c741f7e2ab0a28bd30b8dbb1a67e);

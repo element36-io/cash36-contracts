@@ -16,14 +16,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x60606040523415600e57600080fd5b60978061001c6000396000f300606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b3415604d57600080fd5b60536065565b60405190815260200160405180910390f35b600054905600a165627a7a72305820197ae24f11ecf5355b901e61e26b673c8c397130e446249068eb23d1695d22d70029",
-  "deployedBytecode": "0x606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b3415604d57600080fd5b60536065565b60405190815260200160405180910390f35b600054905600a165627a7a72305820197ae24f11ecf5355b901e61e26b673c8c397130e446249068eb23d1695d22d70029",
+  "bytecode": "0x60606040523415600e57600080fd5b60978061001c6000396000f300606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b3415604d57600080fd5b60536065565b60405190815260200160405180910390f35b600054905600a165627a7a723058208e9cb63d741ae5d99903d8d677040818a35cdf66ca949594e32a2e4c4435e4760029",
+  "deployedBytecode": "0x606060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b3415604d57600080fd5b60536065565b60405190815260200160405180910390f35b600054905600a165627a7a723058208e9cb63d741ae5d99903d8d677040818a35cdf66ca949594e32a2e4c4435e4760029",
   "sourceMap": "26:921:4:-;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "26:921:4:-;;;;;;;;;;;;;;;;;;;;;;;353:107;;;;;;;;;;;;;;;;;;;;;;;;;;;;408:7;434:19;353:107;:::o",
   "source": "pragma solidity 0.4.21;\n\n\ncontract Initializable {\n\n    uint256 internal initializationBlock;\n\n    modifier onlyInit {\n        require(initializationBlock == 0);\n        _;\n    }\n\n    modifier isInitialized {\n        require(initializationBlock > 0);\n        _;\n    }\n\n    /**\n    * @return Block number in which the contract was initialized\n    */\n    function getInitializationBlock() public view returns (uint256) {\n        return initializationBlock;\n    }\n\n    /**\n    * @dev Function to be called by top level contract after initialization has finished.\n    */\n    function initialized() internal onlyInit {\n        initializationBlock = getBlockNumber();\n    }\n\n    /**\n    * @dev Returns the current block number.\n    *      Using a function rather than `block.number` allows us to easily mock the block number in\n    *      tests.\n    */\n    function getBlockNumber() internal view returns (uint256) {\n        return block.number;\n    }\n}",
-  "sourcePath": "/builds/cash36/contracts/contracts/Initializable.sol",
+  "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
   "ast": {
-    "absolutePath": "/builds/cash36/contracts/contracts/Initializable.sol",
+    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
     "exportedSymbols": {
       "Initializable": [
         471
@@ -619,7 +619,7 @@
     "src": "0:947:4"
   },
   "legacyAST": {
-    "absolutePath": "/builds/cash36/contracts/contracts/Initializable.sol",
+    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
     "exportedSymbols": {
       "Initializable": [
         471
@@ -1220,5 +1220,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-13T07:45:27.074Z"
+  "updatedAt": "2018-06-14T10:25:20.496Z"
 }

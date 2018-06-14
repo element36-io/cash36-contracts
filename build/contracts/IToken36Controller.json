@@ -125,9 +125,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.4.21;\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n\n/// @title\n/// @author element36.io\ncontract IToken36Controller is Ownable {\n    function proxyPayment(address _owner) public payable returns(bool);\n    function onTransfer(address _from, address _to, uint _amount) public returns(bool);\n    function onApprove(address _owner, address _spender, uint _amount) public returns(bool);\n}",
-  "sourcePath": "/builds/cash36/contracts/contracts/IToken36Controller.sol",
+  "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
   "ast": {
-    "absolutePath": "/builds/cash36/contracts/contracts/IToken36Controller.sol",
+    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
     "exportedSymbols": {
       "IToken36Controller": [
         418
@@ -553,7 +553,7 @@
     "src": "0:422:3"
   },
   "legacyAST": {
-    "absolutePath": "/builds/cash36/contracts/contracts/IToken36Controller.sol",
+    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
     "exportedSymbols": {
       "IToken36Controller": [
         418
@@ -984,5 +984,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-13T07:45:27.073Z"
+  "updatedAt": "2018-06-14T10:25:20.494Z"
 }

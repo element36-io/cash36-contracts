@@ -18,27 +18,14 @@ build:
    - yarn build
    - yarn lint
    #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+ only:
+   - develop
 
 test:
  stage: test
  script:
    - yarn testrpc &
    - yarn test
-
-deploy to dev:
- environment: dev
- stage: deploy
- image: docker:latest
- services:
-   - docker:dind
- script:
-   - node scripts/waitForEthSyncDev.js
-   - yarn deploy:dev
-   - git config --global user.email "m@element36.io"
-   - git config --global user.name "mb-element36"
-   - 'git add .'
-   - 'git commit -m "ci: push contracts after dev deploy"'
-   - 'git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git HEAD:develop'
  only:
    - develop
 
@@ -67,6 +54,8 @@ publish dev contracts:
   only:
     - develop
 
+# --> could trigger rebuild of cash36-dev-backend
+
 deploy to test:
  environment: test
  stage: deploy
@@ -75,15 +64,19 @@ deploy to test:
    - docker:dind
  script:
    - node scripts/waitForEthSyncTest.js
-   - ./node_modules/.bin/truffle migrate --reset --compile-all --network test
+   - ./node_modules/.bin/truffle migrate --compile-all --network test
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
-   - git pull
    - 'git add .'
    - 'git commit -m "ci: push contracts after test deploy"'
    - 'git push https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git HEAD:master'
+ artifacts:
+   paths:
+     - build/
  only:
    - master
+ except:
+   - pushes
 
 release test contracts:
   environment: test
@@ -98,8 +91,12 @@ release test contracts:
     - git push --delete https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git $NEW_VERSION-alpha
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
+  dependencies:
+    - deploy
   only:
     - master
+  except:
+   - pushes
 
 publish test contracts:
   environment: test
@@ -110,4 +107,4 @@ publish test contracts:
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
   only:
-    - master
+    - tags
