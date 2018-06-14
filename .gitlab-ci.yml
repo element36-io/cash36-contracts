@@ -50,9 +50,9 @@ publish:dev:
     - npm install -g npm-publish-git-tag
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
-    - npm-publish-git-tag --tag alpha --access public
+    - npm-publish-git-tag --access public
   only:
-    - tags
+    - develop
 
 # --> could trigger rebuild of cash36-dev-backend
 
@@ -104,4 +104,6 @@ publish:test:
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
   only:
-    - tags
+    - master
+  except:
+    - pushes
