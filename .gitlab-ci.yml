@@ -72,7 +72,8 @@ deploy:test:
    - docker:dind
  script:
    - node scripts/waitForEthSyncTest.js
-   - ./node_modules/.bin/truffle migrate --compile-all --network test
+   - ./node_modules/.bin/truffle migrate --network test
+   - ./node_modules/.bin/truffle networks
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
    - 'git add .'
