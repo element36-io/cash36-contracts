@@ -115,4 +115,4 @@ publish:test:
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
   only:
-    - tags
+    - master
