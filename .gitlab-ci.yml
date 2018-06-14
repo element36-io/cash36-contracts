@@ -29,7 +29,7 @@ test:
  only:
    - develop
 
-release dev contracts:
+release:dev:
   environment: dev
   stage: release
   script:
@@ -43,7 +43,7 @@ release dev contracts:
   only:
     - develop
 
-deploy for dev:
+deploy:dev:
   environment: dev
   stage: deploy
   script:
@@ -51,7 +51,7 @@ deploy for dev:
   only:
     - develop
 
-publish dev contracts:
+publish:dev:
   environment: dev
   stage: publish
   script:
@@ -64,7 +64,7 @@ publish dev contracts:
 
 # --> could trigger rebuild of cash36-dev-backend
 
-deploy to test:
+deploy:test:
  environment: test
  stage: deploy
  image: docker:latest
@@ -100,13 +100,13 @@ release test contracts:
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
   dependencies:
-    - deploy
+    - deploy:test
   only:
     - master
   except:
    - pushes
 
-publish test contracts:
+publish:test:
   environment: test
   stage: publish
   script:
