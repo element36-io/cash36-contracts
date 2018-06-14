@@ -18,7 +18,7 @@
     "test": "./node_modules/.bin/truffle test --network local_testrpc",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
-    "deploy:testrpc": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_testrpc",
+    "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
     "deploy:dev": "./node_modules/.bin/truffle migrate --reset --compile-all --network dev",
     "generate-readme": "./scripts/generate-readme.js",
     "docs": "node_modules/.bin/doxity init && node_modules/.bin/doxity build && rm -rf ./scripts/doxity",
