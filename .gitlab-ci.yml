@@ -84,7 +84,7 @@ deploy:test:
  only:
    - manual
 
-release test contracts:
+release:test:
   environment: test
   stage: release
   script:
@@ -108,7 +108,7 @@ publish:test:
   only:
     - manual
 
-build_dev_backend:
+build_test_backend:
   environment: test
   stage: build_dependents
   script:
