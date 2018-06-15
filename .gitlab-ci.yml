@@ -95,7 +95,7 @@ release:test:
     - semantic-release-gitlab
   dependencies:
     - deploy:test
-  when: manual
+  allow_failure: false
   only:
     - master
 
@@ -107,7 +107,7 @@ publish:test:
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
-  when: manual
+  allow_failure: false
   only:
     - master
 
@@ -116,6 +116,6 @@ build_test_backend:
   stage: build_dependents
   script:
     - "curl -X POST -F token=89b63b9b65e497bc6fb528e079c7b3 -F ref=master https://gitlab.com/api/v4/projects/6256736/trigger/pipeline"
-  when: manual
+  allow_failure: false
   only:
     - master
