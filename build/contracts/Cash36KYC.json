@@ -79,26 +79,40 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "removeClaim",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "bytecode": "0x6060604052341561000f57600080fd5b6040516040806102f4833981016040528080519190602001805160008054600160a060020a03338116600160a060020a0319928316179092556002805496831696821696909617909555600180549190921694169390931790925550506102798061007b6000396000f3006060604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631e9d48cf811461005b5780638da5cb5b1461008e578063f2fde38b146100bd575b600080fd5b341561006657600080fd5b61007a600160a060020a03600435166100de565b604051901515815260200160405180910390f35b341561009957600080fd5b6100a16101a3565b604051600160a060020a03909116815260200160405180910390f35b34156100c857600080fd5b6100dc600160a060020a03600435166101b2565b005b600254600154600091600160a060020a03908116918391839163e1661eff9116866040517c010000000000000000000000000000000000000000000000000000000063ffffffff8516028152600160a060020a039283166004820152911660248201527f6361736833364b594300000000000000000000000000000000000000000000006044820152606401602060405180830381600087803b151561018357600080fd5b5af1151561019057600080fd5b5050506040518051151595945050505050565b600054600160a060020a031681565b60005433600160a060020a039081169116146101cd57600080fd5b600160a060020a03811615156101e257600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a723058204c2d931f8c87cd828e385690bbe39bf2d197f0c23ae5e22a4cbd6af4c6d165740029",
-  "deployedBytecode": "0x6060604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631e9d48cf811461005b5780638da5cb5b1461008e578063f2fde38b146100bd575b600080fd5b341561006657600080fd5b61007a600160a060020a03600435166100de565b604051901515815260200160405180910390f35b341561009957600080fd5b6100a16101a3565b604051600160a060020a03909116815260200160405180910390f35b34156100c857600080fd5b6100dc600160a060020a03600435166101b2565b005b600254600154600091600160a060020a03908116918391839163e1661eff9116866040517c010000000000000000000000000000000000000000000000000000000063ffffffff8516028152600160a060020a039283166004820152911660248201527f6361736833364b594300000000000000000000000000000000000000000000006044820152606401602060405180830381600087803b151561018357600080fd5b5af1151561019057600080fd5b5050506040518051151595945050505050565b600054600160a060020a031681565b60005433600160a060020a039081169116146101cd57600080fd5b600160a060020a03811615156101e257600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a723058204c2d931f8c87cd828e385690bbe39bf2d197f0c23ae5e22a4cbd6af4c6d165740029",
-  "sourceMap": "198:503:1:-;;;289:151;;;;;;;;;;;;;;;;;;;;;;;;;;;;501:5:9;:18;;-1:-1:-1;;;;;509:10:9;501:18;;-1:-1:-1;;;;;;501:18:9;;;;;;;365:15:1;:34;;;;;;;;;;;;;;;501:18:9;409:24:1;;;;;;;;;;;;;;;-1:-1:-1;;198:503:1;;;;;;",
-  "deployedSourceMap": "198:503:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;446:253;;;;;;;;;;-1:-1:-1;;;;;446:253:1;;;;;;;;;;;;;;;;;;;;;;238:20:9;;;;;;;;;;;;;;;-1:-1:-1;;;;;238:20:9;;;;;;;;;;;;;;832:174;;;;;;;;;;-1:-1:-1;;;;;832:174:9;;;;;;;446:253:1;573:15;;;633:10;500:4;;-1:-1:-1;;;;;573:15:1;;;;500:4;;573:15;;615:17;;633:10;645:5;615:49;;;;;;;;;-1:-1:-1;;;;;615:49:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;681:11;;;446:253;-1:-1:-1;;;;;446:253:1:o;238:20:9:-;;;-1:-1:-1;;;;;238:20:9;;:::o;832:174::-;653:5;;639:10;-1:-1:-1;;;;;639:19:9;;;653:5;;639:19;631:28;;;;;;-1:-1:-1;;;;;908:22:9;;;;900:31;;;;;;963:5;;-1:-1:-1;;;;;942:37:9;;;;963:5;942:37;;;;;;;;;;985:5;:16;;-1:-1:-1;;985:16:9;-1:-1:-1;;;;;985:16:9;;;;;;;;;;832:174::o",
-  "source": "pragma solidity 0.4.21;\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\nimport \"./lib/uport/EthereumClaimsRegistry.sol\";\n\n\n/// @title Cash36 Index Contract\n/// @author element36.io\ncontract Cash36KYC is Ownable {\n\n    address cash36MNID;\n    address registryAddress;\n\n    function Cash36KYC(address _registryAddress, address _cash36MNID) {\n        registryAddress = _registryAddress;\n        cash36MNID = _cash36MNID;\n    }\n\n    function checkUser(address _user) public view returns(bool) {\n        EthereumClaimsRegistry registry = EthereumClaimsRegistry(registryAddress);\n        bytes32 claim = registry.getClaim(cash36MNID, _user, \"cash36KYC\");\n        return claim != \"\";\n    }\n}",
+  "bytecode": "0x6060604052341561000f57600080fd5b604051604080610387833981016040528080519190602001805160008054600160a060020a03338116600160a060020a03199283161790925560028054968316968216969096179095556001805491909216941693909317909255505061030c8061007b6000396000f3006060604052600436106100485763ffffffff60e060020a6000350416631e9d48cf811461004d5780634401f86a146100805780638da5cb5b146100a1578063f2fde38b146100d0575b600080fd5b341561005857600080fd5b61006c600160a060020a03600435166100ef565b604051901515815260200160405180910390f35b341561008b57600080fd5b61009f600160a060020a036004351661019b565b005b34156100ac57600080fd5b6100b4610236565b604051600160a060020a03909116815260200160405180910390f35b34156100db57600080fd5b61009f600160a060020a0360043516610245565b600254600154600091600160a060020a03908116918391839163e1661eff91168660405160e060020a63ffffffff8516028152600160a060020a039283166004820152911660248201527f6361736833364b594300000000000000000000000000000000000000000000006044820152606401602060405180830381600087803b151561017b57600080fd5b5af1151561018857600080fd5b5050506040518051151595945050505050565b600254600154600160a060020a0391821691829163c7508ec791168460405160e060020a63ffffffff8516028152600160a060020a039283166004820152911660248201527f6361736833364b594300000000000000000000000000000000000000000000006044820152606401600060405180830381600087803b151561022257600080fd5b5af1151561022f57600080fd5b5050505050565b600054600160a060020a031681565b60005433600160a060020a0390811691161461026057600080fd5b600160a060020a038116151561027557600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a72305820940f4bcfc9a924e3975226885f4fd301f9f5b736df61e95a82e989d97006cc140029",
+  "deployedBytecode": "0x6060604052600436106100485763ffffffff60e060020a6000350416631e9d48cf811461004d5780634401f86a146100805780638da5cb5b146100a1578063f2fde38b146100d0575b600080fd5b341561005857600080fd5b61006c600160a060020a03600435166100ef565b604051901515815260200160405180910390f35b341561008b57600080fd5b61009f600160a060020a036004351661019b565b005b34156100ac57600080fd5b6100b4610236565b604051600160a060020a03909116815260200160405180910390f35b34156100db57600080fd5b61009f600160a060020a0360043516610245565b600254600154600091600160a060020a03908116918391839163e1661eff91168660405160e060020a63ffffffff8516028152600160a060020a039283166004820152911660248201527f6361736833364b594300000000000000000000000000000000000000000000006044820152606401602060405180830381600087803b151561017b57600080fd5b5af1151561018857600080fd5b5050506040518051151595945050505050565b600254600154600160a060020a0391821691829163c7508ec791168460405160e060020a63ffffffff8516028152600160a060020a039283166004820152911660248201527f6361736833364b594300000000000000000000000000000000000000000000006044820152606401600060405180830381600087803b151561022257600080fd5b5af1151561022f57600080fd5b5050505050565b600054600160a060020a031681565b60005433600160a060020a0390811691161461026057600080fd5b600160a060020a038116151561027557600080fd5b600054600160a060020a0380831691167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a72305820940f4bcfc9a924e3975226885f4fd301f9f5b736df61e95a82e989d97006cc140029",
+  "sourceMap": "198:1060:1:-;;;308:158;;;;;;;;;;;;;;;;;;;;;;;;;;;;501:5:10;:18;;-1:-1:-1;;;;;509:10:10;501:18;;-1:-1:-1;;;;;;501:18:10;;;;;;;391:15:1;:34;;;;;;;;;;;;;;;501:18:10;435:24:1;;;;;;;;;;;;;;;-1:-1:-1;;198:1060:1;;;;;;",
+  "deployedSourceMap": "198:1060:1:-;;;;;;;;;-1:-1:-1;;;198:1060:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;640:255;;;;;;;;;;-1:-1:-1;;;;;640:255:1;;;;;;;;;;;;;;;;;;;;;;1059:197;;;;;;;;;;-1:-1:-1;;;;;1059:197:1;;;;;;;238:20:10;;;;;;;;;;;;;;;-1:-1:-1;;;;;238:20:10;;;;;;;;;;;;;;832:174;;;;;;;;;;-1:-1:-1;;;;;832:174:10;;;;;640:255:1;769:15;;;829:10;696:4;;-1:-1:-1;;;;;769:15:1;;;;696:4;;769:15;;811:17;;829:10;841:5;811:49;;-1:-1:-1;;;811:49:1;;;;;;-1:-1:-1;;;;;811:49:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;877:11;;;640:255;-1:-1:-1;;;;;640:255:1:o;1059:197::-;1171:15;;;1218:10;-1:-1:-1;;;;;1171:15:1;;;;;;1197:20;;1218:10;1230:5;1197:52;;-1:-1:-1;;;1197:52:1;;;;;;-1:-1:-1;;;;;1197:52:1;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1197:52:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1059:197;;:::o;238:20:10:-;;;-1:-1:-1;;;;;238:20:10;;:::o;832:174::-;653:5;;639:10;-1:-1:-1;;;;;639:19:10;;;653:5;;639:19;631:28;;;;;;-1:-1:-1;;;;;908:22:10;;;;900:31;;;;;;963:5;;-1:-1:-1;;;;;942:37:10;;;;963:5;942:37;;;;;;;;;;985:5;:16;;-1:-1:-1;;985:16:10;-1:-1:-1;;;;;985:16:10;;;;;;;;;;832:174::o",
+  "source": "pragma solidity 0.4.21;\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\nimport \"./lib/uport/EthereumClaimsRegistry.sol\";\n\n\n/// @title Cash36 Index Contract\n/// @author element36.io\ncontract Cash36KYC is Ownable {\n\n    address cash36MNID;\n    address registryAddress;\n\n    // Constructor\n    function Cash36KYC(address _registryAddress, address _cash36MNID) public {\n        registryAddress = _registryAddress;\n        cash36MNID = _cash36MNID;\n    }\n\n    /**\n     * @notice Check user for a valid claim from cash36\n     * @dev Forwards to EthereumClaimsRegistry by uport\n     * @param _user Address of the user\n     */\n    function checkUser(address _user) external view returns(bool) {\n        EthereumClaimsRegistry registry = EthereumClaimsRegistry(registryAddress);\n        bytes32 claim = registry.getClaim(cash36MNID, _user, \"cash36KYC\");\n        return claim != \"\";\n    }\n\n    /**\n     * @notice Remove the claim from the user\n     * @dev Forwards to EthereumClaimsRegistry by uport\n     * @param _user Address of the user\n     */\n    function removeClaim(address _user) external {\n        EthereumClaimsRegistry registry = EthereumClaimsRegistry(registryAddress);\n        registry.removeClaim(cash36MNID, _user, \"cash36KYC\");\n    }\n}",
   "sourcePath": "/builds/cash36/contracts/contracts/Cash36KYC.sol",
   "ast": {
     "absolutePath": "/builds/cash36/contracts/contracts/Cash36KYC.sol",
     "exportedSymbols": {
       "Cash36KYC": [
-        346
+        370
       ]
     },
-    "id": 347,
+    "id": 371,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 294,
+        "id": 298,
         "literals": [
           "solidity",
           "0.4",
@@ -110,10 +124,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 295,
+        "id": 299,
         "nodeType": "ImportDirective",
-        "scope": 347,
-        "sourceUnit": 1690,
+        "scope": 371,
+        "sourceUnit": 1908,
         "src": "25:63:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -121,10 +135,10 @@
       {
         "absolutePath": "/builds/cash36/contracts/contracts/lib/uport/EthereumClaimsRegistry.sol",
         "file": "./lib/uport/EthereumClaimsRegistry.sol",
-        "id": 296,
+        "id": 300,
         "nodeType": "ImportDirective",
-        "scope": 347,
-        "sourceUnit": 1576,
+        "scope": 371,
+        "sourceUnit": 1700,
         "src": "89:48:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -135,41 +149,41 @@
             "arguments": [],
             "baseName": {
               "contractScope": null,
-              "id": 297,
+              "id": 301,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1689,
+              "referencedDeclaration": 1907,
               "src": "220:7:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1689",
+                "typeIdentifier": "t_contract$_Ownable_$1907",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 298,
+            "id": 302,
             "nodeType": "InheritanceSpecifier",
             "src": "220:7:1"
           }
         ],
         "contractDependencies": [
-          1689
+          1907
         ],
         "contractKind": "contract",
         "documentation": "@title Cash36 Index Contract\n @author element36.io",
         "fullyImplemented": true,
-        "id": 346,
+        "id": 370,
         "linearizedBaseContracts": [
-          346,
-          1689
+          370,
+          1907
         ],
         "name": "Cash36KYC",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 300,
+            "id": 304,
             "name": "cash36MNID",
             "nodeType": "VariableDeclaration",
-            "scope": 346,
+            "scope": 370,
             "src": "235:18:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -178,7 +192,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 299,
+              "id": 303,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "235:7:1",
@@ -192,10 +206,10 @@
           },
           {
             "constant": false,
-            "id": 302,
+            "id": 306,
             "name": "registryAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 346,
+            "scope": 370,
             "src": "259:23:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -204,7 +218,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 301,
+              "id": 305,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "259:7:1",
@@ -218,56 +232,10 @@
           },
           {
             "body": {
-              "id": 317,
+              "id": 321,
               "nodeType": "Block",
-              "src": "355:85:1",
+              "src": "381:85:1",
               "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 311,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 309,
-                      "name": "registryAddress",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 302,
-                      "src": "365:15:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 310,
-                      "name": "_registryAddress",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 304,
-                      "src": "383:16:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "src": "365:34:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "id": 312,
-                  "nodeType": "ExpressionStatement",
-                  "src": "365:34:1"
-                },
                 {
                   "expression": {
                     "argumentTypes": null,
@@ -279,11 +247,11 @@
                     "leftHandSide": {
                       "argumentTypes": null,
                       "id": 313,
-                      "name": "cash36MNID",
+                      "name": "registryAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 300,
-                      "src": "409:10:1",
+                      "referencedDeclaration": 306,
+                      "src": "391:15:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -294,17 +262,17 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "id": 314,
-                      "name": "_cash36MNID",
+                      "name": "_registryAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 306,
-                      "src": "422:11:1",
+                      "referencedDeclaration": 308,
+                      "src": "409:16:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "409:24:1",
+                    "src": "391:34:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -312,12 +280,58 @@
                   },
                   "id": 316,
                   "nodeType": "ExpressionStatement",
-                  "src": "409:24:1"
+                  "src": "391:34:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 319,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 317,
+                      "name": "cash36MNID",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 304,
+                      "src": "435:10:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 318,
+                      "name": "_cash36MNID",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 310,
+                      "src": "448:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "435:24:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 320,
+                  "nodeType": "ExpressionStatement",
+                  "src": "435:24:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 318,
+            "id": 322,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -325,16 +339,16 @@
             "name": "Cash36KYC",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 307,
+              "id": 311,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 304,
+                  "id": 308,
                   "name": "_registryAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 318,
-                  "src": "308:24:1",
+                  "scope": 322,
+                  "src": "327:24:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -342,10 +356,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 303,
+                    "id": 307,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "308:7:1",
+                    "src": "327:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -356,11 +370,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 306,
+                  "id": 310,
                   "name": "_cash36MNID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 318,
-                  "src": "334:19:1",
+                  "scope": 322,
+                  "src": "353:19:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -368,10 +382,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 305,
+                    "id": 309,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "334:7:1",
+                    "src": "353:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -381,54 +395,54 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "307:47:1"
+              "src": "326:47:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 308,
+              "id": 312,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "355:0:1"
+              "src": "381:0:1"
             },
-            "scope": 346,
-            "src": "289:151:1",
+            "scope": 370,
+            "src": "308:158:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 344,
+              "id": 348,
               "nodeType": "Block",
-              "src": "506:193:1",
+              "src": "702:193:1",
               "statements": [
                 {
                   "assignments": [
-                    326
+                    330
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 326,
+                      "id": 330,
                       "name": "registry",
                       "nodeType": "VariableDeclaration",
-                      "scope": 345,
-                      "src": "516:31:1",
+                      "scope": 349,
+                      "src": "712:31:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                        "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                         "typeString": "contract EthereumClaimsRegistry"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 325,
+                        "id": 329,
                         "name": "EthereumClaimsRegistry",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1575,
-                        "src": "516:22:1",
+                        "referencedDeclaration": 1699,
+                        "src": "712:22:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                           "typeString": "contract EthereumClaimsRegistry"
                         }
                       },
@@ -436,18 +450,18 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 330,
+                  "id": 334,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 328,
+                        "id": 332,
                         "name": "registryAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 302,
-                        "src": "573:15:1",
+                        "referencedDeclaration": 306,
+                        "src": "769:15:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -461,18 +475,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 327,
+                      "id": 331,
                       "name": "EthereumClaimsRegistry",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1575,
-                      "src": "550:22:1",
+                      "referencedDeclaration": 1699,
+                      "src": "746:22:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_EthereumClaimsRegistry_$1575_$",
+                        "typeIdentifier": "t_type$_t_contract$_EthereumClaimsRegistry_$1699_$",
                         "typeString": "type(contract EthereumClaimsRegistry)"
                       }
                     },
-                    "id": 329,
+                    "id": 333,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -480,27 +494,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "550:39:1",
+                    "src": "746:39:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                      "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                       "typeString": "contract EthereumClaimsRegistry"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "516:73:1"
+                  "src": "712:73:1"
                 },
                 {
                   "assignments": [
-                    332
+                    336
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 332,
+                      "id": 336,
                       "name": "claim",
                       "nodeType": "VariableDeclaration",
-                      "scope": 345,
-                      "src": "599:13:1",
+                      "scope": 349,
+                      "src": "795:13:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -508,10 +522,10 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 331,
+                        "id": 335,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "599:7:1",
+                        "src": "795:7:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -521,18 +535,18 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 339,
+                  "id": 343,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 335,
+                        "id": 339,
                         "name": "cash36MNID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 300,
-                        "src": "633:10:1",
+                        "referencedDeclaration": 304,
+                        "src": "829:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -540,12 +554,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 336,
+                        "id": 340,
                         "name": "_user",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 320,
-                        "src": "645:5:1",
+                        "referencedDeclaration": 324,
+                        "src": "841:5:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -554,14 +568,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "6361736833364b5943",
-                        "id": 337,
+                        "id": 341,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "652:11:1",
+                        "src": "848:11:1",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_665d27f6230d556d0e2695bc99616b8ca8c222f128783ea73d37234c6b5fb042",
@@ -587,32 +601,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 333,
+                        "id": 337,
                         "name": "registry",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 326,
-                        "src": "615:8:1",
+                        "referencedDeclaration": 330,
+                        "src": "811:8:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                           "typeString": "contract EthereumClaimsRegistry"
                         }
                       },
-                      "id": 334,
+                      "id": 338,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "getClaim",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1523,
-                      "src": "615:17:1",
+                      "referencedDeclaration": 1647,
+                      "src": "811:17:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$_t_bytes32_$returns$_t_bytes32_$",
                         "typeString": "function (address,address,bytes32) view external returns (bytes32)"
                       }
                     },
-                    "id": 338,
+                    "id": 342,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -620,14 +634,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "615:49:1",
+                    "src": "811:49:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "599:65:1"
+                  "src": "795:65:1"
                 },
                 {
                   "expression": {
@@ -636,19 +650,19 @@
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     },
-                    "id": 342,
+                    "id": 346,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 340,
+                      "id": 344,
                       "name": "claim",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 332,
-                      "src": "681:5:1",
+                      "referencedDeclaration": 336,
+                      "src": "877:5:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
@@ -659,14 +673,14 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "",
-                      "id": 341,
+                      "id": 345,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "string",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "690:2:1",
+                      "src": "886:2:1",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
@@ -674,21 +688,21 @@
                       },
                       "value": ""
                     },
-                    "src": "681:11:1",
+                    "src": "877:11:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 324,
-                  "id": 343,
+                  "functionReturnParameters": 328,
+                  "id": 347,
                   "nodeType": "Return",
-                  "src": "674:18:1"
+                  "src": "870:18:1"
                 }
               ]
             },
-            "documentation": null,
-            "id": 345,
+            "documentation": "@notice Check user for a valid claim from cash36\n@dev Forwards to EthereumClaimsRegistry by uport\n@param _user Address of the user",
+            "id": 349,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -696,16 +710,16 @@
             "name": "checkUser",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 321,
+              "id": 325,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 320,
+                  "id": 324,
                   "name": "_user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 345,
-                  "src": "465:13:1",
+                  "scope": 349,
+                  "src": "659:13:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -713,10 +727,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 319,
+                    "id": 323,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "465:7:1",
+                    "src": "659:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -726,20 +740,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "464:15:1"
+              "src": "658:15:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 324,
+              "id": 328,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 323,
+                  "id": 327,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 345,
-                  "src": "500:4:1",
+                  "scope": 349,
+                  "src": "696:4:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -747,10 +761,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 322,
+                    "id": 326,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "500:4:1",
+                    "src": "696:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -760,33 +774,291 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "499:6:1"
+              "src": "695:6:1"
             },
-            "scope": 346,
-            "src": "446:253:1",
+            "scope": 370,
+            "src": "640:255:1",
             "stateMutability": "view",
             "superFunction": null,
-            "visibility": "public"
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 368,
+              "nodeType": "Block",
+              "src": "1104:152:1",
+              "statements": [
+                {
+                  "assignments": [
+                    355
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 355,
+                      "name": "registry",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 369,
+                      "src": "1114:31:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                        "typeString": "contract EthereumClaimsRegistry"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 354,
+                        "name": "EthereumClaimsRegistry",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 1699,
+                        "src": "1114:22:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                          "typeString": "contract EthereumClaimsRegistry"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 359,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 357,
+                        "name": "registryAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 306,
+                        "src": "1171:15:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 356,
+                      "name": "EthereumClaimsRegistry",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1699,
+                      "src": "1148:22:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_EthereumClaimsRegistry_$1699_$",
+                        "typeString": "type(contract EthereumClaimsRegistry)"
+                      }
+                    },
+                    "id": 358,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1148:39:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                      "typeString": "contract EthereumClaimsRegistry"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1114:73:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 363,
+                        "name": "cash36MNID",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 304,
+                        "src": "1218:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 364,
+                        "name": "_user",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 351,
+                        "src": "1230:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "6361736833364b5943",
+                        "id": 365,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1237:11:1",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_665d27f6230d556d0e2695bc99616b8ca8c222f128783ea73d37234c6b5fb042",
+                          "typeString": "literal_string \"cash36KYC\""
+                        },
+                        "value": "cash36KYC"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_665d27f6230d556d0e2695bc99616b8ca8c222f128783ea73d37234c6b5fb042",
+                          "typeString": "literal_string \"cash36KYC\""
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 360,
+                        "name": "registry",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 355,
+                        "src": "1197:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                          "typeString": "contract EthereumClaimsRegistry"
+                        }
+                      },
+                      "id": 362,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "removeClaim",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1698,
+                      "src": "1197:20:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_bytes32_$returns$__$",
+                        "typeString": "function (address,address,bytes32) external"
+                      }
+                    },
+                    "id": 366,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1197:52:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 367,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1197:52:1"
+                }
+              ]
+            },
+            "documentation": "@notice Remove the claim from the user\n@dev Forwards to EthereumClaimsRegistry by uport\n@param _user Address of the user",
+            "id": 369,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "removeClaim",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 352,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 351,
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 369,
+                  "src": "1080:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 350,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1080:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1079:15:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 353,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1104:0:1"
+            },
+            "scope": 370,
+            "src": "1059:197:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
           }
         ],
-        "scope": 347,
-        "src": "198:503:1"
+        "scope": 371,
+        "src": "198:1060:1"
       }
     ],
-    "src": "0:701:1"
+    "src": "0:1258:1"
   },
   "legacyAST": {
     "absolutePath": "/builds/cash36/contracts/contracts/Cash36KYC.sol",
     "exportedSymbols": {
       "Cash36KYC": [
-        346
+        370
       ]
     },
-    "id": 347,
+    "id": 371,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 294,
+        "id": 298,
         "literals": [
           "solidity",
           "0.4",
@@ -798,10 +1070,10 @@
       {
         "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 295,
+        "id": 299,
         "nodeType": "ImportDirective",
-        "scope": 347,
-        "sourceUnit": 1690,
+        "scope": 371,
+        "sourceUnit": 1908,
         "src": "25:63:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -809,10 +1081,10 @@
       {
         "absolutePath": "/builds/cash36/contracts/contracts/lib/uport/EthereumClaimsRegistry.sol",
         "file": "./lib/uport/EthereumClaimsRegistry.sol",
-        "id": 296,
+        "id": 300,
         "nodeType": "ImportDirective",
-        "scope": 347,
-        "sourceUnit": 1576,
+        "scope": 371,
+        "sourceUnit": 1700,
         "src": "89:48:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -823,41 +1095,41 @@
             "arguments": [],
             "baseName": {
               "contractScope": null,
-              "id": 297,
+              "id": 301,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1689,
+              "referencedDeclaration": 1907,
               "src": "220:7:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1689",
+                "typeIdentifier": "t_contract$_Ownable_$1907",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 298,
+            "id": 302,
             "nodeType": "InheritanceSpecifier",
             "src": "220:7:1"
           }
         ],
         "contractDependencies": [
-          1689
+          1907
         ],
         "contractKind": "contract",
         "documentation": "@title Cash36 Index Contract\n @author element36.io",
         "fullyImplemented": true,
-        "id": 346,
+        "id": 370,
         "linearizedBaseContracts": [
-          346,
-          1689
+          370,
+          1907
         ],
         "name": "Cash36KYC",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 300,
+            "id": 304,
             "name": "cash36MNID",
             "nodeType": "VariableDeclaration",
-            "scope": 346,
+            "scope": 370,
             "src": "235:18:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -866,7 +1138,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 299,
+              "id": 303,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "235:7:1",
@@ -880,10 +1152,10 @@
           },
           {
             "constant": false,
-            "id": 302,
+            "id": 306,
             "name": "registryAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 346,
+            "scope": 370,
             "src": "259:23:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -892,7 +1164,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 301,
+              "id": 305,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "259:7:1",
@@ -906,56 +1178,10 @@
           },
           {
             "body": {
-              "id": 317,
+              "id": 321,
               "nodeType": "Block",
-              "src": "355:85:1",
+              "src": "381:85:1",
               "statements": [
-                {
-                  "expression": {
-                    "argumentTypes": null,
-                    "id": 311,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 309,
-                      "name": "registryAddress",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 302,
-                      "src": "365:15:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 310,
-                      "name": "_registryAddress",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 304,
-                      "src": "383:16:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "src": "365:34:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "id": 312,
-                  "nodeType": "ExpressionStatement",
-                  "src": "365:34:1"
-                },
                 {
                   "expression": {
                     "argumentTypes": null,
@@ -967,11 +1193,11 @@
                     "leftHandSide": {
                       "argumentTypes": null,
                       "id": 313,
-                      "name": "cash36MNID",
+                      "name": "registryAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 300,
-                      "src": "409:10:1",
+                      "referencedDeclaration": 306,
+                      "src": "391:15:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -982,17 +1208,17 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "id": 314,
-                      "name": "_cash36MNID",
+                      "name": "_registryAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 306,
-                      "src": "422:11:1",
+                      "referencedDeclaration": 308,
+                      "src": "409:16:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "409:24:1",
+                    "src": "391:34:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1000,12 +1226,58 @@
                   },
                   "id": 316,
                   "nodeType": "ExpressionStatement",
-                  "src": "409:24:1"
+                  "src": "391:34:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 319,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 317,
+                      "name": "cash36MNID",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 304,
+                      "src": "435:10:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 318,
+                      "name": "_cash36MNID",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 310,
+                      "src": "448:11:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "435:24:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 320,
+                  "nodeType": "ExpressionStatement",
+                  "src": "435:24:1"
                 }
               ]
             },
             "documentation": null,
-            "id": 318,
+            "id": 322,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -1013,16 +1285,16 @@
             "name": "Cash36KYC",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 307,
+              "id": 311,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 304,
+                  "id": 308,
                   "name": "_registryAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 318,
-                  "src": "308:24:1",
+                  "scope": 322,
+                  "src": "327:24:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1030,10 +1302,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 303,
+                    "id": 307,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "308:7:1",
+                    "src": "327:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1044,11 +1316,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 306,
+                  "id": 310,
                   "name": "_cash36MNID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 318,
-                  "src": "334:19:1",
+                  "scope": 322,
+                  "src": "353:19:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1056,10 +1328,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 305,
+                    "id": 309,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "334:7:1",
+                    "src": "353:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1069,54 +1341,54 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "307:47:1"
+              "src": "326:47:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 308,
+              "id": 312,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "355:0:1"
+              "src": "381:0:1"
             },
-            "scope": 346,
-            "src": "289:151:1",
+            "scope": 370,
+            "src": "308:158:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 344,
+              "id": 348,
               "nodeType": "Block",
-              "src": "506:193:1",
+              "src": "702:193:1",
               "statements": [
                 {
                   "assignments": [
-                    326
+                    330
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 326,
+                      "id": 330,
                       "name": "registry",
                       "nodeType": "VariableDeclaration",
-                      "scope": 345,
-                      "src": "516:31:1",
+                      "scope": 349,
+                      "src": "712:31:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                        "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                         "typeString": "contract EthereumClaimsRegistry"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 325,
+                        "id": 329,
                         "name": "EthereumClaimsRegistry",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1575,
-                        "src": "516:22:1",
+                        "referencedDeclaration": 1699,
+                        "src": "712:22:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                           "typeString": "contract EthereumClaimsRegistry"
                         }
                       },
@@ -1124,18 +1396,18 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 330,
+                  "id": 334,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 328,
+                        "id": 332,
                         "name": "registryAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 302,
-                        "src": "573:15:1",
+                        "referencedDeclaration": 306,
+                        "src": "769:15:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1149,18 +1421,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 327,
+                      "id": 331,
                       "name": "EthereumClaimsRegistry",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1575,
-                      "src": "550:22:1",
+                      "referencedDeclaration": 1699,
+                      "src": "746:22:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_EthereumClaimsRegistry_$1575_$",
+                        "typeIdentifier": "t_type$_t_contract$_EthereumClaimsRegistry_$1699_$",
                         "typeString": "type(contract EthereumClaimsRegistry)"
                       }
                     },
-                    "id": 329,
+                    "id": 333,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1168,27 +1440,27 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "550:39:1",
+                    "src": "746:39:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                      "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                       "typeString": "contract EthereumClaimsRegistry"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "516:73:1"
+                  "src": "712:73:1"
                 },
                 {
                   "assignments": [
-                    332
+                    336
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 332,
+                      "id": 336,
                       "name": "claim",
                       "nodeType": "VariableDeclaration",
-                      "scope": 345,
-                      "src": "599:13:1",
+                      "scope": 349,
+                      "src": "795:13:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1196,10 +1468,10 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 331,
+                        "id": 335,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "599:7:1",
+                        "src": "795:7:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1209,18 +1481,18 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 339,
+                  "id": 343,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 335,
+                        "id": 339,
                         "name": "cash36MNID",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 300,
-                        "src": "633:10:1",
+                        "referencedDeclaration": 304,
+                        "src": "829:10:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1228,12 +1500,12 @@
                       },
                       {
                         "argumentTypes": null,
-                        "id": 336,
+                        "id": 340,
                         "name": "_user",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 320,
-                        "src": "645:5:1",
+                        "referencedDeclaration": 324,
+                        "src": "841:5:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1242,14 +1514,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "6361736833364b5943",
-                        "id": 337,
+                        "id": 341,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "652:11:1",
+                        "src": "848:11:1",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_665d27f6230d556d0e2695bc99616b8ca8c222f128783ea73d37234c6b5fb042",
@@ -1275,32 +1547,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 333,
+                        "id": 337,
                         "name": "registry",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 326,
-                        "src": "615:8:1",
+                        "referencedDeclaration": 330,
+                        "src": "811:8:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1575",
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
                           "typeString": "contract EthereumClaimsRegistry"
                         }
                       },
-                      "id": 334,
+                      "id": 338,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "getClaim",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1523,
-                      "src": "615:17:1",
+                      "referencedDeclaration": 1647,
+                      "src": "811:17:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_address_$_t_bytes32_$returns$_t_bytes32_$",
                         "typeString": "function (address,address,bytes32) view external returns (bytes32)"
                       }
                     },
-                    "id": 338,
+                    "id": 342,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1308,14 +1580,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "615:49:1",
+                    "src": "811:49:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "599:65:1"
+                  "src": "795:65:1"
                 },
                 {
                   "expression": {
@@ -1324,19 +1596,19 @@
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     },
-                    "id": 342,
+                    "id": 346,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 340,
+                      "id": 344,
                       "name": "claim",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 332,
-                      "src": "681:5:1",
+                      "referencedDeclaration": 336,
+                      "src": "877:5:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
                         "typeString": "bytes32"
@@ -1347,14 +1619,14 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "",
-                      "id": 341,
+                      "id": 345,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "string",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "690:2:1",
+                      "src": "886:2:1",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
@@ -1362,21 +1634,21 @@
                       },
                       "value": ""
                     },
-                    "src": "681:11:1",
+                    "src": "877:11:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 324,
-                  "id": 343,
+                  "functionReturnParameters": 328,
+                  "id": 347,
                   "nodeType": "Return",
-                  "src": "674:18:1"
+                  "src": "870:18:1"
                 }
               ]
             },
-            "documentation": null,
-            "id": 345,
+            "documentation": "@notice Check user for a valid claim from cash36\n@dev Forwards to EthereumClaimsRegistry by uport\n@param _user Address of the user",
+            "id": 349,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -1384,16 +1656,16 @@
             "name": "checkUser",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 321,
+              "id": 325,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 320,
+                  "id": 324,
                   "name": "_user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 345,
-                  "src": "465:13:1",
+                  "scope": 349,
+                  "src": "659:13:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1401,10 +1673,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 319,
+                    "id": 323,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "465:7:1",
+                    "src": "659:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1414,20 +1686,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "464:15:1"
+              "src": "658:15:1"
             },
             "payable": false,
             "returnParameters": {
-              "id": 324,
+              "id": 328,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 323,
+                  "id": 327,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 345,
-                  "src": "500:4:1",
+                  "scope": 349,
+                  "src": "696:4:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1435,10 +1707,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 322,
+                    "id": 326,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "500:4:1",
+                    "src": "696:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1448,20 +1720,278 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "499:6:1"
+              "src": "695:6:1"
             },
-            "scope": 346,
-            "src": "446:253:1",
+            "scope": 370,
+            "src": "640:255:1",
             "stateMutability": "view",
             "superFunction": null,
-            "visibility": "public"
+            "visibility": "external"
+          },
+          {
+            "body": {
+              "id": 368,
+              "nodeType": "Block",
+              "src": "1104:152:1",
+              "statements": [
+                {
+                  "assignments": [
+                    355
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 355,
+                      "name": "registry",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 369,
+                      "src": "1114:31:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                        "typeString": "contract EthereumClaimsRegistry"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 354,
+                        "name": "EthereumClaimsRegistry",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 1699,
+                        "src": "1114:22:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                          "typeString": "contract EthereumClaimsRegistry"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 359,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 357,
+                        "name": "registryAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 306,
+                        "src": "1171:15:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      ],
+                      "id": 356,
+                      "name": "EthereumClaimsRegistry",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1699,
+                      "src": "1148:22:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_contract$_EthereumClaimsRegistry_$1699_$",
+                        "typeString": "type(contract EthereumClaimsRegistry)"
+                      }
+                    },
+                    "id": 358,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1148:39:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                      "typeString": "contract EthereumClaimsRegistry"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1114:73:1"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 363,
+                        "name": "cash36MNID",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 304,
+                        "src": "1218:10:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 364,
+                        "name": "_user",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 351,
+                        "src": "1230:5:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "6361736833364b5943",
+                        "id": 365,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1237:11:1",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_665d27f6230d556d0e2695bc99616b8ca8c222f128783ea73d37234c6b5fb042",
+                          "typeString": "literal_string \"cash36KYC\""
+                        },
+                        "value": "cash36KYC"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_665d27f6230d556d0e2695bc99616b8ca8c222f128783ea73d37234c6b5fb042",
+                          "typeString": "literal_string \"cash36KYC\""
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 360,
+                        "name": "registry",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 355,
+                        "src": "1197:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_EthereumClaimsRegistry_$1699",
+                          "typeString": "contract EthereumClaimsRegistry"
+                        }
+                      },
+                      "id": 362,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "removeClaim",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1698,
+                      "src": "1197:20:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_bytes32_$returns$__$",
+                        "typeString": "function (address,address,bytes32) external"
+                      }
+                    },
+                    "id": 366,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1197:52:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 367,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1197:52:1"
+                }
+              ]
+            },
+            "documentation": "@notice Remove the claim from the user\n@dev Forwards to EthereumClaimsRegistry by uport\n@param _user Address of the user",
+            "id": 369,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "removeClaim",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 352,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 351,
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 369,
+                  "src": "1080:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 350,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1080:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1079:15:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 353,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1104:0:1"
+            },
+            "scope": 370,
+            "src": "1059:197:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
           }
         ],
-        "scope": 347,
-        "src": "198:503:1"
+        "scope": 371,
+        "src": "198:1060:1"
       }
     ],
-    "src": "0:701:1"
+    "src": "0:1258:1"
   },
   "compiler": {
     "name": "solc",
@@ -1476,5 +2006,5 @@
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-15T08:59:17.044Z"
+  "updatedAt": "2018-06-15T09:55:51.180Z"
 }
