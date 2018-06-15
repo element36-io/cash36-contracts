@@ -81,8 +81,9 @@ deploy:test:
  artifacts:
    paths:
      - build/
+ when: manual
  only:
-   - manual
+   - master
 
 release:test:
   environment: test
@@ -94,8 +95,9 @@ release:test:
     - semantic-release-gitlab
   dependencies:
     - deploy:test
+  when: manual
   only:
-    - manual
+    - master
 
 publish:test:
   environment: test
@@ -105,13 +107,15 @@ publish:test:
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
+  when: manual
   only:
-    - manual
+    - master
 
 build_test_backend:
   environment: test
   stage: build_dependents
   script:
     - "curl -X POST -F token=89b63b9b65e497bc6fb528e079c7b3 -F ref=master https://gitlab.com/api/v4/projects/6256736/trigger/pipeline"
+  when: manual
   only:
-    - manual
+    - master
