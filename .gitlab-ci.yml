@@ -75,9 +75,7 @@ deploy:test:
    paths:
      - build/
  only:
-   - master
- except:
-   - pushes
+   - manual
 
 release test contracts:
   environment: test
@@ -90,9 +88,7 @@ release test contracts:
   dependencies:
     - deploy:test
   only:
-    - master
-  except:
-   - pushes
+    - manual
 
 publish:test:
   environment: test
@@ -103,6 +99,4 @@ publish:test:
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
   only:
-    - master
-  except:
-    - pushes
+    - manual
