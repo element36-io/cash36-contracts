@@ -42,7 +42,7 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
-        await RegistryInstance.setClaim(accounts[ 1 ], 'cash36KYC', 'verified', { from: accounts[ 3 ] });
+        await RegistryInstance.setClaim(accounts[ 1 ], 'cash36KYC', 'verified', { from: accounts[ 2 ] });
 
         await CHF36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 0 ] });
 
@@ -88,7 +88,7 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should allow to transfer 25 CHF36 to accounts[2].", async function () {
-        await RegistryInstance.setClaim(accounts[ 2 ], 'cash36KYC', 'verified', { from: accounts[ 3 ] });
+        await RegistryInstance.setClaim(accounts[ 2 ], 'cash36KYC', 'verified', { from: accounts[ 2 ] });
 
         await CHF36Instance.transfer(accounts[ 2 ], 25, { from: accounts[ 1 ] });
 
