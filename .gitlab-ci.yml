@@ -11,6 +11,7 @@ stages:
  - deploy
  - release
  - publish
+ - build_dependents
 
 build:
  stage: build
@@ -43,14 +44,6 @@ release:dev:
   only:
     - develop
 
-deploy:dev:
-  environment: dev
-  stage: deploy
-  script:
-    - echo "Dummy job to make ci valid. Please deploy dev changes locally."
-  only:
-    - develop
-
 publish:dev:
   environment: dev
   stage: publish
@@ -62,7 +55,13 @@ publish:dev:
   only:
     - develop
 
-# --> could trigger rebuild of cash36-dev-backend
+build_dev_backend:
+  environment: dev
+  stage: build_dependents
+  script:
+    - "curl -X POST -F token=89b63b9b65e497bc6fb528e079c7b3 -F ref=develop https://gitlab.com/api/v4/projects/6256736/trigger/pipeline"
+  only:
+    - develop
 
 deploy:test:
  environment: test
@@ -72,7 +71,8 @@ deploy:test:
    - docker:dind
  script:
    - node scripts/waitForEthSyncTest.js
-   - ./node_modules/.bin/truffle migrate --compile-all --network test
+   - ./node_modules/.bin/truffle migrate --network test
+   - ./node_modules/.bin/truffle networks
    - git config --global user.email "m@element36.io"
    - git config --global user.name "mb-element36"
    - 'git add .'
@@ -82,29 +82,20 @@ deploy:test:
    paths:
      - build/
  only:
-   - master
- except:
-   - pushes
+   - manual
 
-release test contracts:
+release:test:
   environment: test
   stage: release
   script:
-    - npm install -g semver
     - git config --global user.email "m@element36.io"
     - git config --global user.name "mb-element36"
-    - LAST_VERSION=$(npm --registry http://167.99.243.81:4873/ view cash36-contracts version)
-    - NEW_VERSION=$(semver -i $LAST_VERSION)
-    - git tag -d $NEW_VERSION-alpha
-    - git push --delete https://mb-element36:${GITLAB_AUTH_TOKEN}@gitlab.com/cash36/contracts.git $NEW_VERSION-alpha
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
   dependencies:
     - deploy:test
   only:
-    - master
-  except:
-   - pushes
+    - manual
 
 publish:test:
   environment: test
@@ -115,6 +106,12 @@ publish:test:
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
   only:
-    - master
-  except:
-     - pushes
+    - manual
+
+build_test_backend:
+  environment: test
+  stage: build_dependents
+  script:
+    - "curl -X POST -F token=89b63b9b65e497bc6fb528e079c7b3 -F ref=master https://gitlab.com/api/v4/projects/6256736/trigger/pipeline"
+  only:
+    - manual

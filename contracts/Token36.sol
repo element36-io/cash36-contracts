@@ -33,7 +33,7 @@ contract Token36 is ERC20, Controlled, Initializable {
     bool public transfersEnabled;
 
     // Constructor
-    function Token36(string _name, string _symbol) {
+    function Token36(string _name, string _symbol) public {
         name = _name;
         symbol = _symbol;
         transfersEnabled = true;
@@ -92,7 +92,7 @@ contract Token36 is ERC20, Controlled, Initializable {
 
         // If the amount being transfered is more than the balance of the
         // account the transfer returns false
-        var previousBalanceFrom = balanceOfAt(_from, block.number);
+        uint previousBalanceFrom = balanceOfAt(_from, block.number);
         if (previousBalanceFrom < _amount) {
             return false;
         }
@@ -103,7 +103,7 @@ contract Token36 is ERC20, Controlled, Initializable {
         }
 
         updateValueAtNow(balances[_from], previousBalanceFrom - _amount);
-        var previousBalanceTo = balanceOfAt(_to, block.number);
+        uint previousBalanceTo = balanceOfAt(_to, block.number);
         require(previousBalanceTo + _amount >= previousBalanceTo); // Check for overflow
         updateValueAtNow(balances[_to], previousBalanceTo + _amount);
 
@@ -135,10 +135,6 @@ contract Token36 is ERC20, Controlled, Initializable {
         //  https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
         require((_amount == 0) || (allowed[msg.sender][_spender] == 0));
 
-        // Alerts the token controller of the approve function call
-        if (isContract(controller)) {
-            require(IToken36Controller(controller).onApprove(msg.sender, _spender, _amount) == true);
-        }
         allowed[msg.sender][_spender] = _amount;
 
         emit Approval(msg.sender, _spender, _amount);
@@ -286,7 +282,8 @@ contract Token36 is ERC20, Controlled, Initializable {
     /// @notice The fallback function: If the contract's controller has not been
     ///  set to 0, then the `proxyPayment` method is called which relays the
     ///  ether and creates tokens as described in the token controller contract
-    function ()  payable public {
-        revert();
+    function () payable public {
+        require(isContract(controller));
+        require(IToken36Controller(controller).proxyPayment.value(msg.value)(msg.sender) == true);
     }
 }
