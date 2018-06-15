@@ -3,6 +3,7 @@
  */
 import expectThrow from "./helpers/expectThrow";
 
+
 const Cash36 = artifacts.require("./Cash36.sol");
 const Cash36KYC = artifacts.require("./Cash36KYC.sol");
 const Token36 = artifacts.require("./Token36.sol");
@@ -25,7 +26,7 @@ contract('Create and Test CHF36', function (accounts) {
 
         await Cash36Instance.addExchange(accounts[ 0 ]);
 
-        await Cash36Instance.createNewToken('CHF36 Token', 'CHF36', Cash36KYCInstance.address, { from: accounts[ 0 ] });
+        await Cash36Instance.createNewToken('CHF36 Token', 'CHF36', { from: accounts[ 0 ] });
         blockNumber = web3.eth.blockNumber;
 
         var tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36');
@@ -41,7 +42,7 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
-        await RegistryInstance.setClaim(accounts[ 1 ], 'cash36KYC', 'verified', {from: accounts[3] });
+        await RegistryInstance.setClaim(accounts[ 1 ], 'cash36KYC', 'verified', { from: accounts[ 3 ] });
 
         await CHF36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 0 ] });
 
@@ -82,11 +83,12 @@ contract('Create and Test CHF36', function (accounts) {
     });
 
     it("...it should not allow to transfer 25 CHF36 to accounts[2] not being KYCed.", async function () {
+        // TODO: figure out how to test throws in JS, otherwise write Sol Tests
         //await CHF36Instance.transfer(accounts[ 2 ], 25, { from: accounts[ 1 ] });
     });
 
     it("...it should allow to transfer 25 CHF36 to accounts[2].", async function () {
-        await RegistryInstance.setClaim(accounts[ 2 ], 'cash36KYC', 'verified', {from: accounts[3] });
+        await RegistryInstance.setClaim(accounts[ 2 ], 'cash36KYC', 'verified', { from: accounts[ 3 ] });
 
         await CHF36Instance.transfer(accounts[ 2 ], 25, { from: accounts[ 1 ] });
 
@@ -125,5 +127,32 @@ contract('Create and Test CHF36', function (accounts) {
 
         var tokenHolders = await CHF36ControllerInstance.allHolders();
         assert.equal(tokenHolders.length, 2, "The tokenHolders were not correct.");
+    });
+
+    it("...it should not allow to transfer if accounts[2] is on blacklist.", async function () {
+        var enabled = await CHF36ControllerInstance.isUserEnabled(accounts[ 2 ]);
+        assert.equal(enabled, true, "The user was not enabled.");
+
+        await CHF36ControllerInstance.enableUser(accounts[ 2 ], false, { from: accounts[ 0 ] });
+
+        enabled = await CHF36ControllerInstance.isUserEnabled(accounts[ 2 ]);
+        assert.equal(enabled, false, "The user was not disabled.");
+
+        // TODO: figure out how to test throws in JS, otherwise write Sol Tests
+        //await CHF36Instance.transfer(accounts[ 1 ], 5, { from: accounts[ 2 ] });
+        //assert.equal(result, false, "The result of transfer was not correct.");
+
+        var newBalanceFor2 = await CHF36Instance.balanceOf(accounts[ 1 ]);
+        assert.equal(newBalanceFor2, "20", "The balance was not correct.");
+
+        await CHF36ControllerInstance.enableUser(accounts[ 2 ], true, { from: accounts[ 0 ] });
+
+        enabled = await CHF36ControllerInstance.isUserEnabled(accounts[ 2 ]);
+        assert.equal(enabled, true, "The user was not enabled.");
+
+        await CHF36Instance.transfer(accounts[ 1 ], 5, { from: accounts[ 2 ] });
+
+        var newBalanceFor2After = await CHF36Instance.balanceOf(accounts[ 1 ]);
+        assert.equal(newBalanceFor2After, "25", "The balance was not correct.");
     });
 });

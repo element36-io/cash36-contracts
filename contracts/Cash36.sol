@@ -15,6 +15,8 @@ contract Cash36 is Ownable {
     mapping(string => uint256) tokenIndexBySymbol;
     mapping(address => address) tokenControllerByTokenAddress;
 
+    address cash36KycAddress;
+
     // Whitelisted Exchanges
     mapping(address => bool) allowedExchanges;
 
@@ -26,18 +28,21 @@ contract Cash36 is Ownable {
     // Event
     event TokenCreated(string _name, string _symbol, address tokenAddress, address tokenControllerAddress);
 
+    // Constructor
+    function Cash36(address _cash36Kyc) public {
+        cash36KycAddress = _cash36Kyc;
+    }
+
     /**
      * @notice Create a new Token36
      * @dev Also creates a token controller with given KYC Provider (Calls Event TokenCreated on success)
      * @param _name Name of the token (as with ERC20)
      * @param _symbol Symbol of the token (as with ERC20)
-     * @param _kycProvider Address of the KYC Provider contract
      */
-    function createNewToken(string _name, string _symbol, address _kycProvider) external onlyAllowedExchanges {
+    function createNewToken(string _name, string _symbol) external onlyAllowedExchanges {
         require(keccak256(_name) != keccak256(""));
         require(keccak256(_symbol) != keccak256(""));
         require(registeredSymbol[_symbol] == false);
-        require(isContract(_kycProvider));
 
         Token36 newToken = new Token36(_name, _symbol);
 
@@ -45,7 +50,7 @@ contract Cash36 is Ownable {
         tokens.push(newToken);
         registeredSymbol[_symbol] = true;
 
-        Token36Controller newController = new Token36Controller(newToken, _kycProvider);
+        Token36Controller newController = new Token36Controller(newToken, cash36KycAddress);
         tokenControllerByTokenAddress[newToken] = address(newController);
 
         // Transfer Ownership of controller to Exchange who creates the Token

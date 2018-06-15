@@ -15,7 +15,7 @@
     "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
     "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
     "testrpc": "./node_modules/.bin/testrpc -p 8558 -i 85588558",
-    "test": "./node_modules/.bin/truffle test --network local_testrpc",
+    "test": "./node_modules/.bin/truffle test --network local",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
     "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
@@ -23,10 +23,9 @@
     "generate-readme": "./scripts/generate-readme.js",
     "docs": "node_modules/.bin/doxity init && node_modules/.bin/doxity build && rm -rf ./scripts/doxity",
     "graph": "./scripts/runSolGraph.sh",
-    "all": "yarn build && yarn lint && yarn deploy:testrpc && yarn test"
+    "all": "yarn build && yarn lint && yarn deploy:local && yarn test"
   },
   "dependencies": {
-    "ethereum-claims-registry": "^0.0.4",
     "ethereumjs-testrpc": "6.0.3",
     "openzeppelin-solidity": "1.9.0",
     "truffle": "^4.1.5"

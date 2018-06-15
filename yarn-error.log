@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js deploy:dev
+  /usr/local/Cellar/node/9.11.1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js test
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:/usr/local/go/bin:/Users/bum/ethereum/bin:/Users/bum/ti8m/tools/apache-maven-3.3.9/bin
@@ -31,18 +31,17 @@ npm manifest:
       "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
       "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
       "testrpc": "./node_modules/.bin/testrpc -p 8558 -i 85588558",
-      "test": "./node_modules/.bin/truffle test --network local_testrpc",
+      "test": "./node_modules/.bin/truffle test --network local",
       "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
       "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
-      "deploy:testrpc": "./node_modules/.bin/truffle migrate --reset --compile-all --network local_testrpc",
+      "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
       "deploy:dev": "./node_modules/.bin/truffle migrate --reset --compile-all --network dev",
       "generate-readme": "./scripts/generate-readme.js",
       "docs": "node_modules/.bin/doxity init && node_modules/.bin/doxity build && rm -rf ./scripts/doxity",
       "graph": "./scripts/runSolGraph.sh",
-      "all": "yarn build && yarn lint && yarn deploy:testrpc && yarn test"
+      "all": "yarn build && yarn lint && yarn deploy:local && yarn test"
     },
     "dependencies": {
-      "ethereum-claims-registry": "^0.0.4",
       "ethereumjs-testrpc": "6.0.3",
       "openzeppelin-solidity": "1.9.0",
       "truffle": "^4.1.5"
@@ -1830,10 +1829,6 @@ Lockfile:
   esutils@^2.0.2:
     version "2.0.2"
     resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
-  
-  ethereum-claims-registry@^0.0.4:
-    version "0.0.4"
-    resolved "http://167.99.243.81:4873/ethereum-claims-registry/-/ethereum-claims-registry-0.0.4.tgz#208cd44923e64f0ea30107bf7c44c5a008f3293d"
   
   ethereumjs-testrpc-sc@6.1.2:
     version "6.1.2"
@@ -5459,7 +5454,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c ./node_modules/.bin/truffle migrate --reset --compile-all --network dev
+  Arguments: -c ./node_modules/.bin/truffle test --network local
   Directory: /Users/bum/element36/dev/cash36/contracts
   Output:
   

@@ -83,7 +83,6 @@ release test contracts:
   environment: test
   stage: release
   script:
-    - npm install -g semver
     - git config --global user.email "m@element36.io"
     - git config --global user.name "mb-element36"
     - npm install -g semantic-release-gitlab
