@@ -1,67 +1,49 @@
-pragma solidity 0.4.21;
+pragma solidity ^0.4.24;
 
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "./Token36.sol";
 import "./IToken36Controller.sol";
-import "./Cash36KYC.sol";
+import "./Token36.sol";
+import "./Cash36Compliance.sol";
 
 
-/// @title
+/// @title Token Controller
 /// @author element36.io
-contract Token36Controller is IToken36Controller {
-
+contract Token36Controller is IToken36Controller, Ownable {
     using SafeMath for uint256;
 
-    Token36 public token;
-    Cash36KYC kycProvider;
+    // Token controlled by this controller
+    Token36 internal token;
 
-    // Returns all holders the token had.
-    // Some of them can have a balance of 0.
-    address[] public holders;
-    mapping (address => bool) internal everHeld;
+    // Compliance contract
+    Cash36Compliance compliance;
 
-    // Blacklist, to disable certain user if needed
-    mapping (address => bool) internal blacklist;
-
+    // Max. Tokens an account can hold
     uint256 public maxAccountTokens = uint256(-1);
 
+    modifier onlyAllowedExchanges {
+        require(compliance.isAllowedExchange(msg.sender, address(token)));
+        _;
+    }
+
     // Constructor
-    function Token36Controller(Token36 _token, address _kycProvider) public {
+    constructor(Token36 _token, address _compliance) public {
         token = _token;
-        kycProvider = Cash36KYC(_kycProvider);
+        compliance = Cash36Compliance(_compliance);
     }
 
-    function allHolders() public view returns (address[]) {
-        return holders;
-    }
-
-    function isUserEnabled(address _user) public view returns(bool) {
-        return !blacklist[_user];
-    }
-
-    function proxyPayment(address _owner) public payable returns(bool) {
-        require(msg.sender == address(token));
-        return false;
-    }
-
-    function onTransfer(address _from, address _to, uint _amount) public returns (bool) {
+    function onTransfer(address _from, address _to, uint _amount) public view returns (bool) {
         require(msg.sender == address(token));
 
         // Check SimpleKYC
         if (isContract(_to) == false) {
-            // Check if _from is on blacklist
-            if (blacklist[_from]) {
+            // Check if user _to is KYCed
+            if (!compliance.checkUser(_to)) {
                 return false;
             }
 
-            // Check if _to is on blacklist
-            if (blacklist[_to]) {
-                return false;
-            }
-
-            // Check if user is KYCed
-            bool checkUser = kycProvider.checkUser(_to);
-            if (!checkUser) {
+            // Check if user _from is KYCed (blacklist check)
+            if (!compliance.checkUser(_from)) {
                 return false;
             }
 
@@ -71,53 +53,39 @@ contract Token36Controller is IToken36Controller {
             }
         }
 
-        _logHolder(_to);
-
         return true;
     }
 
-    function mint(address _receiver, uint256 _amount) external onlyOwner {
-        // Check SimpleKYC
+    function proxyPayment(address _owner) public payable returns(bool) {
+        require(msg.sender == address(token));
+
+        return false;
+    }
+
+    function mint(address _receiver, uint256 _amount) external onlyAllowedExchanges {
+        // Check Compliance first
         if (isContract(_receiver) == false) {
-            require(kycProvider.checkUser(_receiver));
+            require(compliance.checkUser(_receiver));
         }
 
-        token.generateTokens(_receiver, _amount);
-        _logHolder(_receiver);
+        token.mintTokens(_receiver, _amount);
     }
 
-    function burn(address _holder, uint256 _amount) external onlyOwner {
-        token.destroyTokens(_holder, _amount);
-    }
 
-    function enableUser(address _user, bool _enabled) external onlyOwner {
-        blacklist[_user] = !_enabled;
-    }
-
-    function enableTransfers(bool _transfersEnabled) external onlyOwner {
-        token.enableTransfers(_transfersEnabled);
-    }
-
-    function changeKycProvider(Cash36KYC _newProvider) external onlyOwner {
-        kycProvider = _newProvider;
-    }
-
-    function setMaxAccountTokens(uint _maxAccountTokens) external onlyOwner {
+    function setMaxAccountTokens(uint _maxAccountTokens) external onlyAllowedExchanges {
         maxAccountTokens = _maxAccountTokens;
     }
 
-    /// INTERNAL
-
-    function _logHolder(address _newHolder) internal {
-        if (everHeld[_newHolder]) {
-            return;
-        }
-
-        everHeld[_newHolder] = true;
-        holders.push(_newHolder);
+    function updateComplianceContract(address _newComplianceContract) external onlyOwner {
+        compliance = Cash36Compliance(_newComplianceContract);
     }
 
-    function isContract(address _addr) constant internal returns(bool) {
+    // INTERNAL
+    function isBalanceIncreaseAllowed(address _receiver, uint _amount) internal view returns (bool) {
+        return token.balanceOf(_receiver).add(_amount) <= maxAccountTokens;
+    }
+
+    function isContract(address _addr) view internal returns(bool) {
         uint size;
         if (_addr == 0)
             return false;
@@ -127,9 +95,5 @@ contract Token36Controller is IToken36Controller {
         }
 
         return size > 0;
-    }
-
-    function isBalanceIncreaseAllowed(address _receiver, uint _amount) internal view returns (bool) {
-        return token.balanceOf(_receiver).add(_amount) <= maxAccountTokens;
     }
 }

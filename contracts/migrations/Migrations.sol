@@ -1,4 +1,4 @@
-pragma solidity 0.4.21;
+pragma solidity ^0.4.24;
 
 
 contract Migrations {
@@ -11,16 +11,16 @@ contract Migrations {
         }
     }
 
-    function Migrations() {
+    constructor() {
         owner = msg.sender;
     }
 
-    function setCompleted(uint completed) restricted {
-        lastCompletedMigration = completed;
+    function setCompleted(uint _completed) restricted {
+        lastCompletedMigration = _completed;
     }
 
-    function upgrade(address newAddress) restricted {
-        Migrations upgraded = Migrations(newAddress);
+    function upgrade(address _newAddress) restricted {
+        Migrations upgraded = Migrations(_newAddress);
         upgraded.setCompleted(lastCompletedMigration);
     }
 }

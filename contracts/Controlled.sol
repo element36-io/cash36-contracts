@@ -1,7 +1,7 @@
-pragma solidity 0.4.21;
+pragma solidity ^0.4.24;
 
 
-/// @title
+/// @title Interface
 /// @author element36.io
 contract Controlled {
 
@@ -15,7 +15,7 @@ contract Controlled {
     }
 
     // Constructor
-    function Controlled()  public {
+    constructor()  public {
         controller = msg.sender;
     }
 
