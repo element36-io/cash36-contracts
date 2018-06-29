@@ -9,7 +9,7 @@ import "./IToken36Controller.sol";
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20, BurnableToken, Initializable, Controlled {
+contract Token36 is ERC20, Initializable, Controlled {
 
     string public name;
     string public symbol;
@@ -33,12 +33,34 @@ contract Token36 is ERC20, BurnableToken, Initializable, Controlled {
     // Flag to determine if the token is transferable or not.
     bool public transfersEnabled;
 
+    event Burn(address indexed burner, uint256 value);
+
     // Constructor
     constructor(string _name, string _symbol) public {
         initialized();
         name = _name;
         symbol = _symbol;
         transfersEnabled = true;
+    }
+
+    /**
+   * @dev Burns a specific amount of tokens.
+   * @param _value The amount of token to be burned.
+   */
+    function burn(uint256 _value) public {
+        _burn(msg.sender, _value);
+    }
+
+    function _burn(address _who, uint256 _value) internal {
+        uint previousBalanceFrom = balanceOfAt(_who, block.number);
+        require(_value <= previousBalanceFrom);
+
+        updateValueAtNow(balances[_who], previousBalanceFrom - _value);
+        uint curTotalSupply = totalSupply();
+        updateValueAtNow(totalSupplyHistory, curTotalSupply - _value);
+
+        emit Burn(_who, _value);
+        emit Transfer(_who, address(0), _value);
     }
 
     /**
