@@ -44,26 +44,6 @@ contract Token36 is ERC20, Initializable, Controlled {
     }
 
     /**
-   * @dev Burns a specific amount of tokens.
-   * @param _value The amount of token to be burned.
-   */
-    function burn(uint256 _value) public {
-        _burn(msg.sender, _value);
-    }
-
-    function _burn(address _who, uint256 _value) internal {
-        uint previousBalanceFrom = balanceOfAt(_who, block.number);
-        require(_value <= previousBalanceFrom);
-
-        updateValueAtNow(balances[_who], previousBalanceFrom - _value);
-        uint curTotalSupply = totalSupply();
-        updateValueAtNow(totalSupplyHistory, curTotalSupply - _value);
-
-        emit Burn(_who, _value);
-        emit Transfer(_who, address(0), _value);
-    }
-
-    /**
      * @notice Send _amount tokens to _to from msg.sender
      * @param _to The address of the recipient
      * @param _amount The amount of tokens to be transferred
@@ -171,6 +151,22 @@ contract Token36 is ERC20, Initializable, Controlled {
     /// @param _transfersEnabled True if transfers are allowed in the clone
     function enableTransfers(bool _transfersEnabled) onlyController public {
         transfersEnabled = _transfersEnabled;
+    }
+
+    /**
+     * @dev Burns a specific amount of tokens.
+     * @param _value The amount of token to be burned.
+     */
+    function burn(uint256 _value) public {
+        uint previousBalanceFrom = balanceOfAt(msg.sender, block.number);
+        require(_value <= previousBalanceFrom);
+
+        updateValueAtNow(balances[msg.sender], previousBalanceFrom - _value);
+        uint curTotalSupply = totalSupply();
+        updateValueAtNow(totalSupplyHistory, curTotalSupply - _value);
+
+        emit Burn(msg.sender, _value);
+        emit Transfer(msg.sender, address(0), _value);
     }
 
     /// @notice Generates `_amount` tokens that are assigned to `_owner`
