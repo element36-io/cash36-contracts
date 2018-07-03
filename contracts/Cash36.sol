@@ -10,6 +10,7 @@ import "./Token36Controller.sol";
 /// @author element36.io
 contract Cash36 is Ownable {
 
+    // Compliance Contract address
     address complianceAddress;
 
     // Token Storage
@@ -26,8 +27,10 @@ contract Cash36 is Ownable {
     event TokenCreated(string _name, string _symbol, address tokenAddress, address tokenControllerAddress);
 
     /**
-     * @notice Create a new Token36
-     * @dev Also creates a token controller with given KYC Provider (Calls Event TokenCreated on success)
+     * @notice Create a new Cash36 Token
+     * @dev Also creates a token controller (calls Event TokenCreated on success)
+     * @dev Symbol must be unique.
+     * @dev onlyOwner - only open to element36 Account
      * @param _name Name of the token (as with ERC20)
      * @param _symbol Symbol of the token (as with ERC20)
      */
@@ -37,6 +40,7 @@ contract Cash36 is Ownable {
         require(registeredSymbol[_symbol] == false, "symbol already registered");
 
         Token36 newToken = new Token36(_name, _symbol);
+        newToken.changeFeeCollector(msg.sender);
 
         tokenIndexBySymbol[_symbol] = tokens.length;
         tokens.push(newToken);
@@ -50,26 +54,31 @@ contract Cash36 is Ownable {
     }
 
     /**
-      @notice Get all Cash36 Tokens
-      @return address array of all cash36 tokens
-    */
+     * @notice Get all Cash36 Tokens
+     * @return Array of addresses of all Cash36 Tokens
+     */
     function getTokens() external view returns (address[]) {
         return tokens;
     }
 
     /**
-      @notice Check if token with given symbl is a registered cash36 token
-      @param _symbol Symbol of the Token to be checked
-      @return bool true if token is a registered and active cash36 token
-    */
+     * @notice Check if a Token with given symbol is a registered Cash36 Token
+     * @param _symbol Symbol of the Token to be checked
+     * @return {
+     *   bool: True when Token is a registered and active Cash36 Token
+     * }
+     */
     function isCash36Token(string _symbol) external view returns (bool) {
         return registeredSymbol[_symbol];
     }
 
     /**
-      @notice Get the Token address by symbol
-      @param _symbol Symbol of the Token
-    */
+     * @notice Get the Token address by symbol
+     * @param _symbol Symbol of the Token
+     * @return {
+     *   address: Address of the Cash36 Token
+     * }
+     */
     function getTokenBySymbol(string _symbol) external view returns (address) {
         require(registeredSymbol[_symbol]);
         address tokenAddress = tokens[tokenIndexBySymbol[_symbol]];
@@ -77,6 +86,11 @@ contract Cash36 is Ownable {
         return tokenAddress;
     }
 
+    /**
+     * @notice Admin function to update to a new ComplianceContract
+     * @dev onlyOwner - only open to element36 Account
+     * @dev not yet implemented
+     */
     function updateCompliance(address _newComplianceAddress) external onlyOwner {
         complianceAddress = _newComplianceAddress;
 
@@ -84,8 +98,10 @@ contract Cash36 is Ownable {
         // controller.updateCompliance(complianceAddress);
     }
 
-    //function updateToken()
-
+    /**
+     * @notice Admin function to enable/disable Token transfer
+     * @dev onlyOwner - only open to element36 Account
+     */
     function enableTransfers(string _symbol, bool _transfersEnabled) external onlyOwner {
         Token36(tokens[tokenIndexBySymbol[_symbol]]).enableTransfers(_transfersEnabled);
     }

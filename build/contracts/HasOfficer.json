@@ -55,11 +55,11 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610179806100326000396000f3006080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a72305820a0b85df7bac5acc51aa1f9c2a8d4a8280f08abd62585520e97a735047179222d0029",
-  "deployedBytecode": "0x6080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a72305820a0b85df7bac5acc51aa1f9c2a8d4a8280f08abd62585520e97a735047179222d0029",
-  "sourceMap": "73:774:3:-;;;352:68;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;383:17:3;:30;;-1:-1:-1;;;;;;383:30:3;403:10;383:30;;;73:774;;;;;;",
-  "deployedSourceMap": "73:774:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;715:130;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;715:130:3;-1:-1:-1;;;;;715:130:3;;;;;;;;;;;;;;;;;;;;;;;568:141;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;568:141:3;-1:-1:-1;;;;;568:141:3;;;;;;;133:32;;8:9:-1;5:2;;;30:1;27;20:12;5:2;133:32:3;;;;;;;;-1:-1:-1;;;;;133:32:3;;;;;;;;;;;;;;715:130;780:4;802:17;-1:-1:-1;;;;;802:36:3;;;:17;;:36;;715:130::o;568:141::-;291:17;;-1:-1:-1;;;;;291:17:3;277:10;:31;269:40;;;;;;661:17;:41;;-1:-1:-1;;661:41:3;-1:-1:-1;;;;;661:41:3;;;;;;;;;;568:141::o;133:32::-;;;-1:-1:-1;;;;;133:32:3;;:::o",
-  "source": "pragma solidity ^0.4.24;\n\n\n/// @title Interface\n/// @author element36.io\ncontract HasOfficer {\n\n    // Address of the controller\n    address public complianceOfficer;\n\n    /// @notice Allow only controller address to access\n    modifier onlyComplianceOfficer {\n        require(msg.sender == complianceOfficer);\n        _;\n    }\n\n    // Constructor\n    constructor() public {\n        complianceOfficer = msg.sender;\n    }\n\n    /// @notice Changes the ComplianceOfficer of the contract\n    /// @param _newComplianceOfficer The new compliance officer of the contract\n    function changeOfficer(address _newComplianceOfficer) onlyComplianceOfficer public {\n        complianceOfficer = _newComplianceOfficer;\n    }\n\n    function isOfficer(address _addressToCheck) public view returns (bool){\n        return complianceOfficer == _addressToCheck;\n    }\n}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610179806100326000396000f3006080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a7230582073ffcfa3c9429db42ebc6db1c2086d1f154c83fed6569f33ffecb55a88d919090029",
+  "deployedBytecode": "0x6080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a7230582073ffcfa3c9429db42ebc6db1c2086d1f154c83fed6569f33ffecb55a88d919090029",
+  "sourceMap": "111:1125:3:-;;;388:68;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;419:17:3;:30;;-1:-1:-1;;;;;;419:30:3;439:10;419:30;;;111:1125;;;;;;",
+  "deployedSourceMap": "111:1125:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1104:130;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1104:130:3;-1:-1:-1;;;;;1104:130:3;;;;;;;;;;;;;;;;;;;;;;;709:141;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;709:141:3;-1:-1:-1;;;;;709:141:3;;;;;;;171:32;;8:9:-1;5:2;;;30:1;27;20:12;5:2;171:32:3;;;;;;;;-1:-1:-1;;;;;171:32:3;;;;;;;;;;;;;;1104:130;1169:4;1191:17;-1:-1:-1;;;;;1191:36:3;;;:17;;:36;;1104:130::o;709:141::-;327:17;;-1:-1:-1;;;;;327:17:3;313:10;:31;305:40;;;;;;802:17;:41;;-1:-1:-1;;802:41:3;-1:-1:-1;;;;;802:41:3;;;;;;;;;;709:141::o;171:32::-;;;-1:-1:-1;;;;;171:32:3;;:::o",
+  "source": "pragma solidity ^0.4.24;\n\n\n/// @title Cash36 Interface holding the Compliance Officer\n/// @author element36.io\ncontract HasOfficer {\n\n    // Address of the controller\n    address public complianceOfficer;\n\n    // Allow only complianceOfficer address to access\n    modifier onlyComplianceOfficer {\n        require(msg.sender == complianceOfficer);\n        _;\n    }\n\n    // Constructor\n    constructor() public {\n        complianceOfficer = msg.sender;\n    }\n\n    /**\n     * @notice Changes the ComplianceOfficer of the contract\n     * @dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n     * @param _newComplianceOfficer The new compliance officer of the contract\n     */\n    function changeOfficer(address _newComplianceOfficer) onlyComplianceOfficer public {\n        complianceOfficer = _newComplianceOfficer;\n    }\n\n    /**\n     * @notice Check if given address it the assigned Compliance Officer\n     * @param _addressToCheck Address to be checked\n     * @return {\n     *   \"bool\": \"True when address is the currently assigned complianceOfficer\"\n     * }\n     */\n    function isOfficer(address _addressToCheck) public view returns (bool){\n        return complianceOfficer == _addressToCheck;\n    }\n}",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
@@ -86,7 +86,7 @@
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
-        "documentation": "@title Interface\n @author element36.io",
+        "documentation": "@title Cash36 Interface holding the Compliance Officer\n @author element36.io",
         "fullyImplemented": true,
         "id": 493,
         "linearizedBaseContracts": [
@@ -101,7 +101,7 @@
             "name": "complianceOfficer",
             "nodeType": "VariableDeclaration",
             "scope": 493,
-            "src": "133:32:3",
+            "src": "171:32:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -112,7 +112,7 @@
               "id": 447,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "133:7:3",
+              "src": "171:7:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -125,7 +125,7 @@
             "body": {
               "id": 458,
               "nodeType": "Block",
-              "src": "259:68:3",
+              "src": "295:68:3",
               "statements": [
                 {
                   "expression": {
@@ -150,8 +150,8 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1976,
-                            "src": "277:3:3",
+                            "referencedDeclaration": 2118,
+                            "src": "313:3:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
@@ -165,7 +165,7 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "277:10:3",
+                          "src": "313:10:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -180,13 +180,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 448,
-                          "src": "291:17:3",
+                          "src": "327:17:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "277:31:3",
+                        "src": "313:31:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -204,11 +204,11 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1979,
-                        1980
+                        2121,
+                        2122
                       ],
-                      "referencedDeclaration": 1979,
-                      "src": "269:7:3",
+                      "referencedDeclaration": 2121,
+                      "src": "305:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
@@ -222,7 +222,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "269:40:3",
+                    "src": "305:40:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -230,16 +230,16 @@
                   },
                   "id": 456,
                   "nodeType": "ExpressionStatement",
-                  "src": "269:40:3"
+                  "src": "305:40:3"
                 },
                 {
                   "id": 457,
                   "nodeType": "PlaceholderStatement",
-                  "src": "319:1:3"
+                  "src": "355:1:3"
                 }
               ]
             },
-            "documentation": "@notice Allow only controller address to access",
+            "documentation": null,
             "id": 459,
             "name": "onlyComplianceOfficer",
             "nodeType": "ModifierDefinition",
@@ -247,16 +247,16 @@
               "id": 449,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "259:0:3"
+              "src": "295:0:3"
             },
-            "src": "228:99:3",
+            "src": "264:99:3",
             "visibility": "internal"
           },
           {
             "body": {
               "id": 467,
               "nodeType": "Block",
-              "src": "373:47:3",
+              "src": "409:47:3",
               "statements": [
                 {
                   "expression": {
@@ -273,7 +273,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 448,
-                      "src": "383:17:3",
+                      "src": "419:17:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -289,8 +289,8 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1976,
-                        "src": "403:3:3",
+                        "referencedDeclaration": 2118,
+                        "src": "439:3:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
@@ -304,13 +304,13 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "403:10:3",
+                      "src": "439:10:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "383:30:3",
+                    "src": "419:30:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -318,7 +318,7 @@
                   },
                   "id": 466,
                   "nodeType": "ExpressionStatement",
-                  "src": "383:30:3"
+                  "src": "419:30:3"
                 }
               ]
             },
@@ -334,17 +334,17 @@
               "id": 460,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "363:2:3"
+              "src": "399:2:3"
             },
             "payable": false,
             "returnParameters": {
               "id": 461,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "373:0:3"
+              "src": "409:0:3"
             },
             "scope": 493,
-            "src": "352:68:3",
+            "src": "388:68:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -353,7 +353,7 @@
             "body": {
               "id": 479,
               "nodeType": "Block",
-              "src": "651:58:3",
+              "src": "792:58:3",
               "statements": [
                 {
                   "expression": {
@@ -370,7 +370,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 448,
-                      "src": "661:17:3",
+                      "src": "802:17:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -385,13 +385,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 470,
-                      "src": "681:21:3",
+                      "src": "822:21:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "661:41:3",
+                    "src": "802:41:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -399,11 +399,11 @@
                   },
                   "id": 478,
                   "nodeType": "ExpressionStatement",
-                  "src": "661:41:3"
+                  "src": "802:41:3"
                 }
               ]
             },
-            "documentation": "@notice Changes the ComplianceOfficer of the contract\n @param _newComplianceOfficer The new compliance officer of the contract",
+            "documentation": "@notice Changes the ComplianceOfficer of the contract\n@dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n@param _newComplianceOfficer The new compliance officer of the contract",
             "id": 480,
             "implemented": true,
             "isConstructor": false,
@@ -419,14 +419,14 @@
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
                   "referencedDeclaration": 459,
-                  "src": "622:21:3",
+                  "src": "763:21:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "622:21:3"
+                "src": "763:21:3"
               }
             ],
             "name": "changeOfficer",
@@ -441,7 +441,7 @@
                   "name": "_newComplianceOfficer",
                   "nodeType": "VariableDeclaration",
                   "scope": 480,
-                  "src": "591:29:3",
+                  "src": "732:29:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -452,7 +452,7 @@
                     "id": 469,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "591:7:3",
+                    "src": "732:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -462,17 +462,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "590:31:3"
+              "src": "731:31:3"
             },
             "payable": false,
             "returnParameters": {
               "id": 474,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "651:0:3"
+              "src": "792:0:3"
             },
             "scope": 493,
-            "src": "568:141:3",
+            "src": "709:141:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -481,7 +481,7 @@
             "body": {
               "id": 491,
               "nodeType": "Block",
-              "src": "785:60:3",
+              "src": "1174:60:3",
               "statements": [
                 {
                   "expression": {
@@ -502,7 +502,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 448,
-                      "src": "802:17:3",
+                      "src": "1191:17:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -517,13 +517,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 482,
-                      "src": "823:15:3",
+                      "src": "1212:15:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "802:36:3",
+                    "src": "1191:36:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -532,11 +532,11 @@
                   "functionReturnParameters": 486,
                   "id": 490,
                   "nodeType": "Return",
-                  "src": "795:43:3"
+                  "src": "1184:43:3"
                 }
               ]
             },
-            "documentation": null,
+            "documentation": "@notice Check if given address it the assigned Compliance Officer\n@param _addressToCheck Address to be checked\n@return {\n  \"bool\": \"True when address is the currently assigned complianceOfficer\"\n}",
             "id": 492,
             "implemented": true,
             "isConstructor": false,
@@ -554,7 +554,7 @@
                   "name": "_addressToCheck",
                   "nodeType": "VariableDeclaration",
                   "scope": 492,
-                  "src": "734:23:3",
+                  "src": "1123:23:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -565,7 +565,7 @@
                     "id": 481,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "734:7:3",
+                    "src": "1123:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -575,7 +575,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "733:25:3"
+              "src": "1122:25:3"
             },
             "payable": false,
             "returnParameters": {
@@ -588,7 +588,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 492,
-                  "src": "780:4:3",
+                  "src": "1169:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -599,7 +599,7 @@
                     "id": 484,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "780:4:3",
+                    "src": "1169:4:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -609,20 +609,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "779:6:3"
+              "src": "1168:6:3"
             },
             "scope": 493,
-            "src": "715:130:3",
+            "src": "1104:130:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 494,
-        "src": "73:774:3"
+        "src": "111:1125:3"
       }
     ],
-    "src": "0:847:3"
+    "src": "0:1236:3"
   },
   "legacyAST": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
@@ -649,7 +649,7 @@
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
-        "documentation": "@title Interface\n @author element36.io",
+        "documentation": "@title Cash36 Interface holding the Compliance Officer\n @author element36.io",
         "fullyImplemented": true,
         "id": 493,
         "linearizedBaseContracts": [
@@ -664,7 +664,7 @@
             "name": "complianceOfficer",
             "nodeType": "VariableDeclaration",
             "scope": 493,
-            "src": "133:32:3",
+            "src": "171:32:3",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -675,7 +675,7 @@
               "id": 447,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "133:7:3",
+              "src": "171:7:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
@@ -688,7 +688,7 @@
             "body": {
               "id": 458,
               "nodeType": "Block",
-              "src": "259:68:3",
+              "src": "295:68:3",
               "statements": [
                 {
                   "expression": {
@@ -713,8 +713,8 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1976,
-                            "src": "277:3:3",
+                            "referencedDeclaration": 2118,
+                            "src": "313:3:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
@@ -728,7 +728,7 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "277:10:3",
+                          "src": "313:10:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -743,13 +743,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 448,
-                          "src": "291:17:3",
+                          "src": "327:17:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "277:31:3",
+                        "src": "313:31:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -767,11 +767,11 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1979,
-                        1980
+                        2121,
+                        2122
                       ],
-                      "referencedDeclaration": 1979,
-                      "src": "269:7:3",
+                      "referencedDeclaration": 2121,
+                      "src": "305:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
@@ -785,7 +785,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "269:40:3",
+                    "src": "305:40:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -793,16 +793,16 @@
                   },
                   "id": 456,
                   "nodeType": "ExpressionStatement",
-                  "src": "269:40:3"
+                  "src": "305:40:3"
                 },
                 {
                   "id": 457,
                   "nodeType": "PlaceholderStatement",
-                  "src": "319:1:3"
+                  "src": "355:1:3"
                 }
               ]
             },
-            "documentation": "@notice Allow only controller address to access",
+            "documentation": null,
             "id": 459,
             "name": "onlyComplianceOfficer",
             "nodeType": "ModifierDefinition",
@@ -810,16 +810,16 @@
               "id": 449,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "259:0:3"
+              "src": "295:0:3"
             },
-            "src": "228:99:3",
+            "src": "264:99:3",
             "visibility": "internal"
           },
           {
             "body": {
               "id": 467,
               "nodeType": "Block",
-              "src": "373:47:3",
+              "src": "409:47:3",
               "statements": [
                 {
                   "expression": {
@@ -836,7 +836,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 448,
-                      "src": "383:17:3",
+                      "src": "419:17:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -852,8 +852,8 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1976,
-                        "src": "403:3:3",
+                        "referencedDeclaration": 2118,
+                        "src": "439:3:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
@@ -867,13 +867,13 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "403:10:3",
+                      "src": "439:10:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "383:30:3",
+                    "src": "419:30:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -881,7 +881,7 @@
                   },
                   "id": 466,
                   "nodeType": "ExpressionStatement",
-                  "src": "383:30:3"
+                  "src": "419:30:3"
                 }
               ]
             },
@@ -897,17 +897,17 @@
               "id": 460,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "363:2:3"
+              "src": "399:2:3"
             },
             "payable": false,
             "returnParameters": {
               "id": 461,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "373:0:3"
+              "src": "409:0:3"
             },
             "scope": 493,
-            "src": "352:68:3",
+            "src": "388:68:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -916,7 +916,7 @@
             "body": {
               "id": 479,
               "nodeType": "Block",
-              "src": "651:58:3",
+              "src": "792:58:3",
               "statements": [
                 {
                   "expression": {
@@ -933,7 +933,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 448,
-                      "src": "661:17:3",
+                      "src": "802:17:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -948,13 +948,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 470,
-                      "src": "681:21:3",
+                      "src": "822:21:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "661:41:3",
+                    "src": "802:41:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -962,11 +962,11 @@
                   },
                   "id": 478,
                   "nodeType": "ExpressionStatement",
-                  "src": "661:41:3"
+                  "src": "802:41:3"
                 }
               ]
             },
-            "documentation": "@notice Changes the ComplianceOfficer of the contract\n @param _newComplianceOfficer The new compliance officer of the contract",
+            "documentation": "@notice Changes the ComplianceOfficer of the contract\n@dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n@param _newComplianceOfficer The new compliance officer of the contract",
             "id": 480,
             "implemented": true,
             "isConstructor": false,
@@ -982,14 +982,14 @@
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
                   "referencedDeclaration": 459,
-                  "src": "622:21:3",
+                  "src": "763:21:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "622:21:3"
+                "src": "763:21:3"
               }
             ],
             "name": "changeOfficer",
@@ -1004,7 +1004,7 @@
                   "name": "_newComplianceOfficer",
                   "nodeType": "VariableDeclaration",
                   "scope": 480,
-                  "src": "591:29:3",
+                  "src": "732:29:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1015,7 +1015,7 @@
                     "id": 469,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "591:7:3",
+                    "src": "732:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1025,17 +1025,17 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "590:31:3"
+              "src": "731:31:3"
             },
             "payable": false,
             "returnParameters": {
               "id": 474,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "651:0:3"
+              "src": "792:0:3"
             },
             "scope": 493,
-            "src": "568:141:3",
+            "src": "709:141:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -1044,7 +1044,7 @@
             "body": {
               "id": 491,
               "nodeType": "Block",
-              "src": "785:60:3",
+              "src": "1174:60:3",
               "statements": [
                 {
                   "expression": {
@@ -1065,7 +1065,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 448,
-                      "src": "802:17:3",
+                      "src": "1191:17:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -1080,13 +1080,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 482,
-                      "src": "823:15:3",
+                      "src": "1212:15:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "src": "802:36:3",
+                    "src": "1191:36:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1095,11 +1095,11 @@
                   "functionReturnParameters": 486,
                   "id": 490,
                   "nodeType": "Return",
-                  "src": "795:43:3"
+                  "src": "1184:43:3"
                 }
               ]
             },
-            "documentation": null,
+            "documentation": "@notice Check if given address it the assigned Compliance Officer\n@param _addressToCheck Address to be checked\n@return {\n  \"bool\": \"True when address is the currently assigned complianceOfficer\"\n}",
             "id": 492,
             "implemented": true,
             "isConstructor": false,
@@ -1117,7 +1117,7 @@
                   "name": "_addressToCheck",
                   "nodeType": "VariableDeclaration",
                   "scope": 492,
-                  "src": "734:23:3",
+                  "src": "1123:23:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1128,7 +1128,7 @@
                     "id": 481,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "734:7:3",
+                    "src": "1123:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1138,7 +1138,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "733:25:3"
+              "src": "1122:25:3"
             },
             "payable": false,
             "returnParameters": {
@@ -1151,7 +1151,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 492,
-                  "src": "780:4:3",
+                  "src": "1169:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1162,7 +1162,7 @@
                     "id": 484,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "780:4:3",
+                    "src": "1169:4:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1172,20 +1172,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "779:6:3"
+              "src": "1168:6:3"
             },
             "scope": 493,
-            "src": "715:130:3",
+            "src": "1104:130:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 494,
-        "src": "73:774:3"
+        "src": "111:1125:3"
       }
     ],
-    "src": "0:847:3"
+    "src": "0:1236:3"
   },
   "compiler": {
     "name": "solc",
@@ -1193,5 +1193,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-06-29T09:39:29.471Z"
+  "updatedAt": "2018-07-03T12:08:53.587Z"
 }

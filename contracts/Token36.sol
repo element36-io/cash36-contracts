@@ -5,11 +5,12 @@ import "openzeppelin-solidity/contracts/token/ERC20/BurnableToken.sol";
 import "./Initializable.sol";
 import "./Controlled.sol";
 import "./IToken36Controller.sol";
+import "./WithFees.sol";
 
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20, Initializable, Controlled {
+contract Token36 is ERC20, Initializable, Controlled, WithFees {
 
     string public name;
     string public symbol;
@@ -41,6 +42,7 @@ contract Token36 is ERC20, Initializable, Controlled {
         name = _name;
         symbol = _symbol;
         transfersEnabled = true;
+        feeCollector = msg.sender;
     }
 
     /**
@@ -149,7 +151,7 @@ contract Token36 is ERC20, Initializable, Controlled {
 
     /// @notice Enables token holders to transfer their tokens freely if true
     /// @param _transfersEnabled True if transfers are allowed in the clone
-    function enableTransfers(bool _transfersEnabled) onlyController public {
+    function enableTransfers(bool _transfersEnabled) public onlyController {
         transfersEnabled = _transfersEnabled;
     }
 
@@ -161,9 +163,18 @@ contract Token36 is ERC20, Initializable, Controlled {
         uint previousBalanceFrom = balanceOfAt(msg.sender, block.number);
         require(_value <= previousBalanceFrom);
 
+        // Calc and deduct fee
+        uint256 fee = calcFee(_value);
+        uint256 remainingValue = _value - fee;
+
+        // Transfer fee amount to us
+        uint previousBalanceFee = balanceOfAt(feeCollector, block.number);
+        updateValueAtNow(balances[feeCollector], previousBalanceFee + fee);
+
+        // Now burn the rest
         updateValueAtNow(balances[msg.sender], previousBalanceFrom - _value);
         uint curTotalSupply = totalSupply();
-        updateValueAtNow(totalSupplyHistory, curTotalSupply - _value);
+        updateValueAtNow(totalSupplyHistory, curTotalSupply - remainingValue);
 
         emit Burn(msg.sender, _value);
         emit Transfer(msg.sender, address(0), _value);
@@ -285,7 +296,6 @@ contract Token36 is ERC20, Initializable, Controlled {
     ///  set to 0, then the `proxyPayment` method is called which relays the
     ///  ether and creates tokens as described in the token controller contract
     function () payable public {
-        require(isContract(controller));
-        require(IToken36Controller(controller).proxyPayment.value(msg.value)(msg.sender) == true);
+        revert();
     }
 }

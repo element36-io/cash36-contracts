@@ -56,12 +56,6 @@ contract Token36Controller is IToken36Controller, Ownable {
         return true;
     }
 
-    function proxyPayment(address _owner) public payable returns(bool) {
-        require(msg.sender == address(token));
-
-        return false;
-    }
-
     function mint(address _receiver, uint256 _amount) external onlyAllowedExchanges {
         // Check Compliance first
         if (isContract(_receiver) == false) {
@@ -74,6 +68,10 @@ contract Token36Controller is IToken36Controller, Ownable {
 
     function setMaxAccountTokens(uint _maxAccountTokens) external onlyAllowedExchanges {
         maxAccountTokens = _maxAccountTokens;
+    }
+
+    function enableTransfers(bool _transfersEnabled) external onlyOwner {
+        token.enableTransfers(_transfersEnabled);
     }
 
     function updateComplianceContract(address _newComplianceContract) external onlyOwner {
