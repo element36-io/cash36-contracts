@@ -1,14 +1,16 @@
-pragma solidity 0.4.21;
+pragma solidity ^0.4.24;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/BurnableToken.sol";
+import "./Initializable.sol";
 import "./Controlled.sol";
 import "./IToken36Controller.sol";
-import "./Initializable.sol";
+import "./WithFees.sol";
 
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20, Controlled, Initializable {
+contract Token36 is ERC20, Initializable, Controlled, WithFees {
 
     string public name;
     string public symbol;
@@ -20,34 +22,39 @@ contract Token36 is ERC20, Controlled, Initializable {
         uint128 value;
     }
 
-    // Tracks the balances of token holders incl history of it
+    // Tracks the balances of token holders incl. history of it
     mapping (address => Checkpoint[]) balances;
-
-    // Tracks the history of the totalSupply of the token
-    Checkpoint[] totalSupplyHistory;
 
     // Tracks any extra transfer rights as in all ERC20 tokens
     mapping (address => mapping (address => uint256)) allowed;
 
+    // Tracks the history of the totalSupply of the token
+    Checkpoint[] totalSupplyHistory;
+
     // Flag to determine if the token is transferable or not.
     bool public transfersEnabled;
 
+    event Burn(address indexed burner, uint256 value);
+
     // Constructor
-    function Token36(string _name, string _symbol) public {
+    constructor(string _name, string _symbol) public {
+        initialized();
         name = _name;
         symbol = _symbol;
         transfersEnabled = true;
-        initialized();
+        feeCollector = msg.sender;
     }
 
     /**
      * @notice Send _amount tokens to _to from msg.sender
      * @param _to The address of the recipient
      * @param _amount The amount of tokens to be transferred
-     * @return Whether the transfer was successful or not
+     * @return {
+            bool: Whether the transfer was successful or not
+        }
      */
     function transfer(address _to, uint256 _amount) public returns (bool success) {
-        require(transfersEnabled);
+        require(transfersEnabled, "transfers are disabled");
         return doTransfer(msg.sender, _to, _amount);
     }
 
@@ -56,20 +63,20 @@ contract Token36 is ERC20, Controlled, Initializable {
      * @param _from The address holding the tokens being transferred
      * @param _to The address of the recipient
      * @param _amount The amount of tokens to be transferred
-     * @return True if the transfer was successful
+     * @return {
+            bool: True if the transfer was successful
+        }
      */
     function transferFrom(address _from, address _to, uint256 _amount) public returns (bool success) {
-        // The controller of this contract can move tokens around at will,
-        //  this is important to recognize! Confirm that you trust the
-        //  controller of this contract, which in most situations should be
-        //  another open source smart contract
-        if (msg.sender != controller) {
-            require(transfersEnabled);
+        require(transfersEnabled, "transfers are disabled");
 
+        // The controller of this contract can move tokens around at will
+        if (msg.sender != controller) {
             // The standard ERC 20 transferFrom functionality
             if (allowed[_from][msg.sender] < _amount) {
                 return false;
             }
+
             allowed[_from][msg.sender] -= _amount;
         }
         return doTransfer(_from, _to, _amount);
@@ -88,7 +95,7 @@ contract Token36 is ERC20, Controlled, Initializable {
         }
 
         // Do not allow transfer to 0x0 or the token contract itself
-        require((_to != 0) && (_to != address(this)));
+        require((_to != 0) && (_to != address(this)), "_to address not allowed");
 
         // If the amount being transfered is more than the balance of the
         // account the transfer returns false
@@ -99,7 +106,8 @@ contract Token36 is ERC20, Controlled, Initializable {
 
         // Alerts the token controller of the transfer
         if (isContract(controller)) {
-            require(IToken36Controller(controller).onTransfer(_from, _to, _amount) == true);
+            require(IToken36Controller(controller).onTransfer(_from, _to, _amount) == true,
+                "Token36Controller rejected the transfer");
         }
 
         updateValueAtNow(balances[_from], previousBalanceFrom - _amount);
@@ -116,7 +124,7 @@ contract Token36 is ERC20, Controlled, Initializable {
      * @param _owner The address that's balance is being requested
      * @return The balance of `_owner` at the current block
      */
-    function balanceOf(address _owner) public constant returns (uint256 balance) {
+    function balanceOf(address _owner) public view returns (uint256 balance) {
         return balanceOfAt(_owner, block.number);
     }
 
@@ -127,13 +135,13 @@ contract Token36 is ERC20, Controlled, Initializable {
      * @return True if the approval was successful
      */
     function approve(address _spender, uint256 _amount) public returns (bool success) {
-        require(transfersEnabled);
+        require(transfersEnabled, "transfers are disabled");
 
         // To change the approve amount you first have to reduce the addresses`
         //  allowance to zero by calling `approve(_spender,0)` if it is not
         //  already 0 to mitigate the race condition described here:
         //  https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-        require((_amount == 0) || (allowed[msg.sender][_spender] == 0));
+        require((_amount == 0) || (allowed[msg.sender][_spender] == 0), "please reset approve amount to 0 first");
 
         allowed[msg.sender][_spender] = _amount;
 
@@ -141,42 +149,42 @@ contract Token36 is ERC20, Controlled, Initializable {
         return true;
     }
 
+    /// @notice Enables token holders to transfer their tokens freely if true
+    /// @param _transfersEnabled True if transfers are allowed in the clone
+    function enableTransfers(bool _transfersEnabled) public onlyController {
+        transfersEnabled = _transfersEnabled;
+    }
+
     /**
-     * @notice This function makes it easy to read the `allowed[]` map
-     * @param _owner The address of the account that owns the token
-     * @param _spender The address of the account able to transfer the tokens
-     * @return Amount of remaining tokens of _owner that _spender is allowed to spend
+     * @dev Burns a specific amount of tokens.
+     * @param _value The amount of token to be burned.
      */
-    function allowance(address _owner, address _spender) public constant returns (uint256 remaining) {
-        return allowed[_owner][_spender];
-    }
+    function burn(uint256 _value) public {
+        uint previousBalanceFrom = balanceOfAt(msg.sender, block.number);
+        require(_value <= previousBalanceFrom);
 
-    /// @dev This function makes it easy to get the total number of tokens
-    /// @return The total number of tokens
-    function totalSupply() public constant returns (uint) {
-        return totalSupplyAt(block.number);
-    }
+        // Calc and deduct fee
+        uint256 fee = calcFee(_value);
+        uint256 remainingValue = _value - fee;
 
-    /// @dev Queries the balance of `_owner` at a specific `_blockNumber`
-    /// @param _owner The address from which the balance will be retrieved
-    /// @param _blockNumber The block number when the balance is queried
-    /// @return The balance at `_blockNumber`
-    function balanceOfAt(address _owner, uint _blockNumber) public constant returns (uint) {
-        return getValueAt(balances[_owner], _blockNumber);
-    }
+        // Transfer fee amount to us
+        uint previousBalanceFee = balanceOfAt(feeCollector, block.number);
+        updateValueAtNow(balances[feeCollector], previousBalanceFee + fee);
 
-    /// @notice Total amount of tokens at a specific `_blockNumber`.
-    /// @param _blockNumber The block number when the totalSupply is queried
-    /// @return The total amount of tokens at `_blockNumber`
-    function totalSupplyAt(uint _blockNumber) public constant returns(uint) {
-        return getValueAt(totalSupplyHistory, _blockNumber);
+        // Now burn the rest
+        updateValueAtNow(balances[msg.sender], previousBalanceFrom - _value);
+        uint curTotalSupply = totalSupply();
+        updateValueAtNow(totalSupplyHistory, curTotalSupply - remainingValue);
+
+        emit Burn(msg.sender, _value);
+        emit Transfer(msg.sender, address(0), _value);
     }
 
     /// @notice Generates `_amount` tokens that are assigned to `_owner`
     /// @param _owner The address that will be assigned the new tokens
     /// @param _amount The quantity of tokens generated
     /// @return True if the tokens are generated correctly
-    function generateTokens(address _owner, uint _amount) onlyController public returns (bool) {
+    function mintTokens(address _owner, uint _amount) onlyController public returns (bool) {
         uint curTotalSupply = totalSupply();
         require(curTotalSupply + _amount >= curTotalSupply); // Check for overflow
         uint previousBalanceTo = balanceOf(_owner);
@@ -187,37 +195,42 @@ contract Token36 is ERC20, Controlled, Initializable {
         return true;
     }
 
-    /// @notice Burns `_amount` tokens from `_owner`
-    /// @param _owner The address that will lose the tokens
-    /// @param _amount The quantity of tokens to burn
-    /// @return True if the tokens are burned correctly
-    function destroyTokens(address _owner, uint _amount) onlyController public returns (bool) {
-        // Controller, who calls this, needs approval to actually do that
-        //require(_amount >= allowed[_owner][msg.sender]);
-        // Update approval
-        //allowed[_owner][msg.sender] = allowed[_owner][msg.sender] - _amount;
-
-        uint curTotalSupply = totalSupply();
-        require(curTotalSupply >= _amount);
-        uint previousBalanceFrom = balanceOf(_owner);
-        require(previousBalanceFrom >= _amount);
-        updateValueAtNow(totalSupplyHistory, curTotalSupply - _amount);
-        updateValueAtNow(balances[_owner], previousBalanceFrom - _amount);
-        emit Transfer(_owner, 0, _amount);
-        return true;
+    /**
+     * @notice This function makes it easy to read the `allowed[]` map
+     * @param _owner The address of the account that owns the token
+     * @param _spender The address of the account able to transfer the tokens
+     * @return Amount of remaining tokens of _owner that _spender is allowed to spend
+     */
+    function allowance(address _owner, address _spender) public view returns (uint256 remaining) {
+        return allowed[_owner][_spender];
     }
 
-    /// @notice Enables token holders to transfer their tokens freely if true
-    /// @param _transfersEnabled True if transfers are allowed in the clone
-    function enableTransfers(bool _transfersEnabled) onlyController public {
-        transfersEnabled = _transfersEnabled;
+    /// @dev This function makes it easy to get the total number of tokens
+    /// @return The total number of tokens
+    function totalSupply() public view returns (uint) {
+        return totalSupplyAt(block.number);
+    }
+
+    /// @dev Queries the balance of `_owner` at a specific `_blockNumber`
+    /// @param _owner The address from which the balance will be retrieved
+    /// @param _blockNumber The block number when the balance is queried
+    /// @return The balance at `_blockNumber`
+    function balanceOfAt(address _owner, uint _blockNumber) public view returns (uint) {
+        return getValueAt(balances[_owner], _blockNumber);
+    }
+
+    /// @notice Total amount of tokens at a specific `_blockNumber`.
+    /// @param _blockNumber The block number when the totalSupply is queried
+    /// @return The total amount of tokens at `_blockNumber`
+    function totalSupplyAt(uint _blockNumber) public view returns(uint) {
+        return getValueAt(totalSupplyHistory, _blockNumber);
     }
 
     /// @dev `getValueAt` retrieves the number of tokens at a given block number
     /// @param checkpoints The history of values being queried
     /// @param _block The block number to retrieve the value at
     /// @return The number of tokens being queried
-    function getValueAt(Checkpoint[] storage checkpoints, uint _block) constant internal returns (uint) {
+    function getValueAt(Checkpoint[] storage checkpoints, uint _block) view internal returns (uint) {
         if (checkpoints.length == 0) {
             return 0;
         }
@@ -283,7 +296,6 @@ contract Token36 is ERC20, Controlled, Initializable {
     ///  set to 0, then the `proxyPayment` method is called which relays the
     ///  ether and creates tokens as described in the token controller contract
     function () payable public {
-        require(isContract(controller));
-        require(IToken36Controller(controller).proxyPayment.value(msg.value)(msg.sender) == true);
+        revert();
     }
 }

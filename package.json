@@ -21,22 +21,21 @@
     "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
     "deploy:dev": "./node_modules/.bin/truffle migrate --reset --compile-all --network dev",
     "generate-readme": "./scripts/generate-readme.js",
-    "docs": "node_modules/.bin/doxity init && node_modules/.bin/doxity build && rm -rf ./scripts/doxity",
+    "gen-md": "for f in ./contracts/*.sol; do solmd $f --dest ./doc/$f.md --notoc; done",
     "graph": "./scripts/runSolGraph.sh",
     "all": "yarn build && yarn lint && yarn deploy:local && yarn test"
   },
   "dependencies": {
     "ethereumjs-testrpc": "6.0.3",
-    "openzeppelin-solidity": "1.9.0",
-    "truffle": "^4.1.5"
+    "openzeppelin-solidity": "1.10.0",
+    "truffle": "^4.1.12"
   },
   "devDependencies": {
-    "@digix/doxity": "^0.5.2",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.23.0",
     "solgraph": "^0.2.6",
-    "solidity-coverage": "^0.4.15",
+    "solidity-coverage": "^0.5.4",
     "solium": "^1.1.6"
   },
   "files": [
