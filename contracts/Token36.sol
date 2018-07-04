@@ -106,8 +106,7 @@ contract Token36 is ERC20, Initializable, Controlled, WithFees {
 
         // Alerts the token controller of the transfer
         if (isContract(controller)) {
-            require(IToken36Controller(controller).onTransfer(_from, _to, _amount) == true,
-                "Token36Controller rejected the transfer");
+            require(IToken36Controller(controller).onTransfer(_from, _to, _amount) == true, "Token36Controller rejected the transfer");
         }
 
         updateValueAtNow(balances[_from], previousBalanceFrom - _amount);
