@@ -55,14 +55,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610179806100326000396000f3006080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a723058205d1fcca38cfcd0d7fbaf1b38c85c385af506562aaba4af7ce04fbcd309c90cdd0029",
-  "deployedBytecode": "0x6080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a723058205d1fcca38cfcd0d7fbaf1b38c85c385af506562aaba4af7ce04fbcd309c90cdd0029",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610179806100326000396000f3006080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a7230582073ffcfa3c9429db42ebc6db1c2086d1f154c83fed6569f33ffecb55a88d919090029",
+  "deployedBytecode": "0x6080604052600436106100565763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416636816442d811461005b57806376ed9f5e14610090578063c4a56fc8146100b3575b600080fd5b34801561006757600080fd5b5061007c600160a060020a03600435166100e4565b604080519115158252519081900360200190f35b34801561009c57600080fd5b506100b1600160a060020a03600435166100f8565b005b3480156100bf57600080fd5b506100c861013e565b60408051600160a060020a039092168252519081900360200190f35b600054600160a060020a0391821691161490565b600054600160a060020a0316331461010f57600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b600054600160a060020a0316815600a165627a7a7230582073ffcfa3c9429db42ebc6db1c2086d1f154c83fed6569f33ffecb55a88d919090029",
   "sourceMap": "111:1125:3:-;;;388:68;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;419:17:3;:30;;-1:-1:-1;;;;;;419:30:3;439:10;419:30;;;111:1125;;;;;;",
   "deployedSourceMap": "111:1125:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1104:130;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;1104:130:3;-1:-1:-1;;;;;1104:130:3;;;;;;;;;;;;;;;;;;;;;;;709:141;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;709:141:3;-1:-1:-1;;;;;709:141:3;;;;;;;171:32;;8:9:-1;5:2;;;30:1;27;20:12;5:2;171:32:3;;;;;;;;-1:-1:-1;;;;;171:32:3;;;;;;;;;;;;;;1104:130;1169:4;1191:17;-1:-1:-1;;;;;1191:36:3;;;:17;;:36;;1104:130::o;709:141::-;327:17;;-1:-1:-1;;;;;327:17:3;313:10;:31;305:40;;;;;;802:17;:41;;-1:-1:-1;;802:41:3;-1:-1:-1;;;;;802:41:3;;;;;;;;;;709:141::o;171:32::-;;;-1:-1:-1;;;;;171:32:3;;:::o",
   "source": "pragma solidity ^0.4.24;\n\n\n/// @title Cash36 Interface holding the Compliance Officer\n/// @author element36.io\ncontract HasOfficer {\n\n    // Address of the controller\n    address public complianceOfficer;\n\n    // Allow only complianceOfficer address to access\n    modifier onlyComplianceOfficer {\n        require(msg.sender == complianceOfficer);\n        _;\n    }\n\n    // Constructor\n    constructor() public {\n        complianceOfficer = msg.sender;\n    }\n\n    /**\n     * @notice Changes the ComplianceOfficer of the contract\n     * @dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n     * @param _newComplianceOfficer The new compliance officer of the contract\n     */\n    function changeOfficer(address _newComplianceOfficer) onlyComplianceOfficer public {\n        complianceOfficer = _newComplianceOfficer;\n    }\n\n    /**\n     * @notice Check if given address it the assigned Compliance Officer\n     * @param _addressToCheck Address to be checked\n     * @return {\n     *   \"bool\": \"True when address is the currently assigned complianceOfficer\"\n     * }\n     */\n    function isOfficer(address _addressToCheck) public view returns (bool){\n        return complianceOfficer == _addressToCheck;\n    }\n}",
-  "sourcePath": "/builds/cash36/contracts/contracts/HasOfficer.sol",
+  "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
   "ast": {
-    "absolutePath": "/builds/cash36/contracts/contracts/HasOfficer.sol",
+    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
     "exportedSymbols": {
       "HasOfficer": [
         500
@@ -150,7 +150,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2123,
+                            "referencedDeclaration": 1921,
                             "src": "313:3:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -204,10 +204,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2126,
-                        2127
+                        1924,
+                        1925
                       ],
-                      "referencedDeclaration": 2126,
+                      "referencedDeclaration": 1924,
                       "src": "305:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -289,7 +289,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2123,
+                        "referencedDeclaration": 1921,
                         "src": "439:3:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -625,7 +625,7 @@
     "src": "0:1236:3"
   },
   "legacyAST": {
-    "absolutePath": "/builds/cash36/contracts/contracts/HasOfficer.sol",
+    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
     "exportedSymbols": {
       "HasOfficer": [
         500
@@ -713,7 +713,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2123,
+                            "referencedDeclaration": 1921,
                             "src": "313:3:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -767,10 +767,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2126,
-                        2127
+                        1924,
+                        1925
                       ],
-                      "referencedDeclaration": 2126,
+                      "referencedDeclaration": 1924,
                       "src": "305:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -852,7 +852,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2123,
+                        "referencedDeclaration": 1921,
                         "src": "439:3:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -1193,5 +1193,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-07-04T14:45:36.596Z"
+  "updatedAt": "2018-07-20T16:26:54.591Z"
 }
