@@ -73,13 +73,13 @@ contract('Create and Test CHF36', function (accounts) {
         await CHF36Instance.burn(format(50), { from: accounts[ 1 ] });
 
         var newBalanceForFee = await CHF36Instance.balanceOf(accounts[ 0 ]);
-        assert.equal(parse(newBalanceForFee), "0.75", "The balance of feeCollector was not correct.");
+        assert.equal(parse(newBalanceForFee), "1", "The balance of feeCollector was not correct.");
 
         var newBalanceFor1 = await CHF36Instance.balanceOf(accounts[ 1 ]);
         assert.equal(parse(newBalanceFor1), "50", "The balance of account was not correct.");
 
         var totalSupply = await CHF36Instance.totalSupply();
-        assert.equal(parse(totalSupply), "50.75", "The totalSupply was not correct.");
+        assert.equal(parse(totalSupply), "51", "The totalSupply was not correct.");
     });
 
     it("...it should not allow burning from another account.", async function () {
@@ -104,7 +104,7 @@ contract('Create and Test CHF36', function (accounts) {
         assert.equal(parse(newBalanceFor2), "25", "The balance was not correct.");
 
         var totalSupply = await CHF36Instance.totalSupply();
-        assert.equal(parse(totalSupply), "50.75", "The totalSupply was not correct.");
+        assert.equal(parse(totalSupply), "51", "The totalSupply was not correct.");
     });
 
     it("...it should allow to transferFrom 5 CHF36 to accounts[2] as accounts[3].", async function () {
@@ -125,7 +125,7 @@ contract('Create and Test CHF36', function (accounts) {
         assert.equal(parse(newBalanceFor2), "30", "The balance was not correct.");
 
         var totalSupply = await CHF36Instance.totalSupply();
-        assert.equal(parse(totalSupply), "50.75", "The totalSupply was not correct.");
+        assert.equal(parse(totalSupply), "51", "The totalSupply was not correct.");
     });
 
     it("...it should not allow to transfer if accounts[2] is on blacklist.", async function () {

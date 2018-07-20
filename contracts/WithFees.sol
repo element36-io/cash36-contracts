@@ -7,7 +7,7 @@ contract WithFees {
     using SafeMath for uint256;
 
     address public feeCollector;
-    uint256 internal feeNominator = 15;
+    uint256 internal feeNominator = 20;
     uint256 internal feeDenominator = 1000;
 
     // Allow only controller address to access
@@ -16,16 +16,16 @@ contract WithFees {
         _;
     }
 
-    function calcFee(uint256 _value) public returns (uint256) {
+    function calcFee(uint256 _value) public view returns (uint256) {
         return _value.mul(feeNominator).div(feeDenominator);
     }
 
-    function changeFee(uint256 _newFeeNominator, uint256 _newFeeDenominator) onlyFeeCollector {
+    function changeFee(uint256 _newFeeNominator, uint256 _newFeeDenominator) external onlyFeeCollector {
         feeNominator = _newFeeNominator;
         feeDenominator = _newFeeDenominator;
     }
 
-    function changeFeeCollector(address _newAddress) onlyFeeCollector {
+    function changeFeeCollector(address _newAddress) external onlyFeeCollector {
         feeCollector = _newAddress;
     }
 }
