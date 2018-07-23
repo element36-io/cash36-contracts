@@ -36,14 +36,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610166806100326000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c479114610080575b600080fd5b34801561005c57600080fd5b5061007e73ffffffffffffffffffffffffffffffffffffffff600435166100be565b005b34801561008c57600080fd5b5061009561011e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff1633146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820c494fb97dae71cb30ae48f3f22fb7da7479582129f86be53eecdb469204cf39d0029",
-  "deployedBytecode": "0x60806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c479114610080575b600080fd5b34801561005c57600080fd5b5061007e73ffffffffffffffffffffffffffffffffffffffff600435166100be565b005b34801561008c57600080fd5b5061009561011e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff1633146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820c494fb97dae71cb30ae48f3f22fb7da7479582129f86be53eecdb469204cf39d0029",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610166806100326000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c479114610080575b600080fd5b34801561005c57600080fd5b5061007e73ffffffffffffffffffffffffffffffffffffffff600435166100be565b005b34801561008c57600080fd5b5061009561011e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff1633146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820f5166c00bfb37e45aa76c3c2df1aab184746f012cc30045294a3a49a399a7f210029",
+  "deployedBytecode": "0x60806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c479114610080575b600080fd5b34801561005c57600080fd5b5061007e73ffffffffffffffffffffffffffffffffffffffff600435166100be565b005b34801561008c57600080fd5b5061009561011e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff1633146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a72305820f5166c00bfb37e45aa76c3c2df1aab184746f012cc30045294a3a49a399a7f210029",
   "sourceMap": "109:645:2:-;;;358:62;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;390:10:2;:23;;-1:-1:-1;;;;;;390:23:2;403:10;390:23;;;109:645;;;;;;",
   "deployedSourceMap": "109:645:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;636:116;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;636:116:2;;;;;;;;;169:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;169:25:2;;;;;;;;;;;;;;;;;;;;;;;636:116;304:10;;;;290;:24;282:33;;;;;;718:10;:27;;-1:-1:-1;;718:27:2;;;;;;;;;;;;636:116::o;169:25::-;;;;;;:::o",
   "source": "pragma solidity ^0.4.24;\n\n\n/// @title Cash36 Interface holding the Token Controller\n/// @author element36.io\ncontract Controlled {\n\n    // Address of the controller\n    address public controller;\n\n    // Allow only controller address to access\n    modifier onlyController {\n        require(msg.sender == controller);\n        _;\n    }\n\n    // Constructor\n    constructor()  public {\n        controller = msg.sender;\n    }\n\n    /**\n     * @notice Changes the controller of the contract\n     * @dev onlyController - only open to the currently assigned controller\n     * @param _newController The new controller of the contract\n     */\n    function changeController(address _newController) onlyController public {\n        controller = _newController;\n    }\n}",
-  "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
+  "sourcePath": "/builds/cash36/contracts/contracts/Controlled.sol",
   "ast": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
+    "absolutePath": "/builds/cash36/contracts/contracts/Controlled.sol",
     "exportedSymbols": {
       "Controlled": [
         451
@@ -466,7 +466,7 @@
     "src": "0:754:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
+    "absolutePath": "/builds/cash36/contracts/contracts/Controlled.sol",
     "exportedSymbols": {
       "Controlled": [
         451
@@ -894,5 +894,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-07-20T16:26:54.590Z"
+  "updatedAt": "2018-07-23T11:58:21.117Z"
 }

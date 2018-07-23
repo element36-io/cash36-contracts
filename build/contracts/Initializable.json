@@ -16,14 +16,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b5060998061001e6000396000f300608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b348015604e57600080fd5b5060556067565b60408051918252519081900360200190f35b600054905600a165627a7a7230582020ebc67c7e94904cc2277640c86f3263eaea1b066875d7f6cc7da35527fcfb040029",
-  "deployedBytecode": "0x608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b348015604e57600080fd5b5060556067565b60408051918252519081900360200190f35b600054905600a165627a7a7230582020ebc67c7e94904cc2277640c86f3263eaea1b066875d7f6cc7da35527fcfb040029",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060998061001e6000396000f300608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b348015604e57600080fd5b5060556067565b60408051918252519081900360200190f35b600054905600a165627a7a723058206af8b1c64d0977ea0615a3686af1f8716028118794e8c9794294518b91e2ea3c0029",
+  "deployedBytecode": "0x608060405260043610603e5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416638b3dd74981146043575b600080fd5b348015604e57600080fd5b5060556067565b60408051918252519081900360200190f35b600054905600a165627a7a723058206af8b1c64d0977ea0615a3686af1f8716028118794e8c9794294518b91e2ea3c0029",
   "sourceMap": "144:944:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;144:944:5;;;;;;;",
   "deployedSourceMap": "144:944:5:-;;;;;;;;;;;;;;;;;;;;;;;488:107;;8:9:-1;5:2;;;30:1;27;20:12;5:2;488:107:5;;;;;;;;;;;;;;;;;;;;;543:7;569:19;488:107;:::o",
   "source": "pragma solidity ^0.4.24;\n\n\n/// @title Cash36 Interface to keep track of which block the inheriting contract is created\n/// @author element36.io\ncontract Initializable {\n\n    uint256 internal initializationBlock;\n\n    modifier onlyInit {\n        require(initializationBlock == 0);\n        _;\n    }\n\n    modifier isInitialized {\n        require(initializationBlock > 0);\n        _;\n    }\n\n    /**\n     * @notice\n     * @return Block number in which the contract was initialized\n     */\n    function getInitializationBlock() public view returns (uint256) {\n        return initializationBlock;\n    }\n\n    /**\n     * @dev Function to be called by top level contract after initialization has finished.\n     */\n    function initialized() internal onlyInit {\n        initializationBlock = getBlockNumber();\n    }\n\n    /**\n     * @dev Returns the current block number.\n     *      Using a function rather than `block.number` allows us to easily mock the block number in\n     *      tests.\n     */\n    function getBlockNumber() internal view returns (uint256) {\n        return block.number;\n    }\n}",
-  "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
+  "sourcePath": "/builds/cash36/contracts/contracts/Initializable.sol",
   "ast": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
+    "absolutePath": "/builds/cash36/contracts/contracts/Initializable.sol",
     "exportedSymbols": {
       "Initializable": [
         567
@@ -626,7 +626,7 @@
     "src": "0:1088:5"
   },
   "legacyAST": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
+    "absolutePath": "/builds/cash36/contracts/contracts/Initializable.sol",
     "exportedSymbols": {
       "Initializable": [
         567
@@ -1234,5 +1234,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-07-20T16:26:54.592Z"
+  "updatedAt": "2018-07-23T11:58:21.119Z"
 }
