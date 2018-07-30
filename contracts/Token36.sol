@@ -1,7 +1,6 @@
 pragma solidity ^0.4.24;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/BasicToken.sol";
 import "./Initializable.sol";
 import "./Controlled.sol";
 import "./WithFees.sol";
@@ -28,10 +27,8 @@ contract Token36 is ERC20, Initializable, Controlled, WithFees {
     event Burn(address indexed burner, uint256 value);
 
     // Constructor
-    constructor(string _name, string _symbol) public {
+    constructor() public {
         initialized();
-        name = _name;
-        symbol = _symbol;
         transfersEnabled = true;
         feeCollector = msg.sender;
     }

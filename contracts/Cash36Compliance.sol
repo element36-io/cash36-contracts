@@ -15,6 +15,9 @@ contract Cash36Compliance is Ownable, HasOfficer {
     // Tracks blacklisted users - 'overrides' KYCed users
     mapping(address => bool) internal blacklist;
 
+    // Tracks current User transfer limits
+    mapping(address => uint256) internal userLimits;
+
     // Whitelisted Exchanges per token
     mapping(address => mapping(address => bool)) internal allowedExchanges;
 
@@ -25,13 +28,14 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function addUser(address _user) public onlyComplianceOfficer {
         users[_user] = true;
+        userLimits[_user] = 0;
     }
 
     /**
-     * @notice Check User for a valid claim from cash36 and Blacklist
+     * @notice Check User if registered, its limits and Blacklist
      * @param _user Address of the user
      * @return {
-     *   "bool": "True when User is KYCed and not on Blacklist"
+     *   "bool": "True when User is KYCed, within limits and not on Blacklist"
      * }
      */
     function checkUser(address _user) public view returns (bool) {
@@ -39,6 +43,21 @@ contract Cash36Compliance is Ownable, HasOfficer {
             return true;
         }
         return false;
+    }
+
+    function checkUserLimit(address _user, uint256 _amount, uint256 _balance) public view returns (bool) {
+        if (_balance + _amount < userLimits[_user]) {
+            return true;
+        }
+        return false;
+    }
+
+    function getUserLimit(address _user) public view returns (uint256) {
+        return userLimits[_user];
+    }
+
+    function setUserLimit(address _user, uint256 _limit) public onlyComplianceOfficer {
+        userLimits[_user] = _limit;
     }
 
     /**

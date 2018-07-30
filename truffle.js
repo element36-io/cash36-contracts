@@ -23,13 +23,6 @@ module.exports = {
             gas: 6721975,
             gasPrice: 20000000000,
         },
-        dev: {
-            host: "167.99.243.81",
-            port: 6688,
-            network_id: 10,
-            gas: 0x2fefd5,
-            from: '0x40f2a929c6396e72cc53c58f1b2c22f86dc5eb8f'
-        },
         test: {
             host: "167.99.243.81",
             port: 8866,
