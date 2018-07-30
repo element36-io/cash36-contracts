@@ -37,7 +37,6 @@ deploy:
  artifacts:
    paths:
      - build/
- #when: manual
  only:
    - master
 
@@ -49,9 +48,8 @@ release:
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
   dependencies:
-    - deploy:test
+    - deploy
   retry: 1
-  #when: manual
   allow_failure: false
   only:
     - master
@@ -63,7 +61,6 @@ publish:
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
-  #when: manual
   allow_failure: false
   only:
     - master
