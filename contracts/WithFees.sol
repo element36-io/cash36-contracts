@@ -16,6 +16,11 @@ contract WithFees {
         _;
     }
 
+    // Constructor
+    constructor()  public {
+        feeCollector = msg.sender;
+    }
+
     function calcFee(uint256 _value) public view returns (uint256) {
         return _value.mul(feeNominator).div(feeDenominator);
     }

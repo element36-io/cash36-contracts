@@ -10,47 +10,15 @@ import "./Token36Controller.sol";
 /// @author element36.io
 contract Cash36 is Ownable {
 
-    // Compliance Contract address
-    address complianceAddress;
-
     // Token Storage
     address[] tokens;
     mapping(string => bool) registeredSymbol;
     mapping(string => uint256) tokenIndexBySymbol;
 
-    // Constructor
-    constructor(address _complianceAddress) public {
-        complianceAddress = _complianceAddress;
-    }
-
-    // Event
-    event TokenCreated(string _name, string _symbol, address tokenAddress, address tokenControllerAddress);
-
-    /**
-     * @notice Create a new Cash36 Token
-     * @dev Also creates a token controller (calls Event TokenCreated on success)
-     * @dev Symbol must be unique.
-     * @dev onlyOwner - only open to element36 Account
-     * @param _name Name of the token (as with ERC20)
-     * @param _symbol Symbol of the token (as with ERC20)
-     */
-    function createNewToken(string _name, string _symbol) external onlyOwner {
-        require(keccak256(abi.encodePacked(_name)) != keccak256(abi.encodePacked("")), "name cannot be empty");
-        require(keccak256(abi.encodePacked(_symbol)) != keccak256(abi.encodePacked("")), "symbol cannot be empty");
-        require(registeredSymbol[_symbol] == false, "symbol already registered");
-
-        Token36 newToken = new Token36(_name, _symbol);
-        newToken.changeFeeCollector(msg.sender);
-
+    function registerToken(string _symbol, address _tokenAddress) external onlyOwner {
         tokenIndexBySymbol[_symbol] = tokens.length;
-        tokens.push(newToken);
+        tokens.push(_tokenAddress);
         registeredSymbol[_symbol] = true;
-
-        // Create and Set new Controller as token controller - will be owned by this contract
-        Token36Controller newController = new Token36Controller(newToken, complianceAddress);
-        newToken.changeController(address(newController));
-
-        emit TokenCreated(_name, _symbol, address(newToken), address(newController));
     }
 
     /**
@@ -91,11 +59,12 @@ contract Cash36 is Ownable {
      * @dev onlyOwner - only open to element36 Account
      * @dev not yet implemented
      */
-    function updateCompliance(address _newComplianceAddress) external onlyOwner {
-        complianceAddress = _newComplianceAddress;
+    function updateCompliance(string _symbol, address _newComplianceAddress) external onlyOwner {
+        //controller.updateCompliance(complianceAddress);
+    }
 
-        // TODO: update all Token36Controller
-        // controller.updateCompliance(complianceAddress);
+    function updateController(string _symbol, address _newControllerAddress) external onlyOwner {
+        Token36(tokens[tokenIndexBySymbol[_symbol]]).changeController(_newControllerAddress);
     }
 
     /**

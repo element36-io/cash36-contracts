@@ -16,7 +16,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     Token36 internal token;
 
     // Compliance contract
-    Cash36Compliance compliance;
+    Cash36Compliance internal compliance;
 
     // Max. Tokens an account can hold
     uint256 public maxAccountTokens = uint256(-1);
@@ -26,19 +26,23 @@ contract Token36Controller is IToken36Controller, Ownable {
         _;
     }
 
-    // Constructor
-    constructor(Token36 _token, address _compliance) public {
-        token = _token;
-        compliance = Cash36Compliance(_compliance);
-    }
-
     function onTransfer(address _from, address _to, uint _amount) public view returns (bool) {
         require(msg.sender == address(token));
 
-        // Check SimpleKYC
+        // Check Compliance, unless receiving address is a contract
         if (isContract(_to) == false) {
+            // Check if max balance is reached
+            if (!isBalanceIncreaseAllowed(_to, _amount)) {
+                return false;
+            }
+
             // Check if user _to is KYCed
             if (!compliance.checkUser(_to)) {
+                return false;
+            }
+
+            // Check if user _to is KYCed
+            if (!compliance.checkUserLimit(_to, _amount, token.balanceOf(_to))) {
                 return false;
             }
 
@@ -47,8 +51,8 @@ contract Token36Controller is IToken36Controller, Ownable {
                 return false;
             }
 
-            // Check if max balance is reached
-            if (!isBalanceIncreaseAllowed(_to, _amount)) {
+            // Check if user _to is KYCed
+            if (!compliance.checkUserLimit(_from, _amount, token.balanceOf(_from))) {
                 return false;
             }
         }
@@ -65,17 +69,20 @@ contract Token36Controller is IToken36Controller, Ownable {
         token.mintTokens(_receiver, _amount);
     }
 
-
     function setMaxAccountTokens(uint _maxAccountTokens) external onlyAllowedExchanges {
         maxAccountTokens = _maxAccountTokens;
+    }
+
+    function updateComplianceContract(address _newComplianceContract) external onlyOwner {
+        compliance = Cash36Compliance(_newComplianceContract);
     }
 
     function enableTransfers(bool _transfersEnabled) external onlyOwner {
         token.enableTransfers(_transfersEnabled);
     }
 
-    function updateComplianceContract(address _newComplianceContract) external onlyOwner {
-        compliance = Cash36Compliance(_newComplianceContract);
+    function changeController(address _newController) external onlyOwner {
+        token.changeController(_newController);
     }
 
     // INTERNAL
