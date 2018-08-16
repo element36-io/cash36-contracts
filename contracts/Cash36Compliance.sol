@@ -28,7 +28,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function addUser(address _user) public onlyComplianceOfficer {
         users[_user] = true;
-        userLimits[_user] = 0;
+        userLimits[_user] = 1000;
     }
 
     /**

@@ -11,6 +11,6 @@ contract CHF36 is Token36 {
     // Constructor
     constructor() public {
         symbol = "CHF36";
-        name = "CHF36 Token";
+        name = "Swiss Franc";
     }
 }

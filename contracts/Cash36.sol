@@ -60,6 +60,7 @@ contract Cash36 is Ownable {
      * @dev not yet implemented
      */
     function updateCompliance(string _symbol, address _newComplianceAddress) external onlyOwner {
+        // TODO: Implement
         //controller.updateCompliance(complianceAddress);
     }
 
