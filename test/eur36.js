@@ -147,4 +147,18 @@ contract('Create and Test EUR36', function (accounts) {
         var newBalanceFor2After = await EUR36Instance.balanceOf(accounts[ 1 ]);
         assert.equal(parse(newBalanceFor2After), "25", "The balance was not correct.");
     });
+
+    it("...it should not allow to transfer if token is disabled.", async function () {
+        var enabled = await EUR36Instance.transfersEnabled();
+        assert.equal(enabled, true, "The token was not enabled.");
+
+        await Cash36Instance.enableTransfers('EUR36', false, { from: accounts[ 0 ] });
+
+        var enabled = await EUR36Instance.transfersEnabled();
+        assert.equal(enabled, false, "The token was not disabled.");
+
+        // TODO: figure out how to test throws in JS, otherwise write Sol Tests
+        //await CHF36Instance.transfer(accounts[ 1 ], 5, { from: accounts[ 2 ] });
+        //assert.equal(result, false, "The result of transfer was not correct.");
+    });
 });
