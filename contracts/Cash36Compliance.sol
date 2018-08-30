@@ -19,6 +19,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
     mapping(address => uint256) internal userLimits;
 
     // Whitelisted Exchanges per token
+    mapping(address => address[]) internal allExchanges;
     mapping(address => mapping(address => bool)) internal allowedExchanges;
 
     /**
@@ -28,7 +29,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function addUser(address _user) public onlyComplianceOfficer {
         users[_user] = true;
-        userLimits[_user] = 0;
+        userLimits[_user] = 1000;
     }
 
     /**
@@ -97,6 +98,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function addExchange(address _exchange, address _token) external onlyOwner {
         require(isContract(_exchange) == false);
+        allExchanges[_token].push(_exchange);
         allowedExchanges[_token][_exchange] = true;
     }
 
@@ -106,7 +108,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
      * @param _exchange Address of the exchange
      */
     function removeExchange(address _exchange, address _token) external onlyOwner {
-        allowedExchanges[_token][_exchange] = true;
+        allowedExchanges[_token][_exchange] = false;
     }
 
     /**
@@ -118,6 +120,20 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function isAllowedExchange(address _exchange, address _token) external view returns (bool) {
         return allowedExchanges[_token][_exchange];
+    }
+
+    /**
+     * @notice Returns all registered exchange addresses for a given token address.
+     * @dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.
+     * @dev It does not consider exchanges, which might have been flagged false afterwards.
+     * @dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.
+     * @param _token Address of the token
+     * @return {
+     *   "address[]": List of address of exchanges
+     * }
+    */
+    function getAllowedExchanges(address _token) external view returns (address[]) {
+        return allExchanges[_token];
     }
 
     /// INTERNAL

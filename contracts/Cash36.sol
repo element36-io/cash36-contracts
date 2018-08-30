@@ -57,12 +57,16 @@ contract Cash36 is Ownable {
     /**
      * @notice Admin function to update to a new ComplianceContract
      * @dev onlyOwner - only open to element36 Account
-     * @dev not yet implemented
      */
     function updateCompliance(string _symbol, address _newComplianceAddress) external onlyOwner {
-        //controller.updateCompliance(complianceAddress);
+        Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
+        controller.updateComplianceContract(_newComplianceAddress);
     }
 
+    /**
+     * @notice Admin function to update to a new ControllerContract
+     * @dev onlyOwner - only open to element36 Account
+     */
     function updateController(string _symbol, address _newControllerAddress) external onlyOwner {
         Token36(tokens[tokenIndexBySymbol[_symbol]]).changeController(_newControllerAddress);
     }
@@ -72,6 +76,7 @@ contract Cash36 is Ownable {
      * @dev onlyOwner - only open to element36 Account
      */
     function enableTransfers(string _symbol, bool _transfersEnabled) external onlyOwner {
-        Token36(tokens[tokenIndexBySymbol[_symbol]]).enableTransfers(_transfersEnabled);
+        Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
+        controller.enableTransfers(_transfersEnabled);
     }
 }

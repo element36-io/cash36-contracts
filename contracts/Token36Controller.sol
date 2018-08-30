@@ -69,7 +69,7 @@ contract Token36Controller is IToken36Controller, Ownable {
         token.mintTokens(_receiver, _amount);
     }
 
-    function setMaxAccountTokens(uint _maxAccountTokens) external onlyAllowedExchanges {
+    function setMaxAccountTokens(uint _maxAccountTokens) external onlyOwner {
         maxAccountTokens = _maxAccountTokens;
     }
 
