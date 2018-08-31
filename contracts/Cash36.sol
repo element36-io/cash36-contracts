@@ -6,7 +6,7 @@ import "./Token36Controller.sol";
 
 
 /// @title Cash36 Main Index Contract
-/// @notice Main Contract of cash36. Acts as an Index to keep track of all official cash36 contracts and more.
+/// @notice Main Contract of cash36. Acts as an Index to keep track of all official cash36 token contracts and more.
 /// @author element36.io
 contract Cash36 is Ownable {
 
@@ -15,6 +15,12 @@ contract Cash36 is Ownable {
     mapping(string => bool) registeredSymbol;
     mapping(string => uint256) tokenIndexBySymbol;
 
+    /**
+     * @notice Registers a new token for the cash36 System
+     * @dev onlyOwner - only open to element36 Account
+     * @param _symbol Symbol of the Token
+     * @param _tokenAddress Address of the token
+     */
     function registerToken(string _symbol, address _tokenAddress) external onlyOwner {
         tokenIndexBySymbol[_symbol] = tokens.length;
         tokens.push(_tokenAddress);
@@ -30,17 +36,6 @@ contract Cash36 is Ownable {
     }
 
     /**
-     * @notice Check if a Token with given symbol is a registered Cash36 Token
-     * @param _symbol Symbol of the Token to be checked
-     * @return {
-     *   bool: True when Token is a registered and active Cash36 Token
-     * }
-     */
-    function isCash36Token(string _symbol) external view returns (bool) {
-        return registeredSymbol[_symbol];
-    }
-
-    /**
      * @notice Get the Token address by symbol
      * @param _symbol Symbol of the Token
      * @return {
@@ -52,6 +47,17 @@ contract Cash36 is Ownable {
         address tokenAddress = tokens[tokenIndexBySymbol[_symbol]];
 
         return tokenAddress;
+    }
+
+    /**
+     * @notice Check if a Token with given symbol is a registered Cash36 Token
+     * @param _symbol Symbol of the Token to be checked
+     * @return {
+     *   bool: True when Token is a registered and active Cash36 Token
+     * }
+     */
+    function isCash36Token(string _symbol) external view returns (bool) {
+        return registeredSymbol[_symbol];
     }
 
     /**

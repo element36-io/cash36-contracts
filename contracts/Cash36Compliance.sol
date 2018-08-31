@@ -46,6 +46,15 @@ contract Cash36Compliance is Ownable, HasOfficer {
         return false;
     }
 
+    /**
+     * @notice Check if a given amount is within the current limit of the User
+     * @param _user Address of the user
+     * @param _amount Amount of the transaction
+     * @param _balance Current balance of the user
+     * @return {
+     *   "bool": "True when balance plus amount is smaller than the user limit"
+     * }
+     */
     function checkUserLimit(address _user, uint256 _amount, uint256 _balance) public view returns (bool) {
         if (_balance + _amount < userLimits[_user]) {
             return true;
@@ -53,10 +62,23 @@ contract Cash36Compliance is Ownable, HasOfficer {
         return false;
     }
 
+    /**
+     * @notice Get the limit of the user
+     * @param _user Address of the user
+     * @return {
+     *   "uint256": "The current user limit"
+     * }
+     */
     function getUserLimit(address _user) public view returns (uint256) {
         return userLimits[_user];
     }
 
+    /**
+     * @notice Set the limit of the user
+     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account
+     * @param _user Address of the user
+     * @param _limit New limit of the user
+     */
     function setUserLimit(address _user, uint256 _limit) public onlyComplianceOfficer {
         userLimits[_user] = _limit;
     }
