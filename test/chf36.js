@@ -35,7 +35,22 @@ contract('Create and Test CHF36', function (accounts) {
         CHF36ControllerInstance = await Token36Controller.at(tokenControllerAddress);
 
         await Cash36ComplianceInstance.addExchange(accounts[ 0 ], tokenAddress);
+        var exchanges = await Cash36ComplianceInstance.getAllowedExchanges(tokenAddress);
+        var isAllowedExchange = await Cash36ComplianceInstance.isAllowedExchange(accounts[0], tokenAddress);
     });
+
+  it("...it should allow to administrate cash36 contracts.", async function () {
+    var maxAccountTokensBefore = await Cash36Instance.getMaxAccountTokens('CHF36');
+    //assert.equal(maxAccountTokensBefore, "-1", "The maxAccountTokensBefore was not correct.");
+
+    await Cash36Instance.setMaxAccountTokens('CHF36', format(10000));
+
+    var maxAccountTokensAfter = await Cash36Instance.getMaxAccountTokens('CHF36');
+    assert.equal(maxAccountTokensAfter, format(10000), "The maxAccountTokensAfter was not correct.");
+
+    var compliance = await Cash36Instance.getCompliance('CHF36');
+    assert.equal(compliance, Cash36Compliance.address, "The compliance address was not correct.");
+  });
 
     it("...it should mint 100 CHF36 and assign it to accounts[1].", async function () {
         await Cash36ComplianceInstance.addUser(accounts[ 1 ], { from: accounts[ 0 ] });

@@ -3,8 +3,7 @@ pragma solidity ^0.4.24;
 import "./../Token36Controller.sol";
 
 
-/// @title Cash36 Main Index Contract
-/// @notice Main Contract of cash36. Acts as an Index to keep track of all official cash36 contracts and more.
+/// @title CHF36 Token Controller Contract
 /// @author element36.io
 contract CHF36Controller is Token36Controller {
 
