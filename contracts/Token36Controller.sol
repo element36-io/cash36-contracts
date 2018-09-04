@@ -19,7 +19,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     Cash36Compliance internal compliance;
 
     // Max. Tokens an account can hold
-    uint256 public maxAccountTokens = uint256(-1);
+    uint256 internal maxAccountTokens = uint256(-1);
 
     modifier onlyAllowedExchanges {
         require(compliance.isAllowedExchange(msg.sender, address(token)));
@@ -41,17 +41,17 @@ contract Token36Controller is IToken36Controller, Ownable {
                 return false;
             }
 
-            // Check if user _to is KYCed
+            // Check if user is within limits
             if (!compliance.checkUserLimit(_to, _amount, token.balanceOf(_to))) {
                 return false;
             }
 
-            // Check if user _from is KYCed (blacklist check)
+            // Check if user _from is KYCed
             if (!compliance.checkUser(_from)) {
                 return false;
             }
 
-            // Check if user _to is KYCed
+            // Check if user _from within limits
             if (!compliance.checkUserLimit(_from, _amount, token.balanceOf(_from))) {
                 return false;
             }
@@ -63,14 +63,23 @@ contract Token36Controller is IToken36Controller, Ownable {
     function mint(address _receiver, uint256 _amount) external onlyAllowedExchanges {
         // Check Compliance first
         if (isContract(_receiver) == false) {
+            require(isBalanceIncreaseAllowed(_receiver, _amount));
             require(compliance.checkUser(_receiver));
         }
 
         token.mintTokens(_receiver, _amount);
     }
 
-    function setMaxAccountTokens(uint _maxAccountTokens) external onlyOwner {
-        maxAccountTokens = _maxAccountTokens;
+    function getMaxAccountTokens() external view onlyOwner returns (uint256) {
+        return maxAccountTokens;
+    }
+
+    function setMaxAccountTokens(uint256 _maxAccountTokens) external onlyOwner {
+        maxAccountTokens = uint256(_maxAccountTokens);
+    }
+
+    function getComplianceContract() external view onlyOwner returns (address) {
+        return compliance;
     }
 
     function updateComplianceContract(address _newComplianceContract) external onlyOwner {
@@ -85,18 +94,23 @@ contract Token36Controller is IToken36Controller, Ownable {
         token.changeController(_newController);
     }
 
-    // INTERNAL
+    /// INTERNAL
+
     function isBalanceIncreaseAllowed(address _receiver, uint _amount) internal view returns (bool) {
         return token.balanceOf(_receiver).add(_amount) <= maxAccountTokens;
     }
 
-    function isContract(address _addr) view internal returns(bool) {
+    /**
+      @notice Checks if a given address is a contract or EOA
+      @param _address Address to check
+    */
+    function isContract(address _address) view internal returns(bool) {
         uint size;
-        if (_addr == 0)
+        if (_address == 0)
             return false;
 
         assembly {
-            size := extcodesize(_addr)
+            size := extcodesize(_address)
         }
 
         return size > 0;

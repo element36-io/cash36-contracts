@@ -158,6 +158,8 @@ contract Token36 is ERC20, Initializable, Controlled, WithFees {
         }
      */
     function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
+        require(transfersEnabled, "transfers are disabled");
+
         allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
         emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
         return true;
@@ -172,6 +174,8 @@ contract Token36 is ERC20, Initializable, Controlled, WithFees {
         }
      */
     function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
+        require(transfersEnabled, "transfers are disabled");
+
         uint oldValue = allowed[msg.sender][_spender];
         if (_subtractedValue > oldValue) {
             allowed[msg.sender][_spender] = 0;
