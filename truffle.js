@@ -1,6 +1,19 @@
 require('babel-register');
 require('babel-polyfill');
 
+const PrivateKeyProvider = require("truffle-privatekey-provider");
+
+function getProvider() {
+  let keys = {}
+  try {
+    keys = require('../../element36/docs/keys.json')
+    return new PrivateKeyProvider(keys.privKey, "http://167.99.243.81:8866")
+  } catch (err) {
+    console.log(err);
+    console.log('could not find ./keys.json')
+  }
+}
+
 module.exports = {
     solc: {
         optimizer: {
@@ -17,17 +30,24 @@ module.exports = {
             gasPrice: 0x01
         },
         local: {
+            //provider: new PrivateKeyProvider(privKey, "http://localhost:8558"),
             host: "localhost",
             port: 8558,
             network_id: "85588558",
-            gas: 6721975,
-            gasPrice: 20000000000,
+            gas: 0x2fefd5
         },
         test: {
-            host: "167.99.243.81",
-            port: 8866,
+            provider: getProvider(),
             network_id: 4,
             gas: 0x2fefd5
         }
+    },
+    mocha: {
+      useColors: true,
+      reporter: 'eth-gas-reporter',
+      reporterOptions : {
+        currency: 'CHF',
+        gasPrice: 21
+      }
     }
 };
