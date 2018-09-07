@@ -6,7 +6,7 @@ const PrivateKeyProvider = require("truffle-privatekey-provider");
 function getProvider() {
   let keys = {}
   try {
-    keys = require('../../element36/docs/keys.json')
+    keys = require('./keys.json')
     return new PrivateKeyProvider(keys.privKey, "http://167.99.243.81:8866")
   } catch (err) {
     console.log(err);
