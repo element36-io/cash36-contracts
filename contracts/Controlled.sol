@@ -15,7 +15,7 @@ contract Controlled {
     }
 
     // Constructor
-    constructor()  public {
+    constructor() public {
         controller = msg.sender;
     }
 
