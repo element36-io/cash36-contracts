@@ -34,7 +34,7 @@ deploy:
    - node scripts/waitForEthSyncTest.js
    - echo "{\"privKey\":\"${PRIVATE_KEY}\"}" > keys.json
    - ./node_modules/.bin/truffle migrate --network test
-   #- ./node_modules/.bin/truffle networks
+   - ./node_modules/.bin/truffle networks
  artifacts:
    paths:
      - build/

@@ -22,6 +22,7 @@ contract Cash36 is Ownable {
      * @param _tokenAddress Address of the token
      */
     function registerToken(string _symbol, address _tokenAddress) external onlyOwner {
+        require(!registeredSymbol[_symbol]);
         tokenIndexBySymbol[_symbol] = tokens.length;
         tokens.push(_tokenAddress);
         registeredSymbol[_symbol] = true;
@@ -69,6 +70,7 @@ contract Cash36 is Ownable {
      * }
      */
     function getMaxAccountTokens(string _symbol) external view returns (uint256) {
+        require(registeredSymbol[_symbol]);
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         return controller.getMaxAccountTokens();
     }
@@ -79,7 +81,8 @@ contract Cash36 is Ownable {
      * @param _symbol Symbol of the Token to be checked
      * @param _value New value for max account tokens
      */
-    function setMaxAccountTokens(string _symbol, uint256 _value) external {
+    function setMaxAccountTokens(string _symbol, uint256 _value) external onlyOwner {
+        require(registeredSymbol[_symbol]);
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.setMaxAccountTokens(_value);
     }
@@ -93,6 +96,7 @@ contract Cash36 is Ownable {
      * }
      */
     function getCompliance(string _symbol) external view returns (address) {
+        require(registeredSymbol[_symbol]);
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         return controller.getComplianceContract();
     }
@@ -104,6 +108,7 @@ contract Cash36 is Ownable {
      * @param _newComplianceAddress Address of the new Compliance contract
      */
     function updateCompliance(string _symbol, address _newComplianceAddress) external onlyOwner {
+        require(registeredSymbol[_symbol]);
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.updateComplianceContract(_newComplianceAddress);
     }
@@ -115,7 +120,9 @@ contract Cash36 is Ownable {
      * @param _newControllerAddress Address of the new Controller contract
      */
     function updateController(string _symbol, address _newControllerAddress) external onlyOwner {
-        Token36(tokens[tokenIndexBySymbol[_symbol]]).changeController(_newControllerAddress);
+        require(registeredSymbol[_symbol]);
+        Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
+        controller.changeController(_newControllerAddress);
     }
 
     /**
@@ -125,6 +132,7 @@ contract Cash36 is Ownable {
      * @param _transfersEnabled Pass 'true' to enable, 'false' to disable
      */
     function enableTransfers(string _symbol, bool _transfersEnabled) external onlyOwner {
+        require(registeredSymbol[_symbol]);
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.enableTransfers(_transfersEnabled);
     }
