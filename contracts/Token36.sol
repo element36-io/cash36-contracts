@@ -224,14 +224,14 @@ contract Token36 is ERC20, Initializable, Controlled, WithFees {
             bool: True if the tokens are generated correctly
         }
      */
-    function mintTokens(address _owner, uint _value) onlyController public returns (bool) {
+    function mintTokens(address _owner, uint _value) public onlyController returns (bool) {
         require(totalSupply_ + _value >= totalSupply_); // Check for overflow
         require(balances[_owner] + _value >= balances[_owner]); // Check for overflow
 
         balances[_owner] = balances[_owner].add(_value);
         totalSupply_ = totalSupply_.add(_value);
 
-        emit Transfer(0, _owner, _value);
+        emit Transfer(address(0), _owner, _value);
         return true;
     }
 
