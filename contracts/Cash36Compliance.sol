@@ -56,7 +56,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
      * }
      */
     function checkUserLimit(address _user, uint256 _amount, uint256 _balance) public view returns (bool) {
-        if (_balance + _amount < userLimits[_user]) {
+        if (_balance + _amount <= userLimits[_user]) {
             return true;
         }
         return false;
@@ -81,6 +81,14 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function setUserLimit(address _user, uint256 _limit) public onlyComplianceOfficer {
         userLimits[_user] = _limit;
+    }
+    /**
+     * @notice Helper for web3j as passing -1 fails
+     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account
+     * @param _user Address of the user
+     */
+    function setUserLimitToUnlimited(address _user) public onlyComplianceOfficer {
+        userLimits[_user] = uint256(-1);
     }
 
     /**
