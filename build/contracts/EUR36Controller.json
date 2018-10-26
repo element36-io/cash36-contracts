@@ -816,12 +816,42 @@
   },
   "networks": {
     "85588558": {
-      "events": {},
+      "events": {
+        "0xf8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c64820": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "previousOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipRenounced",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0xf7895581c9270d20cc68528b35d16733e5f40e96",
-      "transactionHash": "0x5d8f1e0727b9ed78bcdfcc00fcdb3ec76f0c5607d260eb5fa4645adb5c73a7d4"
+      "address": "0x269ceaedfe79cdbb41704e4a04e2565a92014697",
+      "transactionHash": "0xec98e1bef88e49b0804fb638e5ed1f3d690cad37e71d5a9674a1d7e2565e2a3e"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-26T07:30:29.152Z"
+  "updatedAt": "2018-10-26T07:40:30.474Z"
 }
