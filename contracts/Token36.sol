@@ -198,8 +198,13 @@ contract Token36 is ERC20, Initializable, Controlled, WithFees {
      * @dev Burns a specific amount of tokens.
      * @param _value The amount of token to be burned.
      */
-    function burn(uint256 _value) public {
-        require(_value <= balances[msg.sender]);
+    function burn(uint256 _value) public returns (bool) {
+        require(transfersEnabled, "transfers are disabled");
+        require(_value <= balances[msg.sender], "insufficient balance");
+
+        if (_value == 0) {
+            return true;
+        }
 
         // Calc and deduct fee
         uint256 fee = calcFee(_value);
@@ -214,6 +219,38 @@ contract Token36 is ERC20, Initializable, Controlled, WithFees {
 
         emit Burn(msg.sender, _value);
         emit Transfer(msg.sender, address(0), _value);
+        return true;
+    }
+
+    /**
+     * @dev Burns a specific amount of tokens.
+     * @param _value The amount of token to be burned.
+     */
+    function burnFrom(address _from, uint256 _value) public returns (bool) {
+        require(transfersEnabled, "transfers are disabled");
+        require(_value <= balances[_from], "insufficient balance");
+
+        if (_value == 0) {
+            return true;
+        }
+
+        // The controller of this contract can move tokens around at will
+        if (msg.sender != controller) {
+            // The standard ERC 20 transferFrom functionality
+            if (allowed[_from][msg.sender] < _value) {
+                return false;
+            }
+
+            allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+        }
+
+        // Now burn the rest
+        balances[_from] = balances[_from].sub(_value);
+        totalSupply_ = totalSupply_.sub(_value);
+
+        emit Burn(_from, _value);
+        emit Transfer(_from, address(0), _value);
+        return true;
     }
 
     /**
