@@ -69,18 +69,21 @@ module.exports = function (deployer, network) {
     if (network == "test") {
       await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
       await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
+      await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', USD36.address)
+      await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', GBP36.address)
 
       // Add Maik uPort Account
       await cash36Compliance.addUser('0x9557fd8fd9010b8abe7b57847f3ccf800062ac04');
+
       // Add Walter uPort Account
       //await cash36Compliance.addUser('0x');
-
-      await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
 
       // Add Demo users
       await cash36Compliance.addUser('0x0000000000000000000000000000000000000001');
       await cash36Compliance.addUser('0x0000000000000000000000000000000000000002');
       await cash36Compliance.addUser('0x0000000000000000000000000000000000000004');
+
+      await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
     }
   })
 }
