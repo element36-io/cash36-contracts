@@ -14,7 +14,7 @@
   "scripts": {
     "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
     "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
-    "testrpc": "./node_modules/.bin/testrpc -p 8558 -i 85588558",
+    "testrpc": "./node_modules/.bin/testrpc -p 8545 -i 85588558",
     "test": "./node_modules/.bin/truffle test --network local",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
