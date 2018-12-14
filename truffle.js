@@ -32,8 +32,8 @@ module.exports = {
         local: {
             //provider: new PrivateKeyProvider(privKey, "http://localhost:8558"),
             host: "localhost",
-            port: 8558,
-            network_id: "85588558",
+            port: 8545,
+            network_id: "85458545",
             gas: 0x2fefd5
         },
         test: {

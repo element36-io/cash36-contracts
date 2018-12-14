@@ -8151,13 +8151,43 @@
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {
-    "85588558": {
-      "events": {},
+    "85458545": {
+      "events": {
+        "0xf8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c64820": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "previousOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipRenounced",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x9849626f47a06e5d282e5601e56eecbfe7f577db",
-      "transactionHash": "0xf35aeb43a289d55b0724b1291d59ea80c2aa0dc15fa5fe52f818f9b66f02f1b3"
+      "address": "0xc3739813b093f25c4aa5c1bd670949b655ad7621",
+      "transactionHash": "0x358d3b48ed227ebbee2d195fcb857e258a84f0103becb8a793c1e01b80ee746b"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-26T10:44:27.118Z"
+  "updatedAt": "2018-12-10T18:11:17.545Z"
 }
