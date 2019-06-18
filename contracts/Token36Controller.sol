@@ -22,7 +22,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     Cash36Exchanges internal exchanges;
 
     modifier onlyAllowedExchanges {
-        require(exchanges.isAllowedExchange(msg.sender, address(token)));
+        require(exchanges.isAllowedExchange(msg.sender, address(token)), "only registered exchanges allowed");
         _;
     }
 
@@ -30,7 +30,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     */
     function onTransfer(address _from, address _to, uint _amount) public view returns (bool) {
         // Only the Token itself can call this
-        require(msg.sender == address(token));
+        require(msg.sender == address(token), "Only callable from controlled Token");
 
         // Check Compliance, unless receiving address is a contract
         if (Address.isContract(_to) == false && _to != address(0)) {
@@ -63,8 +63,8 @@ contract Token36Controller is IToken36Controller, Ownable {
     function mint(address _receiver, uint256 _amount) external onlyAllowedExchanges {
         // Check Compliance first
         if (Address.isContract(_receiver) == false) {
-            require(compliance.checkUser(_receiver));
-            require(compliance.checkUserLimit(_receiver, _amount, token.balanceOf(_receiver)));
+            require(compliance.checkUser(_receiver), "checkUser failed");
+            require(compliance.checkUserLimit(_receiver, _amount, token.balanceOf(_receiver)), "amount > userLimit");
         }
 
         token.mint(_receiver, _amount);
