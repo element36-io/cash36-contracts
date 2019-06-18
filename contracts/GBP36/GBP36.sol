@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.7;
 
 import "./../Token36.sol";
 
@@ -8,8 +8,6 @@ import "./../Token36.sol";
 contract GBP36 is Token36 {
 
     // Constructor
-    constructor() public {
-        symbol = "GBP36";
-        name = "British Pounds";
+    constructor() public ERC20Detailed("British Pounds", "GBP36", 18) {
     }
 }

@@ -1,5 +1,5 @@
 module.exports = {
-    port: 8555,
+    port: 8545,
     testCommand: 'truffle test --network coverage',
     skipFiles: ['migrations/Migrations.sol']
 }

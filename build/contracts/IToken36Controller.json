@@ -29,32 +29,33 @@
       "type": "function"
     }
   ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"onTransfer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{},\"title\":\"Token Controller Interface\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol\":\"IToken36Controller\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol\":{\"keccak256\":\"0xabcf20656b815b985f063edf6143dcd01f96140f508d42a63b4540a1f196a507\",\"urls\":[\"bzzr://b235b0aa33f561db8732082da65be98a5ffe2f78d7de2874fe15e922a6eb29bc\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\n\n\n/// @title Token Controller Interface\n/// @author element36.io\ncontract IToken36Controller {\n    function onTransfer(address _from, address _to, uint _amount) public view returns(bool);\n}",
+  "source": "pragma solidity ^0.5.7;\n\n\n/// @title Token Controller Interface\n/// @author element36.io\ncontract IToken36Controller {\n    function onTransfer(address _from, address _to, uint _amount) public view returns(bool);\n}",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
     "exportedSymbols": {
       "IToken36Controller": [
-        820
+        898
       ]
     },
-    "id": 821,
+    "id": 899,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 808,
+        "id": 886,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".24"
+          "0.5",
+          ".7"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:10"
+        "src": "0:23:11"
       },
       {
         "baseContracts": [],
@@ -62,9 +63,9 @@
         "contractKind": "contract",
         "documentation": "@title Token Controller Interface\n @author element36.io",
         "fullyImplemented": false,
-        "id": 820,
+        "id": 898,
         "linearizedBaseContracts": [
-          820
+          898
         ],
         "name": "IToken36Controller",
         "nodeType": "ContractDefinition",
@@ -72,24 +73,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 819,
+            "id": 897,
             "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
+            "kind": "function",
             "modifiers": [],
             "name": "onTransfer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 815,
+              "id": 893,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 810,
+                  "id": 888,
                   "name": "_from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "144:13:10",
+                  "scope": 897,
+                  "src": "143:13:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -97,10 +97,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 809,
+                    "id": 887,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:7:10",
+                    "src": "143:7:11",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -111,11 +112,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 812,
+                  "id": 890,
                   "name": "_to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "159:11:10",
+                  "scope": 897,
+                  "src": "158:11:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -123,10 +124,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 811,
+                    "id": 889,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "159:7:10",
+                    "src": "158:7:11",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -137,11 +139,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 814,
+                  "id": 892,
                   "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "172:12:10",
+                  "scope": 897,
+                  "src": "171:12:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -149,10 +151,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 813,
+                    "id": 891,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "172:4:10",
+                    "src": "171:4:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -162,20 +164,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "143:42:10"
+              "src": "142:42:11"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 818,
+              "id": 896,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 817,
+                  "id": 895,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "206:4:10",
+                  "scope": 897,
+                  "src": "205:4:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -183,10 +184,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 816,
+                    "id": 894,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "206:4:10",
+                    "src": "205:4:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -196,41 +197,41 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "205:6:10"
+              "src": "204:6:11"
             },
-            "scope": 820,
-            "src": "124:88:10",
+            "scope": 898,
+            "src": "123:88:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 821,
-        "src": "90:124:10"
+        "scope": 899,
+        "src": "89:124:11"
       }
     ],
-    "src": "0:214:10"
+    "src": "0:213:11"
   },
   "legacyAST": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
     "exportedSymbols": {
       "IToken36Controller": [
-        820
+        898
       ]
     },
-    "id": 821,
+    "id": 899,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 808,
+        "id": 886,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".24"
+          "0.5",
+          ".7"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:10"
+        "src": "0:23:11"
       },
       {
         "baseContracts": [],
@@ -238,9 +239,9 @@
         "contractKind": "contract",
         "documentation": "@title Token Controller Interface\n @author element36.io",
         "fullyImplemented": false,
-        "id": 820,
+        "id": 898,
         "linearizedBaseContracts": [
-          820
+          898
         ],
         "name": "IToken36Controller",
         "nodeType": "ContractDefinition",
@@ -248,24 +249,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 819,
+            "id": 897,
             "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
+            "kind": "function",
             "modifiers": [],
             "name": "onTransfer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 815,
+              "id": 893,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 810,
+                  "id": 888,
                   "name": "_from",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "144:13:10",
+                  "scope": 897,
+                  "src": "143:13:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -273,10 +273,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 809,
+                    "id": 887,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "144:7:10",
+                    "src": "143:7:11",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -287,11 +288,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 812,
+                  "id": 890,
                   "name": "_to",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "159:11:10",
+                  "scope": 897,
+                  "src": "158:11:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -299,10 +300,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 811,
+                    "id": 889,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "159:7:10",
+                    "src": "158:7:11",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -313,11 +315,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 814,
+                  "id": 892,
                   "name": "_amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "172:12:10",
+                  "scope": 897,
+                  "src": "171:12:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -325,10 +327,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 813,
+                    "id": 891,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "172:4:10",
+                    "src": "171:4:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -338,20 +340,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "143:42:10"
+              "src": "142:42:11"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 818,
+              "id": 896,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 817,
+                  "id": 895,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 819,
-                  "src": "206:4:10",
+                  "scope": 897,
+                  "src": "205:4:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -359,10 +360,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 816,
+                    "id": 894,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "206:4:10",
+                    "src": "205:4:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -372,26 +373,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "205:6:10"
+              "src": "204:6:11"
             },
-            "scope": 820,
-            "src": "124:88:10",
+            "scope": 898,
+            "src": "123:88:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 821,
-        "src": "90:124:10"
+        "scope": 899,
+        "src": "89:124:11"
       }
     ],
-    "src": "0:214:10"
+    "src": "0:213:11"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+    "version": "0.5.7+commit.6da8b019.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.1",
-  "updatedAt": "2018-12-10T18:10:36.563Z"
+  "schemaVersion": "3.0.6",
+  "updatedAt": "2019-04-11T08:46:06.300Z",
+  "devdoc": {
+    "author": "element36.io",
+    "methods": {},
+    "title": "Token Controller Interface"
+  },
+  "userdoc": {
+    "methods": {}
+  }
 }

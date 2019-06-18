@@ -1,5 +1,6 @@
 var Cash36 = artifacts.require('./Cash36.sol')
 var Cash36Compliance = artifacts.require('./Cash36Compliance.sol')
+var Cash36Exchanges = artifacts.require('./Cash36Exchanges.sol')
 var CHF36Controller = artifacts.require('./CHF36/CHF36Controller.sol')
 var CHF36 = artifacts.require('./CHF36/CHF36.sol')
 var EUR36Controller = artifacts.require('./EUR36/EUR36Controller.sol')
@@ -12,13 +13,14 @@ var USD36 = artifacts.require('./USD36/USD36.sol')
 module.exports = function (deployer, network) {
   deployer.then(async () => {
     await deployer.deploy(Cash36Compliance)
+    await deployer.deploy(Cash36Exchanges)
     await deployer.deploy(Cash36)
 
     let cash36 = await Cash36.deployed()
 
     // Deploy CHF36
     await deployer.deploy(CHF36)
-    await deployer.deploy(CHF36Controller, CHF36.address, Cash36Compliance.address)
+    await deployer.deploy(CHF36Controller, CHF36.address, Cash36Compliance.address, Cash36Exchanges.address)
 
     cash36.registerToken('CHF36', CHF36.address)
 
@@ -30,7 +32,7 @@ module.exports = function (deployer, network) {
 
     // Deploy EUR36
     await deployer.deploy(EUR36)
-    await deployer.deploy(EUR36Controller, EUR36.address, Cash36Compliance.address)
+    await deployer.deploy(EUR36Controller, EUR36.address, Cash36Compliance.address, Cash36Exchanges.address)
 
     cash36.registerToken('EUR36', EUR36.address)
 
@@ -42,7 +44,7 @@ module.exports = function (deployer, network) {
 
     // Deploy GBP36
     await deployer.deploy(GBP36)
-    await deployer.deploy(GBP36Controller, GBP36.address, Cash36Compliance.address)
+    await deployer.deploy(GBP36Controller, GBP36.address, Cash36Compliance.address, Cash36Exchanges.address)
 
     cash36.registerToken('GBP36', GBP36.address)
 
@@ -54,7 +56,7 @@ module.exports = function (deployer, network) {
 
     // Deploy USD36
     await deployer.deploy(USD36)
-    await deployer.deploy(USD36Controller, USD36.address, Cash36Compliance.address)
+    await deployer.deploy(USD36Controller, USD36.address, Cash36Compliance.address, Cash36Exchanges.address)
 
     cash36.registerToken('USD36', USD36.address)
 
@@ -73,15 +75,10 @@ module.exports = function (deployer, network) {
       await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', GBP36.address)
 
       // Add Maik uPort Account
-      await cash36Compliance.addUser('0x9557fd8fd9010b8abe7b57847f3ccf800062ac04');
+      //await cash36Compliance.addUser('0x9557fd8fd9010b8abe7b57847f3ccf800062ac04');
 
       // Add Walter uPort Account
       //await cash36Compliance.addUser('0x');
-
-      // Add Demo users
-      await cash36Compliance.addUser('0x0000000000000000000000000000000000000001');
-      await cash36Compliance.addUser('0x0000000000000000000000000000000000000002');
-      await cash36Compliance.addUser('0x0000000000000000000000000000000000000004');
 
       await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
     }

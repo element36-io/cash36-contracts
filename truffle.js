@@ -21,6 +21,13 @@ module.exports = {
             runs: 200
         }
     },
+
+    compilers: {
+      solc: {
+        version: "0.5.7"
+      }
+    },
+
     networks: {
         coverage: {
             host: "localhost",
@@ -42,6 +49,7 @@ module.exports = {
             gas: 0x2fefd5
         }
     },
+
     mocha: {
       useColors: true,
       reporter: 'eth-gas-reporter',
