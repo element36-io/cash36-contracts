@@ -43,36 +43,36 @@ module.exports = function (deployer, network) {
     eur36.changeController(EUR36Controller.address)
 
     // Deploy GBP36
-    await deployer.deploy(GBP36)
-    await deployer.deploy(GBP36Controller, GBP36.address, Cash36Compliance.address, Cash36Exchanges.address)
+    //await deployer.deploy(GBP36)
+    //await deployer.deploy(GBP36Controller, GBP36.address, Cash36Compliance.address, Cash36Exchanges.address)
 
-    cash36.registerToken('GBP36', GBP36.address)
+    //cash36.registerToken('GBP36', GBP36.address)
 
-    let gbp36Controller = await GBP36Controller.deployed()
-    gbp36Controller.transferOwnership(Cash36.address)
+    //let gbp36Controller = await GBP36Controller.deployed()
+    //gbp36Controller.transferOwnership(Cash36.address)
 
-    let gbp36 = await GBP36.deployed()
-    gbp36.changeController(GBP36Controller.address)
+    //let gbp36 = await GBP36.deployed()
+    //gbp36.changeController(GBP36Controller.address)
 
     // Deploy USD36
-    await deployer.deploy(USD36)
-    await deployer.deploy(USD36Controller, USD36.address, Cash36Compliance.address, Cash36Exchanges.address)
+    //await deployer.deploy(USD36)
+    //await deployer.deploy(USD36Controller, USD36.address, Cash36Compliance.address, Cash36Exchanges.address)
 
-    cash36.registerToken('USD36', USD36.address)
+    //cash36.registerToken('USD36', USD36.address)
 
-    let usd36Controller = await USD36Controller.deployed()
-    usd36Controller.transferOwnership(Cash36.address)
+    //let usd36Controller = await USD36Controller.deployed()
+    //usd36Controller.transferOwnership(Cash36.address)
 
-    let usd36 = await USD36.deployed()
-    usd36.changeController(USD36Controller.address)
+    //let usd36 = await USD36.deployed()
+    //usd36.changeController(USD36Controller.address)
 
     let cash36Compliance = await Cash36Compliance.deployed()
 
     if (network == "test") {
       await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
       await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
-      await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', USD36.address)
-      await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', GBP36.address)
+      //await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', USD36.address)
+      //await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', GBP36.address)
 
       // Add Maik uPort Account
       //await cash36Compliance.addUser('0x9557fd8fd9010b8abe7b57847f3ccf800062ac04');
@@ -81,6 +81,8 @@ module.exports = function (deployer, network) {
       //await cash36Compliance.addUser('0x');
 
       await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
+    } else if (network == "main") {
+
     }
   })
 }

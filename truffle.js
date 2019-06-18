@@ -24,7 +24,7 @@ module.exports = {
 
     compilers: {
       solc: {
-        version: "0.5.7"
+        version: "0.5.9"
       }
     },
 
@@ -52,10 +52,11 @@ module.exports = {
 
     mocha: {
       useColors: true,
-      reporter: 'eth-gas-reporter',
-      reporterOptions : {
-        currency: 'CHF',
-        gasPrice: 21
-      }
+      // Crashing since version update - no solution yet
+      // reporter: 'eth-gas-reporter',
+      // reporterOptions : {
+      //   currency: 'CHF',
+      //   gasPrice: 21
+      // }
     }
 };

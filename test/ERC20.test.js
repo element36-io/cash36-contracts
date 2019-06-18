@@ -5,7 +5,7 @@
 const chai = require('chai')
 chai.should()
 
-const {BN, constants, expectEvent, shouldFail} = require('openzeppelin-test-helpers')
+const {BN, constants, expectEvent, expectRevert} = require('openzeppelin-test-helpers')
 const {ZERO_ADDRESS} = constants
 
 const Cash36 = artifacts.require('./Cash36.sol')
@@ -103,7 +103,7 @@ contract('ERC20 Transfer', function (accounts) {
 
       describe('when the sender does not have enough balance', function () {
         it('reverts', async function () {
-          await shouldFail.reverting(this.token.transfer(to, 5*amountTooHigh, {from: initialHolder}))
+          await expectRevert.unspecified(this.token.transfer(to, 5*amountTooHigh, {from: initialHolder}))
         })
       })
 
@@ -132,7 +132,7 @@ contract('ERC20 Transfer', function (accounts) {
       const to = ZERO_ADDRESS
 
       it('reverts', async function () {
-        await shouldFail.reverting(this.token.transfer(to, amount, {from: initialHolder}))
+        await expectRevert.unspecified(this.token.transfer(to, amount, {from: initialHolder}))
       })
     })
   })
@@ -216,7 +216,7 @@ contract('ERC20 Transfer From', function (accounts) {
           const amount = 5*amountTooHigh
 
           it('reverts', async function () {
-            await shouldFail.reverting(this.token.transferFrom(initialHolder, to, amount, {from: spender}))
+            await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, amount, {from: spender}))
           })
         })
       })
@@ -228,7 +228,7 @@ contract('ERC20 Transfer From', function (accounts) {
 
         describe('when the initial holder has enough balance', function () {
           it('reverts', async function () {
-            await shouldFail.reverting(this.token.transferFrom(initialHolder, to, 5*amountTooHigh, {from: spender}))
+            await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, 5*amountTooHigh, {from: spender}))
           })
         })
 
@@ -236,7 +236,7 @@ contract('ERC20 Transfer From', function (accounts) {
           const amount = amountTooHigh
 
           it('reverts', async function () {
-            await shouldFail.reverting(this.token.transferFrom(initialHolder, to, 5*amount, {from: spender}))
+            await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, 5*amount, {from: spender}))
           })
         })
       })
@@ -251,7 +251,7 @@ contract('ERC20 Transfer From', function (accounts) {
       })
 
       it('reverts', async function () {
-        await shouldFail.reverting(this.token.transferFrom(initialHolder, to, amount, {from: spender}))
+        await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, amount, {from: spender}))
       })
     })
   })
@@ -264,7 +264,7 @@ contract('ERC20 Transfer From', function (accounts) {
       function shouldDecreaseApproval (amount) {
         describe('when there was no approved amount before', function () {
           it('reverts', async function () {
-            await shouldFail.reverting(this.token.decreaseAllowance(spender, amount, {from: initialHolder}))
+            await expectRevert.unspecified(this.token.decreaseAllowance(spender, amount, {from: initialHolder}))
           })
         })
 
@@ -297,7 +297,7 @@ contract('ERC20 Transfer From', function (accounts) {
           })
 
           it('reverts when more than the full allowance is removed', async function () {
-            await shouldFail.reverting(
+            await expectRevert.unspecified(
               this.token.decreaseAllowance(spender, approvedAmount.addn(1), {from: initialHolder})
             )
           })
@@ -317,7 +317,7 @@ contract('ERC20 Transfer From', function (accounts) {
       const spender = ZERO_ADDRESS
 
       it('reverts', async function () {
-        await shouldFail.reverting(this.token.decreaseAllowance(spender, amount, {from: initialHolder}))
+        await expectRevert.unspecified(this.token.decreaseAllowance(spender, amount, {from: initialHolder}))
       })
     })
   })
@@ -395,7 +395,7 @@ contract('ERC20 Transfer From', function (accounts) {
       const spender = ZERO_ADDRESS
 
       it('reverts', async function () {
-        await shouldFail.reverting(this.token.increaseAllowance(spender, amount, {from: initialHolder}))
+        await expectRevert.unspecified(this.token.increaseAllowance(spender, amount, {from: initialHolder}))
       })
     })
   })
@@ -405,7 +405,7 @@ contract('ERC20 Transfer From', function (accounts) {
     const amount = new BN(50);
 
     it('rejects a null account', async function () {
-      await shouldFail.reverting(this.token.mint(ZERO_ADDRESS, amount));
+      await expectRevert.unspecified(this.token.mint(ZERO_ADDRESS, amount));
     });
 
     describe('for a non null account', function () {
@@ -436,12 +436,12 @@ contract('ERC20 Transfer From', function (accounts) {
 
   xdescribe('_burn', function () {
     it('rejects a null account', async function () {
-      await shouldFail.reverting(this.token.burn(ZERO_ADDRESS, new BN(1)));
+      await expectRevert.unspecified(this.token.burn(ZERO_ADDRESS, new BN(1)));
     });
 
     describe('for a non null account', function () {
       it('rejects burning more than balance', async function () {
-        await shouldFail.reverting(this.token.burn(initialHolder, initialSupply.addn(1)));
+        await expectRevert.unspecified(this.token.burn(initialHolder, initialSupply.addn(1)));
       });
 
       const describeBurn = function (description, amount) {
@@ -487,16 +487,16 @@ contract('ERC20 Transfer From', function (accounts) {
     });
 
     it('rejects a null account', async function () {
-      await shouldFail.reverting(this.token.burnFrom(ZERO_ADDRESS, new BN(1)));
+      await expectRevert.unspecified(this.token.burnFrom(ZERO_ADDRESS, new BN(1)));
     });
 
     describe('for a non null account', function () {
       it('rejects burning more than allowance', async function () {
-        await shouldFail.reverting(this.token.burnFrom(initialHolder, allowance.addn(1)));
+        await expectRevert.unspecified(this.token.burnFrom(initialHolder, allowance.addn(1)));
       });
 
       it('rejects burning more than balance', async function () {
-        await shouldFail.reverting(this.token.burnFrom(initialHolder, initialSupply.addn(1)));
+        await expectRevert.unspecified(this.token.burnFrom(initialHolder, initialSupply.addn(1)));
       });
 
       const describeBurnFrom = function (description, amount) {
@@ -558,7 +558,7 @@ contract('ERC20 Transfer From', function (accounts) {
 
     describe('when the owner is the zero address', function () {
       it('reverts', async function () {
-        await shouldFail.reverting(this.token.approveInternal(ZERO_ADDRESS, recipient, initialSupply));
+        await expectRevert.unspecified(this.token.approveInternal(ZERO_ADDRESS, recipient, initialSupply));
       });
     });
   });*/
@@ -636,7 +636,7 @@ contract('ERC20 Transfer From', function (accounts) {
 
     describe('when the spender is the zero address', function () {
       it('reverts', async function () {
-        await shouldFail.reverting(approve.call(this, owner, ZERO_ADDRESS, supply));
+        await expectRevert.unspecified(approve.call(this, owner, ZERO_ADDRESS, supply));
       });
     });
   }*/

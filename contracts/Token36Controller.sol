@@ -1,7 +1,6 @@
-pragma solidity ^0.5.7;
+pragma solidity ^0.5.9;
 
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/utils/Address.sol";
 import "./IToken36Controller.sol";
 import "./Token36.sol";
@@ -12,7 +11,6 @@ import "./Cash36Exchanges.sol";
 /// @title Token Controller
 /// @author element36.io
 contract Token36Controller is IToken36Controller, Ownable {
-    using SafeMath for uint256;
 
     // Token controlled by this controller
     Token36 internal token;
