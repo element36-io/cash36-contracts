@@ -2,6 +2,12 @@
   "contractName": "Controlled",
   "abi": [
     {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
       "constant": true,
       "inputs": [],
       "name": "controller",
@@ -14,12 +20,6 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
-    },
-    {
-      "inputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "constructor"
     },
     {
       "constant": false,
@@ -36,32 +36,33 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610166806100326000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c479114610080575b600080fd5b34801561005c57600080fd5b5061007e73ffffffffffffffffffffffffffffffffffffffff600435166100be565b005b34801561008c57600080fd5b5061009561011e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff1633146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582066b74900076086dd415a46d020e130889e37b9561667dc2222abd5d9c92927800029",
-  "deployedBytecode": "0x60806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633cebb8238114610050578063f77c479114610080575b600080fd5b34801561005c57600080fd5b5061007e73ffffffffffffffffffffffffffffffffffffffff600435166100be565b005b34801561008c57600080fd5b5061009561011e565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b60005473ffffffffffffffffffffffffffffffffffffffff1633146100e257600080fd5b6000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff16815600a165627a7a7230582066b74900076086dd415a46d020e130889e37b9561667dc2222abd5d9c92927800029",
-  "sourceMap": "109:644:4:-;;;358:61;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;389:10:4;:23;;-1:-1:-1;;;;;;389:23:4;402:10;389:23;;;109:644;;;;;;",
-  "deployedSourceMap": "109:644:4:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;635:116;;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;635:116:4;;;;;;;;;169:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;169:25:4;;;;;;;;;;;;;;;;;;;;;;;635:116;304:10;;;;290;:24;282:33;;;;;;717:10;:27;;-1:-1:-1;;717:27:4;;;;;;;;;;;;635:116::o;169:25::-;;;;;;:::o",
-  "source": "pragma solidity ^0.4.24;\n\n\n/// @title Cash36 Interface holding the Token Controller\n/// @author element36.io\ncontract Controlled {\n\n    // Address of the controller\n    address public controller;\n\n    // Allow only controller address to access\n    modifier onlyController {\n        require(msg.sender == controller);\n        _;\n    }\n\n    // Constructor\n    constructor() public {\n        controller = msg.sender;\n    }\n\n    /**\n     * @notice Changes the controller of the contract\n     * @dev onlyController - only open to the currently assigned controller\n     * @param _newController The new controller of the contract\n     */\n    function changeController(address _newController) onlyController public {\n        controller = _newController;\n    }\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_newController\",\"type\":\"address\"}],\"name\":\"changeController\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"controller\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"changeController(address)\":{\"details\":\"onlyController - only open to the currently assigned controller\",\"params\":{\"_newController\":\"The new controller of the contract\"}}},\"title\":\"Cash36 Interface holding the Token Controller\"},\"userdoc\":{\"methods\":{\"changeController(address)\":{\"notice\":\"Changes the controller of the contract\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol\":\"Controlled\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol\":{\"keccak256\":\"0xd32d6908e625398a4ee0302b0659844372ac0527deaf8036471eef80724f345b\",\"urls\":[\"bzzr://4cab3744d83752fc74c1fcce5d7d8f80634467aed71890cc414590dea834a549\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a01b0319163317905560f1806100316000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80633cebb823146037578063f77c479114605c575b600080fd5b605a60048036036020811015604b57600080fd5b50356001600160a01b0316607e565b005b606260b6565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b03163314609457600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03169056fea165627a7a7230582063b3baedcab5efb739d29f78ef0c099d323cc09225ead6642d76e99848367a020029",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c80633cebb823146037578063f77c479114605c575b600080fd5b605a60048036036020811015604b57600080fd5b50356001600160a01b0316607e565b005b606260b6565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b03163314609457600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03169056fea165627a7a7230582063b3baedcab5efb739d29f78ef0c099d323cc09225ead6642d76e99848367a020029",
+  "sourceMap": "108:742:5:-;;;361:62;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;392:11:5;:24;;-1:-1:-1;;;;;;392:24:5;406:10;392:24;;;108:742;;;;;;",
+  "deployedSourceMap": "108:742:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;108:742:5;;;;;;;;;;;;;;;;;;;;;;;;731:117;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;731:117:5;-1:-1:-1;;;;;731:117:5;;:::i;:::-;;429:86;;;:::i;:::-;;;;-1:-1:-1;;;;;429:86:5;;;;;;;;;;;;;;731:117;306:11;;-1:-1:-1;;;;;306:11:5;292:10;:25;284:34;;;;;;813:11;:28;;-1:-1:-1;;;;;;813:28:5;-1:-1:-1;;;;;813:28:5;;;;;;;;;;731:117::o;429:86::-;472:7;497:11;-1:-1:-1;;;;;497:11:5;429:86;:::o",
+  "source": "pragma solidity ^0.5.7;\n\n\n/// @title Cash36 Interface holding the Token Controller\n/// @author element36.io\ncontract Controlled {\n\n    // Address of the controller\n    address internal _controller;\n\n    // Allow only controller address to access\n    modifier onlyController {\n        require(msg.sender == _controller);\n        _;\n    }\n\n    // Constructor\n    constructor() public {\n        _controller = msg.sender;\n    }\n\n    function controller() public view returns (address){\n        return _controller;\n    }\n\n    /**\n     * @notice Changes the controller of the contract\n     * @dev onlyController - only open to the currently assigned controller\n     * @param _newController The new controller of the contract\n     */\n    function changeController(address _newController) onlyController public {\n        _controller = _newController;\n    }\n}",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
     "exportedSymbols": {
       "Controlled": [
-        673
+        741
       ]
     },
-    "id": 674,
+    "id": 742,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 638,
+        "id": 698,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".24"
+          "0.5",
+          ".7"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:4"
+        "src": "0:23:5"
       },
       {
         "baseContracts": [],
@@ -69,20 +70,20 @@
         "contractKind": "contract",
         "documentation": "@title Cash36 Interface holding the Token Controller\n @author element36.io",
         "fullyImplemented": true,
-        "id": 673,
+        "id": 741,
         "linearizedBaseContracts": [
-          673
+          741
         ],
         "name": "Controlled",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 640,
-            "name": "controller",
+            "id": 700,
+            "name": "_controller",
             "nodeType": "VariableDeclaration",
-            "scope": 673,
-            "src": "169:25:4",
+            "scope": 741,
+            "src": "168:28:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -90,23 +91,24 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 639,
+              "id": 699,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "169:7:4",
+              "src": "168:7:5",
+              "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
               }
             },
             "value": null,
-            "visibility": "public"
+            "visibility": "internal"
           },
           {
             "body": {
-              "id": 650,
+              "id": 710,
               "nodeType": "Block",
-              "src": "272:61:4",
+              "src": "274:62:5",
               "statements": [
                 {
                   "expression": {
@@ -118,7 +120,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 646,
+                        "id": 706,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -127,18 +129,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 643,
+                            "id": 703,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2350,
-                            "src": "290:3:4",
+                            "referencedDeclaration": 2631,
+                            "src": "292:3:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 644,
+                          "id": 704,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -146,28 +148,28 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "290:10:4",
+                          "src": "292:10:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
                           }
                         },
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 645,
-                          "name": "controller",
+                          "id": 705,
+                          "name": "_controller",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 640,
-                          "src": "304:10:4",
+                          "referencedDeclaration": 700,
+                          "src": "306:11:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "290:24:4",
+                        "src": "292:25:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -181,21 +183,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 642,
+                      "id": 702,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2353,
-                        2354
+                        2634,
+                        2635
                       ],
-                      "referencedDeclaration": 2353,
-                      "src": "282:7:4",
+                      "referencedDeclaration": 2634,
+                      "src": "284:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 647,
+                    "id": 707,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -203,58 +205,58 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "282:33:4",
+                    "src": "284:34:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 648,
+                  "id": 708,
                   "nodeType": "ExpressionStatement",
-                  "src": "282:33:4"
+                  "src": "284:34:5"
                 },
                 {
-                  "id": 649,
+                  "id": 709,
                   "nodeType": "PlaceholderStatement",
-                  "src": "325:1:4"
+                  "src": "328:1:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 651,
+            "id": 711,
             "name": "onlyController",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 641,
+              "id": 701,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "272:0:4"
+              "src": "274:0:5"
             },
-            "src": "248:85:4",
+            "src": "250:86:5",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 659,
+              "id": 719,
               "nodeType": "Block",
-              "src": "379:40:4",
+              "src": "382:41:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 657,
+                    "id": 717,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 654,
-                      "name": "controller",
+                      "id": 714,
+                      "name": "_controller",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 640,
-                      "src": "389:10:4",
+                      "referencedDeclaration": 700,
+                      "src": "392:11:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -266,18 +268,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 655,
+                        "id": 715,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2350,
-                        "src": "402:3:4",
+                        "referencedDeclaration": 2631,
+                        "src": "406:3:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 656,
+                      "id": 716,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -285,144 +287,100 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "402:10:4",
+                      "src": "406:10:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
                       }
                     },
-                    "src": "389:23:4",
+                    "src": "392:24:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 658,
+                  "id": 718,
                   "nodeType": "ExpressionStatement",
-                  "src": "389:23:4"
+                  "src": "392:24:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 660,
+            "id": 720,
             "implemented": true,
-            "isConstructor": true,
-            "isDeclaredConst": false,
+            "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 652,
+              "id": 712,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "369:2:4"
+              "src": "372:2:5"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 653,
+              "id": 713,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "379:0:4"
+              "src": "382:0:5"
             },
-            "scope": 673,
-            "src": "358:61:4",
+            "scope": 741,
+            "src": "361:62:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 671,
+              "id": 727,
               "nodeType": "Block",
-              "src": "707:44:4",
+              "src": "480:35:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 669,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 667,
-                      "name": "controller",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 640,
-                      "src": "717:10:4",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 668,
-                      "name": "_newController",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 662,
-                      "src": "730:14:4",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "src": "717:27:4",
+                    "id": 725,
+                    "name": "_controller",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 700,
+                    "src": "497:11:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 670,
-                  "nodeType": "ExpressionStatement",
-                  "src": "717:27:4"
+                  "functionReturnParameters": 724,
+                  "id": 726,
+                  "nodeType": "Return",
+                  "src": "490:18:5"
                 }
               ]
             },
-            "documentation": "@notice Changes the controller of the contract\n@dev onlyController - only open to the currently assigned controller\n@param _newController The new controller of the contract",
-            "id": 672,
+            "documentation": null,
+            "id": 728,
             "implemented": true,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [
-              {
-                "arguments": null,
-                "id": 665,
-                "modifierName": {
-                  "argumentTypes": null,
-                  "id": 664,
-                  "name": "onlyController",
-                  "nodeType": "Identifier",
-                  "overloadedDeclarations": [],
-                  "referencedDeclaration": 651,
-                  "src": "685:14:4",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$__$",
-                    "typeString": "modifier ()"
-                  }
-                },
-                "nodeType": "ModifierInvocation",
-                "src": "685:14:4"
-              }
-            ],
-            "name": "changeController",
+            "kind": "function",
+            "modifiers": [],
+            "name": "controller",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 663,
+              "id": 721,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "448:2:5"
+            },
+            "returnParameters": {
+              "id": 724,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 662,
-                  "name": "_newController",
+                  "id": 723,
+                  "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 672,
-                  "src": "661:22:4",
+                  "scope": 728,
+                  "src": "472:7:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -430,10 +388,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 661,
+                    "id": 722,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "661:7:4",
+                    "src": "472:7:5",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -443,48 +402,168 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "660:24:4"
+              "src": "471:9:5"
             },
-            "payable": false,
+            "scope": 741,
+            "src": "429:86:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 739,
+              "nodeType": "Block",
+              "src": "803:45:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 737,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 735,
+                      "name": "_controller",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 700,
+                      "src": "813:11:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 736,
+                      "name": "_newController",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 730,
+                      "src": "827:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "813:28:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 738,
+                  "nodeType": "ExpressionStatement",
+                  "src": "813:28:5"
+                }
+              ]
+            },
+            "documentation": "@notice Changes the controller of the contract\n@dev onlyController - only open to the currently assigned controller\n@param _newController The new controller of the contract",
+            "id": 740,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 733,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 732,
+                  "name": "onlyController",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 711,
+                  "src": "781:14:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "781:14:5"
+              }
+            ],
+            "name": "changeController",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 731,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 730,
+                  "name": "_newController",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 740,
+                  "src": "757:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 729,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "757:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "756:24:5"
+            },
             "returnParameters": {
-              "id": 666,
+              "id": 734,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "707:0:4"
+              "src": "803:0:5"
             },
-            "scope": 673,
-            "src": "635:116:4",
+            "scope": 741,
+            "src": "731:117:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 674,
-        "src": "109:644:4"
+        "scope": 742,
+        "src": "108:742:5"
       }
     ],
-    "src": "0:753:4"
+    "src": "0:850:5"
   },
   "legacyAST": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Controlled.sol",
     "exportedSymbols": {
       "Controlled": [
-        673
+        741
       ]
     },
-    "id": 674,
+    "id": 742,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 638,
+        "id": 698,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".24"
+          "0.5",
+          ".7"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:4"
+        "src": "0:23:5"
       },
       {
         "baseContracts": [],
@@ -492,20 +571,20 @@
         "contractKind": "contract",
         "documentation": "@title Cash36 Interface holding the Token Controller\n @author element36.io",
         "fullyImplemented": true,
-        "id": 673,
+        "id": 741,
         "linearizedBaseContracts": [
-          673
+          741
         ],
         "name": "Controlled",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 640,
-            "name": "controller",
+            "id": 700,
+            "name": "_controller",
             "nodeType": "VariableDeclaration",
-            "scope": 673,
-            "src": "169:25:4",
+            "scope": 741,
+            "src": "168:28:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -513,23 +592,24 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 639,
+              "id": 699,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "169:7:4",
+              "src": "168:7:5",
+              "stateMutability": "nonpayable",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
               }
             },
             "value": null,
-            "visibility": "public"
+            "visibility": "internal"
           },
           {
             "body": {
-              "id": 650,
+              "id": 710,
               "nodeType": "Block",
-              "src": "272:61:4",
+              "src": "274:62:5",
               "statements": [
                 {
                   "expression": {
@@ -541,7 +621,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 646,
+                        "id": 706,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -550,18 +630,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 643,
+                            "id": 703,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2350,
-                            "src": "290:3:4",
+                            "referencedDeclaration": 2631,
+                            "src": "292:3:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 644,
+                          "id": 704,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -569,28 +649,28 @@
                           "memberName": "sender",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "290:10:4",
+                          "src": "292:10:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
                           }
                         },
                         "nodeType": "BinaryOperation",
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 645,
-                          "name": "controller",
+                          "id": 705,
+                          "name": "_controller",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 640,
-                          "src": "304:10:4",
+                          "referencedDeclaration": 700,
+                          "src": "306:11:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "290:24:4",
+                        "src": "292:25:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -604,21 +684,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 642,
+                      "id": 702,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2353,
-                        2354
+                        2634,
+                        2635
                       ],
-                      "referencedDeclaration": 2353,
-                      "src": "282:7:4",
+                      "referencedDeclaration": 2634,
+                      "src": "284:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 647,
+                    "id": 707,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -626,58 +706,58 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "282:33:4",
+                    "src": "284:34:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 648,
+                  "id": 708,
                   "nodeType": "ExpressionStatement",
-                  "src": "282:33:4"
+                  "src": "284:34:5"
                 },
                 {
-                  "id": 649,
+                  "id": 709,
                   "nodeType": "PlaceholderStatement",
-                  "src": "325:1:4"
+                  "src": "328:1:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 651,
+            "id": 711,
             "name": "onlyController",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 641,
+              "id": 701,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "272:0:4"
+              "src": "274:0:5"
             },
-            "src": "248:85:4",
+            "src": "250:86:5",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 659,
+              "id": 719,
               "nodeType": "Block",
-              "src": "379:40:4",
+              "src": "382:41:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 657,
+                    "id": 717,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 654,
-                      "name": "controller",
+                      "id": 714,
+                      "name": "_controller",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 640,
-                      "src": "389:10:4",
+                      "referencedDeclaration": 700,
+                      "src": "392:11:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -689,18 +769,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 655,
+                        "id": 715,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2350,
-                        "src": "402:3:4",
+                        "referencedDeclaration": 2631,
+                        "src": "406:3:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 656,
+                      "id": 716,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -708,144 +788,100 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "402:10:4",
+                      "src": "406:10:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
                       }
                     },
-                    "src": "389:23:4",
+                    "src": "392:24:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 658,
+                  "id": 718,
                   "nodeType": "ExpressionStatement",
-                  "src": "389:23:4"
+                  "src": "392:24:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 660,
+            "id": 720,
             "implemented": true,
-            "isConstructor": true,
-            "isDeclaredConst": false,
+            "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 652,
+              "id": 712,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "369:2:4"
+              "src": "372:2:5"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 653,
+              "id": 713,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "379:0:4"
+              "src": "382:0:5"
             },
-            "scope": 673,
-            "src": "358:61:4",
+            "scope": 741,
+            "src": "361:62:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 671,
+              "id": 727,
               "nodeType": "Block",
-              "src": "707:44:4",
+              "src": "480:35:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 669,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 667,
-                      "name": "controller",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 640,
-                      "src": "717:10:4",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 668,
-                      "name": "_newController",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 662,
-                      "src": "730:14:4",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      }
-                    },
-                    "src": "717:27:4",
+                    "id": 725,
+                    "name": "_controller",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 700,
+                    "src": "497:11:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 670,
-                  "nodeType": "ExpressionStatement",
-                  "src": "717:27:4"
+                  "functionReturnParameters": 724,
+                  "id": 726,
+                  "nodeType": "Return",
+                  "src": "490:18:5"
                 }
               ]
             },
-            "documentation": "@notice Changes the controller of the contract\n@dev onlyController - only open to the currently assigned controller\n@param _newController The new controller of the contract",
-            "id": 672,
+            "documentation": null,
+            "id": 728,
             "implemented": true,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [
-              {
-                "arguments": null,
-                "id": 665,
-                "modifierName": {
-                  "argumentTypes": null,
-                  "id": 664,
-                  "name": "onlyController",
-                  "nodeType": "Identifier",
-                  "overloadedDeclarations": [],
-                  "referencedDeclaration": 651,
-                  "src": "685:14:4",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_modifier$__$",
-                    "typeString": "modifier ()"
-                  }
-                },
-                "nodeType": "ModifierInvocation",
-                "src": "685:14:4"
-              }
-            ],
-            "name": "changeController",
+            "kind": "function",
+            "modifiers": [],
+            "name": "controller",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 663,
+              "id": 721,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "448:2:5"
+            },
+            "returnParameters": {
+              "id": 724,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 662,
-                  "name": "_newController",
+                  "id": 723,
+                  "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 672,
-                  "src": "661:22:4",
+                  "scope": 728,
+                  "src": "472:7:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -853,10 +889,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 661,
+                    "id": 722,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "661:7:4",
+                    "src": "472:7:5",
+                    "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -866,33 +903,172 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "660:24:4"
+              "src": "471:9:5"
             },
-            "payable": false,
+            "scope": 741,
+            "src": "429:86:5",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 739,
+              "nodeType": "Block",
+              "src": "803:45:5",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 737,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 735,
+                      "name": "_controller",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 700,
+                      "src": "813:11:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 736,
+                      "name": "_newController",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 730,
+                      "src": "827:14:5",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "813:28:5",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 738,
+                  "nodeType": "ExpressionStatement",
+                  "src": "813:28:5"
+                }
+              ]
+            },
+            "documentation": "@notice Changes the controller of the contract\n@dev onlyController - only open to the currently assigned controller\n@param _newController The new controller of the contract",
+            "id": 740,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 733,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 732,
+                  "name": "onlyController",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 711,
+                  "src": "781:14:5",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "781:14:5"
+              }
+            ],
+            "name": "changeController",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 731,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 730,
+                  "name": "_newController",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 740,
+                  "src": "757:22:5",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 729,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "757:7:5",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "756:24:5"
+            },
             "returnParameters": {
-              "id": 666,
+              "id": 734,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "707:0:4"
+              "src": "803:0:5"
             },
-            "scope": 673,
-            "src": "635:116:4",
+            "scope": 741,
+            "src": "731:117:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 674,
-        "src": "109:644:4"
+        "scope": 742,
+        "src": "108:742:5"
       }
     ],
-    "src": "0:753:4"
+    "src": "0:850:5"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+    "version": "0.5.7+commit.6da8b019.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.1",
-  "updatedAt": "2018-10-26T10:44:23.407Z"
+  "schemaVersion": "3.0.6",
+  "updatedAt": "2019-04-11T08:46:06.303Z",
+  "devdoc": {
+    "author": "element36.io",
+    "methods": {
+      "changeController(address)": {
+        "details": "onlyController - only open to the currently assigned controller",
+        "params": {
+          "_newController": "The new controller of the contract"
+        }
+      }
+    },
+    "title": "Cash36 Interface holding the Token Controller"
+  },
+  "userdoc": {
+    "methods": {
+      "changeController(address)": {
+        "notice": "Changes the controller of the contract"
+      }
+    }
+  }
 }

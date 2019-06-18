@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.9;
 
 
 /// @title Cash36 Interface holding the Token Controller
@@ -6,17 +6,21 @@ pragma solidity ^0.4.24;
 contract Controlled {
 
     // Address of the controller
-    address public controller;
+    address internal _controller;
 
     // Allow only controller address to access
     modifier onlyController {
-        require(msg.sender == controller);
+        require(msg.sender == _controller);
         _;
     }
 
     // Constructor
     constructor() public {
-        controller = msg.sender;
+        _controller = msg.sender;
+    }
+
+    function controller() public view returns (address){
+        return _controller;
     }
 
     /**
@@ -25,6 +29,6 @@ contract Controlled {
      * @param _newController The new controller of the contract
      */
     function changeController(address _newController) onlyController public {
-        controller = _newController;
+        _controller = _newController;
     }
 }

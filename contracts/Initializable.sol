@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.9;
 
 
 /// @title Cash36 Interface to keep track of which block the inheriting contract is created

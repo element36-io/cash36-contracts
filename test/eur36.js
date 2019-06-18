@@ -1,32 +1,34 @@
 /**
  * Contains all Test regarding EUR36
  */
-import expectThrow from "./helpers/expectThrow";
-
-
 const Cash36 = artifacts.require("./Cash36.sol");
 const Cash36Compliance = artifacts.require("./Cash36Compliance.sol");
+const Cash36Exchanges = artifacts.require("./Cash36Exchanges.sol");
 const Token36 = artifacts.require("./Token36.sol");
 const Token36Controller = artifacts.require("./EUR36Controller.sol");
 
 function format(value) {
-    return value * 10e18;
+  return value
+  //return value * 10e18;
 }
 
 function parse(value) {
-    return value / 10e18;
+  return value
+  //return value / 10e18;
 }
 
 contract('Create and Test EUR36', function (accounts) {
 
     var Cash36Instance;
     var Cash36ComplianceInstance;
+    var Cash36ExchangesInstance;
     var EUR36Instance;
     var EUR36ControllerInstance;
 
     before("...get Cash36Instance.", async function () {
         Cash36Instance = await Cash36.deployed();
         Cash36ComplianceInstance = await Cash36Compliance.deployed();
+        Cash36ExchangesInstance = await Cash36Exchanges.deployed();
 
         var tokenAddress = await Cash36Instance.getTokenBySymbol('EUR36');
         EUR36Instance = await Token36.at(tokenAddress);
@@ -34,22 +36,12 @@ contract('Create and Test EUR36', function (accounts) {
         var tokenControllerAddress = await EUR36Instance.controller();
         EUR36ControllerInstance = await Token36Controller.at(tokenControllerAddress);
 
-        await Cash36ComplianceInstance.addExchange(accounts[ 0 ], tokenAddress);
-        var exchanges = await Cash36ComplianceInstance.getAllowedExchanges(tokenAddress);
-        var isAllowedExchange = await Cash36ComplianceInstance.isAllowedExchange(accounts[0], tokenAddress);
+        await Cash36ExchangesInstance.addExchange(accounts[ 0 ], tokenAddress);
     });
 
   it("...it should allow to administrate cash36 contracts.", async function () {
-    var maxAccountTokensBefore = await Cash36Instance.getMaxAccountTokens('EUR36');
-    //assert.equal(maxAccountTokensBefore, "-1", "The maxAccountTokensBefore was not correct.");
-
-    await Cash36Instance.setMaxAccountTokens('EUR36', format(10000));
-
-    var maxAccountTokensAfter = await Cash36Instance.getMaxAccountTokens('EUR36');
-    assert.equal(maxAccountTokensAfter, format(10000), "The maxAccountTokensAfter was not correct.");
-
-    var compliance = await Cash36Instance.getCompliance('EUR36');
-    assert.equal(compliance, Cash36Compliance.address, "The compliance address was not correct.");
+        var compliance = await Cash36Instance.getCompliance('EUR36');
+        assert.equal(compliance, Cash36Compliance.address, "The compliance address was not correct.");
   });
 
     it("...it should mint 100 EUR36 and assign it to accounts[1].", async function () {
@@ -150,7 +142,7 @@ contract('Create and Test EUR36', function (accounts) {
         //assert.equal(result, false, "The result of transfer was not correct.");
 
         var newBalanceFor2 = await EUR36Instance.balanceOf(accounts[ 1 ]);
-        assert.equal(parse(newBalanceFor2), "20", "The balance was not correct.");
+        assert.equal(newBalanceFor2, "20", "The balance was not correct.");
 
         await Cash36ComplianceInstance.unblockUser(accounts[ 2 ], { from: accounts[ 0 ] });
 
@@ -160,20 +152,6 @@ contract('Create and Test EUR36', function (accounts) {
         await EUR36Instance.transfer(accounts[ 1 ], format(5), { from: accounts[ 2 ] });
 
         var newBalanceFor2After = await EUR36Instance.balanceOf(accounts[ 1 ]);
-        assert.equal(parse(newBalanceFor2After), "25", "The balance was not correct.");
-    });
-
-    it("...it should not allow to transfer if token is disabled.", async function () {
-        var enabled = await EUR36Instance.transfersEnabled();
-        assert.equal(enabled, true, "The token was not enabled.");
-
-        await Cash36Instance.enableTransfers('EUR36', false, { from: accounts[ 0 ] });
-
-        var enabled = await EUR36Instance.transfersEnabled();
-        assert.equal(enabled, false, "The token was not disabled.");
-
-        // TODO: figure out how to test throws in JS, otherwise write Sol Tests
-        //await CHF36Instance.transfer(accounts[ 1 ], 5, { from: accounts[ 2 ] });
-        //assert.equal(result, false, "The result of transfer was not correct.");
+        assert.equal(newBalanceFor2After, "25", "The balance was not correct.");
     });
 });

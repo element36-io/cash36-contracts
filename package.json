@@ -14,8 +14,8 @@
   "scripts": {
     "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
     "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
-    "testrpc": "./node_modules/.bin/testrpc -p 8558 -i 85588558",
     "test": "./node_modules/.bin/truffle test --network local",
+    "testrpc": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
     "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
@@ -25,19 +25,18 @@
     "all": "yarn build && yarn lint && yarn deploy:local && yarn test"
   },
   "dependencies": {
-    "ethereumjs-testrpc": "6.0.3",
-    "openzeppelin-solidity": "1.10.0",
-    "truffle": "^4.1.14",
-    "truffle-privatekey-provider": "^0.1.0"
+    "openzeppelin-solidity": "2.3.0",
+    "truffle": "5.0.22"
   },
   "devDependencies": {
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.23.0",
-    "solgraph": "^0.3.1",
-    "solidity-coverage": "^0.5.5",
-    "solium": "^1.1.7",
-    "eth-gas-reporter": "^0.1.10"
+    "ganache-cli": "6.4.4",
+    "truffle-privatekey-provider": "1.1.0",
+    "babel-polyfill": "6.26.0",
+    "solidity-coverage": "0.5.11",
+    "solium": "1.2.4",
+    "eth-gas-reporter": "0.2.0",
+    "openzeppelin-test-helpers": "0.4.0",
+    "chai": "4.2.0"
   },
   "files": [
     "build/contracts/",

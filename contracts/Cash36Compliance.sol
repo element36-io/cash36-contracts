@@ -1,26 +1,32 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.9;
 
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./HasOfficer.sol";
 
 
 /// @title Cash36 Compliance Contract
-/// @notice Is responsible for keeping track of all KYCed users, users blacklist and white-listed exchanges.
+/// @notice Is responsible for keeping track of all KYCed users, users blacklist and attributes.
 /// @author element36.io
 contract Cash36Compliance is Ownable, HasOfficer {
 
     // Tracks KYCed users
-    mapping(address => bool) internal users;
+    mapping(address => bool) private users;
 
-    // Tracks blacklisted users - 'overrides' KYCed users
-    mapping(address => bool) internal blacklist;
+    // Allow attributes for KYCed Users for a better ACL like BUY, SELL, SEND, RECEIVE
+    struct Attribute {
+        bytes32 attribute;
+        uint256 value;
+    }
+    mapping(address => mapping(bytes32 => Attribute)) attributes;
 
     // Tracks current User transfer limits
-    mapping(address => uint256) internal userLimits;
+    mapping(address => uint256) private userLimits;
 
-    // Whitelisted Exchanges per token
-    mapping(address => address[]) internal allExchanges;
-    mapping(address => mapping(address => bool)) internal allowedExchanges;
+    // Tracks blacklisted users - 'overrides' KYCed users
+    mapping(address => bool) private blacklist;
+
+    // Tracks forever locked accounts - like Credit cards - no unlocks
+    mapping(address => bool) private lockedAccounts;
 
     /**
      * @notice Add user once he passed KYC process
@@ -29,18 +35,18 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function addUser(address _user) public onlyComplianceOfficer {
         users[_user] = true;
-        userLimits[_user] = 1000;
+        userLimits[_user] = 200;
     }
 
     /**
-     * @notice Check User if registered, its limits and Blacklist
+     * @notice Check User if registered and if on blacklist
      * @param _user Address of the user
      * @return {
-     *   "bool": "True when User is KYCed, within limits and not on Blacklist"
+     *   "bool": "True when User is KYCed and not on Blacklist"
      * }
      */
     function checkUser(address _user) public view returns (bool) {
-        if (users[_user] && !blacklist[_user]) {
+        if (users[_user] && !blacklist[_user] && !lockedAccounts[_user]) {
             return true;
         }
         return false;
@@ -82,6 +88,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
     function setUserLimit(address _user, uint256 _limit) public onlyComplianceOfficer {
         userLimits[_user] = _limit;
     }
+
     /**
      * @notice Helper for web3j as passing -1 fails
      * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account
@@ -89,6 +96,25 @@ contract Cash36Compliance is Ownable, HasOfficer {
      */
     function setUserLimitToUnlimited(address _user) public onlyComplianceOfficer {
         userLimits[_user] = uint256(-1);
+    }
+
+    function setAttribute(address _who, bytes32 _attribute, uint256 _value) public onlyComplianceOfficer {
+        attributes[_who][_attribute] = Attribute(_attribute, _value);
+    }
+
+    function hasAttribute(address _who, bytes32 _attribute) public view returns (bool) {
+        return attributes[_who][_attribute].value != 0;
+    }
+
+    /**
+     * @notice Check User if on Blacklist
+     * @param _user Address of the user
+     * @return {
+     *   "bool": "True when User is listed on Blacklist"
+     * }
+     */
+    function isOnBlacklist(address _user) public view returns (bool) {
+        return blacklist[_user];
     }
 
     /**
@@ -109,77 +135,8 @@ contract Cash36Compliance is Ownable, HasOfficer {
         blacklist[_user] = false;
     }
 
-    /**
-     * @notice Check User if on Blacklist
-     * @param _user Address of the user
-     * @return {
-     *   "bool": "True when User is listed on Blacklist"
-     * }
-     */
-    function isOnBlacklist(address _user) public view returns (bool) {
-        return blacklist[_user];
-    }
-
-    /**
-     * @notice Add an exchange to the list of accepted Exchanges
-     * @dev Exchange can not be another Smart Contract
-     * @dev onlyOwner - only open to element36 Account
-     * @param _exchange Address of the exchange
-     */
-    function addExchange(address _exchange, address _token) external onlyOwner {
-        require(isContract(_exchange) == false);
-        allExchanges[_token].push(_exchange);
-        allowedExchanges[_token][_exchange] = true;
-    }
-
-    /**
-     * @notice Remove an exchange from the list of accepted Exchanges
-     * @dev onlyOwner - only open to element36 Account
-     * @param _exchange Address of the exchange
-     */
-    function removeExchange(address _exchange, address _token) external onlyOwner {
-        allowedExchanges[_token][_exchange] = false;
-    }
-
-    /**
-     * @notice Check if an exchange is on the list of accepted Exchanges
-     * @param _exchange Address of the exchange
-     * @return {
-     *   "bool": "True when Exchange is listed"
-     * }
-     */
-    function isAllowedExchange(address _exchange, address _token) external view returns (bool) {
-        return allowedExchanges[_token][_exchange];
-    }
-
-    /**
-     * @notice Returns all registered exchange addresses for a given token address.
-     * @dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.
-     * @dev It does not consider exchanges, which might have been flagged false afterwards.
-     * @dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.
-     * @param _token Address of the token
-     * @return {
-     *   "address[]": List of address of exchanges
-     * }
-    */
-    function getAllowedExchanges(address _token) external view returns (address[]) {
-        return allExchanges[_token];
-    }
-
-    /// INTERNAL
-
-    /**
-      @notice Checks if a given address is a contract or EOA
-      @param _address Address to check
-    */
-    function isContract(address _address) internal view returns(bool) {
-        uint size;
-        if (_address == 0) {
-            return false;
-        }
-        assembly {
-            size := extcodesize(_address)
-        }
-        return size > 0;
+    // Irreversible call - like Credit card
+    function lockAccountForever(address _user) public onlyComplianceOfficer {
+        lockedAccounts[_user] = true;
     }
 }

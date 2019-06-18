@@ -1,302 +1,246 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.9;
 
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-import "./Initializable.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
+import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "./Controlled.sol";
 import "./WithFees.sol";
 import "./IToken36Controller.sol";
+import "./Initializable.sol";
 
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20, Initializable, Controlled, WithFees {
+contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees {
+    using SafeMath for uint256;
 
-    // ERC20 Fields
-    string public name;
-    string public symbol;
-    uint8 public constant DECIMALS = 18;
+    mapping (address => uint256) private _balances;
 
-    mapping(address => mapping(address => uint256)) internal allowed;
-    mapping(address => uint256) balances;
-    uint256 totalSupply_;
+    mapping (address => mapping (address => uint256)) private _allowed;
 
-    // Flag to determine if the token is transferable or not.
-    bool public transfersEnabled;
+    uint256 private _totalSupply;
 
-    // Events
+    // Burn Event
     event Burn(address indexed burner, uint256 value);
 
     // Constructor
     constructor() public {
         initialized();
-        transfersEnabled = true;
+
+        // Set Fee Collector
         feeCollector = msg.sender;
+
+        // Change PauserRole to controller
+        //addPauser(_controller);
+        renouncePauser();
     }
 
     /**
-    * @dev Gets the total supply of to
-    * @return {
-          bool: Whether the transfer was successful or not
-      }
-    */
+     * @dev Total number of tokens in existence
+     */
     function totalSupply() public view returns (uint256) {
-        return totalSupply_;
+        return _totalSupply;
     }
 
     /**
-    * @dev Gets the balance of the specified address.
-    * @param _owner The address to query the the balance of.
-    * @return {
-          bool: Whether the transfer was successful or not
-      }
-    */
-    function balanceOf(address _owner) public view returns (uint256) {
-        return balances[_owner];
-    }
-
-    /**
-     * @notice Send _amount tokens to _to from msg.sender
-     * @param _to The address of the recipient
-     * @param _value The amount of tokens to be transferred
-     * @return {
-            bool: Whether the transfer was successful or not
-        }
+     * @dev Gets the balance of the specified address.
+     * @param owner The address to query the balance of.
+     * @return A uint256 representing the amount owned by the passed address.
      */
-    function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(transfersEnabled, "transfers are disabled");
-        require(_to != address(0));
-        require(_value <= balances[msg.sender]);
-
-        if (_value == 0) {
-            return true;
-        }
-
-        // Alerts the token controller of the transfer
-        if (isContract(controller)) {
-            require(IToken36Controller(controller).onTransfer(msg.sender, _to, _value) == true, "Token36Controller rejected the transfer");
-        }
-
-        balances[msg.sender] = balances[msg.sender].sub(_value);
-        balances[_to] = balances[_to].add(_value);
-        emit Transfer(msg.sender, _to, _value);
-        return true;
-    }
-
-    /**
-     * @notice Send _amount tokens to _to from _from on the condition it is approved by _from
-     * @param _from The address holding the tokens being transferred
-     * @param _to The address of the recipient
-     * @param _value The amount of tokens to be transferred
-     * @return {
-            bool: True if the transfer was successful
-        }
-     */
-    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-        require(transfersEnabled, "transfers are disabled");
-        require(_to != address(0));
-        require(_value <= balances[_from]);
-
-        if (_value == 0) {
-            return true;
-        }
-
-        // Alerts the token controller of the transfer
-        if (isContract(controller)) {
-            require(IToken36Controller(controller).onTransfer(_from, _to, _value) == true, "Token36Controller rejected the transfer");
-        }
-
-        // The controller of this contract can move tokens around at will
-        if (msg.sender != controller) {
-            // The standard ERC 20 transferFrom functionality
-            if (allowed[_from][msg.sender] < _value) {
-                return false;
-            }
-
-            allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
-        }
-
-        balances[_from] = balances[_from].sub(_value);
-        balances[_to] = balances[_to].add(_value);
-        emit Transfer(_from, _to, _value);
-        return true;
-    }
-
-    /**
-     * @notice msg.sender approves _spender to spend _amount tokens on its behalf
-     * @param _spender The address of the account able to transfer the tokens
-     * @param _value The amount of tokens to be approved for transfer
-     * @return {
-            bool: True if the approval was successful
-        }
-     */
-    function approve(address _spender, uint256 _value) public returns (bool success) {
-        require(transfersEnabled, "transfers are disabled");
-
-        allowed[msg.sender][_spender] = _value;
-        emit Approval(msg.sender, _spender, _value);
-        return true;
+    function balanceOf(address owner) public view returns (uint256) {
+        return _balances[owner];
     }
 
     /**
      * @dev Function to check the amount of tokens that an owner allowed to a spender.
-     * @param _owner address The address which owns the funds.
-     * @param _spender address The address which will spend the funds.
-     * @return {
-            uint256: Amount of tokens still available for the spender
-        }
+     * @param owner address The address which owns the funds.
+     * @param spender address The address which will spend the funds.
+     * @return A uint256 specifying the amount of tokens still available for the spender.
      */
-    function allowance(address _owner, address _spender) public view returns (uint256) {
-        return allowed[_owner][_spender];
+    function allowance(address owner, address spender) public view returns (uint256) {
+        return _allowed[owner][spender];
+    }
+
+    /**
+     * @dev Transfer token to a specified address
+     * @param to The address to transfer to.
+     * @param value The amount to be transferred.
+     */
+    function transfer(address to, uint256 value) public whenNotPaused returns (bool) {
+        require(IToken36Controller(_controller).onTransfer(msg.sender, to, value) == true, "Token36Controller rejected the transfer");
+
+        _transfer(msg.sender, to, value);
+        return true;
+    }
+
+    /**
+     * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+     * Beware that changing an allowance with this method brings the risk that someone may use both the old
+     * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+     * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+     * @param spender The address which will spend the funds.
+     * @param value The amount of tokens to be spent.
+     */
+    function approve(address spender, uint256 value) public whenNotPaused returns (bool) {
+        _approve(msg.sender, spender, value);
+        return true;
+    }
+
+    /**
+     * @dev Transfer tokens from one address to another.
+     * Note that while this function emits an Approval event, this is not required as per the specification,
+     * and other compliant implementations may not emit the event.
+     * @param from address The address which you want to send tokens from
+     * @param to address The address which you want to transfer to
+     * @param value uint256 the amount of tokens to be transferred
+     */
+    function transferFrom(address from, address to, uint256 value) public whenNotPaused returns (bool) {
+        require(IToken36Controller(_controller).onTransfer(from, to, value) == true, "Token36Controller rejected the transfer");
+
+        // The controller of this contract can move tokens around at will - needed for recovery
+        if (msg.sender != _controller) {
+            _transfer(from, to, value);
+            _approve(from, msg.sender, _allowed[from][msg.sender].sub(value));
+        } else {
+            _transfer(from, to, value);
+        }
+        return true;
     }
 
     /**
      * @dev Increase the amount of tokens that an owner allowed to a spender.
-     * @param _spender The address which will spend the funds.
-     * @param _addedValue The amount of tokens to increase the allowance by.
-     * @return {
-            bool: True is successful
-        }
+     * approve should be called when _allowed[msg.sender][spender] == 0. To increment
+     * allowed value is better to use this function to avoid 2 calls (and wait until
+     * the first transaction is mined)
+     * From MonolithDAO Token.sol
+     * Emits an Approval event.
+     * @param spender The address which will spend the funds.
+     * @param addedValue The amount of tokens to increase the allowance by.
      */
-    function increaseApproval(address _spender, uint _addedValue) public returns (bool) {
-        require(transfersEnabled, "transfers are disabled");
-
-        allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
-        emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    function increaseAllowance(address spender, uint256 addedValue) public whenNotPaused returns (bool) {
+        _approve(msg.sender, spender, _allowed[msg.sender][spender].add(addedValue));
         return true;
     }
 
     /**
      * @dev Decrease the amount of tokens that an owner allowed to a spender.
-     * @param _spender The address which will spend the funds.
-     * @param _subtractedValue The amount of tokens to decrease the allowance by.
-     * @return {
-            bool: True is successful
-        }
+     * approve should be called when _allowed[msg.sender][spender] == 0. To decrement
+     * allowed value is better to use this function to avoid 2 calls (and wait until
+     * the first transaction is mined)
+     * From MonolithDAO Token.sol
+     * Emits an Approval event.
+     * @param spender The address which will spend the funds.
+     * @param subtractedValue The amount of tokens to decrease the allowance by.
      */
-    function decreaseApproval(address _spender, uint _subtractedValue) public returns (bool) {
-        require(transfersEnabled, "transfers are disabled");
-
-        uint oldValue = allowed[msg.sender][_spender];
-        if (_subtractedValue > oldValue) {
-            allowed[msg.sender][_spender] = 0;
-        } else {
-            allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
-        }
-        emit Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    function decreaseAllowance(address spender, uint256 subtractedValue) public whenNotPaused returns (bool) {
+        _approve(msg.sender, spender, _allowed[msg.sender][spender].sub(subtractedValue));
         return true;
     }
 
     /**
-     * @notice Enables token holders to transfer their tokens freely if true
-     * @param _transfersEnabled True if transfers are allowed in the clone
+     * @dev Transfer token for a specified addresses
+     * @param from The address to transfer from.
+     * @param to The address to transfer to.
+     * @param value The amount to be transferred.
      */
-    function enableTransfers(bool _transfersEnabled) public onlyController {
-        transfersEnabled = _transfersEnabled;
+    function _transfer(address from, address to, uint256 value) internal {
+        require(to != address(0));
+
+        _balances[from] = _balances[from].sub(value);
+        _balances[to] = _balances[to].add(value);
+        emit Transfer(from, to, value);
+    }
+
+    /**
+     * @dev Function to mint tokens
+     * @param to The address that will receive the minted tokens.
+     * @param value The amount of tokens to mint.
+     * @return A boolean that indicates if the operation was successful.
+     */
+    function mint(address to, uint256 value) public onlyController whenNotPaused returns (bool) {
+        _mint(to, value);
+        return true;
+    }
+
+    /**
+     * @dev Internal function that mints an amount of the token and assigns it to
+     * an account. This encapsulates the modification of balances such that the
+     * proper events are emitted.
+     * @param account The account that will receive the created tokens.
+     * @param value The amount that will be created.
+     */
+    function _mint(address account, uint256 value) internal {
+        require(account != address(0));
+
+        _totalSupply = _totalSupply.add(value);
+        _balances[account] = _balances[account].add(value);
+        emit Transfer(address(0), account, value);
     }
 
     /**
      * @dev Burns a specific amount of tokens.
-     * @param _value The amount of token to be burned.
+     * @param value The amount of token to be burned.
      */
-    function burn(uint256 _value) public returns (bool) {
-        require(transfersEnabled, "transfers are disabled");
-        require(_value <= balances[msg.sender], "insufficient balance");
-
-        if (_value == 0) {
-            return true;
-        }
-
-        // Calc and deduct fee
-        uint256 fee = calcFee(_value);
-        uint256 remainingValue = _value - fee;
-
-        // Transfer fee amount to us
-        balances[feeCollector] = balances[feeCollector].add(fee);
-
-        // Now burn the rest
-        balances[msg.sender] = balances[msg.sender].sub(_value);
-        totalSupply_ = totalSupply_.sub(remainingValue);
-
-        emit Burn(msg.sender, _value);
-        emit Transfer(msg.sender, address(0), _value);
-        return true;
+    function burn(uint256 value) public whenNotPaused {
+        _burn(msg.sender, value);
     }
 
     /**
-     * @dev Burns a specific amount of tokens.
-     * @param _value The amount of token to be burned.
+     * @dev Burns a specific amount of tokens from the target address and decrements allowance
+     * @param from address The account whose tokens will be burned.
+     * @param value uint256 The amount of token to be burned.
      */
-    function burnFrom(address _from, uint256 _value) public returns (bool) {
-        require(transfersEnabled, "transfers are disabled");
-        require(_value <= balances[_from], "insufficient balance");
-
-        if (_value == 0) {
-            return true;
-        }
-
-        // The controller of this contract can move tokens around at will
-        if (msg.sender != controller) {
-            // The standard ERC 20 transferFrom functionality
-            if (allowed[_from][msg.sender] < _value) {
-                return false;
-            }
-
-            allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
-        }
-
-        // Now burn the rest
-        balances[_from] = balances[_from].sub(_value);
-        totalSupply_ = totalSupply_.sub(_value);
-
-        emit Burn(_from, _value);
-        emit Transfer(_from, address(0), _value);
-        return true;
+    function burnFrom(address from, uint256 value) public whenNotPaused {
+        _burnFrom(from, value);
     }
 
     /**
-     * @notice Generates `_amount` tokens that are assigned to `_owner`
-     * @param _owner The address that will be assigned the new tokens
-     * @param _value The quantity of tokens generated
-     * @return {
-            bool: True if the tokens are generated correctly
-        }
+     * @dev Internal function that burns an amount of the token of a given
+     * account.
+     * @param account The account whose tokens will be burnt.
+     * @param value The amount that will be burnt.
      */
-    function mintTokens(address _owner, uint _value) public onlyController returns (bool) {
-        require(totalSupply_ + _value >= totalSupply_); // Check for overflow
-        require(balances[_owner] + _value >= balances[_owner]); // Check for overflow
+    function _burn(address account, uint256 value) internal {
+        require(account != address(0));
 
-        balances[_owner] = balances[_owner].add(_value);
-        totalSupply_ = totalSupply_.add(_value);
+        // Calculate and deduct fee from sender account and send to feeCollector
+        uint256 fee = calcFee(value);
+        uint256 remainingValue = value - fee;
+        _balances[feeCollector] = _balances[feeCollector].add(fee);
 
-        emit Transfer(address(0), _owner, _value);
-        return true;
+        _totalSupply = _totalSupply.sub(remainingValue);
+        _balances[account] = _balances[account].sub(value);
+        emit Transfer(account, address(0), value);
+
+        // Needed for element36 Exchange
+        emit Burn(account, value);
     }
 
     /**
-     * @dev Internal function to determine if an address is a contract
-     * @param _addr The address being queried
-     * @return {
-            bool: True is addr is a contract
-        }
+     * @dev Internal function that burns an amount of the token of a given
+     * account, deducting from the sender's allowance for said account. Uses the
+     * internal burn function.
+     * Emits an Approval event (reflecting the reduced allowance).
+     * @param account The account whose tokens will be burnt.
+     * @param value The amount that will be burnt.
      */
-    function isContract(address _addr) internal view returns (bool) {
-        uint size;
-        if (_addr == 0)
-            return false;
-
-        assembly {
-            size := extcodesize(_addr)
-        }
-
-        return size > 0;
+    function _burnFrom(address account, uint256 value) internal {
+        _burn(account, value);
+        _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));
     }
 
     /**
-     * @notice The fallback function: If the contract's controller has not been
-     * @notice set to 0, then the `proxyPayment` method is called which relays the
-     * @notice ether and creates tokens as described in the token controller contract
+     * @dev Approve an address to spend another addresses' tokens.
+     * @param owner The address that owns the tokens.
+     * @param spender The address that will spend the tokens.
+     * @param value The number of tokens that can be spent.
      */
-    function() payable public {
-        revert();
+    function _approve(address owner, address spender, uint256 value) internal {
+        require(spender != address(0));
+        require(owner != address(0));
+
+        _allowed[owner][spender] = value;
+        emit Approval(owner, spender, value);
     }
 }

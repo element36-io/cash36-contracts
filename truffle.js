@@ -21,6 +21,13 @@ module.exports = {
             runs: 200
         }
     },
+
+    compilers: {
+      solc: {
+        version: "0.5.9"
+      }
+    },
+
     networks: {
         coverage: {
             host: "localhost",
@@ -32,8 +39,8 @@ module.exports = {
         local: {
             //provider: new PrivateKeyProvider(privKey, "http://localhost:8558"),
             host: "localhost",
-            port: 8558,
-            network_id: "85588558",
+            port: 8545,
+            network_id: "85458545",
             gas: 0x2fefd5
         },
         test: {
@@ -42,12 +49,14 @@ module.exports = {
             gas: 0x2fefd5
         }
     },
+
     mocha: {
       useColors: true,
-      reporter: 'eth-gas-reporter',
-      reporterOptions : {
-        currency: 'CHF',
-        gasPrice: 21
-      }
+      // Crashing since version update - no solution yet
+      // reporter: 'eth-gas-reporter',
+      // reporterOptions : {
+      //   currency: 'CHF',
+      //   gasPrice: 21
+      // }
     }
 };

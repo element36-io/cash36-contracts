@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.9;
 
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
@@ -14,7 +14,7 @@ contract WithFees {
 
     // Allow only controller address to access
     modifier onlyFeeCollector {
-        require(msg.sender == feeCollector);
+        require(msg.sender == feeCollector, "Only Fee Collector is allowed");
         _;
     }
 
