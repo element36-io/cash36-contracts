@@ -67,8 +67,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount to be transferred.
      */
     function transfer(address to, uint256 value) public whenNotPaused returns (bool) {
-        require(IToken36Controller(_controller)
-            .onTransfer(msg.sender, to, value) == true, "Token36Controller rejected the transfer");
+        require(IToken36Controller(_controller).onTransfer(msg.sender, to, value) == true, "Token36Controller rejected the transfer");
 
         _transfer(msg.sender, to, value);
         return true;
@@ -97,8 +96,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value uint256 the amount of tokens to be transferred
      */
     function transferFrom(address from, address to, uint256 value) public whenNotPaused returns (bool) {
-        require(IToken36Controller(_controller)
-            .onTransfer(from, to, value) == true, "Token36Controller rejected the transfer");
+        require(IToken36Controller(_controller).onTransfer(from, to, value) == true, "Token36Controller rejected the transfer");
 
         // The controller of this contract can move tokens around at will - needed for recovery
         if (msg.sender != _controller) {
