@@ -1,12 +1,5 @@
 image: ubuntu:16.04 #luongnguyen/oyente
 
-before_script:
- - apt-get update && apt-get install -y git python g++ make curl
- - curl -sL https://deb.nodesource.com/setup_8.x | bash
- - apt-get install -y nodejs
- - npm install -g yarn
- - yarn
-
 stages:
  - build
  - test
@@ -17,6 +10,11 @@ stages:
 build:
  stage: build
  script:
+   - apt-get update && apt-get install -y git python g++ make curl
+   - curl -sL https://deb.nodesource.com/setup_8.x | bash
+   - apt-get install -y nodejs
+   - npm install -g yarn
+   - yarn
    - yarn build
    - yarn lint
    #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
@@ -24,6 +22,11 @@ build:
 test:
  stage: test
  script:
+   - apt-get update && apt-get install -y git python g++ make curl
+   - curl -sL https://deb.nodesource.com/setup_8.x | bash
+   - apt-get install -y nodejs
+   - npm install -g yarn
+   - yarn
    - yarn testrpc &
    - yarn test
 
@@ -33,6 +36,9 @@ deploy:
  services:
    - docker:dind
  script:
+   - apk add --no-cache nodejs nodejs-npm git python g++ make curl
+   - npm install -g yarn
+   - yarn
    - node scripts/waitForEthSyncTest.js
    - echo "{\"privKey\":\"${PRIVATE_KEY}\"}" > keys.json
    - ./node_modules/.bin/truffle migrate --network test
@@ -46,6 +52,10 @@ deploy:
 release:
   stage: release
   script:
+    - apt-get update && apt-get install -y git python g++ make curl
+    - curl -sL https://deb.nodesource.com/setup_8.x | bash
+    - apt-get install -y nodejs
+    - npm install -g yarn
     - git config --global user.email "m@element36.io"
     - git config --global user.name "mb-element36"
     - npm install -g semantic-release-gitlab
@@ -60,6 +70,10 @@ release:
 publish:
   stage: publish
   script:
+    - apt-get update && apt-get install -y git python g++ make curl
+    - curl -sL https://deb.nodesource.com/setup_8.x | bash
+    - apt-get install -y nodejs
+    - npm install -g yarn
     - npm install -g npm-publish-git-tag
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
     - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
