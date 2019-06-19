@@ -29,12 +29,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"onTransfer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{},\"title\":\"Token Controller Interface\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol\":\"IToken36Controller\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol\":{\"keccak256\":\"0xabcf20656b815b985f063edf6143dcd01f96140f508d42a63b4540a1f196a507\",\"urls\":[\"bzzr://b235b0aa33f561db8732082da65be98a5ffe2f78d7de2874fe15e922a6eb29bc\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.9+commit.e560f70d\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"onTransfer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{},\"title\":\"Token Controller Interface\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol\":\"IToken36Controller\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol\":{\"keccak256\":\"0x1c6e75902a8f8095712ab281fb71cced779907959b85661568cb640fd357540f\",\"urls\":[\"bzzr://3a9ac061742abcf06e71aec6289de7f7df676fc582e4b6ebd26657e30c35fb6d\",\"dweb:/ipfs/QmPAvJathDadTq4kEXdMubpQ1J2nnPKBzWGB3LSqAj5qHG\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.7;\n\n\n/// @title Token Controller Interface\n/// @author element36.io\ncontract IToken36Controller {\n    function onTransfer(address _from, address _to, uint _amount) public view returns(bool);\n}",
+  "source": "pragma solidity ^0.5.9;\n\n\n/// @title Token Controller Interface\n/// @author element36.io\ncontract IToken36Controller {\n    function onTransfer(address _from, address _to, uint _amount) public view returns(bool);\n}",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/IToken36Controller.sol",
@@ -52,7 +52,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:11"
@@ -228,7 +228,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:11"
@@ -390,11 +390,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.7+commit.6da8b019.Emscripten.clang"
+    "version": "0.5.9+commit.e560f70d.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-11T08:46:06.300Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-06-18T21:59:24.972Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {},

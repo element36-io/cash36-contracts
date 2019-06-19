@@ -16,12 +16,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getInitializationBlock\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{},\"title\":\"Cash36 Interface to keep track of which block the inheriting contract is created\"},\"userdoc\":{\"methods\":{\"getInitializationBlock()\":{\"notice\":\"@return Block number in which the contract was initialized\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol\":\"Initializable\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol\":{\"keccak256\":\"0x67608296c52ab575b0b227e264c04cf9dfaf93877cc87deaa85c6cf85b9aa9f2\",\"urls\":[\"bzzr://43545b44472d657bfe3be8231108b3283a618de108522d87da80b6eee2375262\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b5060778061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80638b3dd74914602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000549056fea165627a7a7230582068e2be114803ca5e51d5edcad02752013fa9ddc508d1bd0e6f34b4f13ed5e5410029",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80638b3dd74914602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000549056fea165627a7a7230582068e2be114803ca5e51d5edcad02752013fa9ddc508d1bd0e6f34b4f13ed5e5410029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.9+commit.e560f70d\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"getInitializationBlock\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{},\"title\":\"Cash36 Interface to keep track of which block the inheriting contract is created\"},\"userdoc\":{\"methods\":{\"getInitializationBlock()\":{\"notice\":\"@return Block number in which the contract was initialized\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol\":\"Initializable\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol\":{\"keccak256\":\"0x0f59ea77fbcd06287d647654196606d5cb1e8b10410e6c3675d682fa1a7768c4\",\"urls\":[\"bzzr://6a204addf8bcab6bbe128bbbf833ec71c27cc3d851032ce6ffa7f4b9da5c49a0\",\"dweb:/ipfs/Qmcsu28Me5bP5cDXyqCPxfUYa1aH6tHUBYAbi6won69BPn\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060808061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80638b3dd74914602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000549056fea265627a7a72305820170188227a944cda207bdf9107e806ce28321df3f779a2d12f1b249e074e8e1264736f6c63430005090032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80638b3dd74914602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000549056fea265627a7a72305820170188227a944cda207bdf9107e806ce28321df3f779a2d12f1b249e074e8e1264736f6c63430005090032",
   "sourceMap": "143:944:12:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;143:944:12;;;;;;;",
   "deployedSourceMap": "143:944:12:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;143:944:12;;;;;;;;;;;;;;;;;;;487:107;;;:::i;:::-;;;;;;;;;;;;;;;;;542:7;568:19;487:107;:::o",
-  "source": "pragma solidity ^0.5.7;\n\n\n/// @title Cash36 Interface to keep track of which block the inheriting contract is created\n/// @author element36.io\ncontract Initializable {\n\n    uint256 internal initializationBlock;\n\n    modifier onlyInit {\n        require(initializationBlock == 0);\n        _;\n    }\n\n    modifier isInitialized {\n        require(initializationBlock > 0);\n        _;\n    }\n\n    /**\n     * @notice\n     * @return Block number in which the contract was initialized\n     */\n    function getInitializationBlock() public view returns (uint256) {\n        return initializationBlock;\n    }\n\n    /**\n     * @dev Function to be called by top level contract after initialization has finished.\n     */\n    function initialized() internal onlyInit {\n        initializationBlock = getBlockNumber();\n    }\n\n    /**\n     * @dev Returns the current block number.\n     *      Using a function rather than `block.number` allows us to easily mock the block number in\n     *      tests.\n     */\n    function getBlockNumber() internal view returns (uint256) {\n        return block.number;\n    }\n}",
+  "source": "pragma solidity ^0.5.9;\n\n\n/// @title Cash36 Interface to keep track of which block the inheriting contract is created\n/// @author element36.io\ncontract Initializable {\n\n    uint256 internal initializationBlock;\n\n    modifier onlyInit {\n        require(initializationBlock == 0);\n        _;\n    }\n\n    modifier isInitialized {\n        require(initializationBlock > 0);\n        _;\n    }\n\n    /**\n     * @notice\n     * @return Block number in which the contract was initialized\n     */\n    function getInitializationBlock() public view returns (uint256) {\n        return initializationBlock;\n    }\n\n    /**\n     * @dev Function to be called by top level contract after initialization has finished.\n     */\n    function initialized() internal onlyInit {\n        initializationBlock = getBlockNumber();\n    }\n\n    /**\n     * @dev Returns the current block number.\n     *      Using a function rather than `block.number` allows us to easily mock the block number in\n     *      tests.\n     */\n    function getBlockNumber() internal view returns (uint256) {\n        return block.number;\n    }\n}",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Initializable.sol",
@@ -39,7 +39,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:12"
@@ -155,10 +155,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2634,
-                        2635
+                        2632,
+                        2633
                       ],
-                      "referencedDeclaration": 2634,
+                      "referencedDeclaration": 2632,
                       "src": "244:7:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -275,10 +275,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2634,
-                        2635
+                        2632,
+                        2633
                       ],
-                      "referencedDeclaration": 2634,
+                      "referencedDeclaration": 2632,
                       "src": "334:7:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -533,7 +533,7 @@
                       "name": "block",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2621,
+                      "referencedDeclaration": 2619,
                       "src": "1066:5:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_block",
@@ -636,7 +636,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:12"
@@ -752,10 +752,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2634,
-                        2635
+                        2632,
+                        2633
                       ],
-                      "referencedDeclaration": 2634,
+                      "referencedDeclaration": 2632,
                       "src": "244:7:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -872,10 +872,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2634,
-                        2635
+                        2632,
+                        2633
                       ],
-                      "referencedDeclaration": 2634,
+                      "referencedDeclaration": 2632,
                       "src": "334:7:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1130,7 +1130,7 @@
                       "name": "block",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2621,
+                      "referencedDeclaration": 2619,
                       "src": "1066:5:12",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_block",
@@ -1219,11 +1219,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.7+commit.6da8b019.Emscripten.clang"
+    "version": "0.5.9+commit.e560f70d.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-11T08:46:06.303Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-06-18T21:59:24.973Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {},
