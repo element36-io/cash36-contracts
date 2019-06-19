@@ -8,8 +8,7 @@
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function",
-      "signature": "0x715018a6"
+      "type": "function"
     },
     {
       "constant": true,
@@ -23,8 +22,7 @@
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function",
-      "signature": "0x8da5cb5b"
+      "type": "function"
     },
     {
       "constant": true,
@@ -38,8 +36,7 @@
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function",
-      "signature": "0x8f32d59b"
+      "type": "function"
     },
     {
       "constant": false,
@@ -53,8 +50,7 @@
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function",
-      "signature": "0xf2fde38b"
+      "type": "function"
     },
     {
       "anonymous": false,
@@ -71,8 +67,7 @@
         }
       ],
       "name": "OwnershipTransferred",
-      "type": "event",
-      "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
+      "type": "event"
     },
     {
       "constant": false,
@@ -90,8 +85,7 @@
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function",
-      "signature": "0x7f604b45"
+      "type": "function"
     },
     {
       "constant": false,
@@ -109,8 +103,7 @@
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "function",
-      "signature": "0xf00065b6"
+      "type": "function"
     },
     {
       "constant": true,
@@ -133,8 +126,7 @@
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function",
-      "signature": "0xea13d8a1"
+      "type": "function"
     },
     {
       "constant": true,
@@ -153,16 +145,15 @@
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function",
-      "signature": "0x9a0f8719"
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"addExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"getAllowedExchanges\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"isAllowedExchange\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"removeExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"addExchange(address,address)\":{\"details\":\"Exchange can not be another Smart ContractonlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"getAllowedExchanges(address)\":{\"details\":\"Note: Due to limitations of solidity, this method returns the full list of every address ever registered.It does not consider exchanges, which might have been flagged false afterwards.Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\",\"params\":{\"_token\":\"Address of the token\"},\"return\":\"{  \\\"address[]\\\": List of address of exchanges }\"},\"isAllowedExchange(address,address)\":{\"params\":{\"_exchange\":\"Address of the exchange\"},\"return\":\"{  \\\"bool\\\": \\\"True when Exchange is listed\\\" }\"},\"isOwner()\":{\"return\":\"true if `msg.sender` is the owner of the contract.\"},\"owner()\":{\"return\":\"the address of the owner.\"},\"removeExchange(address,address)\":{\"details\":\"onlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"renounceOwnership()\":{\"details\":\"Allows the current owner to relinquish control of the contract. It will not be possible to call the functions with the `onlyOwner` modifier anymore.\"},\"transferOwnership(address)\":{\"details\":\"Allows the current owner to transfer control of the contract to a newOwner.\",\"params\":{\"newOwner\":\"The address to transfer ownership to.\"}}},\"title\":\"Cash36 Exchanges Contract\"},\"userdoc\":{\"methods\":{\"addExchange(address,address)\":{\"notice\":\"Add an exchange to the list of accepted Exchanges\"},\"getAllowedExchanges(address)\":{\"notice\":\"Returns all registered exchange addresses for a given token address.\"},\"isAllowedExchange(address,address)\":{\"notice\":\"Check if an exchange is on the list of accepted Exchanges\"},\"removeExchange(address,address)\":{\"notice\":\"Remove an exchange from the list of accepted Exchanges\"},\"renounceOwnership()\":{\"notice\":\"Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"}},\"notice\":\"Is responsible for keeping track of all allowed Exchanges.\"}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":\"Cash36Exchanges\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":{\"keccak256\":\"0x4a73157fc64bf9e0014265ed549d9fadd624874fecc6d40114bd9acf701f06a2\",\"urls\":[\"bzzr://63ae60cb194c7eca08a424157f17da4ac81203e029276da908f620063664fac9\"]},\"openzeppelin-solidity/contracts/ownership/Ownable.sol\":{\"keccak256\":\"0xcb16adc00dcf0d75e0bdf94379f4d5a6d74dca7c74e4183b94e15721159f8a30\",\"urls\":[\"bzzr://b81e03f7203cd628cfed19255911a04a05e8670d248afb48a7b067dd03b4ff55\"]}},\"version\":1}",
-  "bytecode": "0x60806040819052600080546001600160a01b03191633178082556001600160a01b0316917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908290a3610487806100576000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c80639a0f87191161005b5780639a0f871914610105578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b8063715018a61461008d5780637f604b45146100975780638da5cb5b146100c55780638f32d59b146100e9575b600080fd5b6100956101fd565b005b610095600480360360408110156100ad57600080fd5b506001600160a01b0381358116916020013516610258565b6100cd6102c8565b604080516001600160a01b039092168252519081900360200190f35b6100f16102d7565b604080519115158252519081900360200190f35b61012b6004803603602081101561011b57600080fd5b50356001600160a01b03166102e8565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561016757818101518382015260200161014f565b505050509050019250505060405180910390f35b6100f16004803603604081101561019157600080fd5b506001600160a01b038135811691602001351661035e565b610095600480360360408110156101bf57600080fd5b506001600160a01b038135811691602001351661038d565b610095600480360360208110156101ed57600080fd5b50356001600160a01b03166103d0565b6102056102d7565b61020e57600080fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b6102606102d7565b61026957600080fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b03811660009081526001602090815260409182902080548351818402810184019094528084526060939283018282801561035257602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610334575b50505050509050919050565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b6103956102d7565b61039e57600080fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b6103d86102d7565b6103e157600080fd5b6103ea816103ed565b50565b6001600160a01b03811661040057600080fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fea165627a7a7230582094373039e80161265ea521e643919184b2b64ca76be56f14844ed4b6383353ab0029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100885760003560e01c80639a0f87191161005b5780639a0f871914610105578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b8063715018a61461008d5780637f604b45146100975780638da5cb5b146100c55780638f32d59b146100e9575b600080fd5b6100956101fd565b005b610095600480360360408110156100ad57600080fd5b506001600160a01b0381358116916020013516610258565b6100cd6102c8565b604080516001600160a01b039092168252519081900360200190f35b6100f16102d7565b604080519115158252519081900360200190f35b61012b6004803603602081101561011b57600080fd5b50356001600160a01b03166102e8565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561016757818101518382015260200161014f565b505050509050019250505060405180910390f35b6100f16004803603604081101561019157600080fd5b506001600160a01b038135811691602001351661035e565b610095600480360360408110156101bf57600080fd5b506001600160a01b038135811691602001351661038d565b610095600480360360208110156101ed57600080fd5b50356001600160a01b03166103d0565b6102056102d7565b61020e57600080fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b6102606102d7565b61026957600080fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b03811660009081526001602090815260409182902080548351818402810184019094528084526060939283018282801561035257602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610334575b50505050509050919050565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b6103956102d7565b61039e57600080fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b6103d86102d7565b6103e157600080fd5b6103ea816103ed565b50565b6001600160a01b03811661040057600080fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fea165627a7a7230582094373039e80161265ea521e643919184b2b64ca76be56f14844ed4b6383353ab0029",
-  "sourceMap": "224:1994:4:-;;;;;515:6:23;:19;;-1:-1:-1;;;;;;515:19:23;524:10;515:19;;;;-1:-1:-1;;;;;582:6:23;;549:40;;515:6;;549:40;224:1994:4;;;;;;",
-  "deployedSourceMap": "224:1994:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;224:1994:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1423:137:23;;;:::i;:::-;;677:180:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;677:180:4;;;;;;;;;;:::i;659:77:23:-;;;:::i;:::-;;;;-1:-1:-1;;;;;659:77:23;;;;;;;;;;;;;;979:90;;;:::i;:::-;;;;;;;;;;;;;;;;;;2086:130:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2086:130:4;-1:-1:-1;;;;;2086:130:4;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;2086:130:4;;;;;;;;;;;;;;;;;1407:150;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1407:150:4;;;;;;;;;;:::i;1052:138::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1052:138:4;;;;;;;;;;:::i;1731:107:23:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1731:107:23;-1:-1:-1;;;;;1731:107:23;;:::i;1423:137::-;863:9;:7;:9::i;:::-;855:18;;;;;;1521:1;1505:6;;1484:40;;-1:-1:-1;;;;;1505:6:23;;;;1484:40;;1521:1;;1484:40;1551:1;1534:19;;-1:-1:-1;;;;;;1534:19:23;;;1423:137::o;677:180:4:-;863:9:23;:7;:9::i;:::-;855:18;;;;;;-1:-1:-1;;;;;762:20:4;;;;;;;:12;:20;;;;;;;;27:10:-1;;23:18;;;45:23;;762:36:4;;;;;;;;;-1:-1:-1;;;;;;762:36:4;;;;;;;;;;;808:24;;;:16;:24;;;;;:35;;;;;;;;:42;;-1:-1:-1;;808:42:4;;;;;;677:180::o;659:77:23:-;697:7;723:6;-1:-1:-1;;;;;723:6:23;659:77;:::o;979:90::-;1019:4;1056:6;-1:-1:-1;;;;;1056:6:23;1042:10;:20;;979:90::o;2086:130:4:-;-1:-1:-1;;;;;2189:20:4;;;;;;:12;:20;;;;;;;;;2182:27;;;;;;;;;;;;;;;;;2154:16;;2182:27;;;2189:20;2182:27;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2182:27:4;;;;;;;;;;;;;;;;;;;;;;;2086:130;;;:::o;1407:150::-;-1:-1:-1;;;;;1515:24:4;;;1492:4;1515:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;1407:150;;;;:::o;1052:138::-;863:9:23;:7;:9::i;:::-;855:18;;;;;;-1:-1:-1;;;;;1140:24:4;;;1178:5;1140:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;:43;;-1:-1:-1;;1140:43:4;;;1052:138::o;1731:107:23:-;863:9;:7;:9::i;:::-;855:18;;;;;;1803:28;1822:8;1803:18;:28::i;:::-;1731:107;:::o;1982:183::-;-1:-1:-1;;;;;2055:22:23;;2047:31;;;;;;2114:6;;;2093:38;;-1:-1:-1;;;;;2093:38:23;;;;2114:6;;;2093:38;;;2141:6;:17;;-1:-1:-1;;;;;;2141:17:23;-1:-1:-1;;;;;2141:17:23;;;;;;;;;;1982:183::o",
-  "source": "pragma solidity ^0.5.7;\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n\n/// @title Cash36 Exchanges Contract\n/// @notice Is responsible for keeping track of all allowed Exchanges.\n/// @author element36.io\ncontract Cash36Exchanges is Ownable {\n\n    // Whitelisted Exchanges per token\n    mapping(address => address[]) private allExchanges;\n    mapping(address => mapping(address => bool)) private allowedExchanges;\n\n    /**\n     * @notice Add an exchange to the list of accepted Exchanges\n     * @dev Exchange can not be another Smart Contract\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function addExchange(address _exchange, address _token) external onlyOwner {\n        allExchanges[_token].push(_exchange);\n        allowedExchanges[_token][_exchange] = true;\n    }\n\n    /**\n     * @notice Remove an exchange from the list of accepted Exchanges\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function removeExchange(address _exchange, address _token) external onlyOwner {\n        allowedExchanges[_token][_exchange] = false;\n    }\n\n    /**\n     * @notice Check if an exchange is on the list of accepted Exchanges\n     * @param _exchange Address of the exchange\n     * @return {\n     *   \"bool\": \"True when Exchange is listed\"\n     * }\n     */\n    function isAllowedExchange(address _exchange, address _token) external view returns (bool) {\n        return allowedExchanges[_token][_exchange];\n    }\n\n    /**\n     * @notice Returns all registered exchange addresses for a given token address.\n     * @dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.\n     * @dev It does not consider exchanges, which might have been flagged false afterwards.\n     * @dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\n     * @param _token Address of the token\n     * @return {\n     *   \"address[]\": List of address of exchanges\n     * }\n    */\n    function getAllowedExchanges(address _token) external view returns (address[] memory) {\n        return allExchanges[_token];\n    }\n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.9+commit.e560f70d\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"addExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"getAllowedExchanges\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"isAllowedExchange\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"removeExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"addExchange(address,address)\":{\"details\":\"Exchange can not be another Smart ContractonlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"getAllowedExchanges(address)\":{\"details\":\"Note: Due to limitations of solidity, this method returns the full list of every address ever registered.It does not consider exchanges, which might have been flagged false afterwards.Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\",\"params\":{\"_token\":\"Address of the token\"},\"return\":\"{  \\\"address[]\\\": List of address of exchanges }\"},\"isAllowedExchange(address,address)\":{\"params\":{\"_exchange\":\"Address of the exchange\"},\"return\":\"{  \\\"bool\\\": \\\"True when Exchange is listed\\\" }\"},\"isOwner()\":{\"details\":\"Returns true if the caller is the current owner.\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"removeExchange(address,address)\":{\"details\":\"onlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * > Note: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"title\":\"Cash36 Exchanges Contract\"},\"userdoc\":{\"methods\":{\"addExchange(address,address)\":{\"notice\":\"Add an exchange to the list of accepted Exchanges\"},\"getAllowedExchanges(address)\":{\"notice\":\"Returns all registered exchange addresses for a given token address.\"},\"isAllowedExchange(address,address)\":{\"notice\":\"Check if an exchange is on the list of accepted Exchanges\"},\"removeExchange(address,address)\":{\"notice\":\"Remove an exchange from the list of accepted Exchanges\"}},\"notice\":\"Is responsible for keeping track of all allowed Exchanges.\"}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":\"Cash36Exchanges\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":{\"keccak256\":\"0x6796fa249ad747e5c5e066df9ec5c4ff8cede6466141f2712c33fd0333f05efd\",\"urls\":[\"bzzr://15f18dd432bc504961a5fc87cf95b906c2ac46c03acc1d0c4ab9ba891dc4b57d\",\"dweb:/ipfs/QmdqX1gaDGkfozWV6DPn9qXmjbxbE24JdJSUxkYhV8JHUY\"]},\"openzeppelin-solidity/contracts/ownership/Ownable.sol\":{\"keccak256\":\"0xf79fb10e8235770eb4aea7249034076a3cc9f9119ad944fc48705bae9c9d20dc\",\"urls\":[\"bzzr://d12a11272051eb6586de8f7e0a82c04a98c9984ce8b2a6cf1ee439f65aba29a9\",\"dweb:/ipfs/QmS55hgTvNEAKinus19m65CB4wcymN8EiUPFpRx5tYJ1i2\"]}},\"version\":1}",
+  "bytecode": "0x60806040819052600080546001600160a01b03191633178082556001600160a01b0316917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908290a36105e0806100576000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c80639a0f87191161005b5780639a0f871914610105578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b8063715018a61461008d5780637f604b45146100975780638da5cb5b146100c55780638f32d59b146100e9575b600080fd5b6100956101fd565b005b610095600480360360408110156100ad57600080fd5b506001600160a01b038135811691602001351661028e565b6100cd610334565b604080516001600160a01b039092168252519081900360200190f35b6100f1610343565b604080519115158252519081900360200190f35b61012b6004803603602081101561011b57600080fd5b50356001600160a01b0316610354565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561016757818101518382015260200161014f565b505050509050019250505060405180910390f35b6100f16004803603604081101561019157600080fd5b506001600160a01b03813581169160200135166103ca565b610095600480360360408110156101bf57600080fd5b506001600160a01b03813581169160200135166103f9565b610095600480360360208110156101ed57600080fd5b50356001600160a01b0316610472565b610205610343565b610244576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b610296610343565b6102d5576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156103be57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116103a0575b50505050509050919050565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b610401610343565b610440576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b61047a610343565b6104b9576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6104c2816104c5565b50565b6001600160a01b03811661050a5760405162461bcd60e51b81526004018080602001828103825260268152602001806105666026913960400191505060405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573734f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572a265627a7a723058204701244c72d251b2e0c26dfc3811103dd173fc6490e17a96e1bc073c38ba7be164736f6c63430005090032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100885760003560e01c80639a0f87191161005b5780639a0f871914610105578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b8063715018a61461008d5780637f604b45146100975780638da5cb5b146100c55780638f32d59b146100e9575b600080fd5b6100956101fd565b005b610095600480360360408110156100ad57600080fd5b506001600160a01b038135811691602001351661028e565b6100cd610334565b604080516001600160a01b039092168252519081900360200190f35b6100f1610343565b604080519115158252519081900360200190f35b61012b6004803603602081101561011b57600080fd5b50356001600160a01b0316610354565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561016757818101518382015260200161014f565b505050509050019250505060405180910390f35b6100f16004803603604081101561019157600080fd5b506001600160a01b03813581169160200135166103ca565b610095600480360360408110156101bf57600080fd5b506001600160a01b03813581169160200135166103f9565b610095600480360360208110156101ed57600080fd5b50356001600160a01b0316610472565b610205610343565b610244576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b610296610343565b6102d5576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156103be57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116103a0575b50505050509050919050565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b610401610343565b610440576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b61047a610343565b6104b9576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6104c2816104c5565b50565b6001600160a01b03811661050a5760405162461bcd60e51b81526004018080602001828103825260268152602001806105666026913960400191505060405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573734f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572a265627a7a723058204701244c72d251b2e0c26dfc3811103dd173fc6490e17a96e1bc073c38ba7be164736f6c63430005090032",
+  "sourceMap": "224:1994:4:-;;;;;657:6:23;:19;;-1:-1:-1;;;;;;657:19:23;666:10;657:19;;;;-1:-1:-1;;;;;724:6:23;;691:40;;657:6;;691:40;224:1994:4;;;;;;",
+  "deployedSourceMap": "224:1994:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;224:1994:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1599:137:23;;;:::i;:::-;;677:180:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;677:180:4;;;;;;;;;;:::i;814:77:23:-;;;:::i;:::-;;;;-1:-1:-1;;;;;814:77:23;;;;;;;;;;;;;;1165:90;;;:::i;:::-;;;;;;;;;;;;;;;;;;2086:130:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2086:130:4;-1:-1:-1;;;;;2086:130:4;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;2086:130:4;;;;;;;;;;;;;;;;;1407:150;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1407:150:4;;;;;;;;;;:::i;1052:138::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1052:138:4;;;;;;;;;;:::i;1885:107:23:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1885:107:23;-1:-1:-1;;;;;1885:107:23;;:::i;1599:137::-;1018:9;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;1697:1;1681:6;;1660:40;;-1:-1:-1;;;;;1681:6:23;;;;1660:40;;1697:1;;1660:40;1727:1;1710:19;;-1:-1:-1;;;;;;1710:19:23;;;1599:137::o;677:180:4:-;1018:9:23;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;-1:-1:-1;;;;;762:20:4;;;;;;;:12;:20;;;;;;;;27:10:-1;;23:18;;;45:23;;762:36:4;;;;;;;;;-1:-1:-1;;;;;;762:36:4;;;;;;;;;;;808:24;;;:16;:24;;;;;:35;;;;;;;;:42;;-1:-1:-1;;808:42:4;;;;;;677:180::o;814:77:23:-;852:7;878:6;-1:-1:-1;;;;;878:6:23;814:77;:::o;1165:90::-;1205:4;1242:6;-1:-1:-1;;;;;1242:6:23;1228:10;:20;;1165:90::o;2086:130:4:-;-1:-1:-1;;;;;2189:20:4;;;;;;:12;:20;;;;;;;;;2182:27;;;;;;;;;;;;;;;;;2154:16;;2182:27;;;2189:20;2182:27;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2182:27:4;;;;;;;;;;;;;;;;;;;;;;;2086:130;;;:::o;1407:150::-;-1:-1:-1;;;;;1515:24:4;;;1492:4;1515:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;1407:150;;;;:::o;1052:138::-;1018:9:23;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;-1:-1:-1;;;;;1140:24:4;;;1178:5;1140:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;:43;;-1:-1:-1;;1140:43:4;;;1052:138::o;1885:107:23:-;1018:9;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;1957:28;1976:8;1957:18;:28::i;:::-;1885:107;:::o;2093:225::-;-1:-1:-1;;;;;2166:22:23;;2158:73;;;;-1:-1:-1;;;2158:73:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2267:6;;;2246:38;;-1:-1:-1;;;;;2246:38:23;;;;2267:6;;;2246:38;;;2294:6;:17;;-1:-1:-1;;;;;;2294:17:23;-1:-1:-1;;;;;2294:17:23;;;;;;;;;;2093:225::o",
+  "source": "pragma solidity ^0.5.9;\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n\n/// @title Cash36 Exchanges Contract\n/// @notice Is responsible for keeping track of all allowed Exchanges.\n/// @author element36.io\ncontract Cash36Exchanges is Ownable {\n\n    // Whitelisted Exchanges per token\n    mapping(address => address[]) private allExchanges;\n    mapping(address => mapping(address => bool)) private allowedExchanges;\n\n    /**\n     * @notice Add an exchange to the list of accepted Exchanges\n     * @dev Exchange can not be another Smart Contract\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function addExchange(address _exchange, address _token) external onlyOwner {\n        allExchanges[_token].push(_exchange);\n        allowedExchanges[_token][_exchange] = true;\n    }\n\n    /**\n     * @notice Remove an exchange from the list of accepted Exchanges\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function removeExchange(address _exchange, address _token) external onlyOwner {\n        allowedExchanges[_token][_exchange] = false;\n    }\n\n    /**\n     * @notice Check if an exchange is on the list of accepted Exchanges\n     * @param _exchange Address of the exchange\n     * @return {\n     *   \"bool\": \"True when Exchange is listed\"\n     * }\n     */\n    function isAllowedExchange(address _exchange, address _token) external view returns (bool) {\n        return allowedExchanges[_token][_exchange];\n    }\n\n    /**\n     * @notice Returns all registered exchange addresses for a given token address.\n     * @dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.\n     * @dev It does not consider exchanges, which might have been flagged false afterwards.\n     * @dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\n     * @param _token Address of the token\n     * @return {\n     *   \"address[]\": List of address of exchanges\n     * }\n    */\n    function getAllowedExchanges(address _token) external view returns (address[] memory) {\n        return allExchanges[_token];\n    }\n}\n",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol",
@@ -180,7 +171,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:4"
@@ -191,7 +182,7 @@
         "id": 610,
         "nodeType": "ImportDirective",
         "scope": 697,
-        "sourceUnit": 2471,
+        "sourceUnit": 2469,
         "src": "25:63:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -205,10 +196,10 @@
               "id": 611,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2470,
+              "referencedDeclaration": 2468,
               "src": "252:7:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$2470",
+                "typeIdentifier": "t_contract$_Ownable_$2468",
                 "typeString": "contract Ownable"
               }
             },
@@ -218,7 +209,7 @@
           }
         ],
         "contractDependencies": [
-          2470
+          2468
         ],
         "contractKind": "contract",
         "documentation": "@title Cash36 Exchanges Contract\n @notice Is responsible for keeping track of all allowed Exchanges.\n @author element36.io",
@@ -226,7 +217,7 @@
         "id": 696,
         "linearizedBaseContracts": [
           696,
-          2470
+          2468
         ],
         "name": "Cash36Exchanges",
         "nodeType": "ContractDefinition",
@@ -575,7 +566,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2404,
+                  "referencedDeclaration": 2401,
                   "src": "742:9:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -788,7 +779,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2404,
+                  "referencedDeclaration": 2401,
                   "src": "1120:9:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1230,7 +1221,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:4"
@@ -1241,7 +1232,7 @@
         "id": 610,
         "nodeType": "ImportDirective",
         "scope": 697,
-        "sourceUnit": 2471,
+        "sourceUnit": 2469,
         "src": "25:63:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1255,10 +1246,10 @@
               "id": 611,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2470,
+              "referencedDeclaration": 2468,
               "src": "252:7:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$2470",
+                "typeIdentifier": "t_contract$_Ownable_$2468",
                 "typeString": "contract Ownable"
               }
             },
@@ -1268,7 +1259,7 @@
           }
         ],
         "contractDependencies": [
-          2470
+          2468
         ],
         "contractKind": "contract",
         "documentation": "@title Cash36 Exchanges Contract\n @notice Is responsible for keeping track of all allowed Exchanges.\n @author element36.io",
@@ -1276,7 +1267,7 @@
         "id": 696,
         "linearizedBaseContracts": [
           696,
-          2470
+          2468
         ],
         "name": "Cash36Exchanges",
         "nodeType": "ContractDefinition",
@@ -1625,7 +1616,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2404,
+                  "referencedDeclaration": 2401,
                   "src": "742:9:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1838,7 +1829,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2404,
+                  "referencedDeclaration": 2401,
                   "src": "1120:9:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2266,9 +2257,15 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.7+commit.6da8b019.Emscripten.clang"
+    "version": "0.5.9+commit.e560f70d.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x890FE9187C97415bEEd0a56444f55d521f8fF982",
+      "transactionHash": "0x6f919acbef0741f1aac4c3ab9ef846ca3ce6428d506a2923745be167f20e6f4f"
+    },
     "85458545": {
       "events": {
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
@@ -2295,8 +2292,8 @@
       "transactionHash": "0xd00df90f8b1f30f8ca811033e1dd009ee4c5c6dc43dbbd834f049c6c46b6897e"
     }
   },
-  "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-11T08:46:10.184Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-06-19T07:52:24.304Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {
@@ -2320,10 +2317,10 @@
         "return": "{  \"bool\": \"True when Exchange is listed\" }"
       },
       "isOwner()": {
-        "return": "true if `msg.sender` is the owner of the contract."
+        "details": "Returns true if the caller is the current owner."
       },
       "owner()": {
-        "return": "the address of the owner."
+        "details": "Returns the address of the current owner."
       },
       "removeExchange(address,address)": {
         "details": "onlyOwner - only open to element36 Account",
@@ -2332,13 +2329,10 @@
         }
       },
       "renounceOwnership()": {
-        "details": "Allows the current owner to relinquish control of the contract. It will not be possible to call the functions with the `onlyOwner` modifier anymore."
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * > Note: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
       },
       "transferOwnership(address)": {
-        "details": "Allows the current owner to transfer control of the contract to a newOwner.",
-        "params": {
-          "newOwner": "The address to transfer ownership to."
-        }
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
       }
     },
     "title": "Cash36 Exchanges Contract"
@@ -2356,9 +2350,6 @@
       },
       "removeExchange(address,address)": {
         "notice": "Remove an exchange from the list of accepted Exchanges"
-      },
-      "renounceOwnership()": {
-        "notice": "Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
       }
     },
     "notice": "Is responsible for keeping track of all allowed Exchanges."

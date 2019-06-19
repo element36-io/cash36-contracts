@@ -55,12 +55,12 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_addressToCheck\",\"type\":\"address\"}],\"name\":\"isOfficer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newComplianceOfficer\",\"type\":\"address\"}],\"name\":\"changeOfficer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"complianceOfficer\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"changeOfficer(address)\":{\"details\":\"onlyComplianceOfficer - only open to the currently assigned compliance Officer\",\"params\":{\"_newComplianceOfficer\":\"The new compliance officer of the contract\"}},\"isOfficer(address)\":{\"params\":{\"_addressToCheck\":\"Address to be checked\"},\"return\":\"{  \\\"bool\\\": \\\"True when address is the currently assigned complianceOfficer\\\" }\"}},\"title\":\"Cash36 Interface holding the Compliance Officer\"},\"userdoc\":{\"methods\":{\"changeOfficer(address)\":{\"notice\":\"Changes the ComplianceOfficer of the contract\"},\"isOfficer(address)\":{\"notice\":\"Check if given address it the assigned Compliance Officer\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol\":\"HasOfficer\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol\":{\"keccak256\":\"0x549c68ac3728a907f4bf672b0998fffb1b91c299d7ed21ae0e51621162828683\",\"urls\":[\"bzzr://79d095f3f67f20a6afe3a05923c5b58ae67e55a637dbda0f143c3f2e7d4381a1\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a01b03191633179055610154806100326000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80636816442d1461004657806376ed9f5e14610080578063c4a56fc8146100a8575b600080fd5b61006c6004803603602081101561005c57600080fd5b50356001600160a01b03166100cc565b604080519115158252519081900360200190f35b6100a66004803603602081101561009657600080fd5b50356001600160a01b03166100e0565b005b6100b0610119565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b0391821691161490565b6000546001600160a01b031633146100f757600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03168156fea165627a7a72305820fb997b794a3c114e82aac19e49f8a448880c79749caeace793958fdaf97fa7dc0029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80636816442d1461004657806376ed9f5e14610080578063c4a56fc8146100a8575b600080fd5b61006c6004803603602081101561005c57600080fd5b50356001600160a01b03166100cc565b604080519115158252519081900360200190f35b6100a66004803603602081101561009657600080fd5b50356001600160a01b03166100e0565b005b6100b0610119565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b0391821691161490565b6000546001600160a01b031633146100f757600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03168156fea165627a7a72305820fb997b794a3c114e82aac19e49f8a448880c79749caeace793958fdaf97fa7dc0029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.9+commit.e560f70d\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_addressToCheck\",\"type\":\"address\"}],\"name\":\"isOfficer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_newComplianceOfficer\",\"type\":\"address\"}],\"name\":\"changeOfficer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"complianceOfficer\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"changeOfficer(address)\":{\"details\":\"onlyComplianceOfficer - only open to the currently assigned compliance Officer\",\"params\":{\"_newComplianceOfficer\":\"The new compliance officer of the contract\"}},\"isOfficer(address)\":{\"params\":{\"_addressToCheck\":\"Address to be checked\"},\"return\":\"{  \\\"bool\\\": \\\"True when address is the currently assigned complianceOfficer\\\" }\"}},\"title\":\"Cash36 Interface holding the Compliance Officer\"},\"userdoc\":{\"methods\":{\"changeOfficer(address)\":{\"notice\":\"Changes the ComplianceOfficer of the contract\"},\"isOfficer(address)\":{\"notice\":\"Check if given address it the assigned Compliance Officer\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol\":\"HasOfficer\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol\":{\"keccak256\":\"0xbb4fec3d34954404effc8804838f20bd0fe2644c2edad30505b84de26ef68bd1\",\"urls\":[\"bzzr://866a2b2cc73fcdb46daee72e56fb89c9571ab539495407ee711f659064a7a688\",\"dweb:/ipfs/QmWDashP6CtNrJKRSrDRm5xNmYjDHUVwmUbh7LjhFYXuZ6\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50600080546001600160a01b0319163317905561015d806100326000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80636816442d1461004657806376ed9f5e14610080578063c4a56fc8146100a8575b600080fd5b61006c6004803603602081101561005c57600080fd5b50356001600160a01b03166100cc565b604080519115158252519081900360200190f35b6100a66004803603602081101561009657600080fd5b50356001600160a01b03166100e0565b005b6100b0610119565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b0391821691161490565b6000546001600160a01b031633146100f757600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03168156fea265627a7a72305820caa57a3cc7de8cc0ca65d419d2759f479f3e8ee772ea1d6b3fb9907468f7a6fe64736f6c63430005090032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80636816442d1461004657806376ed9f5e14610080578063c4a56fc8146100a8575b600080fd5b61006c6004803603602081101561005c57600080fd5b50356001600160a01b03166100cc565b604080519115158252519081900360200190f35b6100a66004803603602081101561009657600080fd5b50356001600160a01b03166100e0565b005b6100b0610119565b604080516001600160a01b039092168252519081900360200190f35b6000546001600160a01b0391821691161490565b6000546001600160a01b031633146100f757600080fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6000546001600160a01b03168156fea265627a7a72305820caa57a3cc7de8cc0ca65d419d2759f479f3e8ee772ea1d6b3fb9907468f7a6fe64736f6c63430005090032",
   "sourceMap": "110:1125:10:-;;;387:68;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;418:17:10;:30;;-1:-1:-1;;;;;;418:30:10;438:10;418:30;;;110:1125;;;;;;",
   "deployedSourceMap": "110:1125:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;110:1125:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1103:130;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1103:130:10;-1:-1:-1;;;;;1103:130:10;;:::i;:::-;;;;;;;;;;;;;;;;;;708:141;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;708:141:10;-1:-1:-1;;;;;708:141:10;;:::i;:::-;;170:32;;;:::i;:::-;;;;-1:-1:-1;;;;;170:32:10;;;;;;;;;;;;;;1103:130;1168:4;1190:17;-1:-1:-1;;;;;1190:36:10;;;:17;;:36;;1103:130::o;708:141::-;326:17;;-1:-1:-1;;;;;326:17:10;312:10;:31;304:40;;;;;;801:17;:41;;-1:-1:-1;;;;;;801:41:10;-1:-1:-1;;;;;801:41:10;;;;;;;;;;708:141::o;170:32::-;;;-1:-1:-1;;;;;170:32:10;;:::o",
-  "source": "pragma solidity ^0.5.7;\n\n\n/// @title Cash36 Interface holding the Compliance Officer\n/// @author element36.io\ncontract HasOfficer {\n\n    // Address of the controller\n    address public complianceOfficer;\n\n    // Allow only complianceOfficer address to access\n    modifier onlyComplianceOfficer {\n        require(msg.sender == complianceOfficer);\n        _;\n    }\n\n    // Constructor\n    constructor() public {\n        complianceOfficer = msg.sender;\n    }\n\n    /**\n     * @notice Changes the ComplianceOfficer of the contract\n     * @dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n     * @param _newComplianceOfficer The new compliance officer of the contract\n     */\n    function changeOfficer(address _newComplianceOfficer) onlyComplianceOfficer public {\n        complianceOfficer = _newComplianceOfficer;\n    }\n\n    /**\n     * @notice Check if given address it the assigned Compliance Officer\n     * @param _addressToCheck Address to be checked\n     * @return {\n     *   \"bool\": \"True when address is the currently assigned complianceOfficer\"\n     * }\n     */\n    function isOfficer(address _addressToCheck) public view returns (bool){\n        return complianceOfficer == _addressToCheck;\n    }\n}",
+  "source": "pragma solidity ^0.5.9;\n\n\n/// @title Cash36 Interface holding the Compliance Officer\n/// @author element36.io\ncontract HasOfficer {\n\n    // Address of the controller\n    address public complianceOfficer;\n\n    // Allow only complianceOfficer address to access\n    modifier onlyComplianceOfficer {\n        require(msg.sender == complianceOfficer);\n        _;\n    }\n\n    // Constructor\n    constructor() public {\n        complianceOfficer = msg.sender;\n    }\n\n    /**\n     * @notice Changes the ComplianceOfficer of the contract\n     * @dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n     * @param _newComplianceOfficer The new compliance officer of the contract\n     */\n    function changeOfficer(address _newComplianceOfficer) onlyComplianceOfficer public {\n        complianceOfficer = _newComplianceOfficer;\n    }\n\n    /**\n     * @notice Check if given address it the assigned Compliance Officer\n     * @param _addressToCheck Address to be checked\n     * @return {\n     *   \"bool\": \"True when address is the currently assigned complianceOfficer\"\n     * }\n     */\n    function isOfficer(address _addressToCheck) public view returns (bool){\n        return complianceOfficer == _addressToCheck;\n    }\n}",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
@@ -78,7 +78,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:10"
@@ -152,7 +152,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2631,
+                            "referencedDeclaration": 2629,
                             "src": "312:3:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -206,10 +206,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2634,
-                        2635
+                        2632,
+                        2633
                       ],
-                      "referencedDeclaration": 2634,
+                      "referencedDeclaration": 2632,
                       "src": "304:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -291,7 +291,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2631,
+                        "referencedDeclaration": 2629,
                         "src": "438:3:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -638,7 +638,7 @@
           "solidity",
           "^",
           "0.5",
-          ".7"
+          ".9"
         ],
         "nodeType": "PragmaDirective",
         "src": "0:23:10"
@@ -712,7 +712,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2631,
+                            "referencedDeclaration": 2629,
                             "src": "312:3:10",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -766,10 +766,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2634,
-                        2635
+                        2632,
+                        2633
                       ],
-                      "referencedDeclaration": 2634,
+                      "referencedDeclaration": 2632,
                       "src": "304:7:10",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -851,7 +851,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2631,
+                        "referencedDeclaration": 2629,
                         "src": "438:3:10",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -1184,11 +1184,11 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.7+commit.6da8b019.Emscripten.clang"
+    "version": "0.5.9+commit.e560f70d.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-11T08:46:06.304Z",
+  "schemaVersion": "3.0.11",
+  "updatedAt": "2019-06-18T21:59:24.971Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {

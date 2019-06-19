@@ -1,13 +1,12 @@
-require('babel-register');
 require('babel-polyfill');
 
-const PrivateKeyProvider = require("truffle-privatekey-provider");
+const HDWalletProvider = require("truffle-hdwallet-provider");
 
 function getProvider() {
   let keys = {}
   try {
     keys = require('./keys.json')
-    return new PrivateKeyProvider(keys.privKey, "http://167.99.243.81:8866")
+    return new HDWalletProvider(keys.privKey, "http://167.99.243.81:8866")
   } catch (err) {
     console.log(err);
     console.log('could not find ./keys.json')
@@ -37,7 +36,6 @@ module.exports = {
             gasPrice: 0x01
         },
         local: {
-            //provider: new PrivateKeyProvider(privKey, "http://localhost:8558"),
             host: "localhost",
             port: 8545,
             network_id: "85458545",
