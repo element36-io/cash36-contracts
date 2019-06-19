@@ -62,11 +62,11 @@ contract Cash36 is Ownable {
     }
 
     /**
-     * @notice Check if a Token with given symbol is a registered Cash36 Token
+     * @notice Get address of compliance contract
      * @dev onlyOwner - only open to element36 Account
-     * @param _symbol Symbol of the Token to be checked
+     * @param _symbol Symbol of the Token
      * @return {
-     *   bool: True when Token is a registered and active Cash36 Token
+     *   address: Address of compliance contract
      * }
      */
     function getCompliance(string calldata _symbol) external view onlyOwner returns (address) {
@@ -88,11 +88,11 @@ contract Cash36 is Ownable {
     }
 
     /**
-     * @notice Check if a Token with given symbol is a registered Cash36 Token
+     * @notice Get address of Exchanges contract
      * @dev onlyOwner - only open to element36 Account
-     * @param _symbol Symbol of the Token to be checked
+     * @param _symbol Symbol of the Token
      * @return {
-     *   bool: True when Token is a registered and active Cash36 Token
+     *   address: Address of exchanges contract
      * }
      */
     function getExchanges(string calldata _symbol) external view onlyOwner returns (address) {
