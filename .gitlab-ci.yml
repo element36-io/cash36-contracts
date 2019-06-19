@@ -1,7 +1,7 @@
-image: alpine:latest #luongnguyen/oyente
+image: ubuntu:16.04 #luongnguyen/oyente
 
 before_script:
- - apk add --no-cache nodejs nodejs-npm git python g++ make curl
+ - apt-get update && apt-get install -y nodejs nodejs-npm git python g++ make curl
  - npm install -g yarn
  - yarn
 
