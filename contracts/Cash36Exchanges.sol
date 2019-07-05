@@ -53,7 +53,7 @@ contract Cash36Exchanges is Ownable {
      *   "address[]": List of address of exchanges
      * }
     */
-    function getAllowedExchanges(address _token) external view returns (address[] memory) {
+    function getAllExchanges(address _token) external view returns (address[] memory) {
         return allExchanges[_token];
     }
 }

@@ -6,6 +6,7 @@ import "./HasOfficer.sol";
 
 /// @title Cash36 Compliance Contract
 /// @notice Is responsible for keeping track of all KYCed users, users blacklist and attributes.
+/// @notice Changes to users can only be done be assigned compliance officer (=owned by Compliance Backend)
 /// @author element36.io
 contract Cash36Compliance is Ownable, HasOfficer {
 
@@ -36,6 +37,10 @@ contract Cash36Compliance is Ownable, HasOfficer {
     function addUser(address _user) public onlyComplianceOfficer {
         users[_user] = true;
         userLimits[_user] = 200;
+        attributes[_user]["ATTR_BUY"] = Attribute("ATTR_BUY", 1);
+        attributes[_user]["ATTR_SELL"] = Attribute("ATTR_SELL", 1);
+        attributes[_user]["ATTR_SEND"] = Attribute("ATTR_SEND", 1);
+        attributes[_user]["ATTR_RECEIVE"] = Attribute("ATTR_RECEIVE", 1);
     }
 
     /**

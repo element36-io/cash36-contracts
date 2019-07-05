@@ -6,7 +6,8 @@ import "./Token36Controller.sol";
 
 
 /// @title Cash36 Main Index Contract
-/// @notice Main Contract of cash36. Acts as an Index to keep track of all official cash36 token contracts and more.
+/// @notice Main Contract of cash36. Acts as an Index to keep track of all official cash36 token contracts and contains
+///         major admin functions for the owner.
 /// @author element36.io
 contract Cash36 is Ownable {
 
@@ -95,7 +96,7 @@ contract Cash36 is Ownable {
      *   address: Address of exchanges contract
      * }
      */
-    function getExchanges(string calldata _symbol) external view onlyOwner returns (address) {
+    function getExchangesContract(string calldata _symbol) external view onlyOwner returns (address) {
         require(registeredSymbol[_symbol]);
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         return controller.getExchangesContract();
@@ -105,7 +106,7 @@ contract Cash36 is Ownable {
      * @notice Admin function to update to a new ExchangesContract
      * @dev onlyOwner - only open to element36 Account
      * @param _symbol Symbol of the Token to be updated
-     * @param _newExchangesAddress Address of the new Compliance contract
+     * @param _newExchangesAddress Address of the new Exchanges contract
      */
     function updateExchanges(string calldata _symbol, address _newExchangesAddress) external onlyOwner {
         require(registeredSymbol[_symbol]);
@@ -135,5 +136,17 @@ contract Cash36 is Ownable {
         require(registeredSymbol[_symbol]);
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.enableTransfers(_transfersEnabled);
+    }
+
+    /**
+     * @notice Admin function to update the capped amount
+     * @dev onlyOwner - only open to element36 Account
+     * @param _symbol Symbol of the Token to be enabled/disabled
+     * @param _cap New cap amount to be set for given token
+     */
+    function updateCap(string calldata _symbol, uint256 _cap) external onlyOwner {
+        require(registeredSymbol[_symbol]);
+        Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
+        controller.updateCap(_cap);
     }
 }

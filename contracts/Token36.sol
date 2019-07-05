@@ -18,6 +18,8 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
 
     mapping (address => mapping (address => uint256)) private _allowed;
 
+    uint256 private _cap;
+
     uint256 private _totalSupply;
 
     // Burn Event
@@ -30,9 +32,8 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
         // Set Fee Collector
         feeCollector = msg.sender;
 
-        // Change PauserRole to controller
-        //addPauser(_controller);
-        renouncePauser();
+        // Set initial _cap - 500'000 Tokens - amount given by current sandbox allowance
+        _cap = 500000 * 10**18;
     }
 
     /**
@@ -172,6 +173,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      */
     function _mint(address account, uint256 value) internal {
         require(account != address(0));
+        require(totalSupply().add(value) <= _cap, "token cap exceeded");
 
         _totalSupply = _totalSupply.add(value);
         _balances[account] = _balances[account].add(value);
@@ -179,10 +181,25 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
     }
 
     /**
+     * @dev Returns the cap on the token's total supply.
+     */
+    function cap() public view returns (uint256) {
+        return _cap;
+    }
+
+    /**
+     * @dev Set a new cap for the token
+     * @param _newCap The new cap for the token
+     */
+    function updateCap(uint256 _newCap) public onlyController {
+        _cap = _newCap;
+    }
+
+    /**
      * @dev Burns a specific amount of tokens.
      * @param value The amount of token to be burned.
      */
-    function burn(uint256 value) public whenNotPaused {
+    function burn(uint256 value) public onlyController whenNotPaused {
         _burn(msg.sender, value);
     }
 
@@ -191,7 +208,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param from address The account whose tokens will be burned.
      * @param value uint256 The amount of token to be burned.
      */
-    function burnFrom(address from, uint256 value) public whenNotPaused {
+    function burnFrom(address from, uint256 value) public onlyController whenNotPaused {
         _burnFrom(from, value);
     }
 
@@ -226,8 +243,12 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount that will be burnt.
      */
     function _burnFrom(address account, uint256 value) internal {
-        _burn(account, value);
-        _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));
+        if (msg.sender != _controller) {
+            _burn(account, value);
+            _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));
+        } else {
+            _burn(account, value);
+        }
     }
 
     /**

@@ -27,6 +27,8 @@ module.exports = async (deployer, network) => {
   await chf36Controller.transferOwnership(Cash36.address)
 
   let chf36 = await CHF36.deployed()
+  await chf36.addPauser(CHF36Controller.address);
+  await chf36.renouncePauser();
   await chf36.changeController(CHF36Controller.address)
 
   // Deploy EUR36
@@ -39,6 +41,8 @@ module.exports = async (deployer, network) => {
   await eur36Controller.transferOwnership(Cash36.address)
 
   let eur36 = await EUR36.deployed()
+  await eur36.addPauser(EUR36Controller.address);
+  await eur36.renouncePauser();
   await eur36.changeController(EUR36Controller.address)
 
   // Deploy GBP36

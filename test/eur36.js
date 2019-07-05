@@ -48,7 +48,7 @@ contract('Create and Test EUR36', function (accounts) {
         await Cash36ComplianceInstance.addUser(accounts[ 1 ], { from: accounts[ 0 ] });
         await Cash36ComplianceInstance.setUserLimit(accounts[ 1 ], format(1000), { from: accounts[ 0 ] });
 
-        await EUR36ControllerInstance.mint(accounts[ 1 ], format(100), { from: accounts[ 0 ] });
+        await EUR36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 0 ] });
 
         var newBalanceFor1 = await EUR36Instance.balanceOf(accounts[ 1 ]);
         assert.equal(parse(newBalanceFor1), "100", "The balance was not correct.");
@@ -68,8 +68,7 @@ contract('Create and Test EUR36', function (accounts) {
     });
 
     it("...it should burn 50 EUR36 and remove it from accounts[1].", async function () {
-        //await EUR36Instance.approve(EUR36ControllerInstance.address, 50, { form: accounts[ 1 ] });
-        await EUR36Instance.burn(format(50), { from: accounts[ 1 ] });
+        await EUR36ControllerInstance.burn(accounts[ 1 ], 50, { from: accounts[ 0 ] });
 
         var newBalanceForFee = await EUR36Instance.balanceOf(accounts[ 0 ]);
         assert.equal(parse(newBalanceForFee), "1", "The balance of feeCollector was not correct.");
