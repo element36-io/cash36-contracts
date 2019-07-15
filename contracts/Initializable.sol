@@ -8,12 +8,12 @@ contract Initializable {
     uint256 internal initializationBlock;
 
     modifier onlyInit {
-        require(initializationBlock == 0);
+        require(initializationBlock == 0, "already initialized");
         _;
     }
 
     modifier isInitialized {
-        require(initializationBlock > 0);
+        require(initializationBlock > 0, "not yet initialized");
         _;
     }
 
@@ -34,8 +34,6 @@ contract Initializable {
 
     /**
      * @dev Returns the current block number.
-     *      Using a function rather than `block.number` allows us to easily mock the block number in
-     *      tests.
      */
     function getBlockNumber() internal view returns (uint256) {
         return block.number;

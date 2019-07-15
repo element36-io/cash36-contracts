@@ -8,6 +8,8 @@ import "./../Token36.sol";
 contract EUR36 is Token36 {
 
     // Constructor
-    constructor() public ERC20Detailed("Euro", "EUR36", 18) {
+    // Initial cap of 500'000 Tokens given by current sandbox limitation
+    /* solium-disable-next-line */
+    constructor() public Token36("Euro", "EUR36", 18, 500000 * 10**18) {
     }
 }

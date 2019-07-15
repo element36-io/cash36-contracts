@@ -12,9 +12,9 @@ import "./Token36Controller.sol";
 contract Cash36 is Ownable {
 
     // Token Storage
-    address[] tokens;
-    mapping(string => bool) registeredSymbol;
-    mapping(string => uint256) tokenIndexBySymbol;
+    address[] private tokens;
+    mapping(string => bool) private registeredSymbol;
+    mapping(string => uint256) private tokenIndexBySymbol;
 
     /**
      * @notice Registers a new token for the cash36 System
@@ -23,7 +23,7 @@ contract Cash36 is Ownable {
      * @param _tokenAddress Address of the token
      */
     function registerToken(string calldata _symbol, address _tokenAddress) external onlyOwner {
-        require(!registeredSymbol[_symbol]);
+        require(!registeredSymbol[_symbol], "symbol already registered");
         tokenIndexBySymbol[_symbol] = tokens.length;
         tokens.push(_tokenAddress);
         registeredSymbol[_symbol] = true;
@@ -45,7 +45,7 @@ contract Cash36 is Ownable {
      * }
      */
     function getTokenBySymbol(string memory _symbol) public view returns (address) {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         address tokenAddress = tokens[tokenIndexBySymbol[_symbol]];
 
         return tokenAddress;
@@ -71,7 +71,7 @@ contract Cash36 is Ownable {
      * }
      */
     function getCompliance(string calldata _symbol) external view onlyOwner returns (address) {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         return controller.getComplianceContract();
     }
@@ -83,7 +83,7 @@ contract Cash36 is Ownable {
      * @param _newComplianceAddress Address of the new Compliance contract
      */
     function updateCompliance(string calldata _symbol, address _newComplianceAddress) external onlyOwner {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.updateComplianceContract(_newComplianceAddress);
     }
@@ -97,7 +97,7 @@ contract Cash36 is Ownable {
      * }
      */
     function getExchangesContract(string calldata _symbol) external view onlyOwner returns (address) {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         return controller.getExchangesContract();
     }
@@ -109,7 +109,7 @@ contract Cash36 is Ownable {
      * @param _newExchangesAddress Address of the new Exchanges contract
      */
     function updateExchanges(string calldata _symbol, address _newExchangesAddress) external onlyOwner {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.updateExchangesContract(_newExchangesAddress);
     }
@@ -121,7 +121,7 @@ contract Cash36 is Ownable {
      * @param _newControllerAddress Address of the new Controller contract
      */
     function updateController(string calldata _symbol, address _newControllerAddress) external onlyOwner {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.changeController(_newControllerAddress);
     }
@@ -133,7 +133,7 @@ contract Cash36 is Ownable {
      * @param _transfersEnabled Pass 'true' to enable, 'false' to disable
      */
     function enableTransfers(string calldata _symbol, bool _transfersEnabled) external onlyOwner {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.enableTransfers(_transfersEnabled);
     }
@@ -145,7 +145,7 @@ contract Cash36 is Ownable {
      * @param _cap New cap amount to be set for given token
      */
     function updateCap(string calldata _symbol, uint256 _cap) external onlyOwner {
-        require(registeredSymbol[_symbol]);
+        require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         controller.updateCap(_cap);
     }

@@ -14,26 +14,37 @@ import "./Initializable.sol";
 contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees {
     using SafeMath for uint256;
 
+    // User balances
     mapping (address => uint256) private _balances;
 
+    // User allowances
     mapping (address => mapping (address => uint256)) private _allowed;
 
-    uint256 private _cap;
-
+    // Total supply of token
     uint256 private _totalSupply;
+
+    // Max amount of tokens allowed
+    uint256 private _cap;
 
     // Burn Event
     event Burn(address indexed burner, uint256 value);
 
     // Constructor
-    constructor() public {
+    constructor(
+        string memory name,
+        string memory symbol,
+        uint8 decimals,
+        uint256 cap) public ERC20Detailed(name, symbol, decimals) {
+
+        require(cap > 0, "cap cannot be 0");
+
         initialized();
 
         // Set Fee Collector
         feeCollector = msg.sender;
 
-        // Set initial _cap - 500'000 Tokens - amount given by current sandbox allowance
-        _cap = 500000 * 10**18;
+        // Set initial cap
+        _cap = cap;
     }
 
     /**
@@ -146,7 +157,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount to be transferred.
      */
     function _transfer(address from, address to, uint256 value) internal {
-        require(to != address(0));
+        require(to != address(0), "address 0 not allowed");
 
         _balances[from] = _balances[from].sub(value);
         _balances[to] = _balances[to].add(value);
@@ -172,7 +183,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount that will be created.
      */
     function _mint(address account, uint256 value) internal {
-        require(account != address(0));
+        require(account != address(0), "address 0 not allowed");
         require(totalSupply().add(value) <= _cap, "token cap exceeded");
 
         _totalSupply = _totalSupply.add(value);
@@ -219,7 +230,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount that will be burnt.
      */
     function _burn(address account, uint256 value) internal {
-        require(account != address(0));
+        require(account != address(0), "address 0 not allowed");
 
         // Calculate and deduct fee from sender account and send to feeCollector
         uint256 fee = calcFee(value);
@@ -258,8 +269,8 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The number of tokens that can be spent.
      */
     function _approve(address owner, address spender, uint256 value) internal {
-        require(spender != address(0));
-        require(owner != address(0));
+        require(spender != address(0), "address 0 not allowed");
+        require(owner != address(0), "address 0 not allowed");
 
         _allowed[owner][spender] = value;
         emit Approval(owner, spender, value);

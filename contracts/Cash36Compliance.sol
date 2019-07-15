@@ -1,6 +1,5 @@
 pragma solidity ^0.5.9;
 
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./HasOfficer.sol";
 
 
@@ -8,7 +7,7 @@ import "./HasOfficer.sol";
 /// @notice Is responsible for keeping track of all KYCed users, users blacklist and attributes.
 /// @notice Changes to users can only be done be assigned compliance officer (=owned by Compliance Backend)
 /// @author element36.io
-contract Cash36Compliance is Ownable, HasOfficer {
+contract Cash36Compliance is HasOfficer {
 
     // Tracks KYCed users
     mapping(address => bool) private users;
@@ -18,7 +17,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
         bytes32 attribute;
         uint256 value;
     }
-    mapping(address => mapping(bytes32 => Attribute)) attributes;
+    mapping(address => mapping(bytes32 => Attribute)) private attributes;
 
     // Tracks current User transfer limits
     mapping(address => uint256) private userLimits;
@@ -44,7 +43,7 @@ contract Cash36Compliance is Ownable, HasOfficer {
     }
 
     /**
-     * @notice Check User if registered and if on blacklist
+     * @notice Check User if registered and if on blacklist or account is locked
      * @param _user Address of the user
      * @return {
      *   "bool": "True when User is KYCed and not on Blacklist"
@@ -103,12 +102,24 @@ contract Cash36Compliance is Ownable, HasOfficer {
         userLimits[_user] = uint256(-1);
     }
 
-    function setAttribute(address _who, bytes32 _attribute, uint256 _value) public onlyComplianceOfficer {
-        attributes[_who][_attribute] = Attribute(_attribute, _value);
+    /**
+     * @notice Set an attribute of the User
+     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account
+     * @param _user Address of the user
+     * @param _attribute Name of the attribute
+     * @param _value value of the attribute
+     */
+    function setAttribute(address _user, bytes32 _attribute, uint256 _value) public onlyComplianceOfficer {
+        attributes[_user][_attribute] = Attribute(_attribute, _value);
     }
 
-    function hasAttribute(address _who, bytes32 _attribute) public view returns (bool) {
-        return attributes[_who][_attribute].value != 0;
+    /**
+     * @notice Check if a User has a given attribute
+     * @param _user Address of the user
+     * @param _attribute Name of the attribute
+     */
+    function hasAttribute(address _user, bytes32 _attribute) public view returns (bool) {
+        return attributes[_user][_attribute].value != 0;
     }
 
     /**
@@ -140,7 +151,11 @@ contract Cash36Compliance is Ownable, HasOfficer {
         blacklist[_user] = false;
     }
 
-    // Irreversible call - like Credit card
+    /**
+     * @notice Lock the account of a given user - Irreversible call - like Credit card
+     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account
+     * @param _user Address of the user
+     */
     function lockAccountForever(address _user) public onlyComplianceOfficer {
         lockedAccounts[_user] = true;
     }

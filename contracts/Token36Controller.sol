@@ -28,8 +28,8 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice Hook called in controlled Token on every transfer.
-    * @notice Does all required compliance checks and only allows the transfer if user passes all
+    * @notice Controller Hook called in controlled Token on every transfer.
+    * @notice Does all required compliance checks and only allows the transfer if user passes them all.
     * @param _from Sender account address
     * @param _to Recipient accounts address
     * @param _amount Amount
@@ -75,7 +75,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Mints new tokens for given account address
     * @dev onlyAllowedExchanges - only open to white listed exchange accounts
     * @param _receiver Recipient account address
     * @param _amount Amount to mint
@@ -92,7 +92,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Burns tokens for given account address
     * @dev onlyAllowedExchanges - only open to white listed exchange accounts
     * @param _receiver Recipient account address
     * @param _amount Amount to burn
@@ -108,9 +108,9 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Enables or disables the token globally
     * @dev onlyOwner - only open to element36 Account
-    * @param _transfersEnabled true to enable, false to disable transfers
+    * @param _transfersEnabled true to enable, false to disable
     */
     function enableTransfers(bool _transfersEnabled) external onlyOwner {
         if (_transfersEnabled == true) {
@@ -121,7 +121,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Set a new Cap for the Token
     * @dev onlyOwner - only open to element36 Account
     * @param _cap New value for token cap
     */
@@ -130,7 +130,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Get address of current compliance contract
     * @dev onlyOwner - only open to element36 Account
     */
     function getComplianceContract() external view onlyOwner returns (address) {
@@ -138,7 +138,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Update to a new compliance contract
     * @dev onlyOwner - only open to element36 Account
     * @param _newComplianceContract New Compliance contract address
     */
@@ -147,7 +147,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Get address of current exchanges contract
     * @dev onlyOwner - only open to element36 Account
     */
     function getExchangesContract() external view onlyOwner returns (address) {
@@ -155,7 +155,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Update to a new exchanges contract
     * @dev onlyOwner - only open to element36 Account
     * @param _newExchangesContract New Exchange contracts address
     */
@@ -164,7 +164,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     }
 
     /**
-    * @notice
+    * @notice Change to a new controller address
     * @dev onlyOwner - only open to element36 Account
     * @param _newController New controller Address
     */
