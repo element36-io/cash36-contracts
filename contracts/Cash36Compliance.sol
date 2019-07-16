@@ -4,13 +4,14 @@ import "./HasOfficer.sol";
 
 
 /// @title Cash36 Compliance Contract
-/// @notice Is responsible for keeping track of all KYCed users, users blacklist and attributes.
+/// @notice Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.
 /// @notice Changes to users can only be done be assigned compliance officer (=owned by Compliance Backend)
 /// @author element36.io
 contract Cash36Compliance is HasOfficer {
 
-    // Tracks KYCed users
+    // Tracks KYCed users and companies
     mapping(address => bool) private users;
+    mapping(address => bool) private companies;
 
     // Allow attributes for KYCed Users for a better ACL like BUY, SELL, SEND, RECEIVE
     struct Attribute {
@@ -40,6 +41,10 @@ contract Cash36Compliance is HasOfficer {
         attributes[_user]["ATTR_SELL"] = Attribute("ATTR_SELL", 1);
         attributes[_user]["ATTR_SEND"] = Attribute("ATTR_SEND", 1);
         attributes[_user]["ATTR_RECEIVE"] = Attribute("ATTR_RECEIVE", 1);
+    }
+
+    function isCompany(address _user) public view returns (bool) {
+        return companies[_user];
     }
 
     /**

@@ -25,6 +25,8 @@ contract('Create and Test EUR36', function (accounts) {
     var EUR36Instance;
     var EUR36ControllerInstance;
 
+  var exchangeAddress
+
     before("...get Cash36Instance.", async function () {
         Cash36Instance = await Cash36.deployed();
         Cash36ComplianceInstance = await Cash36Compliance.deployed();
@@ -36,7 +38,8 @@ contract('Create and Test EUR36', function (accounts) {
         var tokenControllerAddress = await EUR36Instance.controller();
         EUR36ControllerInstance = await Token36Controller.at(tokenControllerAddress);
 
-        await Cash36ExchangesInstance.addExchange(accounts[ 0 ], tokenAddress);
+      exchangeAddress = accounts[0]
+      await Cash36ExchangesInstance.addExchange(exchangeAddress, tokenAddress)
     });
 
   it("...it should allow to administrate cash36 contracts.", async function () {
@@ -48,7 +51,7 @@ contract('Create and Test EUR36', function (accounts) {
         await Cash36ComplianceInstance.addUser(accounts[ 1 ], { from: accounts[ 0 ] });
         await Cash36ComplianceInstance.setUserLimit(accounts[ 1 ], format(1000), { from: accounts[ 0 ] });
 
-        await EUR36ControllerInstance.mint(accounts[ 1 ], 100, { from: accounts[ 0 ] });
+        await EUR36ControllerInstance.mint(accounts[ 1 ], accounts[ 1 ], 100, { from: accounts[ 0 ] });
 
         var newBalanceFor1 = await EUR36Instance.balanceOf(accounts[ 1 ]);
         assert.equal(parse(newBalanceFor1), "100", "The balance was not correct.");
@@ -68,17 +71,24 @@ contract('Create and Test EUR36', function (accounts) {
     });
 
     it("...it should burn 50 EUR36 and remove it from accounts[1].", async function () {
-        await EUR36ControllerInstance.burn(accounts[ 1 ], 50, { from: accounts[ 0 ] });
-
-        var newBalanceForFee = await EUR36Instance.balanceOf(accounts[ 0 ]);
-        assert.equal(parse(newBalanceForFee), "1", "The balance of feeCollector was not correct.");
+        await EUR36Instance.burn(50, { from: accounts[ 1 ] });
 
         var newBalanceFor1 = await EUR36Instance.balanceOf(accounts[ 1 ]);
         assert.equal(parse(newBalanceFor1), "50", "The balance of account was not correct.");
 
         var totalSupply = await EUR36Instance.totalSupply();
-        assert.equal(parse(totalSupply), "51", "The totalSupply was not correct.");
+        assert.equal(parse(totalSupply), "50", "The totalSupply was not correct.");
     });
+
+  it('...it should burnForm 25 EUR36 and remove it from accounts[1].', async function () {
+    await EUR36ControllerInstance.burn(accounts[1], 10, { from: exchangeAddress })
+
+    var newBalanceFor1 = await EUR36Instance.balanceOf(accounts[1])
+    assert.equal(parse(newBalanceFor1), '40', 'The balance of account was not correct.')
+
+    var totalSupply = await EUR36Instance.totalSupply()
+    assert.equal(parse(totalSupply), '40', 'The totalSupply was not correct.')
+  })
 
     it("...it should not allow burning from another account.", async function () {
         // TODO: figure out how to test throws in JS, otherwise write Sol Tests
@@ -97,13 +107,13 @@ contract('Create and Test EUR36', function (accounts) {
         await EUR36Instance.transfer(accounts[ 2 ], format(25), { from: accounts[ 1 ] });
 
         var newBalanceFor1 = await EUR36Instance.balanceOf(accounts[ 1 ]);
-        assert.equal(parse(newBalanceFor1), "25", "The balance was not correct.");
+        assert.equal(parse(newBalanceFor1), "15", "The balance was not correct.");
 
         var newBalanceFor2 = await EUR36Instance.balanceOf(accounts[ 2 ]);
         assert.equal(parse(newBalanceFor2), "25", "The balance was not correct.");
 
         var totalSupply = await EUR36Instance.totalSupply();
-        assert.equal(parse(totalSupply), "51", "The totalSupply was not correct.");
+        assert.equal(parse(totalSupply), "40", "The totalSupply was not correct.");
     });
 
     it("...it should allow to transferFrom 5 EUR36 to accounts[2] as accounts[3].", async function () {
@@ -118,13 +128,13 @@ contract('Create and Test EUR36', function (accounts) {
         await EUR36Instance.transferFrom(accounts[ 1 ], accounts[ 2 ], format(5), { from: accounts[ 3 ] });
 
         var newBalanceFor1 = await EUR36Instance.balanceOf(accounts[ 1 ]);
-        assert.equal(parse(newBalanceFor1), "20", "The balance was not correct.");
+        assert.equal(parse(newBalanceFor1), "10", "The balance was not correct.");
 
         var newBalanceFor2 = await EUR36Instance.balanceOf(accounts[ 2 ]);
         assert.equal(parse(newBalanceFor2), "30", "The balance was not correct.");
 
         var totalSupply = await EUR36Instance.totalSupply();
-        assert.equal(parse(totalSupply), "51", "The totalSupply was not correct.");
+        assert.equal(parse(totalSupply), "40", "The totalSupply was not correct.");
     });
 
     it("...it should not allow to transfer if accounts[2] is on blacklist.", async function () {
@@ -141,7 +151,7 @@ contract('Create and Test EUR36', function (accounts) {
         //assert.equal(result, false, "The result of transfer was not correct.");
 
         var newBalanceFor2 = await EUR36Instance.balanceOf(accounts[ 1 ]);
-        assert.equal(newBalanceFor2, "20", "The balance was not correct.");
+        assert.equal(newBalanceFor2, "10", "The balance was not correct.");
 
         await Cash36ComplianceInstance.unblockUser(accounts[ 2 ], { from: accounts[ 0 ] });
 
@@ -151,6 +161,6 @@ contract('Create and Test EUR36', function (accounts) {
         await EUR36Instance.transfer(accounts[ 1 ], format(5), { from: accounts[ 2 ] });
 
         var newBalanceFor2After = await EUR36Instance.balanceOf(accounts[ 1 ]);
-        assert.equal(newBalanceFor2After, "25", "The balance was not correct.");
+        assert.equal(newBalanceFor2After, "15", "The balance was not correct.");
     });
 });

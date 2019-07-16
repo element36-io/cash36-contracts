@@ -94,7 +94,7 @@ contract('ERC20 Transfer', function (accounts) {
     const tokenControllerAddress = await this.token.controller()
     const ControllerInstance = await Token36Controller.at(tokenControllerAddress)
 
-    await ControllerInstance.mint(initialHolder, 5*amount, {from: accounts[3]})
+    await ControllerInstance.mint(initialHolder, initialHolder, 5*amount, {from: accounts[3]})
   })
 
   describe('transfer', function () {
@@ -162,7 +162,7 @@ contract('ERC20 Transfer From', function (accounts) {
     const tokenControllerAddress = await this.token.controller()
     const ControllerInstance = await Token36Controller.at(tokenControllerAddress)
 
-    await ControllerInstance.mint(initialHolder, 5*amount, {from: accounts[3]})
+    await ControllerInstance.mint(initialHolder, initialHolder, 5*amount, {from: accounts[3]})
   })
 
   describe('transfer from', function () {
