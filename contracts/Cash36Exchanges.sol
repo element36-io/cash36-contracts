@@ -4,7 +4,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 
 /// @title Cash36 Exchanges Contract
-/// @notice Is responsible for keeping track of all allowed Exchanges.
+/// @notice Is responsible for keeping track of all registered Exchanges.
 /// @author element36.io
 contract Cash36Exchanges is Ownable {
 
@@ -36,7 +36,7 @@ contract Cash36Exchanges is Ownable {
      * @notice Check if an exchange is on the list of accepted Exchanges
      * @param _exchange Address of the exchange
      * @return {
-     *   "bool": "True when Exchange is listed"
+     *   "bool": "true when Exchange is listed"
      * }
      */
     function isAllowedExchange(address _exchange, address _token) external view returns (bool) {
@@ -53,7 +53,7 @@ contract Cash36Exchanges is Ownable {
      *   "address[]": List of address of exchanges
      * }
     */
-    function getAllowedExchanges(address _token) external view returns (address[] memory) {
+    function getAllExchanges(address _token) external view returns (address[] memory) {
         return allExchanges[_token];
     }
 }

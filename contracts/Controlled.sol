@@ -10,7 +10,7 @@ contract Controlled {
 
     // Allow only controller address to access
     modifier onlyController {
-        require(msg.sender == _controller);
+        require(msg.sender == _controller, "access not allowed, only controller");
         _;
     }
 
@@ -28,7 +28,7 @@ contract Controlled {
      * @dev onlyController - only open to the currently assigned controller
      * @param _newController The new controller of the contract
      */
-    function changeController(address _newController) onlyController public {
+    function changeController(address _newController) public onlyController {
         _controller = _newController;
     }
 }
