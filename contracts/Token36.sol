@@ -168,7 +168,6 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
      */
     function mint(address to, uint256 value) public onlyController whenNotPaused returns (bool) {
         _mint(to, value);
-
         return true;
     }
 
@@ -208,7 +207,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
      * @param value The amount of token to be burned.
      */
     function burn(uint256 value) public whenNotPaused {
-        require(IToken36Controller(_controller).onBurn(msg.sender, value) == true, "Token36Controller rejected the burn");
+        require(IToken36Controller(_controller).onBurn(msg.sender) == true, "Token36Controller rejected the burn");
 
         _burn(msg.sender, value);
     }
@@ -219,7 +218,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
      * @param value uint256 The amount of token to be burned.
      */
     function burnFrom(address from, uint256 value) public whenNotPaused {
-        require(IToken36Controller(_controller).onBurn(from, value) == true, "Token36Controller rejected the burn");
+        require(IToken36Controller(_controller).onBurn(from) == true, "Token36Controller rejected the burn");
 
         _burnFrom(from, value);
     }

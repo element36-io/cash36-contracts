@@ -78,9 +78,8 @@ contract Token36Controller is IToken36Controller, Ownable {
     * @notice Controller Hook called in controlled Token on every burn.
     * @notice Does all required compliance checks and only allows the burn if user passes them all.
     * @param _from Sender account address
-    * @param _amount Amount
     */
-    function onBurn(address _from, uint _amount) public view returns (bool) {
+    function onBurn(address _from) public view returns (bool) {
         // Only the Token itself can call this
         require(msg.sender == address(token), "Only callable from controlled Token");
 

@@ -43,6 +43,13 @@ contract Cash36Compliance is HasOfficer {
         attributes[_user]["ATTR_RECEIVE"] = Attribute("ATTR_RECEIVE", 1);
     }
 
+    /**
+     * @notice Check if a registered address is a KYCed element36 company
+     * @param _user Address of the user
+     * @return {
+     *   "bool": "True when User is a registered company"
+     * }
+     */
     function isCompany(address _user) public view returns (bool) {
         return companies[_user];
     }

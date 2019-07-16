@@ -5,6 +5,7 @@ var CHF36Controller = artifacts.require('./CHF36/CHF36Controller.sol')
 var CHF36 = artifacts.require('./CHF36/CHF36.sol')
 var EUR36Controller = artifacts.require('./EUR36/EUR36Controller.sol')
 var EUR36 = artifacts.require('./EUR36/EUR36.sol')
+var Cash36Company = artifacts.require('./Cash36Company.sol')
 // var GBP36Controller = artifacts.require('./GBP36/GBP36Controller.sol')
 // var GBP36 = artifacts.require('./GBP36/GBP36.sol')
 // var USD36Controller = artifacts.require('./USD36/USD36Controller.sol')
@@ -68,6 +69,9 @@ module.exports = async (deployer, network) => {
 
   //let usd36 = await USD36.deployed()
   //usd36.changeController(USD36Controller.address)
+
+  // Deploy element36 as Company on Blockchain
+  await deployer.deploy(Cash36Company, "element36 AG");
 
   let cash36Compliance = await Cash36Compliance.deployed()
   let cash36Exchange = await Cash36Exchanges.deployed()
