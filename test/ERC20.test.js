@@ -1,6 +1,6 @@
 /**
- * Test copied from OpenZeppelin Framework - Basic ERC20 Tests
- * Making sure our Token still behaves as an ERC20 Basic Token
+ * Test copied from OpenZeppelin Framework - Basic Tests ERC20 of Token36 as ERC20.
+ * Basically making sure our Token still behaves as an ERC20 Basic Token.
  */
 const chai = require('chai')
 chai.should()
@@ -8,18 +8,23 @@ chai.should()
 const {BN, constants, expectEvent, expectRevert} = require('openzeppelin-test-helpers')
 const {ZERO_ADDRESS} = constants
 
+const {
+  shouldBehaveLikeERC20,
+  shouldBehaveLikeERC20Transfer,
+  shouldBehaveLikeERC20Approve,
+} = require('openzeppelin-test-helpers')
+
+
 const Cash36 = artifacts.require('./Cash36.sol')
 const Cash36Compliance = artifacts.require('./Cash36Compliance.sol')
 const Cash36Exchanges = artifacts.require('./Cash36Exchanges.sol')
+const Token36 = artifacts.require('./Token36.sol')
 const Token36Controller = artifacts.require('./CHF36Controller.sol')
-const ERC20 = artifacts.require('./CHF36.sol')
+const ERC20 = artifacts.require('./mocks/ERC20Mock.sol')
 
 contract('ERC20 Basics', function (accounts) {
   const initialHolder = accounts[0]
   const recipient = accounts[1]
-  const anotherAccount = accounts[2]
-  const amount = 1
-  const amountTooHigh = 2
 
   before(async function () {
     const Cash36Instance = await Cash36.deployed()
@@ -73,6 +78,7 @@ contract('ERC20 Basics', function (accounts) {
 
 contract('ERC20 Transfer', function (accounts) {
   const initialHolder = accounts[0]
+  const initialSupply = new BN(5)
   const recipient = accounts[1]
   const amount = 1
   const amountTooHigh = 2
@@ -85,16 +91,18 @@ contract('ERC20 Transfer', function (accounts) {
     const tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36')
     await Cash36ExchangeInstance.addExchange(accounts[3], tokenAddress)
 
+    //this.token = await Token36.new(initialHolder, initialSupply);
     this.token = await ERC20.at(tokenAddress)
 
     await Cash36ComplianceInstance.addUser(accounts[0])
     await Cash36ComplianceInstance.addUser(accounts[1])
     await Cash36ComplianceInstance.addUser(accounts[2])
 
-    const tokenControllerAddress = await this.token.controller()
-    const ControllerInstance = await Token36Controller.at(tokenControllerAddress)
-
-    await ControllerInstance.mint(initialHolder, initialHolder, 5*amount, {from: accounts[3]})
+    // Minting via implemented token36
+    let token36 = await Token36.at(tokenAddress)
+    let controllerAddress = await token36.controller()
+    let controller = await Token36Controller.at(controllerAddress)
+    await controller.mint(initialHolder, initialHolder, initialSupply, { from: accounts[3] })
   })
 
   describe('transfer', function () {
@@ -140,10 +148,11 @@ contract('ERC20 Transfer', function (accounts) {
 
 contract('ERC20 Transfer From', function (accounts) {
   const initialHolder = accounts[0]
+  const initialSupply = new BN(5);
   const recipient = accounts[1]
   const anotherAccount = accounts[2]
   const amount = 1
-  const amountTooHigh = 2
+  const amountTooHigh = 10
 
   before(async function () {
     const Cash36Instance = await Cash36.deployed()
@@ -153,16 +162,18 @@ contract('ERC20 Transfer From', function (accounts) {
     const tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36')
     await Cash36ExchangeInstance.addExchange(accounts[3], tokenAddress)
 
+    //this.token = await Token36.new(initialHolder, initialSupply);
     this.token = await ERC20.at(tokenAddress)
 
     await Cash36ComplianceInstance.addUser(accounts[0])
     await Cash36ComplianceInstance.addUser(accounts[1])
     await Cash36ComplianceInstance.addUser(accounts[2])
 
-    const tokenControllerAddress = await this.token.controller()
-    const ControllerInstance = await Token36Controller.at(tokenControllerAddress)
-
-    await ControllerInstance.mint(initialHolder, initialHolder, 5*amount, {from: accounts[3]})
+    // Minting via implemented token36
+    let token36 = await Token36.at(tokenAddress)
+    let controllerAddress = await token36.controller()
+    let controller = await Token36Controller.at(controllerAddress)
+    await controller.mint(initialHolder, initialHolder, initialSupply, {from: accounts[3]})
   })
 
   describe('transfer from', function () {
@@ -213,7 +224,7 @@ contract('ERC20 Transfer From', function (accounts) {
         })
 
         describe('when the initial holder does not have enough balance', function () {
-          const amount = 5*amountTooHigh
+          const amount = 5 * amountTooHigh
 
           it('reverts', async function () {
             await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, amount, {from: spender}))
@@ -223,12 +234,12 @@ contract('ERC20 Transfer From', function (accounts) {
 
       describe('when the spender does not have enough approved balance', function () {
         beforeEach(async function () {
-          await this.token.approve(spender, 5*amount, {from: initialHolder})
+          await this.token.approve(spender, 5 * amount, {from: initialHolder})
         })
 
         describe('when the initial holder has enough balance', function () {
           it('reverts', async function () {
-            await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, 5*amountTooHigh, {from: spender}))
+            await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, 5 * amountTooHigh, {from: spender}))
           })
         })
 
@@ -236,7 +247,7 @@ contract('ERC20 Transfer From', function (accounts) {
           const amount = amountTooHigh
 
           it('reverts', async function () {
-            await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, 5*amount, {from: spender}))
+            await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, 5 * amount, {from: spender}))
           })
         })
       })
@@ -256,10 +267,13 @@ contract('ERC20 Transfer From', function (accounts) {
     })
   })
 
-  /*
   describe('decrease allowance', function () {
     describe('when the spender is not the zero address', function () {
       const spender = recipient
+
+      before(async function () {
+        await this.token.approve(spender, 0, {from: initialHolder})
+      })
 
       function shouldDecreaseApproval (amount) {
         describe('when there was no approved amount before', function () {
@@ -269,7 +283,7 @@ contract('ERC20 Transfer From', function (accounts) {
         })
 
         describe('when the spender had an approved amount', function () {
-          const approvedAmount = amount
+          const approvedAmount = new BN(amount)
 
           beforeEach(async function () {
             ({logs: this.logs} = await this.token.approve(spender, approvedAmount, {from: initialHolder}))
@@ -325,23 +339,28 @@ contract('ERC20 Transfer From', function (accounts) {
   describe('increase allowance', function () {
     describe('when the spender is not the zero address', function () {
       const spender = recipient
+      let approvedAmount = new BN(1)
+
+      before(async function () {
+        await this.token.approve(spender, 0, {from: initialHolder})
+      })
 
       describe('when the sender has enough balance', function () {
         it('emits an approval event', async function () {
-          const {logs} = await this.token.increaseAllowance(spender, amount, {from: initialHolder})
+          const {logs} = await this.token.increaseAllowance(spender, approvedAmount, {from: initialHolder})
 
           expectEvent.inLogs(logs, 'Approval', {
             owner: initialHolder,
             spender: spender,
-            value: amount,
+            value: approvedAmount,
           })
         })
 
         describe('when there was no approved amount before', function () {
           it('approves the requested amount', async function () {
-            await this.token.increaseAllowance(spender, amount, {from: initialHolder});
+            await this.token.increaseAllowance(spender, new BN(1), {from: initialHolder});
 
-            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(amount)
+            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(approvedAmount.addn(1))
           })
         })
 
@@ -351,29 +370,29 @@ contract('ERC20 Transfer From', function (accounts) {
           })
 
           it('increases the spender allowance adding the requested amount', async function () {
-            await this.token.increaseAllowance(spender, amount, {from: initialHolder});
+            await this.token.increaseAllowance(spender, new BN(1), {from: initialHolder});
 
-            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(amount.addn(1))
+            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(approvedAmount.addn(1))
           })
         })
       })
 
       describe('when the sender does not have enough balance', function () {
         it('emits an approval event', async function () {
-          const {logs} = await this.token.increaseAllowance(spender, amountTooHigh, {from: initialHolder})
+          const {logs} = await this.token.increaseAllowance(spender, new BN(amountTooHigh), {from: initialHolder})
 
           expectEvent.inLogs(logs, 'Approval', {
             owner: initialHolder,
             spender: spender,
-            value: amount,
+            value: new BN(amountTooHigh).addn(2),
           })
         })
 
         describe('when there was no approved amount before', function () {
           it('approves the requested amount', async function () {
-            await this.token.increaseAllowance(spender, amount, {from: initialHolder});
+            await this.token.increaseAllowance(spender, approvedAmount, {from: initialHolder});
 
-            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(amount)
+            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(approvedAmount.addn(12))
           })
         })
 
@@ -383,9 +402,9 @@ contract('ERC20 Transfer From', function (accounts) {
           })
 
           it('increases the spender allowance adding the requested amount', async function () {
-            await this.token.increaseAllowance(spender, amount, {from: initialHolder});
+            await this.token.increaseAllowance(spender, approvedAmount, {from: initialHolder});
 
-            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(amount.addn(1))
+            (await this.token.allowance(initialHolder, spender)).should.be.bignumber.equal(approvedAmount.addn(1))
           })
         })
       })
@@ -399,55 +418,48 @@ contract('ERC20 Transfer From', function (accounts) {
       })
     })
   })
-  * /
+})
 
-  /*describe('_mint', function () {
-    const amount = new BN(50);
+contract('ERC20 Burn', function (accounts) {
+  const initialHolder = accounts[0]
+  const initialSupply = new BN(5);
+  const recipient = accounts[1]
+  const anotherAccount = accounts[2]
+  const amount = 1
+  const amountTooHigh = 10
 
-    it('rejects a null account', async function () {
-      await expectRevert.unspecified(this.token.mint(ZERO_ADDRESS, amount));
-    });
+  before(async function () {
+    const Cash36Instance = await Cash36.deployed()
+    const Cash36ComplianceInstance = await Cash36Compliance.deployed()
+    const Cash36ExchangeInstance = await Cash36Exchanges.deployed()
 
-    describe('for a non null account', function () {
-      beforeEach('minting', async function () {
-        const { logs } = await this.token.mint(recipient, amount);
-        this.logs = logs;
-      });
+    const tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36')
+    await Cash36ExchangeInstance.addExchange(accounts[3], tokenAddress)
 
-      it('increments totalSupply', async function () {
-        const expectedSupply = initialSupply.add(amount);
-        (await this.token.totalSupply()).should.be.bignumber.equal(expectedSupply);
-      });
+    //this.token = await Token36.new(initialHolder, initialSupply);
+    this.token = await ERC20.at(tokenAddress)
 
-      it('increments recipient balance', async function () {
-        (await this.token.balanceOf(recipient)).should.be.bignumber.equal(amount);
-      });
+    await Cash36ComplianceInstance.addUser(accounts[0])
+    await Cash36ComplianceInstance.addUser(accounts[1])
+    await Cash36ComplianceInstance.addUser(accounts[2])
 
-      it('emits Transfer event', async function () {
-        const event = expectEvent.inLogs(this.logs, 'Transfer', {
-          from: ZERO_ADDRESS,
-          to: recipient,
-        });
+    // Minting via implemented token36
+    let token36 = await Token36.at(tokenAddress)
+    let controllerAddress = await token36.controller()
+    let controller = await Token36Controller.at(controllerAddress)
+    await controller.mint(initialHolder, initialHolder, initialSupply, {from: accounts[3]})
+  })
 
-        event.args.value.should.be.bignumber.equal(amount);
-      });
-    });
-  });
-
-  xdescribe('_burn', function () {
-    it('rejects a null account', async function () {
-      await expectRevert.unspecified(this.token.burn(ZERO_ADDRESS, new BN(1)));
-    });
-
+  describe('_burn', function () {
     describe('for a non null account', function () {
       it('rejects burning more than balance', async function () {
-        await expectRevert.unspecified(this.token.burn(initialHolder, initialSupply.addn(1)));
+        await expectRevert.unspecified(this.token.burn(initialSupply.addn(1), {from: initialHolder}));
       });
 
-      const describeBurn = function (description, amount) {
+      const describeBurn = function (description, amount, delta) {
         describe(description, function () {
-          beforeEach('burning', async function () {
-            const { logs } = await this.token.burn(initialHolder, amount);
+          before('burning', async function () {
+            const {logs} = await this.token.burn(amount, {from: initialHolder});
             this.logs = logs;
           });
 
@@ -467,42 +479,69 @@ contract('ERC20 Transfer From', function (accounts) {
               to: ZERO_ADDRESS,
             });
 
-            event.args.value.should.be.bignumber.equal(amount);
+            event.args.value.should.be.bignumber.equal(amount)
           });
         });
       };
 
-      describeBurn('for entire balance', initialSupply);
-      describeBurn('for less amount than balance', initialSupply.subn(1));
+      describeBurn('for entire balance', initialSupply, 4);
+      //describeBurn('for less amount than balance', initialSupply.subn(1), 5);
     });
   });
+})
 
-  xdescribe('_burnFrom', function () {
-    const allowance = new BN(70);
+contract('ERC20 Burn From', function (accounts) {
+  const initialHolder = accounts[0]
+  const initialSupply = new BN(5);
+  const recipient = accounts[1]
+  const anotherAccount = accounts[2]
+  const amount = 1
+  const amountTooHigh = 10
+
+  before(async function () {
+    const Cash36Instance = await Cash36.deployed()
+    const Cash36ComplianceInstance = await Cash36Compliance.deployed()
+    const Cash36ExchangeInstance = await Cash36Exchanges.deployed()
+
+    const tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36')
+    await Cash36ExchangeInstance.addExchange(accounts[3], tokenAddress)
+
+    //this.token = await Token36.new(initialHolder, initialSupply);
+    this.token = await ERC20.at(tokenAddress)
+
+    await Cash36ComplianceInstance.addUser(accounts[0])
+    await Cash36ComplianceInstance.addUser(accounts[1])
+    await Cash36ComplianceInstance.addUser(accounts[2])
+
+    // Minting via implemented token36
+    let token36 = await Token36.at(tokenAddress)
+    let controllerAddress = await token36.controller()
+    let controller = await Token36Controller.at(controllerAddress)
+    await controller.mint(initialHolder, initialHolder, initialSupply, {from: accounts[3]})
+  })
+
+  describe('_burnFrom', function () {
+    const allowance = new BN(5);
 
     const spender = anotherAccount;
 
-    beforeEach('approving', async function () {
-      await this.token.approve(spender, allowance, { from: initialHolder });
-    });
-
-    it('rejects a null account', async function () {
-      await expectRevert.unspecified(this.token.burnFrom(ZERO_ADDRESS, new BN(1)));
+    before('approving', async function () {
+      await this.token.approve(spender, allowance, {from: initialHolder});
     });
 
     describe('for a non null account', function () {
       it('rejects burning more than allowance', async function () {
-        await expectRevert.unspecified(this.token.burnFrom(initialHolder, allowance.addn(1)));
+        await expectRevert.unspecified(this.token.burnFrom(initialHolder, allowance.addn(1), {from: spender}));
       });
 
       it('rejects burning more than balance', async function () {
-        await expectRevert.unspecified(this.token.burnFrom(initialHolder, initialSupply.addn(1)));
+        await expectRevert.unspecified(this.token.burnFrom(initialHolder, initialSupply.addn(1), {from: spender}));
       });
 
       const describeBurnFrom = function (description, amount) {
         describe(description, function () {
-          beforeEach('burning', async function () {
-            const { logs } = await this.token.burnFrom(initialHolder, amount, { from: spender });
+          before('burning', async function () {
+            const {logs} = await this.token.burnFrom(initialHolder, amount, {from: spender});
             this.logs = logs;
           });
 
@@ -541,103 +580,7 @@ contract('ERC20 Transfer From', function (accounts) {
       };
 
       describeBurnFrom('for entire allowance', allowance);
-      describeBurnFrom('for less amount than allowance', allowance.subn(1));
-    });
-  });*/
-
-  /*describe('approve', function () {
-    testApprove(initialHolder, recipient, initialSupply, function (owner, spender, amount) {
-      return this.token.approve(spender, amount, { from: owner });
+      //describeBurnFrom('for less amount than allowance', allowance.subn(1));
     });
   });
-
-  describe('_approve', function () {
-    testApprove(initialHolder, recipient, initialSupply, function (owner, spender, amount) {
-      return this.token.approveInternal(owner, spender, amount);
-    });
-
-    describe('when the owner is the zero address', function () {
-      it('reverts', async function () {
-        await expectRevert.unspecified(this.token.approveInternal(ZERO_ADDRESS, recipient, initialSupply));
-      });
-    });
-  });*/
-
-  /*function testApprove (owner, spender, supply, approve) {
-    describe('when the spender is not the zero address', function () {
-      describe('when the sender has enough balance', function () {
-        const amount = supply;
-
-        it('emits an approval event', async function () {
-          const { logs } = await approve.call(this, owner, spender, amount);
-
-          expectEvent.inLogs(logs, 'Approval', {
-            owner: owner,
-            spender: spender,
-            value: amount,
-          });
-        });
-
-        describe('when there was no approved amount before', function () {
-          it('approves the requested amount', async function () {
-            await approve.call(this, owner, spender, amount);
-
-            (await this.token.allowance(owner, spender)).should.be.bignumber.equal(amount);
-          });
-        });
-
-        describe('when the spender had an approved amount', function () {
-          beforeEach(async function () {
-            await approve.call(this, owner, spender, new BN(1));
-          });
-
-          it('approves the requested amount and replaces the previous one', async function () {
-            await approve.call(this, owner, spender, amount);
-
-            (await this.token.allowance(owner, spender)).should.be.bignumber.equal(amount);
-          });
-        });
-      });
-
-      describe('when the sender does not have enough balance', function () {
-        const amount = amountTooHigh;
-
-        it('emits an approval event', async function () {
-          const { logs } = await approve.call(this, owner, spender, amount);
-
-          expectEvent.inLogs(logs, 'Approval', {
-            owner: owner,
-            spender: spender,
-            value: amount,
-          });
-        });
-
-        describe('when there was no approved amount before', function () {
-          it('approves the requested amount', async function () {
-            await approve.call(this, owner, spender, amount);
-
-            (await this.token.allowance(owner, spender)).should.be.bignumber.equal(amount);
-          });
-        });
-
-        describe('when the spender had an approved amount', function () {
-          beforeEach(async function () {
-            await approve.call(this, owner, spender, new BN(1));
-          });
-
-          it('approves the requested amount and replaces the previous one', async function () {
-            await approve.call(this, owner, spender, amount);
-
-            (await this.token.allowance(owner, spender)).should.be.bignumber.equal(amount);
-          });
-        });
-      });
-    });
-
-    describe('when the spender is the zero address', function () {
-      it('reverts', async function () {
-        await expectRevert.unspecified(approve.call(this, owner, ZERO_ADDRESS, supply));
-      });
-    });
-  }*/
 })

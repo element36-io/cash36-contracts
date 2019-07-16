@@ -3,9 +3,9 @@ pragma solidity ^0.5.9;
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
 
 
-/// @title Cash36 Compliance Contract
-/// @notice Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.
-/// @notice Changes to users can only be done be assigned compliance officer (=owned by Compliance Backend)
+/// @title Cash36 Company Contract
+/// @notice
+/// @notice
 /// @author element36.io
 contract Cash36Company {
 

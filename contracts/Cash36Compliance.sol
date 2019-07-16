@@ -5,7 +5,7 @@ import "./HasOfficer.sol";
 
 /// @title Cash36 Compliance Contract
 /// @notice Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.
-/// @notice Changes to users can only be done be assigned compliance officer (=owned by Compliance Backend)
+/// @notice Changes to users can only be done be assigned compliance officer (=part of Compliance Backend Service)
 /// @author element36.io
 contract Cash36Compliance is HasOfficer {
 

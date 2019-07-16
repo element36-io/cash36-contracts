@@ -1,6 +1,7 @@
 pragma solidity ^0.5.9;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
 import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "./Controlled.sol";
@@ -10,7 +11,7 @@ import "./Initializable.sol";
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
+contract Token36 is ERC20Detailed, ERC20Burnable, Initializable, Pausable, Controlled {
     using SafeMath for uint256;
 
     // User balances
@@ -48,6 +49,21 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
      */
     function totalSupply() public view returns (uint256) {
         return _totalSupply;
+    }
+
+    /**
+   * @dev Returns the cap on the token's total supply.
+   */
+    function cap() public view returns (uint256) {
+        return _cap;
+    }
+
+    /**
+     * @dev Set a new cap for the token
+     * @param newCap The new cap for the token
+     */
+    function updateCap(uint256 newCap) public onlyController {
+        _cap = newCap;
     }
 
     /**
@@ -188,42 +204,6 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
     }
 
     /**
-     * @dev Returns the cap on the token's total supply.
-     */
-    function cap() public view returns (uint256) {
-        return _cap;
-    }
-
-    /**
-     * @dev Set a new cap for the token
-     * @param newCap The new cap for the token
-     */
-    function updateCap(uint256 newCap) public onlyController {
-        _cap = newCap;
-    }
-
-    /**
-     * @dev Burns a specific amount of tokens.
-     * @param value The amount of token to be burned.
-     */
-    function burn(uint256 value) public whenNotPaused {
-        require(IToken36Controller(_controller).onBurn(msg.sender) == true, "Token36Controller rejected the burn");
-
-        _burn(msg.sender, value);
-    }
-
-    /**
-     * @dev Burns a specific amount of tokens from the target address and decrements allowance
-     * @param from address The account whose tokens will be burned.
-     * @param value uint256 The amount of token to be burned.
-     */
-    function burnFrom(address from, uint256 value) public whenNotPaused {
-        require(IToken36Controller(_controller).onBurn(from) == true, "Token36Controller rejected the burn");
-
-        _burnFrom(from, value);
-    }
-
-    /**
      * @dev Internal function that burns an amount of the token of a given
      * account.
      * @param account The account whose tokens will be burnt.
@@ -231,6 +211,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
      */
     function _burn(address account, uint256 value) internal {
         require(account != address(0), "address 0 not allowed");
+        require(IToken36Controller(_controller).onBurn(account) == true, "Token36Controller rejected the burn");
 
         _totalSupply = _totalSupply.sub(value);
         _balances[account] = _balances[account].sub(value);
@@ -249,6 +230,9 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
      * @param value The amount that will be burnt.
      */
     function _burnFrom(address account, uint256 value) internal {
+        require(account != address(0), "address 0 not allowed");
+        require(IToken36Controller(_controller).onBurn(account) == true, "Token36Controller rejected the burn");
+
         if (msg.sender != _controller) {
             _burn(account, value);
             _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));
