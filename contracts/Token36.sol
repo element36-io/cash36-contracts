@@ -1,38 +1,47 @@
 pragma solidity ^0.5.9;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
 import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "./Controlled.sol";
-import "./WithFees.sol";
 import "./IToken36Controller.sol";
 import "./Initializable.sol";
 
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees {
+contract Token36 is ERC20Detailed, ERC20Burnable, Initializable, Pausable, Controlled {
     using SafeMath for uint256;
 
+    // User balances
     mapping (address => uint256) private _balances;
 
+    // User allowances
     mapping (address => mapping (address => uint256)) private _allowed;
 
+    // Total supply of token
     uint256 private _totalSupply;
+
+    // Max amount of tokens allowed
+    uint256 private _cap;
 
     // Burn Event
     event Burn(address indexed burner, uint256 value);
 
     // Constructor
-    constructor() public {
+    constructor(
+        string memory name,
+        string memory symbol,
+        uint8 decimals,
+        uint256 cap) public ERC20Detailed(name, symbol, decimals) {
+
+        require(cap > 0, "cap cannot be 0");
+
         initialized();
 
-        // Set Fee Collector
-        feeCollector = msg.sender;
-
-        // Change PauserRole to controller
-        //addPauser(_controller);
-        renouncePauser();
+        // Set initial cap
+        _cap = cap;
     }
 
     /**
@@ -40,6 +49,21 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      */
     function totalSupply() public view returns (uint256) {
         return _totalSupply;
+    }
+
+    /**
+   * @dev Returns the cap on the token's total supply.
+   */
+    function cap() public view returns (uint256) {
+        return _cap;
+    }
+
+    /**
+     * @dev Set a new cap for the token
+     * @param newCap The new cap for the token
+     */
+    function updateCap(uint256 newCap) public onlyController {
+        _cap = newCap;
     }
 
     /**
@@ -145,7 +169,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount to be transferred.
      */
     function _transfer(address from, address to, uint256 value) internal {
-        require(to != address(0));
+        require(to != address(0), "address 0 not allowed");
 
         _balances[from] = _balances[from].sub(value);
         _balances[to] = _balances[to].add(value);
@@ -171,28 +195,12 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount that will be created.
      */
     function _mint(address account, uint256 value) internal {
-        require(account != address(0));
+        require(account != address(0), "address 0 not allowed");
+        require(totalSupply().add(value) <= _cap, "token cap exceeded");
 
         _totalSupply = _totalSupply.add(value);
         _balances[account] = _balances[account].add(value);
         emit Transfer(address(0), account, value);
-    }
-
-    /**
-     * @dev Burns a specific amount of tokens.
-     * @param value The amount of token to be burned.
-     */
-    function burn(uint256 value) public whenNotPaused {
-        _burn(msg.sender, value);
-    }
-
-    /**
-     * @dev Burns a specific amount of tokens from the target address and decrements allowance
-     * @param from address The account whose tokens will be burned.
-     * @param value uint256 The amount of token to be burned.
-     */
-    function burnFrom(address from, uint256 value) public whenNotPaused {
-        _burnFrom(from, value);
     }
 
     /**
@@ -202,18 +210,14 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount that will be burnt.
      */
     function _burn(address account, uint256 value) internal {
-        require(account != address(0));
+        require(account != address(0), "address 0 not allowed");
+        require(IToken36Controller(_controller).onBurn(account) == true, "Token36Controller rejected the burn");
 
-        // Calculate and deduct fee from sender account and send to feeCollector
-        uint256 fee = calcFee(value);
-        uint256 remainingValue = value - fee;
-        _balances[feeCollector] = _balances[feeCollector].add(fee);
-
-        _totalSupply = _totalSupply.sub(remainingValue);
+        _totalSupply = _totalSupply.sub(value);
         _balances[account] = _balances[account].sub(value);
         emit Transfer(account, address(0), value);
 
-        // Needed for element36 Exchange
+        // Burn Event needed for element36 Exchange
         emit Burn(account, value);
     }
 
@@ -226,8 +230,15 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The amount that will be burnt.
      */
     function _burnFrom(address account, uint256 value) internal {
-        _burn(account, value);
-        _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));
+        require(account != address(0), "address 0 not allowed");
+        require(IToken36Controller(_controller).onBurn(account) == true, "Token36Controller rejected the burn");
+
+        if (msg.sender != _controller) {
+            _burn(account, value);
+            _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));
+        } else {
+            _burn(account, value);
+        }
     }
 
     /**
@@ -237,8 +248,8 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled, WithFees
      * @param value The number of tokens that can be spent.
      */
     function _approve(address owner, address spender, uint256 value) internal {
-        require(spender != address(0));
-        require(owner != address(0));
+        require(spender != address(0), "address 0 not allowed");
+        require(owner != address(0), "address 0 not allowed");
 
         _allowed[owner][spender] = value;
         emit Approval(owner, spender, value);
