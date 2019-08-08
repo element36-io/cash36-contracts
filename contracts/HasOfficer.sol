@@ -19,6 +19,10 @@ contract HasOfficer {
         complianceOfficer = msg.sender;
     }
 
+    function complianceOfficer() public view returns (address) {
+        return complianceOfficer;
+    }
+
     /**
      * @notice Changes the ComplianceOfficer of the contract
      * @dev onlyComplianceOfficer - only open to the currently assigned compliance Officer
