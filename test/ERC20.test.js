@@ -8,6 +8,13 @@ chai.should()
 const {BN, constants, expectEvent, expectRevert} = require('openzeppelin-test-helpers')
 const {ZERO_ADDRESS} = constants
 
+const {
+  shouldBehaveLikeERC20,
+  shouldBehaveLikeERC20Transfer,
+  shouldBehaveLikeERC20Approve,
+} = require('openzeppelin-test-helpers')
+
+
 const Cash36 = artifacts.require('./Cash36.sol')
 const Cash36Compliance = artifacts.require('./Cash36Compliance.sol')
 const Cash36Exchanges = artifacts.require('./Cash36Exchanges.sol')
