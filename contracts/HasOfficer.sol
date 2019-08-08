@@ -26,7 +26,7 @@ contract HasOfficer {
     /**
      * @notice Changes the ComplianceOfficer of the contract
      * @dev onlyComplianceOfficer - only open to the currently assigned compliance Officer
-     * @param _newComplianceOfficer The new compliance officer of the contract
+     * @param newComplianceOfficer The new compliance officer of the contract
      */
     function changeOfficer(address newComplianceOfficer) public onlyComplianceOfficer {
         _complianceOfficer = newComplianceOfficer;
@@ -34,7 +34,7 @@ contract HasOfficer {
 
     /**
      * @notice Check if given address it the assigned Compliance Officer
-     * @param _addressToCheck Address to be checked
+     * @param addressToCheck Address to be checked
      * @return {
      *   "bool": "True when address is the currently assigned complianceOfficer"
      * }
