@@ -27,3 +27,5 @@ This starts a local testrpc client and deploys the contracts.
 
 ### Useful links
 https://github.com/ConsenSys/smart-contract-best-practices
+
+Thank you...
