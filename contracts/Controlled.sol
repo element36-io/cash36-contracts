@@ -19,7 +19,7 @@ contract Controlled {
         _controller = msg.sender;
     }
 
-    function controller() public view returns (address){
+    function controller() public view returns (address) {
         return _controller;
     }
 
