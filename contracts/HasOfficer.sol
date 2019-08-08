@@ -6,21 +6,21 @@ pragma solidity ^0.5.9;
 contract HasOfficer {
 
     // Address of the controller
-    address internal complianceOfficer;
+    address internal _complianceOfficer;
 
     // Allow only complianceOfficer address to access
     modifier onlyComplianceOfficer {
-        require(msg.sender == complianceOfficer, "access not allowed, only complianceOfficer");
+        require(msg.sender == _complianceOfficer, "access not allowed, only complianceOfficer");
         _;
     }
 
     // Constructor
     constructor() public {
-        complianceOfficer = msg.sender;
+        _complianceOfficer = msg.sender;
     }
 
     function complianceOfficer() public view returns (address) {
-        return complianceOfficer;
+        return _complianceOfficer;
     }
 
     /**
@@ -28,8 +28,8 @@ contract HasOfficer {
      * @dev onlyComplianceOfficer - only open to the currently assigned compliance Officer
      * @param _newComplianceOfficer The new compliance officer of the contract
      */
-    function changeOfficer(address _newComplianceOfficer) public onlyComplianceOfficer {
-        complianceOfficer = _newComplianceOfficer;
+    function changeOfficer(address newComplianceOfficer) public onlyComplianceOfficer {
+        _complianceOfficer = newComplianceOfficer;
     }
 
     /**
@@ -39,7 +39,7 @@ contract HasOfficer {
      *   "bool": "True when address is the currently assigned complianceOfficer"
      * }
      */
-    function isOfficer(address _addressToCheck) public view returns (bool){
-        return complianceOfficer == _addressToCheck;
+    function isOfficer(address addressToCheck) public view returns (bool){
+        return _complianceOfficer == addressToCheck;
     }
 }
