@@ -105,19 +105,19 @@ contract Token36Controller is IToken36Controller, Ownable {
     */
     function mint(address _sender, address _receiver, uint256 _amount) external onlyAllowedExchanges {
         // Check compliance of Sender
-        require(compliance.checkUser(_sender), "checkUser failed");
-        require(compliance.checkUserLimit(_sender, _amount, token.balanceOf(_receiver)), "amount > userLimit");
-        require(compliance.hasAttribute(_sender, "ATTR_BUY"), "user doesn't have attribute ATTR_BUY");
+        //require(compliance.checkUser(_sender), "checkUser failed");
+        //require(compliance.checkUserLimit(_sender, _amount, token.balanceOf(_receiver)), "amount > userLimit");
+        //require(compliance.hasAttribute(_sender, "ATTR_BUY"), "user doesn't have attribute ATTR_BUY");
 
         // If mint is called with a different address as receiver, check compliance for it too
-        if (_sender != _receiver) {
+        //if (_sender != _receiver) {
             // Check Compliance of Receiver - Smart Contracts can always receive Tokens via mint
-            if (Address.isContract(_receiver) == false || compliance.isCompany(_receiver)) {
-                require(compliance.checkUser(_receiver), "checkUser failed");
-                require(compliance.checkUserLimit(_receiver, _amount, token.balanceOf(_receiver)), "amount > userLimit");
-                require(compliance.hasAttribute(_receiver, "ATTR_RECEIVE"), "user doesn't have attribute ATTR_RECEIVE");
-            }
-        }
+        //    if (Address.isContract(_receiver) == false || compliance.isCompany(_receiver)) {
+        //        require(compliance.checkUser(_receiver), "checkUser failed");
+        //        require(compliance.checkUserLimit(_receiver, _amount, token.balanceOf(_receiver)), "amount > userLimit");
+        //        require(compliance.hasAttribute(_receiver, "ATTR_RECEIVE"), "user doesn't have attribute ATTR_RECEIVE");
+        //    }
+        //}
 
         token.mint(_receiver, _amount);
     }
