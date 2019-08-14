@@ -119,7 +119,7 @@ contract Cash36Compliance is HasOfficer {
      * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account
      * @param _user Address of the user
      * @param _attribute Name of the attribute
-     * @param _value value of the attribute
+     * @param _value value of the attribute (1 or 0)
      */
     function setAttribute(address _user, bytes32 _attribute, uint256 _value) public onlyComplianceOfficer {
         attributes[_user][_attribute] = Attribute(_attribute, _value);
