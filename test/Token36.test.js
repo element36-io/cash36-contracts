@@ -90,7 +90,7 @@ contract('Create and Test Token36', function (accounts) {
   })
 
   it('...it should mint 200 CHF36 and assign it to accounts[1].', async function () {
-    await CHF36ControllerInstance.mint(accounts[1], accounts[1], 200, {from: exchangeAddress})
+    await CHF36ControllerInstance.mint(accounts[1], 200, {from: exchangeAddress})
 
     var newBalanceFor1 = await CHF36Instance.balanceOf(accounts[1])
     assert.equal(newBalanceFor1, '200', 'The balance was not correct.')
