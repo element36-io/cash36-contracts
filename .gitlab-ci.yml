@@ -16,7 +16,7 @@ before_script:
 build:
  stage: build
  tags:
-   - gitlab-org
+   - dokcer
  script:
    - yarn
    - yarn build
@@ -26,7 +26,7 @@ build:
 test:
  stage: test
  tags:
-   - gitlab-org
+   - dokcer
  script:
    - yarn
    - yarn testrpc &
@@ -38,7 +38,7 @@ deploy:
  services:
    - docker:dind
  tags:
-   - gitlab-org
+   - dokcer
  before_script:
    - apk add --no-cache nodejs nodejs-npm git python g++ make curl
    - npm install -g yarn
@@ -57,7 +57,7 @@ deploy:
 release:
   stage: release
   tags:
-    - gitlab-org
+    - dokcer
   script:
     - git config --global user.email "m@element36.io"
     - git config --global user.name "mb-element36"
@@ -73,7 +73,7 @@ release:
 publish:
   stage: publish
   tags:
-    - gitlab-org
+    - dokcer
   script:
     - npm install -g npm-publish-git-tag
     - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
