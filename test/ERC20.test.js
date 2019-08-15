@@ -102,7 +102,7 @@ contract('ERC20 Transfer', function (accounts) {
     let token36 = await Token36.at(tokenAddress)
     let controllerAddress = await token36.controller()
     let controller = await Token36Controller.at(controllerAddress)
-    await controller.mint(initialHolder, initialHolder, initialSupply, { from: accounts[3] })
+    await controller.mint(initialHolder, initialSupply, { from: accounts[3] })
   })
 
   describe('transfer', function () {
@@ -173,7 +173,7 @@ contract('ERC20 Transfer From', function (accounts) {
     let token36 = await Token36.at(tokenAddress)
     let controllerAddress = await token36.controller()
     let controller = await Token36Controller.at(controllerAddress)
-    await controller.mint(initialHolder, initialHolder, initialSupply, {from: accounts[3]})
+    await controller.mint(initialHolder, initialSupply, {from: accounts[3]})
   })
 
   describe('transfer from', function () {
@@ -447,7 +447,7 @@ contract('ERC20 Burn', function (accounts) {
     let token36 = await Token36.at(tokenAddress)
     let controllerAddress = await token36.controller()
     let controller = await Token36Controller.at(controllerAddress)
-    await controller.mint(initialHolder, initialHolder, initialSupply, {from: accounts[3]})
+    await controller.mint(initialHolder, initialSupply, {from: accounts[3]})
   })
 
   describe('_burn', function () {
@@ -517,7 +517,7 @@ contract('ERC20 Burn From', function (accounts) {
     let token36 = await Token36.at(tokenAddress)
     let controllerAddress = await token36.controller()
     let controller = await Token36Controller.at(controllerAddress)
-    await controller.mint(initialHolder, initialHolder, initialSupply, {from: accounts[3]})
+    await controller.mint(initialHolder, initialSupply, {from: accounts[3]})
   })
 
   describe('_burnFrom', function () {

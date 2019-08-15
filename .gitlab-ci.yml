@@ -1,11 +1,11 @@
 image: ubuntu:16.04 #luongnguyen/oyente
 
 stages:
- - build
- - test
- - deploy
- - release
- - publish
+  - build
+  - test
+  - deploy
+  - release
+  - publish
 
 before_script:
   - apt-get update && apt-get install -y git python g++ make curl
@@ -14,45 +14,49 @@ before_script:
   - npm install -g yarn
 
 build:
- stage: build
- tags:
-   - dokcer
- script:
-   - yarn
-   - yarn build
-   - yarn lint
-   #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+  stage: build
+  tags:
+    - dokcer
+  script:
+    - yarn
+    - yarn build
+    - yarn lint
+    #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+  except:
+    - tags
 
 test:
- stage: test
- tags:
-   - dokcer
- script:
-   - yarn
-   - yarn testrpc &
-   - yarn test
+  stage: test
+  tags:
+    - dokcer
+  script:
+    - yarn
+    - yarn testrpc &
+    - yarn test
+  except:
+    - tags
 
 deploy:
- stage: deploy
- image: docker:latest
- services:
-   - docker:dind
- tags:
-   - dokcer
- before_script:
-   - apk add --no-cache nodejs nodejs-npm git python g++ make curl
-   - npm install -g yarn
-   - yarn
- script:
-   - node scripts/waitForEthSyncTest.js
-   - echo "{\"privKey\":\"${PRIVATE_KEY}\"}" > keys.json
-   - ./node_modules/.bin/truffle migrate --network test
-   - ./node_modules/.bin/truffle networks
- artifacts:
-   paths:
-     - build/
- only:
-   - master
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  tags:
+    - dokcer
+  before_script:
+    - apk add --no-cache nodejs nodejs-npm git python g++ make curl
+    - npm install -g yarn
+    - yarn
+  script:
+    - node scripts/waitForEthSyncTest.js
+    - echo "{\"privKey\":\"${PRIVATE_KEY}\"}" > keys.json
+    - ./node_modules/.bin/truffle migrate --network test
+    - ./node_modules/.bin/truffle networks
+  artifacts:
+    paths:
+      - build/
+  only:
+    - master
 
 release:
   stage: release
