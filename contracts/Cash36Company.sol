@@ -4,8 +4,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
 
 
 /// @title Cash36 Company Contract
-/// @notice
-/// @notice
+/// @notice Represents a Company in cash36 - needed for Onboarding of Companies with Accounts and Beneficial Owners
 /// @author element36.io
 contract Cash36Company {
 

@@ -2,14 +2,14 @@ require('babel-polyfill');
 
 const HDWalletProvider = require("truffle-hdwallet-provider");
 
-function getProvider() {
+function getProvider(keysFile) {
   let keys = {}
   try {
-    keys = require('./keys.json')
+    keys = require(keysFile)
     return new HDWalletProvider(keys.privKey, "http://167.99.243.81:8866")
   } catch (err) {
     console.log(err);
-    console.log('could not find ./keys.json')
+    console.log('could not find '+ keysFile)
   }
 }
 
@@ -42,9 +42,14 @@ module.exports = {
             gas: 0x2fefd5
         },
         test: {
-            provider: getProvider(),
+            provider: getProvider('./keys.json'),
             network_id: 4,
             gas: 0x2fefd5
+        },
+        main: {
+          provider: getProvider('./keys-prod.json'),
+          network_id: 1,
+          gas: 0x2fefd5
         }
     },
 
