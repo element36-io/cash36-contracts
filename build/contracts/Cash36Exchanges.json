@@ -136,7 +136,7 @@
           "type": "address"
         }
       ],
-      "name": "getAllowedExchanges",
+      "name": "getAllExchanges",
       "outputs": [
         {
           "name": "",
@@ -148,25 +148,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.9+commit.e560f70d\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"addExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"getAllowedExchanges\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"isAllowedExchange\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"removeExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"addExchange(address,address)\":{\"details\":\"Exchange can not be another Smart ContractonlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"getAllowedExchanges(address)\":{\"details\":\"Note: Due to limitations of solidity, this method returns the full list of every address ever registered.It does not consider exchanges, which might have been flagged false afterwards.Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\",\"params\":{\"_token\":\"Address of the token\"},\"return\":\"{  \\\"address[]\\\": List of address of exchanges }\"},\"isAllowedExchange(address,address)\":{\"params\":{\"_exchange\":\"Address of the exchange\"},\"return\":\"{  \\\"bool\\\": \\\"True when Exchange is listed\\\" }\"},\"isOwner()\":{\"details\":\"Returns true if the caller is the current owner.\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"removeExchange(address,address)\":{\"details\":\"onlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * > Note: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"title\":\"Cash36 Exchanges Contract\"},\"userdoc\":{\"methods\":{\"addExchange(address,address)\":{\"notice\":\"Add an exchange to the list of accepted Exchanges\"},\"getAllowedExchanges(address)\":{\"notice\":\"Returns all registered exchange addresses for a given token address.\"},\"isAllowedExchange(address,address)\":{\"notice\":\"Check if an exchange is on the list of accepted Exchanges\"},\"removeExchange(address,address)\":{\"notice\":\"Remove an exchange from the list of accepted Exchanges\"}},\"notice\":\"Is responsible for keeping track of all allowed Exchanges.\"}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":\"Cash36Exchanges\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":{\"keccak256\":\"0x6796fa249ad747e5c5e066df9ec5c4ff8cede6466141f2712c33fd0333f05efd\",\"urls\":[\"bzzr://15f18dd432bc504961a5fc87cf95b906c2ac46c03acc1d0c4ab9ba891dc4b57d\",\"dweb:/ipfs/QmdqX1gaDGkfozWV6DPn9qXmjbxbE24JdJSUxkYhV8JHUY\"]},\"openzeppelin-solidity/contracts/ownership/Ownable.sol\":{\"keccak256\":\"0xf79fb10e8235770eb4aea7249034076a3cc9f9119ad944fc48705bae9c9d20dc\",\"urls\":[\"bzzr://d12a11272051eb6586de8f7e0a82c04a98c9984ce8b2a6cf1ee439f65aba29a9\",\"dweb:/ipfs/QmS55hgTvNEAKinus19m65CB4wcymN8EiUPFpRx5tYJ1i2\"]}},\"version\":1}",
-  "bytecode": "0x60806040819052600080546001600160a01b03191633178082556001600160a01b0316917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908290a36105e0806100576000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c80639a0f87191161005b5780639a0f871914610105578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b8063715018a61461008d5780637f604b45146100975780638da5cb5b146100c55780638f32d59b146100e9575b600080fd5b6100956101fd565b005b610095600480360360408110156100ad57600080fd5b506001600160a01b038135811691602001351661028e565b6100cd610334565b604080516001600160a01b039092168252519081900360200190f35b6100f1610343565b604080519115158252519081900360200190f35b61012b6004803603602081101561011b57600080fd5b50356001600160a01b0316610354565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561016757818101518382015260200161014f565b505050509050019250505060405180910390f35b6100f16004803603604081101561019157600080fd5b506001600160a01b03813581169160200135166103ca565b610095600480360360408110156101bf57600080fd5b506001600160a01b03813581169160200135166103f9565b610095600480360360208110156101ed57600080fd5b50356001600160a01b0316610472565b610205610343565b610244576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b610296610343565b6102d5576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156103be57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116103a0575b50505050509050919050565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b610401610343565b610440576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b61047a610343565b6104b9576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6104c2816104c5565b50565b6001600160a01b03811661050a5760405162461bcd60e51b81526004018080602001828103825260268152602001806105666026913960400191505060405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573734f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572a265627a7a723058204701244c72d251b2e0c26dfc3811103dd173fc6490e17a96e1bc073c38ba7be164736f6c63430005090032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100885760003560e01c80639a0f87191161005b5780639a0f871914610105578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b8063715018a61461008d5780637f604b45146100975780638da5cb5b146100c55780638f32d59b146100e9575b600080fd5b6100956101fd565b005b610095600480360360408110156100ad57600080fd5b506001600160a01b038135811691602001351661028e565b6100cd610334565b604080516001600160a01b039092168252519081900360200190f35b6100f1610343565b604080519115158252519081900360200190f35b61012b6004803603602081101561011b57600080fd5b50356001600160a01b0316610354565b60408051602080825283518183015283519192839290830191858101910280838360005b8381101561016757818101518382015260200161014f565b505050509050019250505060405180910390f35b6100f16004803603604081101561019157600080fd5b506001600160a01b03813581169160200135166103ca565b610095600480360360408110156101bf57600080fd5b506001600160a01b03813581169160200135166103f9565b610095600480360360208110156101ed57600080fd5b50356001600160a01b0316610472565b610205610343565b610244576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b610296610343565b6102d5576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b0381166000908152600160209081526040918290208054835181840281018401909452808452606093928301828280156103be57602002820191906000526020600020905b81546001600160a01b031681526001909101906020018083116103a0575b50505050509050919050565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b610401610343565b610440576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b61047a610343565b6104b9576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6104c2816104c5565b50565b6001600160a01b03811661050a5760405162461bcd60e51b81526004018080602001828103825260268152602001806105666026913960400191505060405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573734f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572a265627a7a723058204701244c72d251b2e0c26dfc3811103dd173fc6490e17a96e1bc073c38ba7be164736f6c63430005090032",
-  "sourceMap": "224:1994:4:-;;;;;657:6:23;:19;;-1:-1:-1;;;;;;657:19:23;666:10;657:19;;;;-1:-1:-1;;;;;724:6:23;;691:40;;657:6;;691:40;224:1994:4;;;;;;",
-  "deployedSourceMap": "224:1994:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;224:1994:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1599:137:23;;;:::i;:::-;;677:180:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;677:180:4;;;;;;;;;;:::i;814:77:23:-;;;:::i;:::-;;;;-1:-1:-1;;;;;814:77:23;;;;;;;;;;;;;;1165:90;;;:::i;:::-;;;;;;;;;;;;;;;;;;2086:130:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2086:130:4;-1:-1:-1;;;;;2086:130:4;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;2086:130:4;;;;;;;;;;;;;;;;;1407:150;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1407:150:4;;;;;;;;;;:::i;1052:138::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1052:138:4;;;;;;;;;;:::i;1885:107:23:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1885:107:23;-1:-1:-1;;;;;1885:107:23;;:::i;1599:137::-;1018:9;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;1697:1;1681:6;;1660:40;;-1:-1:-1;;;;;1681:6:23;;;;1660:40;;1697:1;;1660:40;1727:1;1710:19;;-1:-1:-1;;;;;;1710:19:23;;;1599:137::o;677:180:4:-;1018:9:23;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;-1:-1:-1;;;;;762:20:4;;;;;;;:12;:20;;;;;;;;27:10:-1;;23:18;;;45:23;;762:36:4;;;;;;;;;-1:-1:-1;;;;;;762:36:4;;;;;;;;;;;808:24;;;:16;:24;;;;;:35;;;;;;;;:42;;-1:-1:-1;;808:42:4;;;;;;677:180::o;814:77:23:-;852:7;878:6;-1:-1:-1;;;;;878:6:23;814:77;:::o;1165:90::-;1205:4;1242:6;-1:-1:-1;;;;;1242:6:23;1228:10;:20;;1165:90::o;2086:130:4:-;-1:-1:-1;;;;;2189:20:4;;;;;;:12;:20;;;;;;;;;2182:27;;;;;;;;;;;;;;;;;2154:16;;2182:27;;;2189:20;2182:27;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2182:27:4;;;;;;;;;;;;;;;;;;;;;;;2086:130;;;:::o;1407:150::-;-1:-1:-1;;;;;1515:24:4;;;1492:4;1515:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;1407:150;;;;:::o;1052:138::-;1018:9:23;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;-1:-1:-1;;;;;1140:24:4;;;1178:5;1140:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;:43;;-1:-1:-1;;1140:43:4;;;1052:138::o;1885:107:23:-;1018:9;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:23;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:23;;;;;;;;;;;;;;;1957:28;1976:8;1957:18;:28::i;:::-;1885:107;:::o;2093:225::-;-1:-1:-1;;;;;2166:22:23;;2158:73;;;;-1:-1:-1;;;2158:73:23;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2267:6;;;2246:38;;-1:-1:-1;;;;;2246:38:23;;;;2267:6;;;2246:38;;;2294:6;:17;;-1:-1:-1;;;;;;2294:17:23;-1:-1:-1;;;;;2294:17:23;;;;;;;;;;2093:225::o",
-  "source": "pragma solidity ^0.5.9;\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n\n/// @title Cash36 Exchanges Contract\n/// @notice Is responsible for keeping track of all allowed Exchanges.\n/// @author element36.io\ncontract Cash36Exchanges is Ownable {\n\n    // Whitelisted Exchanges per token\n    mapping(address => address[]) private allExchanges;\n    mapping(address => mapping(address => bool)) private allowedExchanges;\n\n    /**\n     * @notice Add an exchange to the list of accepted Exchanges\n     * @dev Exchange can not be another Smart Contract\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function addExchange(address _exchange, address _token) external onlyOwner {\n        allExchanges[_token].push(_exchange);\n        allowedExchanges[_token][_exchange] = true;\n    }\n\n    /**\n     * @notice Remove an exchange from the list of accepted Exchanges\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function removeExchange(address _exchange, address _token) external onlyOwner {\n        allowedExchanges[_token][_exchange] = false;\n    }\n\n    /**\n     * @notice Check if an exchange is on the list of accepted Exchanges\n     * @param _exchange Address of the exchange\n     * @return {\n     *   \"bool\": \"True when Exchange is listed\"\n     * }\n     */\n    function isAllowedExchange(address _exchange, address _token) external view returns (bool) {\n        return allowedExchanges[_token][_exchange];\n    }\n\n    /**\n     * @notice Returns all registered exchange addresses for a given token address.\n     * @dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.\n     * @dev It does not consider exchanges, which might have been flagged false afterwards.\n     * @dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\n     * @param _token Address of the token\n     * @return {\n     *   \"address[]\": List of address of exchanges\n     * }\n    */\n    function getAllowedExchanges(address _token) external view returns (address[] memory) {\n        return allExchanges[_token];\n    }\n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.9+commit.e560f70d\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"getAllExchanges\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"addExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"isOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"isAllowedExchange\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_exchange\",\"type\":\"address\"},{\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"removeExchange\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"addExchange(address,address)\":{\"details\":\"Exchange can not be another Smart ContractonlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"getAllExchanges(address)\":{\"details\":\"Note: Due to limitations of solidity, this method returns the full list of every address ever registered.It does not consider exchanges, which might have been flagged false afterwards.Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\",\"params\":{\"_token\":\"Address of the token\"},\"return\":\"{  \\\"address[]\\\": List of address of exchanges }\"},\"isAllowedExchange(address,address)\":{\"params\":{\"_exchange\":\"Address of the exchange\"},\"return\":\"{  \\\"bool\\\": \\\"true when Exchange is listed\\\" }\"},\"isOwner()\":{\"details\":\"Returns true if the caller is the current owner.\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"removeExchange(address,address)\":{\"details\":\"onlyOwner - only open to element36 Account\",\"params\":{\"_exchange\":\"Address of the exchange\"}},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner.     * > Note: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"title\":\"Cash36 Exchanges Contract\"},\"userdoc\":{\"methods\":{\"addExchange(address,address)\":{\"notice\":\"Add an exchange to the list of accepted Exchanges\"},\"getAllExchanges(address)\":{\"notice\":\"Returns all registered exchange addresses for a given token address.\"},\"isAllowedExchange(address,address)\":{\"notice\":\"Check if an exchange is on the list of accepted Exchanges\"},\"removeExchange(address,address)\":{\"notice\":\"Remove an exchange from the list of accepted Exchanges\"}},\"notice\":\"Is responsible for keeping track of all registered Exchanges.\"}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":\"Cash36Exchanges\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol\":{\"keccak256\":\"0x437a3062feea96e01cac70e3bc236458bcb30f53031d0f9c23c7ab79f32d4ae8\",\"urls\":[\"bzzr://db2e281fd45ed0f78dbb4c4dec9856d20656ff2f026834c5fd50f93ec60cbd8d\",\"dweb:/ipfs/QmUKzdxAJg1Kovwq8FtbYw9Beo47kk9DU592at6kVq9Rey\"]},\"openzeppelin-solidity/contracts/ownership/Ownable.sol\":{\"keccak256\":\"0xf79fb10e8235770eb4aea7249034076a3cc9f9119ad944fc48705bae9c9d20dc\",\"urls\":[\"bzzr://d12a11272051eb6586de8f7e0a82c04a98c9984ce8b2a6cf1ee439f65aba29a9\",\"dweb:/ipfs/QmS55hgTvNEAKinus19m65CB4wcymN8EiUPFpRx5tYJ1i2\"]}},\"version\":1}",
+  "bytecode": "0x60806040819052600080546001600160a01b03191633178082556001600160a01b0316917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908290a36105e0806100576000396000f3fe608060405234801561001057600080fd5b50600436106100885760003560e01c80638f32d59b1161005b5780638f32d59b1461015f578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b80631a0020d61461008d578063715018a6146101035780637f604b451461010d5780638da5cb5b1461013b575b600080fd5b6100b3600480360360208110156100a357600080fd5b50356001600160a01b03166101fd565b60408051602080825283518183015283519192839290830191858101910280838360005b838110156100ef5781810151838201526020016100d7565b505050509050019250505060405180910390f35b61010b610273565b005b61010b6004803603604081101561012357600080fd5b506001600160a01b0381358116916020013516610304565b6101436103aa565b604080516001600160a01b039092168252519081900360200190f35b6101676103b9565b604080519115158252519081900360200190f35b6101676004803603604081101561019157600080fd5b506001600160a01b03813581169160200135166103ca565b61010b600480360360408110156101bf57600080fd5b506001600160a01b03813581169160200135166103f9565b61010b600480360360208110156101ed57600080fd5b50356001600160a01b0316610472565b6001600160a01b03811660009081526001602090815260409182902080548351818402810184019094528084526060939283018282801561026757602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610249575b50505050509050919050565b61027b6103b9565b6102ba576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b61030c6103b9565b61034b576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b6104016103b9565b610440576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b61047a6103b9565b6104b9576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6104c2816104c5565b50565b6001600160a01b03811661050a5760405162461bcd60e51b81526004018080602001828103825260268152602001806105666026913960400191505060405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573734f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572a265627a7a72305820544ff89e36c078334a56b52725f12b00abce64f96d1f73c06cebc737bdaa4e6a64736f6c63430005090032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100885760003560e01c80638f32d59b1161005b5780638f32d59b1461015f578063ea13d8a11461017b578063f00065b6146101a9578063f2fde38b146101d757610088565b80631a0020d61461008d578063715018a6146101035780637f604b451461010d5780638da5cb5b1461013b575b600080fd5b6100b3600480360360208110156100a357600080fd5b50356001600160a01b03166101fd565b60408051602080825283518183015283519192839290830191858101910280838360005b838110156100ef5781810151838201526020016100d7565b505050509050019250505060405180910390f35b61010b610273565b005b61010b6004803603604081101561012357600080fd5b506001600160a01b0381358116916020013516610304565b6101436103aa565b604080516001600160a01b039092168252519081900360200190f35b6101676103b9565b604080519115158252519081900360200190f35b6101676004803603604081101561019157600080fd5b506001600160a01b03813581169160200135166103ca565b61010b600480360360408110156101bf57600080fd5b506001600160a01b03813581169160200135166103f9565b61010b600480360360208110156101ed57600080fd5b50356001600160a01b0316610472565b6001600160a01b03811660009081526001602090815260409182902080548351818402810184019094528084526060939283018282801561026757602002820191906000526020600020905b81546001600160a01b03168152600190910190602001808311610249575b50505050509050919050565b61027b6103b9565b6102ba576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b600080546040516001600160a01b03909116907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0908390a3600080546001600160a01b0319169055565b61030c6103b9565b61034b576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000818152600160208181526040808420805480850182559085528285200180546001600160a01b03191697909616968717909555928252600283528382209482529390915220805460ff19169091179055565b6000546001600160a01b031690565b6000546001600160a01b0316331490565b6001600160a01b0380821660009081526002602090815260408083209386168352929052205460ff1692915050565b6104016103b9565b610440576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6001600160a01b039081166000908152600260209081526040808320949093168252929092529020805460ff19169055565b61047a6103b9565b6104b9576040805162461bcd60e51b8152602060048201819052602482015260008051602061058c833981519152604482015290519081900360640190fd5b6104c2816104c5565b50565b6001600160a01b03811661050a5760405162461bcd60e51b81526004018080602001828103825260268152602001806105666026913960400191505060405180910390fd5b600080546040516001600160a01b03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a3600080546001600160a01b0319166001600160a01b039290921691909117905556fe4f776e61626c653a206e6577206f776e657220697320746865207a65726f20616464726573734f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e6572a265627a7a72305820544ff89e36c078334a56b52725f12b00abce64f96d1f73c06cebc737bdaa4e6a64736f6c63430005090032",
+  "sourceMap": "227:1990:5:-;;;;;657:6:24;:19;;-1:-1:-1;;;;;;657:19:24;666:10;657:19;;;;-1:-1:-1;;;;;724:6:24;;691:40;;657:6;;691:40;227:1990:5;;;;;;",
+  "deployedSourceMap": "227:1990:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;227:1990:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2089:126;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2089:126:5;-1:-1:-1;;;;;2089:126:5;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;2089:126:5;;;;;;;;;;;;;;;;;1599:137:24;;;:::i;:::-;;680:180:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;680:180:5;;;;;;;;;;:::i;814:77:24:-;;;:::i;:::-;;;;-1:-1:-1;;;;;814:77:24;;;;;;;;;;;;;;1165:90;;;:::i;:::-;;;;;;;;;;;;;;;;;;1410:150:5;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1410:150:5;;;;;;;;;;:::i;1055:138::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;1055:138:5;;;;;;;;;;:::i;1885:107:24:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1885:107:24;-1:-1:-1;;;;;1885:107:24;;:::i;2089:126:5:-;-1:-1:-1;;;;;2188:20:5;;;;;;:12;:20;;;;;;;;;2181:27;;;;;;;;;;;;;;;;;2153:16;;2181:27;;;2188:20;2181:27;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;2181:27:5;;;;;;;;;;;;;;;;;;;;;;;2089:126;;;:::o;1599:137:24:-;1018:9;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:24;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:24;;;;;;;;;;;;;;;1697:1;1681:6;;1660:40;;-1:-1:-1;;;;;1681:6:24;;;;1660:40;;1697:1;;1660:40;1727:1;1710:19;;-1:-1:-1;;;;;;1710:19:24;;;1599:137::o;680:180:5:-;1018:9:24;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:24;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:24;;;;;;;;;;;;;;;-1:-1:-1;;;;;765:20:5;;;;;;;:12;:20;;;;;;;;27:10:-1;;23:18;;;45:23;;765:36:5;;;;;;;;;-1:-1:-1;;;;;;765:36:5;;;;;;;;;;;811:24;;;:16;:24;;;;;:35;;;;;;;;:42;;-1:-1:-1;;811:42:5;;;;;;680:180::o;814:77:24:-;852:7;878:6;-1:-1:-1;;;;;878:6:24;814:77;:::o;1165:90::-;1205:4;1242:6;-1:-1:-1;;;;;1242:6:24;1228:10;:20;;1165:90::o;1410:150:5:-;-1:-1:-1;;;;;1518:24:5;;;1495:4;1518:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;1410:150;;;;:::o;1055:138::-;1018:9:24;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:24;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:24;;;;;;;;;;;;;;;-1:-1:-1;;;;;1143:24:5;;;1181:5;1143:24;;;:16;:24;;;;;;;;:35;;;;;;;;;;;;:43;;-1:-1:-1;;1143:43:5;;;1055:138::o;1885:107:24:-;1018:9;:7;:9::i;:::-;1010:54;;;;;-1:-1:-1;;;1010:54:24;;;;;;;;;;;;;-1:-1:-1;;;;;;;;;;;1010:54:24;;;;;;;;;;;;;;;1957:28;1976:8;1957:18;:28::i;:::-;1885:107;:::o;2093:225::-;-1:-1:-1;;;;;2166:22:24;;2158:73;;;;-1:-1:-1;;;2158:73:24;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2267:6;;;2246:38;;-1:-1:-1;;;;;2246:38:24;;;;2267:6;;;2246:38;;;2294:6;:17;;-1:-1:-1;;;;;;2294:17:24;-1:-1:-1;;;;;2294:17:24;;;;;;;;;;2093:225::o",
+  "source": "pragma solidity ^0.5.9;\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\n\n\n/// @title Cash36 Exchanges Contract\n/// @notice Is responsible for keeping track of all registered Exchanges.\n/// @author element36.io\ncontract Cash36Exchanges is Ownable {\n\n    // Whitelisted Exchanges per token\n    mapping(address => address[]) private allExchanges;\n    mapping(address => mapping(address => bool)) private allowedExchanges;\n\n    /**\n     * @notice Add an exchange to the list of accepted Exchanges\n     * @dev Exchange can not be another Smart Contract\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function addExchange(address _exchange, address _token) external onlyOwner {\n        allExchanges[_token].push(_exchange);\n        allowedExchanges[_token][_exchange] = true;\n    }\n\n    /**\n     * @notice Remove an exchange from the list of accepted Exchanges\n     * @dev onlyOwner - only open to element36 Account\n     * @param _exchange Address of the exchange\n     */\n    function removeExchange(address _exchange, address _token) external onlyOwner {\n        allowedExchanges[_token][_exchange] = false;\n    }\n\n    /**\n     * @notice Check if an exchange is on the list of accepted Exchanges\n     * @param _exchange Address of the exchange\n     * @return {\n     *   \"bool\": \"true when Exchange is listed\"\n     * }\n     */\n    function isAllowedExchange(address _exchange, address _token) external view returns (bool) {\n        return allowedExchanges[_token][_exchange];\n    }\n\n    /**\n     * @notice Returns all registered exchange addresses for a given token address.\n     * @dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.\n     * @dev It does not consider exchanges, which might have been flagged false afterwards.\n     * @dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\n     * @param _token Address of the token\n     * @return {\n     *   \"address[]\": List of address of exchanges\n     * }\n    */\n    function getAllExchanges(address _token) external view returns (address[] memory) {\n        return allExchanges[_token];\n    }\n}\n",
   "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol",
   "ast": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol",
     "exportedSymbols": {
       "Cash36Exchanges": [
-        696
+        942
       ]
     },
-    "id": 697,
+    "id": 943,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 609,
+        "id": 855,
         "literals": [
           "solidity",
           "^",
@@ -174,16 +174,16 @@
           ".9"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:4"
+        "src": "0:23:5"
       },
       {
         "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 610,
+        "id": 856,
         "nodeType": "ImportDirective",
-        "scope": 697,
-        "sourceUnit": 2469,
-        "src": "25:63:4",
+        "scope": 943,
+        "sourceUnit": 2878,
+        "src": "25:63:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -193,42 +193,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 611,
+              "id": 857,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2468,
-              "src": "252:7:4",
+              "referencedDeclaration": 2877,
+              "src": "255:7:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$2468",
+                "typeIdentifier": "t_contract$_Ownable_$2877",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 612,
+            "id": 858,
             "nodeType": "InheritanceSpecifier",
-            "src": "252:7:4"
+            "src": "255:7:5"
           }
         ],
         "contractDependencies": [
-          2468
+          2877
         ],
         "contractKind": "contract",
-        "documentation": "@title Cash36 Exchanges Contract\n @notice Is responsible for keeping track of all allowed Exchanges.\n @author element36.io",
+        "documentation": "@title Cash36 Exchanges Contract\n @notice Is responsible for keeping track of all registered Exchanges.\n @author element36.io",
         "fullyImplemented": true,
-        "id": 696,
+        "id": 942,
         "linearizedBaseContracts": [
-          696,
-          2468
+          942,
+          2877
         ],
         "name": "Cash36Exchanges",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 617,
+            "id": 863,
             "name": "allExchanges",
             "nodeType": "VariableDeclaration",
-            "scope": 696,
-            "src": "306:50:4",
+            "scope": 942,
+            "src": "309:50:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -236,39 +236,39 @@
               "typeString": "mapping(address => address[])"
             },
             "typeName": {
-              "id": 616,
+              "id": 862,
               "keyType": {
-                "id": 613,
+                "id": 859,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "314:7:4",
+                "src": "317:7:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "306:29:4",
+              "src": "309:29:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
                 "typeString": "mapping(address => address[])"
               },
               "valueType": {
                 "baseType": {
-                  "id": 614,
+                  "id": 860,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "325:7:4",
+                  "src": "328:7:5",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
                   }
                 },
-                "id": 615,
+                "id": 861,
                 "length": null,
                 "nodeType": "ArrayTypeName",
-                "src": "325:9:4",
+                "src": "328:9:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                   "typeString": "address[]"
@@ -280,11 +280,11 @@
           },
           {
             "constant": false,
-            "id": 623,
+            "id": 869,
             "name": "allowedExchanges",
             "nodeType": "VariableDeclaration",
-            "scope": 696,
-            "src": "362:69:4",
+            "scope": 942,
+            "src": "365:69:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -292,46 +292,46 @@
               "typeString": "mapping(address => mapping(address => bool))"
             },
             "typeName": {
-              "id": 622,
+              "id": 868,
               "keyType": {
-                "id": 618,
+                "id": 864,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "370:7:4",
+                "src": "373:7:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "362:44:4",
+              "src": "365:44:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                 "typeString": "mapping(address => mapping(address => bool))"
               },
               "valueType": {
-                "id": 621,
+                "id": 867,
                 "keyType": {
-                  "id": 619,
+                  "id": 865,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "389:7:4",
+                  "src": "392:7:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
                   }
                 },
                 "nodeType": "Mapping",
-                "src": "381:24:4",
+                "src": "384:24:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                   "typeString": "mapping(address => bool)"
                 },
                 "valueType": {
-                  "id": 620,
+                  "id": 866,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "400:4:4",
+                  "src": "403:4:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -344,9 +344,9 @@
           },
           {
             "body": {
-              "id": 647,
+              "id": 893,
               "nodeType": "Block",
-              "src": "752:105:4",
+              "src": "755:105:5",
               "statements": [
                 {
                   "expression": {
@@ -354,12 +354,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 636,
+                        "id": 882,
                         "name": "_exchange",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 625,
-                        "src": "788:9:4",
+                        "referencedDeclaration": 871,
+                        "src": "791:9:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -377,26 +377,26 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 632,
+                          "id": 878,
                           "name": "allExchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 617,
-                          "src": "762:12:4",
+                          "referencedDeclaration": 863,
+                          "src": "765:12:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
                             "typeString": "mapping(address => address[] storage ref)"
                           }
                         },
-                        "id": 634,
+                        "id": 880,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 633,
+                          "id": 879,
                           "name": "_token",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 627,
-                          "src": "775:6:4",
+                          "referencedDeclaration": 873,
+                          "src": "778:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -407,13 +407,13 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "762:20:4",
+                        "src": "765:20:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 635,
+                      "id": 881,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -421,13 +421,13 @@
                       "memberName": "push",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "762:25:4",
+                      "src": "765:25:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_arraypush_nonpayable$_t_address_$returns$_t_uint256_$",
                         "typeString": "function (address) returns (uint256)"
                       }
                     },
-                    "id": 637,
+                    "id": 883,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -435,20 +435,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "762:36:4",
+                    "src": "765:36:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 638,
+                  "id": 884,
                   "nodeType": "ExpressionStatement",
-                  "src": "762:36:4"
+                  "src": "765:36:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 645,
+                    "id": 891,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -459,26 +459,26 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 639,
+                          "id": 885,
                           "name": "allowedExchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 623,
-                          "src": "808:16:4",
+                          "referencedDeclaration": 869,
+                          "src": "811:16:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                             "typeString": "mapping(address => mapping(address => bool))"
                           }
                         },
-                        "id": 642,
+                        "id": 888,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 640,
+                          "id": 886,
                           "name": "_token",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 627,
-                          "src": "825:6:4",
+                          "referencedDeclaration": 873,
+                          "src": "828:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -489,21 +489,21 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "808:24:4",
+                        "src": "811:24:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 643,
+                      "id": 889,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 641,
+                        "id": 887,
                         "name": "_exchange",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 625,
-                        "src": "833:9:4",
+                        "referencedDeclaration": 871,
+                        "src": "836:9:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -514,7 +514,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "808:35:4",
+                      "src": "811:35:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -525,14 +525,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 644,
+                      "id": 890,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "846:4:4",
+                      "src": "849:4:5",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -540,56 +540,56 @@
                       },
                       "value": "true"
                     },
-                    "src": "808:42:4",
+                    "src": "811:42:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 646,
+                  "id": 892,
                   "nodeType": "ExpressionStatement",
-                  "src": "808:42:4"
+                  "src": "811:42:5"
                 }
               ]
             },
             "documentation": "@notice Add an exchange to the list of accepted Exchanges\n@dev Exchange can not be another Smart Contract\n@dev onlyOwner - only open to element36 Account\n@param _exchange Address of the exchange",
-            "id": 648,
+            "id": 894,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 630,
+                "id": 876,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 629,
+                  "id": 875,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2401,
-                  "src": "742:9:4",
+                  "referencedDeclaration": 2810,
+                  "src": "745:9:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "742:9:4"
+                "src": "745:9:5"
               }
             ],
             "name": "addExchange",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 628,
+              "id": 874,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 625,
+                  "id": 871,
                   "name": "_exchange",
                   "nodeType": "VariableDeclaration",
-                  "scope": 648,
-                  "src": "698:17:4",
+                  "scope": 894,
+                  "src": "701:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -597,10 +597,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 624,
+                    "id": 870,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "698:7:4",
+                    "src": "701:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -612,11 +612,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 627,
+                  "id": 873,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 648,
-                  "src": "717:14:4",
+                  "scope": 894,
+                  "src": "720:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -624,10 +624,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 626,
+                    "id": 872,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "717:7:4",
+                    "src": "720:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -638,30 +638,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "697:35:4"
+              "src": "700:35:5"
             },
             "returnParameters": {
-              "id": 631,
+              "id": 877,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "752:0:4"
+              "src": "755:0:5"
             },
-            "scope": 696,
-            "src": "677:180:4",
+            "scope": 942,
+            "src": "680:180:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 665,
+              "id": 911,
               "nodeType": "Block",
-              "src": "1130:60:4",
+              "src": "1133:60:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 663,
+                    "id": 909,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -672,26 +672,26 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 657,
+                          "id": 903,
                           "name": "allowedExchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 623,
-                          "src": "1140:16:4",
+                          "referencedDeclaration": 869,
+                          "src": "1143:16:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                             "typeString": "mapping(address => mapping(address => bool))"
                           }
                         },
-                        "id": 660,
+                        "id": 906,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 658,
+                          "id": 904,
                           "name": "_token",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 652,
-                          "src": "1157:6:4",
+                          "referencedDeclaration": 898,
+                          "src": "1160:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -702,21 +702,21 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1140:24:4",
+                        "src": "1143:24:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 661,
+                      "id": 907,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 659,
+                        "id": 905,
                         "name": "_exchange",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 650,
-                        "src": "1165:9:4",
+                        "referencedDeclaration": 896,
+                        "src": "1168:9:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -727,7 +727,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1140:35:4",
+                      "src": "1143:35:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -738,14 +738,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 662,
+                      "id": 908,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1178:5:4",
+                      "src": "1181:5:5",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -753,56 +753,56 @@
                       },
                       "value": "false"
                     },
-                    "src": "1140:43:4",
+                    "src": "1143:43:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 664,
+                  "id": 910,
                   "nodeType": "ExpressionStatement",
-                  "src": "1140:43:4"
+                  "src": "1143:43:5"
                 }
               ]
             },
             "documentation": "@notice Remove an exchange from the list of accepted Exchanges\n@dev onlyOwner - only open to element36 Account\n@param _exchange Address of the exchange",
-            "id": 666,
+            "id": 912,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 655,
+                "id": 901,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 654,
+                  "id": 900,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2401,
-                  "src": "1120:9:4",
+                  "referencedDeclaration": 2810,
+                  "src": "1123:9:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "1120:9:4"
+                "src": "1123:9:5"
               }
             ],
             "name": "removeExchange",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 653,
+              "id": 899,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 650,
+                  "id": 896,
                   "name": "_exchange",
                   "nodeType": "VariableDeclaration",
-                  "scope": 666,
-                  "src": "1076:17:4",
+                  "scope": 912,
+                  "src": "1079:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -810,10 +810,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 649,
+                    "id": 895,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1076:7:4",
+                    "src": "1079:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -825,11 +825,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 652,
+                  "id": 898,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 666,
-                  "src": "1095:14:4",
+                  "scope": 912,
+                  "src": "1098:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -837,10 +837,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 651,
+                    "id": 897,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1095:7:4",
+                    "src": "1098:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -851,25 +851,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1075:35:4"
+              "src": "1078:35:5"
             },
             "returnParameters": {
-              "id": 656,
+              "id": 902,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1130:0:4"
+              "src": "1133:0:5"
             },
-            "scope": 696,
-            "src": "1052:138:4",
+            "scope": 942,
+            "src": "1055:138:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 681,
+              "id": 927,
               "nodeType": "Block",
-              "src": "1498:59:4",
+              "src": "1501:59:5",
               "statements": [
                 {
                   "expression": {
@@ -878,26 +878,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 675,
+                        "id": 921,
                         "name": "allowedExchanges",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 623,
-                        "src": "1515:16:4",
+                        "referencedDeclaration": 869,
+                        "src": "1518:16:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                           "typeString": "mapping(address => mapping(address => bool))"
                         }
                       },
-                      "id": 677,
+                      "id": 923,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 676,
+                        "id": 922,
                         "name": "_token",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 670,
-                        "src": "1532:6:4",
+                        "referencedDeclaration": 916,
+                        "src": "1535:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -908,21 +908,21 @@
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "IndexAccess",
-                      "src": "1515:24:4",
+                      "src": "1518:24:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                         "typeString": "mapping(address => bool)"
                       }
                     },
-                    "id": 679,
+                    "id": 925,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 678,
+                      "id": 924,
                       "name": "_exchange",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 668,
-                      "src": "1540:9:4",
+                      "referencedDeclaration": 914,
+                      "src": "1543:9:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -933,37 +933,37 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1515:35:4",
+                    "src": "1518:35:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 674,
-                  "id": 680,
+                  "functionReturnParameters": 920,
+                  "id": 926,
                   "nodeType": "Return",
-                  "src": "1508:42:4"
+                  "src": "1511:42:5"
                 }
               ]
             },
-            "documentation": "@notice Check if an exchange is on the list of accepted Exchanges\n@param _exchange Address of the exchange\n@return {\n  \"bool\": \"True when Exchange is listed\"\n}",
-            "id": 682,
+            "documentation": "@notice Check if an exchange is on the list of accepted Exchanges\n@param _exchange Address of the exchange\n@return {\n  \"bool\": \"true when Exchange is listed\"\n}",
+            "id": 928,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isAllowedExchange",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 671,
+              "id": 917,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 668,
+                  "id": 914,
                   "name": "_exchange",
                   "nodeType": "VariableDeclaration",
-                  "scope": 682,
-                  "src": "1434:17:4",
+                  "scope": 928,
+                  "src": "1437:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -971,10 +971,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 667,
+                    "id": 913,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1434:7:4",
+                    "src": "1437:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -986,11 +986,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 670,
+                  "id": 916,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 682,
-                  "src": "1453:14:4",
+                  "scope": 928,
+                  "src": "1456:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -998,10 +998,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 669,
+                    "id": 915,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1453:7:4",
+                    "src": "1456:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1012,19 +1012,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1433:35:4"
+              "src": "1436:35:5"
             },
             "returnParameters": {
-              "id": 674,
+              "id": 920,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 673,
+                  "id": 919,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 682,
-                  "src": "1492:4:4",
+                  "scope": 928,
+                  "src": "1495:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1032,10 +1032,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 672,
+                    "id": 918,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1492:4:4",
+                    "src": "1495:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1045,45 +1045,45 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1491:6:4"
+              "src": "1494:6:5"
             },
-            "scope": 696,
-            "src": "1407:150:4",
+            "scope": 942,
+            "src": "1410:150:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 694,
+              "id": 940,
               "nodeType": "Block",
-              "src": "2172:44:4",
+              "src": "2171:44:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 690,
+                      "id": 936,
                       "name": "allExchanges",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 617,
-                      "src": "2189:12:4",
+                      "referencedDeclaration": 863,
+                      "src": "2188:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
                         "typeString": "mapping(address => address[] storage ref)"
                       }
                     },
-                    "id": 692,
+                    "id": 938,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 691,
+                      "id": 937,
                       "name": "_token",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 684,
-                      "src": "2202:6:4",
+                      "referencedDeclaration": 930,
+                      "src": "2201:6:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -1094,37 +1094,37 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "2189:20:4",
+                    "src": "2188:20:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage",
                       "typeString": "address[] storage ref"
                     }
                   },
-                  "functionReturnParameters": 689,
-                  "id": 693,
+                  "functionReturnParameters": 935,
+                  "id": 939,
                   "nodeType": "Return",
-                  "src": "2182:27:4"
+                  "src": "2181:27:5"
                 }
               ]
             },
             "documentation": "@notice Returns all registered exchange addresses for a given token address.\n@dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.\n@dev It does not consider exchanges, which might have been flagged false afterwards.\n@dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\n@param _token Address of the token\n@return {\n  \"address[]\": List of address of exchanges\n}",
-            "id": 695,
+            "id": 941,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "getAllowedExchanges",
+            "name": "getAllExchanges",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 685,
+              "id": 931,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 684,
+                  "id": 930,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 695,
-                  "src": "2115:14:4",
+                  "scope": 941,
+                  "src": "2114:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1132,10 +1132,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 683,
+                    "id": 929,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2115:7:4",
+                    "src": "2114:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1146,19 +1146,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2114:16:4"
+              "src": "2113:16:5"
             },
             "returnParameters": {
-              "id": 689,
+              "id": 935,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 688,
+                  "id": 934,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 695,
-                  "src": "2154:16:4",
+                  "scope": 941,
+                  "src": "2153:16:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1167,20 +1167,20 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 686,
+                      "id": 932,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2154:7:4",
+                      "src": "2153:7:5",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 687,
+                    "id": 933,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2154:9:4",
+                    "src": "2153:9:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -1190,33 +1190,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2153:18:4"
+              "src": "2152:18:5"
             },
-            "scope": 696,
-            "src": "2086:130:4",
+            "scope": 942,
+            "src": "2089:126:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 697,
-        "src": "224:1994:4"
+        "scope": 943,
+        "src": "227:1990:5"
       }
     ],
-    "src": "0:2219:4"
+    "src": "0:2218:5"
   },
   "legacyAST": {
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Exchanges.sol",
     "exportedSymbols": {
       "Cash36Exchanges": [
-        696
+        942
       ]
     },
-    "id": 697,
+    "id": 943,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 609,
+        "id": 855,
         "literals": [
           "solidity",
           "^",
@@ -1224,16 +1224,16 @@
           ".9"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:23:4"
+        "src": "0:23:5"
       },
       {
         "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
         "file": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
-        "id": 610,
+        "id": 856,
         "nodeType": "ImportDirective",
-        "scope": 697,
-        "sourceUnit": 2469,
-        "src": "25:63:4",
+        "scope": 943,
+        "sourceUnit": 2878,
+        "src": "25:63:5",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1243,42 +1243,42 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 611,
+              "id": 857,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2468,
-              "src": "252:7:4",
+              "referencedDeclaration": 2877,
+              "src": "255:7:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$2468",
+                "typeIdentifier": "t_contract$_Ownable_$2877",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 612,
+            "id": 858,
             "nodeType": "InheritanceSpecifier",
-            "src": "252:7:4"
+            "src": "255:7:5"
           }
         ],
         "contractDependencies": [
-          2468
+          2877
         ],
         "contractKind": "contract",
-        "documentation": "@title Cash36 Exchanges Contract\n @notice Is responsible for keeping track of all allowed Exchanges.\n @author element36.io",
+        "documentation": "@title Cash36 Exchanges Contract\n @notice Is responsible for keeping track of all registered Exchanges.\n @author element36.io",
         "fullyImplemented": true,
-        "id": 696,
+        "id": 942,
         "linearizedBaseContracts": [
-          696,
-          2468
+          942,
+          2877
         ],
         "name": "Cash36Exchanges",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 617,
+            "id": 863,
             "name": "allExchanges",
             "nodeType": "VariableDeclaration",
-            "scope": 696,
-            "src": "306:50:4",
+            "scope": 942,
+            "src": "309:50:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1286,39 +1286,39 @@
               "typeString": "mapping(address => address[])"
             },
             "typeName": {
-              "id": 616,
+              "id": 862,
               "keyType": {
-                "id": 613,
+                "id": 859,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "314:7:4",
+                "src": "317:7:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "306:29:4",
+              "src": "309:29:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
                 "typeString": "mapping(address => address[])"
               },
               "valueType": {
                 "baseType": {
-                  "id": 614,
+                  "id": 860,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "325:7:4",
+                  "src": "328:7:5",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
                   }
                 },
-                "id": 615,
+                "id": 861,
                 "length": null,
                 "nodeType": "ArrayTypeName",
-                "src": "325:9:4",
+                "src": "328:9:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                   "typeString": "address[]"
@@ -1330,11 +1330,11 @@
           },
           {
             "constant": false,
-            "id": 623,
+            "id": 869,
             "name": "allowedExchanges",
             "nodeType": "VariableDeclaration",
-            "scope": 696,
-            "src": "362:69:4",
+            "scope": 942,
+            "src": "365:69:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1342,46 +1342,46 @@
               "typeString": "mapping(address => mapping(address => bool))"
             },
             "typeName": {
-              "id": 622,
+              "id": 868,
               "keyType": {
-                "id": 618,
+                "id": 864,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "370:7:4",
+                "src": "373:7:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "362:44:4",
+              "src": "365:44:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                 "typeString": "mapping(address => mapping(address => bool))"
               },
               "valueType": {
-                "id": 621,
+                "id": 867,
                 "keyType": {
-                  "id": 619,
+                  "id": 865,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "389:7:4",
+                  "src": "392:7:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
                     "typeString": "address"
                   }
                 },
                 "nodeType": "Mapping",
-                "src": "381:24:4",
+                "src": "384:24:5",
                 "typeDescriptions": {
                   "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                   "typeString": "mapping(address => bool)"
                 },
                 "valueType": {
-                  "id": 620,
+                  "id": 866,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "400:4:4",
+                  "src": "403:4:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1394,9 +1394,9 @@
           },
           {
             "body": {
-              "id": 647,
+              "id": 893,
               "nodeType": "Block",
-              "src": "752:105:4",
+              "src": "755:105:5",
               "statements": [
                 {
                   "expression": {
@@ -1404,12 +1404,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 636,
+                        "id": 882,
                         "name": "_exchange",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 625,
-                        "src": "788:9:4",
+                        "referencedDeclaration": 871,
+                        "src": "791:9:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1427,26 +1427,26 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 632,
+                          "id": 878,
                           "name": "allExchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 617,
-                          "src": "762:12:4",
+                          "referencedDeclaration": 863,
+                          "src": "765:12:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
                             "typeString": "mapping(address => address[] storage ref)"
                           }
                         },
-                        "id": 634,
+                        "id": 880,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 633,
+                          "id": 879,
                           "name": "_token",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 627,
-                          "src": "775:6:4",
+                          "referencedDeclaration": 873,
+                          "src": "778:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1457,13 +1457,13 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "762:20:4",
+                        "src": "765:20:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_storage",
                           "typeString": "address[] storage ref"
                         }
                       },
-                      "id": 635,
+                      "id": 881,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1471,13 +1471,13 @@
                       "memberName": "push",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "762:25:4",
+                      "src": "765:25:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_arraypush_nonpayable$_t_address_$returns$_t_uint256_$",
                         "typeString": "function (address) returns (uint256)"
                       }
                     },
-                    "id": 637,
+                    "id": 883,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1485,20 +1485,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "762:36:4",
+                    "src": "765:36:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 638,
+                  "id": 884,
                   "nodeType": "ExpressionStatement",
-                  "src": "762:36:4"
+                  "src": "765:36:5"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 645,
+                    "id": 891,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1509,26 +1509,26 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 639,
+                          "id": 885,
                           "name": "allowedExchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 623,
-                          "src": "808:16:4",
+                          "referencedDeclaration": 869,
+                          "src": "811:16:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                             "typeString": "mapping(address => mapping(address => bool))"
                           }
                         },
-                        "id": 642,
+                        "id": 888,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 640,
+                          "id": 886,
                           "name": "_token",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 627,
-                          "src": "825:6:4",
+                          "referencedDeclaration": 873,
+                          "src": "828:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1539,21 +1539,21 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "808:24:4",
+                        "src": "811:24:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 643,
+                      "id": 889,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 641,
+                        "id": 887,
                         "name": "_exchange",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 625,
-                        "src": "833:9:4",
+                        "referencedDeclaration": 871,
+                        "src": "836:9:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1564,7 +1564,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "808:35:4",
+                      "src": "811:35:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1575,14 +1575,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "74727565",
-                      "id": 644,
+                      "id": 890,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "846:4:4",
+                      "src": "849:4:5",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -1590,56 +1590,56 @@
                       },
                       "value": "true"
                     },
-                    "src": "808:42:4",
+                    "src": "811:42:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 646,
+                  "id": 892,
                   "nodeType": "ExpressionStatement",
-                  "src": "808:42:4"
+                  "src": "811:42:5"
                 }
               ]
             },
             "documentation": "@notice Add an exchange to the list of accepted Exchanges\n@dev Exchange can not be another Smart Contract\n@dev onlyOwner - only open to element36 Account\n@param _exchange Address of the exchange",
-            "id": 648,
+            "id": 894,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 630,
+                "id": 876,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 629,
+                  "id": 875,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2401,
-                  "src": "742:9:4",
+                  "referencedDeclaration": 2810,
+                  "src": "745:9:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "742:9:4"
+                "src": "745:9:5"
               }
             ],
             "name": "addExchange",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 628,
+              "id": 874,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 625,
+                  "id": 871,
                   "name": "_exchange",
                   "nodeType": "VariableDeclaration",
-                  "scope": 648,
-                  "src": "698:17:4",
+                  "scope": 894,
+                  "src": "701:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1647,10 +1647,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 624,
+                    "id": 870,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "698:7:4",
+                    "src": "701:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1662,11 +1662,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 627,
+                  "id": 873,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 648,
-                  "src": "717:14:4",
+                  "scope": 894,
+                  "src": "720:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1674,10 +1674,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 626,
+                    "id": 872,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "717:7:4",
+                    "src": "720:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1688,30 +1688,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "697:35:4"
+              "src": "700:35:5"
             },
             "returnParameters": {
-              "id": 631,
+              "id": 877,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "752:0:4"
+              "src": "755:0:5"
             },
-            "scope": 696,
-            "src": "677:180:4",
+            "scope": 942,
+            "src": "680:180:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 665,
+              "id": 911,
               "nodeType": "Block",
-              "src": "1130:60:4",
+              "src": "1133:60:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 663,
+                    "id": 909,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1722,26 +1722,26 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 657,
+                          "id": 903,
                           "name": "allowedExchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 623,
-                          "src": "1140:16:4",
+                          "referencedDeclaration": 869,
+                          "src": "1143:16:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                             "typeString": "mapping(address => mapping(address => bool))"
                           }
                         },
-                        "id": 660,
+                        "id": 906,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 658,
+                          "id": 904,
                           "name": "_token",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 652,
-                          "src": "1157:6:4",
+                          "referencedDeclaration": 898,
+                          "src": "1160:6:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1752,21 +1752,21 @@
                         "isPure": false,
                         "lValueRequested": false,
                         "nodeType": "IndexAccess",
-                        "src": "1140:24:4",
+                        "src": "1143:24:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                           "typeString": "mapping(address => bool)"
                         }
                       },
-                      "id": 661,
+                      "id": 907,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 659,
+                        "id": 905,
                         "name": "_exchange",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 650,
-                        "src": "1165:9:4",
+                        "referencedDeclaration": 896,
+                        "src": "1168:9:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1777,7 +1777,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "1140:35:4",
+                      "src": "1143:35:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1788,14 +1788,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "66616c7365",
-                      "id": 662,
+                      "id": 908,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "bool",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1178:5:4",
+                      "src": "1181:5:5",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
@@ -1803,56 +1803,56 @@
                       },
                       "value": "false"
                     },
-                    "src": "1140:43:4",
+                    "src": "1143:43:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 664,
+                  "id": 910,
                   "nodeType": "ExpressionStatement",
-                  "src": "1140:43:4"
+                  "src": "1143:43:5"
                 }
               ]
             },
             "documentation": "@notice Remove an exchange from the list of accepted Exchanges\n@dev onlyOwner - only open to element36 Account\n@param _exchange Address of the exchange",
-            "id": 666,
+            "id": 912,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 655,
+                "id": 901,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 654,
+                  "id": 900,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2401,
-                  "src": "1120:9:4",
+                  "referencedDeclaration": 2810,
+                  "src": "1123:9:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
                     "typeString": "modifier ()"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "1120:9:4"
+                "src": "1123:9:5"
               }
             ],
             "name": "removeExchange",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 653,
+              "id": 899,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 650,
+                  "id": 896,
                   "name": "_exchange",
                   "nodeType": "VariableDeclaration",
-                  "scope": 666,
-                  "src": "1076:17:4",
+                  "scope": 912,
+                  "src": "1079:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1860,10 +1860,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 649,
+                    "id": 895,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1076:7:4",
+                    "src": "1079:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1875,11 +1875,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 652,
+                  "id": 898,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 666,
-                  "src": "1095:14:4",
+                  "scope": 912,
+                  "src": "1098:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1887,10 +1887,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 651,
+                    "id": 897,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1095:7:4",
+                    "src": "1098:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1901,25 +1901,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1075:35:4"
+              "src": "1078:35:5"
             },
             "returnParameters": {
-              "id": 656,
+              "id": 902,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1130:0:4"
+              "src": "1133:0:5"
             },
-            "scope": 696,
-            "src": "1052:138:4",
+            "scope": 942,
+            "src": "1055:138:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 681,
+              "id": 927,
               "nodeType": "Block",
-              "src": "1498:59:4",
+              "src": "1501:59:5",
               "statements": [
                 {
                   "expression": {
@@ -1928,26 +1928,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 675,
+                        "id": 921,
                         "name": "allowedExchanges",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 623,
-                        "src": "1515:16:4",
+                        "referencedDeclaration": 869,
+                        "src": "1518:16:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
                           "typeString": "mapping(address => mapping(address => bool))"
                         }
                       },
-                      "id": 677,
+                      "id": 923,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 676,
+                        "id": 922,
                         "name": "_token",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 670,
-                        "src": "1532:6:4",
+                        "referencedDeclaration": 916,
+                        "src": "1535:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1958,21 +1958,21 @@
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "IndexAccess",
-                      "src": "1515:24:4",
+                      "src": "1518:24:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                         "typeString": "mapping(address => bool)"
                       }
                     },
-                    "id": 679,
+                    "id": 925,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 678,
+                      "id": 924,
                       "name": "_exchange",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 668,
-                      "src": "1540:9:4",
+                      "referencedDeclaration": 914,
+                      "src": "1543:9:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -1983,37 +1983,37 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1515:35:4",
+                    "src": "1518:35:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 674,
-                  "id": 680,
+                  "functionReturnParameters": 920,
+                  "id": 926,
                   "nodeType": "Return",
-                  "src": "1508:42:4"
+                  "src": "1511:42:5"
                 }
               ]
             },
-            "documentation": "@notice Check if an exchange is on the list of accepted Exchanges\n@param _exchange Address of the exchange\n@return {\n  \"bool\": \"True when Exchange is listed\"\n}",
-            "id": 682,
+            "documentation": "@notice Check if an exchange is on the list of accepted Exchanges\n@param _exchange Address of the exchange\n@return {\n  \"bool\": \"true when Exchange is listed\"\n}",
+            "id": 928,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isAllowedExchange",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 671,
+              "id": 917,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 668,
+                  "id": 914,
                   "name": "_exchange",
                   "nodeType": "VariableDeclaration",
-                  "scope": 682,
-                  "src": "1434:17:4",
+                  "scope": 928,
+                  "src": "1437:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2021,10 +2021,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 667,
+                    "id": 913,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1434:7:4",
+                    "src": "1437:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2036,11 +2036,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 670,
+                  "id": 916,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 682,
-                  "src": "1453:14:4",
+                  "scope": 928,
+                  "src": "1456:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2048,10 +2048,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 669,
+                    "id": 915,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1453:7:4",
+                    "src": "1456:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2062,19 +2062,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1433:35:4"
+              "src": "1436:35:5"
             },
             "returnParameters": {
-              "id": 674,
+              "id": 920,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 673,
+                  "id": 919,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 682,
-                  "src": "1492:4:4",
+                  "scope": 928,
+                  "src": "1495:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2082,10 +2082,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 672,
+                    "id": 918,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1492:4:4",
+                    "src": "1495:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2095,45 +2095,45 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1491:6:4"
+              "src": "1494:6:5"
             },
-            "scope": 696,
-            "src": "1407:150:4",
+            "scope": 942,
+            "src": "1410:150:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 694,
+              "id": 940,
               "nodeType": "Block",
-              "src": "2172:44:4",
+              "src": "2171:44:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 690,
+                      "id": 936,
                       "name": "allExchanges",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 617,
-                      "src": "2189:12:4",
+                      "referencedDeclaration": 863,
+                      "src": "2188:12:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$dyn_storage_$",
                         "typeString": "mapping(address => address[] storage ref)"
                       }
                     },
-                    "id": 692,
+                    "id": 938,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 691,
+                      "id": 937,
                       "name": "_token",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 684,
-                      "src": "2202:6:4",
+                      "referencedDeclaration": 930,
+                      "src": "2201:6:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -2144,37 +2144,37 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "2189:20:4",
+                    "src": "2188:20:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage",
                       "typeString": "address[] storage ref"
                     }
                   },
-                  "functionReturnParameters": 689,
-                  "id": 693,
+                  "functionReturnParameters": 935,
+                  "id": 939,
                   "nodeType": "Return",
-                  "src": "2182:27:4"
+                  "src": "2181:27:5"
                 }
               ]
             },
             "documentation": "@notice Returns all registered exchange addresses for a given token address.\n@dev Note: Due to limitations of solidity, this method returns the full list of every address ever registered.\n@dev It does not consider exchanges, which might have been flagged false afterwards.\n@dev Therefore to be sure, an additional call to isAllowedExchange, would be necessary.\n@param _token Address of the token\n@return {\n  \"address[]\": List of address of exchanges\n}",
-            "id": 695,
+            "id": 941,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "getAllowedExchanges",
+            "name": "getAllExchanges",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 685,
+              "id": 931,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 684,
+                  "id": 930,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 695,
-                  "src": "2115:14:4",
+                  "scope": 941,
+                  "src": "2114:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2182,10 +2182,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 683,
+                    "id": 929,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2115:7:4",
+                    "src": "2114:7:5",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2196,19 +2196,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2114:16:4"
+              "src": "2113:16:5"
             },
             "returnParameters": {
-              "id": 689,
+              "id": 935,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 688,
+                  "id": 934,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 695,
-                  "src": "2154:16:4",
+                  "scope": 941,
+                  "src": "2153:16:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -2217,20 +2217,20 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 686,
+                      "id": 932,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2154:7:4",
+                      "src": "2153:7:5",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
                       }
                     },
-                    "id": 687,
+                    "id": 933,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2154:9:4",
+                    "src": "2153:9:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -2240,32 +2240,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2153:18:4"
+              "src": "2152:18:5"
             },
-            "scope": 696,
-            "src": "2086:130:4",
+            "scope": 942,
+            "src": "2089:126:5",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 697,
-        "src": "224:1994:4"
+        "scope": 943,
+        "src": "227:1990:5"
       }
     ],
-    "src": "0:2219:4"
+    "src": "0:2218:5"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.9+commit.e560f70d.Emscripten.clang"
   },
   "networks": {
-    "4": {
-      "events": {},
-      "links": {},
-      "address": "0x890FE9187C97415bEEd0a56444f55d521f8fF982",
-      "transactionHash": "0x6f919acbef0741f1aac4c3ab9ef846ca3ce6428d506a2923745be167f20e6f4f"
-    },
     "85458545": {
       "events": {
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
@@ -2288,12 +2282,12 @@
         }
       },
       "links": {},
-      "address": "0x2EfA086176a9A9814501Ce14521cE4539aD3d075",
-      "transactionHash": "0xd00df90f8b1f30f8ca811033e1dd009ee4c5c6dc43dbbd834f049c6c46b6897e"
+      "address": "0x2b26f23405e0fB422Cb908168916F7B794124ECd",
+      "transactionHash": "0xe69d948390bcdb4d50706e6a357df6599c5643969d4bf9cf230bf15bfe6f92a1"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-06-19T07:52:24.304Z",
+  "updatedAt": "2019-08-21T12:07:25.569Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {
@@ -2303,7 +2297,7 @@
           "_exchange": "Address of the exchange"
         }
       },
-      "getAllowedExchanges(address)": {
+      "getAllExchanges(address)": {
         "details": "Note: Due to limitations of solidity, this method returns the full list of every address ever registered.It does not consider exchanges, which might have been flagged false afterwards.Therefore to be sure, an additional call to isAllowedExchange, would be necessary.",
         "params": {
           "_token": "Address of the token"
@@ -2314,7 +2308,7 @@
         "params": {
           "_exchange": "Address of the exchange"
         },
-        "return": "{  \"bool\": \"True when Exchange is listed\" }"
+        "return": "{  \"bool\": \"true when Exchange is listed\" }"
       },
       "isOwner()": {
         "details": "Returns true if the caller is the current owner."
@@ -2342,7 +2336,7 @@
       "addExchange(address,address)": {
         "notice": "Add an exchange to the list of accepted Exchanges"
       },
-      "getAllowedExchanges(address)": {
+      "getAllExchanges(address)": {
         "notice": "Returns all registered exchange addresses for a given token address."
       },
       "isAllowedExchange(address,address)": {
@@ -2352,6 +2346,6 @@
         "notice": "Remove an exchange from the list of accepted Exchanges"
       }
     },
-    "notice": "Is responsible for keeping track of all allowed Exchanges."
+    "notice": "Is responsible for keeping track of all registered Exchanges."
   }
 }

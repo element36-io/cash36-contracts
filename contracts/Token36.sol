@@ -1,7 +1,6 @@
 pragma solidity ^0.5.9;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
-import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
 import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "./Controlled.sol";
@@ -11,7 +10,7 @@ import "./Initializable.sol";
 
 /// @title Token36 Base Contract
 /// @author element36.io
-contract Token36 is ERC20Detailed, ERC20Burnable, Initializable, Pausable, Controlled {
+contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
     using SafeMath for uint256;
 
     // User balances
@@ -201,6 +200,22 @@ contract Token36 is ERC20Detailed, ERC20Burnable, Initializable, Pausable, Contr
         _totalSupply = _totalSupply.add(value);
         _balances[account] = _balances[account].add(value);
         emit Transfer(address(0), account, value);
+    }
+
+    /**
+     * @dev Destroys `amount` tokens from the caller.
+     *
+     * See `ERC20._burn`.
+     */
+    function burn(uint256 amount) public {
+        _burn(msg.sender, amount);
+    }
+
+    /**
+     * @dev See `ERC20._burnFrom`.
+     */
+    function burnFrom(address account, uint256 amount) public {
+        _burnFrom(account, amount);
     }
 
     /**

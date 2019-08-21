@@ -76,14 +76,25 @@ module.exports = async (deployer, network) => {
   let cash36Compliance = await Cash36Compliance.deployed()
   let cash36Exchange = await Cash36Exchanges.deployed()
 
-  if (network == 'test') {
+
+  if (network == 'dev') {
+    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
+    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
+
+    await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
+
+  } else if (network == 'test') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
     //await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', USD36.address)
     //await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', GBP36.address)
 
     await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
-  } else if (network == 'main') {
 
+  } else if (network == 'main') {
+    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
+    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
+
+    await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
   }
 }
