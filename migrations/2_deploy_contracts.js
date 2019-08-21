@@ -77,7 +77,7 @@ module.exports = async (deployer, network) => {
   let cash36Exchange = await Cash36Exchanges.deployed()
 
 
-  if (network == 'local') {
+  if (network == 'dev') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
 

@@ -81,6 +81,9 @@ contract('Create and Test Token36', function (accounts) {
 
   it('...it should add accounts[1] as user we initial rights.', async function () {
     await Cash36ComplianceInstance.addUser(accounts[1], {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[1], web3.utils.fromAscii("ATTR_SELL"), 1, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[1], web3.utils.fromAscii("ATTR_SEND"), 1, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[1], web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: accounts[0]})
 
     var checkUser1 = await Cash36ComplianceInstance.checkUser(accounts[1], {from: accounts[0]})
     assert.equal(checkUser1, true, 'The checkUser1 was not correct.')
@@ -129,6 +132,9 @@ contract('Create and Test Token36', function (accounts) {
 
   it('...it should allow to transfer 25 CHF36 to accounts[2].', async function () {
     await Cash36ComplianceInstance.addUser(accounts[2], {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_SELL"), 1, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_SEND"), 1, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: accounts[0]})
 
     await CHF36Instance.transfer(accounts[2], 25, {from: accounts[1]})
 
