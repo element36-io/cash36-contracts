@@ -77,6 +77,9 @@ module.exports = async (deployer, network) => {
   await deployer.deploy(Cash36Company, "element36 AG");
   await cash36Compliance.addCompany(Cash36Company.address)
 
+  let element36Company = await Cash36Company.deployed();
+  element36Company.addOwner("0xcd0dd78b1a09f860f39218d1124e121bf52d71a9");
+
   if (network == 'dev') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
