@@ -50,6 +50,9 @@ contract Cash36Compliance is HasOfficer {
         companies[_company] = true;
         userLimits[_company] = uint256(-1);
         attributes[_company]["ATTR_BUY"] = Attribute("ATTR_BUY", 1);
+        attributes[_company]["ATTR_SELL"] = Attribute("ATTR_SELL", 1);
+        attributes[_company]["ATTR_RECEIVE"] = Attribute("ATTR_RECEIVE", 1);
+        attributes[_company]["ATTR_SEND"] = Attribute("ATTR_SEND", 1);
     }
 
     /**

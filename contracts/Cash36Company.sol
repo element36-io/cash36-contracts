@@ -27,6 +27,14 @@ contract Cash36Company {
         owners[msg.sender] = true;
     }
 
+    function name() public view returns (string) {
+        return name;
+    }
+
+    function metaData() public view returns (string) {
+        return metaData;
+    }
+
     function changeName(string calldata _name) external onlyOwners {
         name = _name;
     }
