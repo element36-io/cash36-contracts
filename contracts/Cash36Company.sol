@@ -9,10 +9,10 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
 contract Cash36Company {
 
     // Company name
-    string private name;
+    string private _name;
 
     // Some additional data about the company (could also be an ipfsHash in future)
-    string private metaData;
+    string private _metaData;
 
     // List of beneficial owners of the company
     mapping(address => bool) private owners;
@@ -22,17 +22,25 @@ contract Cash36Company {
         _;
     }
 
-    constructor(string memory _name) public {
-        name = _name;
+    constructor(string memory name) public {
+        _name = name;
         owners[msg.sender] = true;
     }
 
-    function changeName(string calldata _name) external onlyOwners {
-        name = _name;
+    function name() external view returns (string memory) {
+        return _name;
     }
 
-    function setMetaData(string calldata _metaData) external onlyOwners {
-        metaData = _metaData;
+    function metaData() external view returns (string memory) {
+        return _metaData;
+    }
+
+    function changeName(string calldata name) external onlyOwners {
+        _name = name;
+    }
+
+    function setMetaData(string calldata metaData) external onlyOwners {
+        _metaData = metaData;
     }
 
     function addOwner(address _newOwner) external onlyOwners {

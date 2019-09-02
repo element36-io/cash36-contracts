@@ -544,14 +544,14 @@
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/USD36/USD36.sol",
     "exportedSymbols": {
       "USD36": [
-        2203
+        2292
       ]
     },
-    "id": 2204,
+    "id": 2293,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2185,
+        "id": 2274,
         "literals": [
           "solidity",
           "^",
@@ -564,10 +564,10 @@
       {
         "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Token36.sol",
         "file": "./../Token36.sol",
-        "id": 2186,
+        "id": 2275,
         "nodeType": "ImportDirective",
-        "scope": 2204,
-        "sourceUnit": 1843,
+        "scope": 2293,
+        "sourceUnit": 1932,
         "src": "25:26:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -578,56 +578,56 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2187,
+              "id": 2276,
               "name": "Token36",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1842,
+              "referencedDeclaration": 1931,
               "src": "129:7:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Token36_$1842",
+                "typeIdentifier": "t_contract$_Token36_$1931",
                 "typeString": "contract Token36"
               }
             },
-            "id": 2188,
+            "id": 2277,
             "nodeType": "InheritanceSpecifier",
             "src": "129:7:16"
           }
         ],
         "contractDependencies": [
-          988,
-          1226,
-          1842,
-          2548,
-          2633,
-          3363,
-          3432
+          1077,
+          1315,
+          1931,
+          2637,
+          2722,
+          3452,
+          3521
         ],
         "contractKind": "contract",
         "documentation": "@title USD36 Token Contract\n @author element36.io",
         "fullyImplemented": true,
-        "id": 2203,
+        "id": 2292,
         "linearizedBaseContracts": [
-          2203,
-          1842,
-          988,
-          2633,
-          2548,
-          1226,
-          3363,
-          3432
+          2292,
+          1931,
+          1077,
+          2722,
+          2637,
+          1315,
+          3452,
+          3521
         ],
         "name": "USD36",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 2201,
+              "id": 2290,
               "nodeType": "Block",
               "src": "343:7:16",
               "statements": []
             },
             "documentation": null,
-            "id": 2202,
+            "id": 2291,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -636,7 +636,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "555320446f6c6c6172",
-                    "id": 2191,
+                    "id": 2280,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -654,7 +654,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "5553443336",
-                    "id": 2192,
+                    "id": 2281,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -672,7 +672,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "3138",
-                    "id": 2193,
+                    "id": 2282,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -693,7 +693,7 @@
                       "typeIdentifier": "t_rational_500000000000000000000000_by_1",
                       "typeString": "int_const 500000000000000000000000"
                     },
-                    "id": 2198,
+                    "id": 2287,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -701,7 +701,7 @@
                     "leftExpression": {
                       "argumentTypes": null,
                       "hexValue": "353030303030",
-                      "id": 2194,
+                      "id": 2283,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -724,7 +724,7 @@
                         "typeIdentifier": "t_rational_1000000000000000000_by_1",
                         "typeString": "int_const 1000000000000000000"
                       },
-                      "id": 2197,
+                      "id": 2286,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -732,7 +732,7 @@
                       "leftExpression": {
                         "argumentTypes": null,
                         "hexValue": "3130",
-                        "id": 2195,
+                        "id": 2284,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -752,7 +752,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "3138",
-                        "id": 2196,
+                        "id": 2285,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -780,17 +780,17 @@
                     }
                   }
                 ],
-                "id": 2199,
+                "id": 2288,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2190,
+                  "id": 2279,
                   "name": "Token36",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1842,
+                  "referencedDeclaration": 1931,
                   "src": "292:7:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_Token36_$1842_$",
+                    "typeIdentifier": "t_type$_t_contract$_Token36_$1931_$",
                     "typeString": "type(contract Token36)"
                   }
                 },
@@ -801,25 +801,25 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2189,
+              "id": 2278,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "282:2:16"
             },
             "returnParameters": {
-              "id": 2200,
+              "id": 2289,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "343:0:16"
             },
-            "scope": 2203,
+            "scope": 2292,
             "src": "271:79:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2204,
+        "scope": 2293,
         "src": "111:241:16"
       }
     ],
@@ -829,14 +829,14 @@
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/USD36/USD36.sol",
     "exportedSymbols": {
       "USD36": [
-        2203
+        2292
       ]
     },
-    "id": 2204,
+    "id": 2293,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2185,
+        "id": 2274,
         "literals": [
           "solidity",
           "^",
@@ -849,10 +849,10 @@
       {
         "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Token36.sol",
         "file": "./../Token36.sol",
-        "id": 2186,
+        "id": 2275,
         "nodeType": "ImportDirective",
-        "scope": 2204,
-        "sourceUnit": 1843,
+        "scope": 2293,
+        "sourceUnit": 1932,
         "src": "25:26:16",
         "symbolAliases": [],
         "unitAlias": ""
@@ -863,56 +863,56 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 2187,
+              "id": 2276,
               "name": "Token36",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1842,
+              "referencedDeclaration": 1931,
               "src": "129:7:16",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Token36_$1842",
+                "typeIdentifier": "t_contract$_Token36_$1931",
                 "typeString": "contract Token36"
               }
             },
-            "id": 2188,
+            "id": 2277,
             "nodeType": "InheritanceSpecifier",
             "src": "129:7:16"
           }
         ],
         "contractDependencies": [
-          988,
-          1226,
-          1842,
-          2548,
-          2633,
-          3363,
-          3432
+          1077,
+          1315,
+          1931,
+          2637,
+          2722,
+          3452,
+          3521
         ],
         "contractKind": "contract",
         "documentation": "@title USD36 Token Contract\n @author element36.io",
         "fullyImplemented": true,
-        "id": 2203,
+        "id": 2292,
         "linearizedBaseContracts": [
-          2203,
-          1842,
-          988,
-          2633,
-          2548,
-          1226,
-          3363,
-          3432
+          2292,
+          1931,
+          1077,
+          2722,
+          2637,
+          1315,
+          3452,
+          3521
         ],
         "name": "USD36",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 2201,
+              "id": 2290,
               "nodeType": "Block",
               "src": "343:7:16",
               "statements": []
             },
             "documentation": null,
-            "id": 2202,
+            "id": 2291,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [
@@ -921,7 +921,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "555320446f6c6c6172",
-                    "id": 2191,
+                    "id": 2280,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -939,7 +939,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "5553443336",
-                    "id": 2192,
+                    "id": 2281,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -957,7 +957,7 @@
                   {
                     "argumentTypes": null,
                     "hexValue": "3138",
-                    "id": 2193,
+                    "id": 2282,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -978,7 +978,7 @@
                       "typeIdentifier": "t_rational_500000000000000000000000_by_1",
                       "typeString": "int_const 500000000000000000000000"
                     },
-                    "id": 2198,
+                    "id": 2287,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
@@ -986,7 +986,7 @@
                     "leftExpression": {
                       "argumentTypes": null,
                       "hexValue": "353030303030",
-                      "id": 2194,
+                      "id": 2283,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1009,7 +1009,7 @@
                         "typeIdentifier": "t_rational_1000000000000000000_by_1",
                         "typeString": "int_const 1000000000000000000"
                       },
-                      "id": 2197,
+                      "id": 2286,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1017,7 +1017,7 @@
                       "leftExpression": {
                         "argumentTypes": null,
                         "hexValue": "3130",
-                        "id": 2195,
+                        "id": 2284,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1037,7 +1037,7 @@
                       "rightExpression": {
                         "argumentTypes": null,
                         "hexValue": "3138",
-                        "id": 2196,
+                        "id": 2285,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1065,17 +1065,17 @@
                     }
                   }
                 ],
-                "id": 2199,
+                "id": 2288,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 2190,
+                  "id": 2279,
                   "name": "Token36",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1842,
+                  "referencedDeclaration": 1931,
                   "src": "292:7:16",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_Token36_$1842_$",
+                    "typeIdentifier": "t_type$_t_contract$_Token36_$1931_$",
                     "typeString": "type(contract Token36)"
                   }
                 },
@@ -1086,25 +1086,25 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2189,
+              "id": 2278,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "282:2:16"
             },
             "returnParameters": {
-              "id": 2200,
+              "id": 2289,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "343:0:16"
             },
-            "scope": 2203,
+            "scope": 2292,
             "src": "271:79:16",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 2204,
+        "scope": 2293,
         "src": "111:241:16"
       }
     ],
@@ -1116,7 +1116,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-08-21T12:49:25.237Z",
+  "updatedAt": "2019-09-02T20:05:16.200Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {
