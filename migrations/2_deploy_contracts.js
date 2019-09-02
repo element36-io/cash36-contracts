@@ -70,12 +70,12 @@ module.exports = async (deployer, network) => {
   //let usd36 = await USD36.deployed()
   //usd36.changeController(USD36Controller.address)
 
-  // Deploy element36 as Company on Blockchain
-  await deployer.deploy(Cash36Company, "element36 AG");
-
   let cash36Compliance = await Cash36Compliance.deployed()
   let cash36Exchange = await Cash36Exchanges.deployed()
 
+  // Deploy element36 as Company on Blockchain and whitelist
+  await deployer.deploy(Cash36Company, "element36 AG");
+  await cash36Compliance.addCompany(Cash36Company.address)
 
   if (network == 'dev') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)

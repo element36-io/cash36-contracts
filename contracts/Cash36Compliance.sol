@@ -41,14 +41,26 @@ contract Cash36Compliance is HasOfficer {
     }
 
     /**
+     * @notice Add company once it passed KYC process - after that Company is handled as a User
+     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account
+     * @param _company Address of the KYCed company
+     */
+    function addCompany(address _company) public onlyComplianceOfficer {
+        users[_company] = true;
+        companies[_company] = true;
+        userLimits[_company] = uint256(-1);
+        attributes[_company]["ATTR_BUY"] = Attribute("ATTR_BUY", 1);
+    }
+
+    /**
      * @notice Check if a registered address is a KYCed element36 company
-     * @param _user Address of the user
+     * @param _company Address of the user
      * @return {
      *   "bool": "True when User is a registered company"
      * }
      */
-    function isCompany(address _user) public view returns (bool) {
-        return companies[_user];
+    function isCompany(address _company) public view returns (bool) {
+        return companies[_company];
     }
 
     /**
