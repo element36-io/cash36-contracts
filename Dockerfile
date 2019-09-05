@@ -1,23 +1,13 @@
 # node:alpine will be our base image to create this image
-FROM ubuntu:16.04
-
-RUN apt-get update
-RUN apt-get install -y curl git make g++
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update
-RUN apt-get install -y yarn
-
-COPY . /app
-
+FROM node:alpine
+# Set the /app directory as working directory
 WORKDIR /app
-
-RUN yarn
-
-EXPOSE 8545
-
-COPY ./start.sh ./
-RUN ["chmod", "+x", "./start.sh"]
-
-CMD ["./start.sh"]
+# Install ganache-cli globally
+RUN apk add --no-cache --virtual .gyp \
+  python \
+  make \
+  g++ \
+  && npm install -g ganache-cli \
+  && apk del .gyp
+# Set the default command for the image
+CMD ["ganache-cli", "-i 85458545", "-h", "0.0.0.0"]
