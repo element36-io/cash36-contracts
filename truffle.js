@@ -35,12 +35,6 @@ module.exports = {
             gas: 0xfffffffffff,
             gasPrice: 0x01
         },
-        local: {
-            host: "localhost",
-            port: 8545,
-            network_id: "85458545",
-            gas: 0x2fefd5
-        },
         dev: {
           host: "localhost",
           port: 8545,

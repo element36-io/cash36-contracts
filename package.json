@@ -14,23 +14,24 @@
   "scripts": {
     "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
     "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
-    "test": "./node_modules/.bin/truffle test --network local",
+    "test": "./node_modules/.bin/truffle test --network dev",
     "testrpc": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
-    "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
     "deploy:dev": "./node_modules/.bin/truffle migrate --reset --compile-all --network dev",
+    "deploy:test": "./node_modules/.bin/truffle migrate --reset --compile-all --network test",
+    "deploy:prod": "./node_modules/.bin/truffle migrate --network prod",
     "generate-readme": "./scripts/generate-readme.js",
     "gen-md": "for f in ./contracts/*.sol; do solmd $f --dest ./doc/$f.md --notoc; done",
     "graph": "./scripts/runSolGraph.sh",
-    "all": "yarn build && yarn lint && yarn deploy:local && yarn test"
+    "all": "yarn build && yarn lint && yarn deploy:dev && yarn test"
   },
   "dependencies": {
     "openzeppelin-solidity": "2.3.0",
     "truffle": "5.0.22"
   },
   "devDependencies": {
-    "ganache-cli": "6.4.4",
+    "ganache-cli": "6.6.0",
     "truffle-hdwallet-provider": "1.0.10",
     "babel-polyfill": "6.26.0",
     "solidity-coverage": "0.5.11",
