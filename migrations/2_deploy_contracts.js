@@ -77,15 +77,15 @@ module.exports = async (deployer, network) => {
   await deployer.deploy(Cash36Company, "element36 AG");
   await cash36Compliance.addCompany(Cash36Company.address)
 
-  let element36Company = await Cash36Company.deployed();
-  element36Company.addOwner("0xcd0dd78b1a09f860f39218d1124e121bf52d71a9");
-
   if (network == 'dev') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
 
     await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
 
+    // Current Owner Compliance Contract
+    let element36Company = await Cash36Company.deployed();
+    await element36Company.addOwner("0xcd0dd78b1a09f860f39218d1124e121bf52d71a9");
   } else if (network == 'test') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
@@ -94,10 +94,17 @@ module.exports = async (deployer, network) => {
 
     await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
 
+    // Current Owner Compliance Contract
+    let element36Company = await Cash36Company.deployed();
+    await element36Company.addOwner("0xcd0dd78b1a09f860f39218d1124e121bf52d71a9");
   } else if (network == 'main') {
-    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
-    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
+    await cash36Exchange.addExchange('0x5cf43737ccc03cfcb5af9841eaeb299f21f20003', CHF36.address)
+    await cash36Exchange.addExchange('0x5cf43737ccc03cfcb5af9841eaeb299f21f20003', EUR36.address)
 
-    await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
+    await cash36Compliance.changeOfficer('0x502aac877a292c1f4b9c7f55359e72ff21f90002')
+
+    // Current Owner Compliance Contract
+    let element36Company = await Cash36Company.deployed();
+    await element36Company.addOwner("0x502aac877a292c1f4b9c7f55359e72ff21f90002");
   }
 }

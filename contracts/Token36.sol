@@ -248,6 +248,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
         require(account != address(0), "address 0 not allowed");
         require(IToken36Controller(_controller).onBurn(account) == true, "Token36Controller rejected the burn");
 
+        // The controller of this contract can burn tokens at will - needed for recovery
         if (msg.sender != _controller) {
             _burn(account, value);
             _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));

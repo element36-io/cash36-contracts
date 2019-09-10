@@ -1089,6 +1089,31 @@
     "version": "0.5.9+commit.e560f70d.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event",
+          "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
+        }
+      },
+      "links": {},
+      "address": "0x9136829E6aFEc10616A6708ccceFB56C638A5659",
+      "transactionHash": "0x0e71f7fa493f1d6eac1bd390fc25b9723c5d501e6668d8b083067c5e469c26b3"
+    },
     "85458545": {
       "events": {
         "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
@@ -1111,12 +1136,12 @@
         }
       },
       "links": {},
-      "address": "0x2dC1569Bd49dA5c1cFFDA53463BCf6919096410a",
-      "transactionHash": "0x698470ad54fa9ff3a83353fdac4e20afafc45d1b275733a15f745c7811dd5069"
+      "address": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+      "transactionHash": "0x6ca99219ac4da71efe0c4083c7468a4ed2844b3b0b56464dd89b4696b1504389"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-05T12:05:06.823Z",
+  "updatedAt": "2019-09-09T18:13:19.759Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {

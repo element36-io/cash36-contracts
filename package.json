@@ -18,7 +18,7 @@
     "testrpc": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
-    "deploy:dev": "./node_modules/.bin/truffle migrate --reset --compile-all --network dev",
+    "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
     "deploy:test": "./node_modules/.bin/truffle migrate --reset --compile-all --network test",
     "deploy:prod": "./node_modules/.bin/truffle migrate --network prod",
     "generate-readme": "./scripts/generate-readme.js",
