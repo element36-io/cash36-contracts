@@ -67,8 +67,6 @@ release:
     - git config --global user.name "mb-element36"
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
-  dependencies:
-    - deploy
   retry: 1
   allow_failure: false
   only:
