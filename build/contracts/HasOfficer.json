@@ -66,14 +66,14 @@
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
     "exportedSymbols": {
       "HasOfficer": [
-        1239
+        1235
       ]
     },
-    "id": 1240,
+    "id": 1236,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1183,
+        "id": 1179,
         "literals": [
           "solidity",
           "^",
@@ -89,19 +89,19 @@
         "contractKind": "contract",
         "documentation": "@title Cash36 Interface holding the Compliance Officer\n @author element36.io",
         "fullyImplemented": true,
-        "id": 1239,
+        "id": 1235,
         "linearizedBaseContracts": [
-          1239
+          1235
         ],
         "name": "HasOfficer",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1185,
+            "id": 1181,
             "name": "_complianceOfficer",
             "nodeType": "VariableDeclaration",
-            "scope": 1239,
+            "scope": 1235,
             "src": "170:35:11",
             "stateVariable": true,
             "storageLocation": "default",
@@ -110,7 +110,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1184,
+              "id": 1180,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "170:7:11",
@@ -125,7 +125,7 @@
           },
           {
             "body": {
-              "id": 1196,
+              "id": 1192,
               "nodeType": "Block",
               "src": "297:115:11",
               "statements": [
@@ -139,7 +139,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1191,
+                        "id": 1187,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -148,18 +148,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1188,
+                            "id": 1184,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3555,
+                            "referencedDeclaration": 3551,
                             "src": "315:3:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 1189,
+                          "id": 1185,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -177,11 +177,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 1190,
+                          "id": 1186,
                           "name": "_complianceOfficer",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1185,
+                          "referencedDeclaration": 1181,
                           "src": "329:18:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -197,7 +197,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "616363657373206e6f7420616c6c6f7765642c206f6e6c7920636f6d706c69616e63654f666669636572",
-                        "id": 1192,
+                        "id": 1188,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -224,21 +224,21 @@
                           "typeString": "literal_string \"access not allowed, only complianceOfficer\""
                         }
                       ],
-                      "id": 1187,
+                      "id": 1183,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3558,
-                        3559
+                        3554,
+                        3555
                       ],
-                      "referencedDeclaration": 3559,
+                      "referencedDeclaration": 3555,
                       "src": "307:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1193,
+                    "id": 1189,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -252,23 +252,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1194,
+                  "id": 1190,
                   "nodeType": "ExpressionStatement",
                   "src": "307:87:11"
                 },
                 {
-                  "id": 1195,
+                  "id": 1191,
                   "nodeType": "PlaceholderStatement",
                   "src": "404:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 1197,
+            "id": 1193,
             "name": "onlyComplianceOfficer",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1186,
+              "id": 1182,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "297:0:11"
@@ -278,25 +278,25 @@
           },
           {
             "body": {
-              "id": 1205,
+              "id": 1201,
               "nodeType": "Block",
               "src": "458:48:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1203,
+                    "id": 1199,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1200,
+                      "id": 1196,
                       "name": "_complianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1185,
+                      "referencedDeclaration": 1181,
                       "src": "468:18:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -309,18 +309,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1201,
+                        "id": 1197,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3555,
+                        "referencedDeclaration": 3551,
                         "src": "489:3:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 1202,
+                      "id": 1198,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -340,32 +340,32 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1204,
+                  "id": 1200,
                   "nodeType": "ExpressionStatement",
                   "src": "468:31:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 1206,
+            "id": 1202,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1198,
+              "id": 1194,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "448:2:11"
             },
             "returnParameters": {
-              "id": 1199,
+              "id": 1195,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "458:0:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "437:69:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -373,54 +373,54 @@
           },
           {
             "body": {
-              "id": 1213,
+              "id": 1209,
               "nodeType": "Block",
               "src": "571:42:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1211,
+                    "id": 1207,
                     "name": "_complianceOfficer",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1185,
+                    "referencedDeclaration": 1181,
                     "src": "588:18:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 1210,
-                  "id": 1212,
+                  "functionReturnParameters": 1206,
+                  "id": 1208,
                   "nodeType": "Return",
                   "src": "581:25:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 1214,
+            "id": 1210,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "complianceOfficer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1207,
+              "id": 1203,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "538:2:11"
             },
             "returnParameters": {
-              "id": 1210,
+              "id": 1206,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1209,
+                  "id": 1205,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1214,
+                  "scope": 1210,
                   "src": "562:7:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -429,7 +429,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1208,
+                    "id": 1204,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "562:7:11",
@@ -445,7 +445,7 @@
               ],
               "src": "561:9:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "512:101:11",
             "stateMutability": "view",
             "superFunction": null,
@@ -453,25 +453,25 @@
           },
           {
             "body": {
-              "id": 1225,
+              "id": 1221,
               "nodeType": "Block",
               "src": "947:58:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1223,
+                    "id": 1219,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1221,
+                      "id": 1217,
                       "name": "_complianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1185,
+                      "referencedDeclaration": 1181,
                       "src": "957:18:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -482,11 +482,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1222,
+                      "id": 1218,
                       "name": "newComplianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1216,
+                      "referencedDeclaration": 1212,
                       "src": "978:20:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -499,27 +499,27 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1224,
+                  "id": 1220,
                   "nodeType": "ExpressionStatement",
                   "src": "957:41:11"
                 }
               ]
             },
             "documentation": "@notice Changes the ComplianceOfficer of the contract\n@dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n@param newComplianceOfficer The new compliance officer of the contract",
-            "id": 1226,
+            "id": 1222,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1219,
+                "id": 1215,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1218,
+                  "id": 1214,
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1197,
+                  "referencedDeclaration": 1193,
                   "src": "925:21:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -533,15 +533,15 @@
             "name": "changeOfficer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1217,
+              "id": 1213,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1216,
+                  "id": 1212,
                   "name": "newComplianceOfficer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1226,
+                  "scope": 1222,
                   "src": "888:28:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -550,7 +550,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1215,
+                    "id": 1211,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "888:7:11",
@@ -567,12 +567,12 @@
               "src": "887:30:11"
             },
             "returnParameters": {
-              "id": 1220,
+              "id": 1216,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "947:0:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "865:140:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -580,7 +580,7 @@
           },
           {
             "body": {
-              "id": 1237,
+              "id": 1233,
               "nodeType": "Block",
               "src": "1327:60:11",
               "statements": [
@@ -591,18 +591,18 @@
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     },
-                    "id": 1235,
+                    "id": 1231,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1233,
+                      "id": 1229,
                       "name": "_complianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1185,
+                      "referencedDeclaration": 1181,
                       "src": "1344:18:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -613,11 +613,11 @@
                     "operator": "==",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1234,
+                      "id": 1230,
                       "name": "addressToCheck",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1228,
+                      "referencedDeclaration": 1224,
                       "src": "1366:14:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -630,30 +630,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1232,
-                  "id": 1236,
+                  "functionReturnParameters": 1228,
+                  "id": 1232,
                   "nodeType": "Return",
                   "src": "1337:43:11"
                 }
               ]
             },
             "documentation": "@notice Check if given address it the assigned Compliance Officer\n@param addressToCheck Address to be checked\n@return {\n  \"bool\": \"True when address is the currently assigned complianceOfficer\"\n}",
-            "id": 1238,
+            "id": 1234,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isOfficer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1229,
+              "id": 1225,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1228,
+                  "id": 1224,
                   "name": "addressToCheck",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1238,
+                  "scope": 1234,
                   "src": "1277:22:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -662,7 +662,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1227,
+                    "id": 1223,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1277:7:11",
@@ -679,15 +679,15 @@
               "src": "1276:24:11"
             },
             "returnParameters": {
-              "id": 1232,
+              "id": 1228,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1231,
+                  "id": 1227,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1238,
+                  "scope": 1234,
                   "src": "1322:4:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -696,7 +696,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1230,
+                    "id": 1226,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1322:4:11",
@@ -711,14 +711,14 @@
               ],
               "src": "1321:6:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "1258:129:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1240,
+        "scope": 1236,
         "src": "110:1279:11"
       }
     ],
@@ -728,14 +728,14 @@
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
     "exportedSymbols": {
       "HasOfficer": [
-        1239
+        1235
       ]
     },
-    "id": 1240,
+    "id": 1236,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1183,
+        "id": 1179,
         "literals": [
           "solidity",
           "^",
@@ -751,19 +751,19 @@
         "contractKind": "contract",
         "documentation": "@title Cash36 Interface holding the Compliance Officer\n @author element36.io",
         "fullyImplemented": true,
-        "id": 1239,
+        "id": 1235,
         "linearizedBaseContracts": [
-          1239
+          1235
         ],
         "name": "HasOfficer",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1185,
+            "id": 1181,
             "name": "_complianceOfficer",
             "nodeType": "VariableDeclaration",
-            "scope": 1239,
+            "scope": 1235,
             "src": "170:35:11",
             "stateVariable": true,
             "storageLocation": "default",
@@ -772,7 +772,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1184,
+              "id": 1180,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "170:7:11",
@@ -787,7 +787,7 @@
           },
           {
             "body": {
-              "id": 1196,
+              "id": 1192,
               "nodeType": "Block",
               "src": "297:115:11",
               "statements": [
@@ -801,7 +801,7 @@
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         },
-                        "id": 1191,
+                        "id": 1187,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -810,18 +810,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1188,
+                            "id": 1184,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 3555,
+                            "referencedDeclaration": 3551,
                             "src": "315:3:11",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 1189,
+                          "id": 1185,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -839,11 +839,11 @@
                         "operator": "==",
                         "rightExpression": {
                           "argumentTypes": null,
-                          "id": 1190,
+                          "id": 1186,
                           "name": "_complianceOfficer",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1185,
+                          "referencedDeclaration": 1181,
                           "src": "329:18:11",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -859,7 +859,7 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "616363657373206e6f7420616c6c6f7765642c206f6e6c7920636f6d706c69616e63654f666669636572",
-                        "id": 1192,
+                        "id": 1188,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -886,21 +886,21 @@
                           "typeString": "literal_string \"access not allowed, only complianceOfficer\""
                         }
                       ],
-                      "id": 1187,
+                      "id": 1183,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3558,
-                        3559
+                        3554,
+                        3555
                       ],
-                      "referencedDeclaration": 3559,
+                      "referencedDeclaration": 3555,
                       "src": "307:7:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 1193,
+                    "id": 1189,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -914,23 +914,23 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1194,
+                  "id": 1190,
                   "nodeType": "ExpressionStatement",
                   "src": "307:87:11"
                 },
                 {
-                  "id": 1195,
+                  "id": 1191,
                   "nodeType": "PlaceholderStatement",
                   "src": "404:1:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 1197,
+            "id": 1193,
             "name": "onlyComplianceOfficer",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1186,
+              "id": 1182,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "297:0:11"
@@ -940,25 +940,25 @@
           },
           {
             "body": {
-              "id": 1205,
+              "id": 1201,
               "nodeType": "Block",
               "src": "458:48:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1203,
+                    "id": 1199,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1200,
+                      "id": 1196,
                       "name": "_complianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1185,
+                      "referencedDeclaration": 1181,
                       "src": "468:18:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -971,18 +971,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1201,
+                        "id": 1197,
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3555,
+                        "referencedDeclaration": 3551,
                         "src": "489:3:11",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
                         }
                       },
-                      "id": 1202,
+                      "id": 1198,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1002,32 +1002,32 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1204,
+                  "id": 1200,
                   "nodeType": "ExpressionStatement",
                   "src": "468:31:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 1206,
+            "id": 1202,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1198,
+              "id": 1194,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "448:2:11"
             },
             "returnParameters": {
-              "id": 1199,
+              "id": 1195,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "458:0:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "437:69:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1035,54 +1035,54 @@
           },
           {
             "body": {
-              "id": 1213,
+              "id": 1209,
               "nodeType": "Block",
               "src": "571:42:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1211,
+                    "id": 1207,
                     "name": "_complianceOfficer",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 1185,
+                    "referencedDeclaration": 1181,
                     "src": "588:18:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 1210,
-                  "id": 1212,
+                  "functionReturnParameters": 1206,
+                  "id": 1208,
                   "nodeType": "Return",
                   "src": "581:25:11"
                 }
               ]
             },
             "documentation": null,
-            "id": 1214,
+            "id": 1210,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "complianceOfficer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1207,
+              "id": 1203,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "538:2:11"
             },
             "returnParameters": {
-              "id": 1210,
+              "id": 1206,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1209,
+                  "id": 1205,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1214,
+                  "scope": 1210,
                   "src": "562:7:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1091,7 +1091,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1208,
+                    "id": 1204,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "562:7:11",
@@ -1107,7 +1107,7 @@
               ],
               "src": "561:9:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "512:101:11",
             "stateMutability": "view",
             "superFunction": null,
@@ -1115,25 +1115,25 @@
           },
           {
             "body": {
-              "id": 1225,
+              "id": 1221,
               "nodeType": "Block",
               "src": "947:58:11",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1223,
+                    "id": 1219,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1221,
+                      "id": 1217,
                       "name": "_complianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1185,
+                      "referencedDeclaration": 1181,
                       "src": "957:18:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1144,11 +1144,11 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1222,
+                      "id": 1218,
                       "name": "newComplianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1216,
+                      "referencedDeclaration": 1212,
                       "src": "978:20:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1161,27 +1161,27 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 1224,
+                  "id": 1220,
                   "nodeType": "ExpressionStatement",
                   "src": "957:41:11"
                 }
               ]
             },
             "documentation": "@notice Changes the ComplianceOfficer of the contract\n@dev onlyComplianceOfficer - only open to the currently assigned compliance Officer\n@param newComplianceOfficer The new compliance officer of the contract",
-            "id": 1226,
+            "id": 1222,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
                 "arguments": null,
-                "id": 1219,
+                "id": 1215,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 1218,
+                  "id": 1214,
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1197,
+                  "referencedDeclaration": 1193,
                   "src": "925:21:11",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1195,15 +1195,15 @@
             "name": "changeOfficer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1217,
+              "id": 1213,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1216,
+                  "id": 1212,
                   "name": "newComplianceOfficer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1226,
+                  "scope": 1222,
                   "src": "888:28:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1212,7 +1212,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1215,
+                    "id": 1211,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "888:7:11",
@@ -1229,12 +1229,12 @@
               "src": "887:30:11"
             },
             "returnParameters": {
-              "id": 1220,
+              "id": 1216,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "947:0:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "865:140:11",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1242,7 +1242,7 @@
           },
           {
             "body": {
-              "id": 1237,
+              "id": 1233,
               "nodeType": "Block",
               "src": "1327:60:11",
               "statements": [
@@ -1253,18 +1253,18 @@
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     },
-                    "id": 1235,
+                    "id": 1231,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 1233,
+                      "id": 1229,
                       "name": "_complianceOfficer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1185,
+                      "referencedDeclaration": 1181,
                       "src": "1344:18:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1275,11 +1275,11 @@
                     "operator": "==",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "id": 1234,
+                      "id": 1230,
                       "name": "addressToCheck",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1228,
+                      "referencedDeclaration": 1224,
                       "src": "1366:14:11",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1292,30 +1292,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1232,
-                  "id": 1236,
+                  "functionReturnParameters": 1228,
+                  "id": 1232,
                   "nodeType": "Return",
                   "src": "1337:43:11"
                 }
               ]
             },
             "documentation": "@notice Check if given address it the assigned Compliance Officer\n@param addressToCheck Address to be checked\n@return {\n  \"bool\": \"True when address is the currently assigned complianceOfficer\"\n}",
-            "id": 1238,
+            "id": 1234,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isOfficer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1229,
+              "id": 1225,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1228,
+                  "id": 1224,
                   "name": "addressToCheck",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1238,
+                  "scope": 1234,
                   "src": "1277:22:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1324,7 +1324,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1227,
+                    "id": 1223,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1277:7:11",
@@ -1341,15 +1341,15 @@
               "src": "1276:24:11"
             },
             "returnParameters": {
-              "id": 1232,
+              "id": 1228,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1231,
+                  "id": 1227,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1238,
+                  "scope": 1234,
                   "src": "1322:4:11",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1358,7 +1358,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1230,
+                    "id": 1226,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1322:4:11",
@@ -1373,14 +1373,14 @@
               ],
               "src": "1321:6:11"
             },
-            "scope": 1239,
+            "scope": 1235,
             "src": "1258:129:11",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1240,
+        "scope": 1236,
         "src": "110:1279:11"
       }
     ],
@@ -1392,7 +1392,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-11T09:38:21.932Z",
+  "updatedAt": "2019-09-12T14:54:01.922Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {

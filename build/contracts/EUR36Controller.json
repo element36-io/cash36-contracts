@@ -280,14 +280,14 @@
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/EUR36/EUR36Controller.sol",
     "exportedSymbols": {
       "EUR36Controller": [
-        1129
+        1125
       ]
     },
-    "id": 1130,
+    "id": 1126,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1099,
+        "id": 1095,
         "literals": [
           "solidity",
           "^",
@@ -300,10 +300,10 @@
       {
         "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Token36Controller.sol",
         "file": "./../Token36Controller.sol",
-        "id": 1100,
+        "id": 1096,
         "nodeType": "ImportDirective",
-        "scope": 1130,
-        "sourceUnit": 2273,
+        "scope": 1126,
+        "sourceUnit": 2269,
         "src": "25:36:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -314,63 +314,63 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1101,
+              "id": 1097,
               "name": "Token36Controller",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2272,
+              "referencedDeclaration": 2268,
               "src": "160:17:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Token36Controller_$2272",
+                "typeIdentifier": "t_contract$_Token36Controller_$2268",
                 "typeString": "contract Token36Controller"
               }
             },
-            "id": 1102,
+            "id": 1098,
             "nodeType": "InheritanceSpecifier",
             "src": "160:17:8"
           }
         ],
         "contractDependencies": [
-          1260,
-          2272,
-          2966
+          1256,
+          2268,
+          2962
         ],
         "contractKind": "contract",
         "documentation": "@title EUR36 Token Controller Contract\n @author element36.io",
         "fullyImplemented": true,
-        "id": 1129,
+        "id": 1125,
         "linearizedBaseContracts": [
-          1129,
-          2272,
-          2966,
-          1260
+          1125,
+          2268,
+          2962,
+          1256
         ],
         "name": "EUR36Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1127,
+              "id": 1123,
               "nodeType": "Block",
               "src": "280:132:8",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1113,
+                    "id": 1109,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1111,
+                      "id": 1107,
                       "name": "token",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1945,
+                      "referencedDeclaration": 1941,
                       "src": "290:5:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Token36_$1931",
+                        "typeIdentifier": "t_contract$_Token36_$1927",
                         "typeString": "contract Token36"
                       }
                     },
@@ -378,45 +378,45 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1112,
+                      "id": 1108,
                       "name": "_token",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1104,
+                      "referencedDeclaration": 1100,
                       "src": "298:6:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Token36_$1931",
+                        "typeIdentifier": "t_contract$_Token36_$1927",
                         "typeString": "contract Token36"
                       }
                     },
                     "src": "290:14:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Token36_$1931",
+                      "typeIdentifier": "t_contract$_Token36_$1927",
                       "typeString": "contract Token36"
                     }
                   },
-                  "id": 1114,
+                  "id": 1110,
                   "nodeType": "ExpressionStatement",
                   "src": "290:14:8"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1119,
+                    "id": 1115,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1115,
+                      "id": 1111,
                       "name": "compliance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1947,
+                      "referencedDeclaration": 1943,
                       "src": "314:10:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Compliance_$942",
+                        "typeIdentifier": "t_contract$_Cash36Compliance_$938",
                         "typeString": "contract Cash36Compliance"
                       }
                     },
@@ -427,11 +427,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 1117,
+                          "id": 1113,
                           "name": "_compliance",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1106,
+                          "referencedDeclaration": 1102,
                           "src": "344:11:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -446,18 +446,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 1116,
+                        "id": 1112,
                         "name": "Cash36Compliance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 942,
+                        "referencedDeclaration": 938,
                         "src": "327:16:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Cash36Compliance_$942_$",
+                          "typeIdentifier": "t_type$_t_contract$_Cash36Compliance_$938_$",
                           "typeString": "type(contract Cash36Compliance)"
                         }
                       },
-                      "id": 1118,
+                      "id": 1114,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -467,38 +467,38 @@
                       "nodeType": "FunctionCall",
                       "src": "327:29:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Compliance_$942",
+                        "typeIdentifier": "t_contract$_Cash36Compliance_$938",
                         "typeString": "contract Cash36Compliance"
                       }
                     },
                     "src": "314:42:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Cash36Compliance_$942",
+                      "typeIdentifier": "t_contract$_Cash36Compliance_$938",
                       "typeString": "contract Cash36Compliance"
                     }
                   },
-                  "id": 1120,
+                  "id": 1116,
                   "nodeType": "ExpressionStatement",
                   "src": "314:42:8"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1125,
+                    "id": 1121,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1121,
+                      "id": 1117,
                       "name": "exchanges",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1949,
+                      "referencedDeclaration": 1945,
                       "src": "366:9:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1031",
+                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1027",
                         "typeString": "contract Cash36Exchanges"
                       }
                     },
@@ -509,11 +509,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 1123,
+                          "id": 1119,
                           "name": "_exchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1108,
+                          "referencedDeclaration": 1104,
                           "src": "394:10:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -528,18 +528,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 1122,
+                        "id": 1118,
                         "name": "Cash36Exchanges",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1031,
+                        "referencedDeclaration": 1027,
                         "src": "378:15:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Cash36Exchanges_$1031_$",
+                          "typeIdentifier": "t_type$_t_contract$_Cash36Exchanges_$1027_$",
                           "typeString": "type(contract Cash36Exchanges)"
                         }
                       },
-                      "id": 1124,
+                      "id": 1120,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -549,55 +549,55 @@
                       "nodeType": "FunctionCall",
                       "src": "378:27:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1031",
+                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1027",
                         "typeString": "contract Cash36Exchanges"
                       }
                     },
                     "src": "366:39:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Cash36Exchanges_$1031",
+                      "typeIdentifier": "t_contract$_Cash36Exchanges_$1027",
                       "typeString": "contract Cash36Exchanges"
                     }
                   },
-                  "id": 1126,
+                  "id": 1122,
                   "nodeType": "ExpressionStatement",
                   "src": "366:39:8"
                 }
               ]
             },
             "documentation": null,
-            "id": 1128,
+            "id": 1124,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1109,
+              "id": 1105,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1104,
+                  "id": 1100,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1128,
+                  "scope": 1124,
                   "src": "216:14:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Token36_$1931",
+                    "typeIdentifier": "t_contract$_Token36_$1927",
                     "typeString": "contract Token36"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1103,
+                    "id": 1099,
                     "name": "Token36",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1931,
+                    "referencedDeclaration": 1927,
                     "src": "216:7:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Token36_$1931",
+                      "typeIdentifier": "t_contract$_Token36_$1927",
                       "typeString": "contract Token36"
                     }
                   },
@@ -606,10 +606,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1106,
+                  "id": 1102,
                   "name": "_compliance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1128,
+                  "scope": 1124,
                   "src": "232:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -618,7 +618,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1105,
+                    "id": 1101,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "232:7:8",
@@ -633,10 +633,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1108,
+                  "id": 1104,
                   "name": "_exchanges",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1128,
+                  "scope": 1124,
                   "src": "253:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -645,7 +645,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1107,
+                    "id": 1103,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "253:7:8",
@@ -662,19 +662,19 @@
               "src": "215:57:8"
             },
             "returnParameters": {
-              "id": 1110,
+              "id": 1106,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "280:0:8"
             },
-            "scope": 1129,
+            "scope": 1125,
             "src": "204:208:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1130,
+        "scope": 1126,
         "src": "132:282:8"
       }
     ],
@@ -684,14 +684,14 @@
     "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/EUR36/EUR36Controller.sol",
     "exportedSymbols": {
       "EUR36Controller": [
-        1129
+        1125
       ]
     },
-    "id": 1130,
+    "id": 1126,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1099,
+        "id": 1095,
         "literals": [
           "solidity",
           "^",
@@ -704,10 +704,10 @@
       {
         "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Token36Controller.sol",
         "file": "./../Token36Controller.sol",
-        "id": 1100,
+        "id": 1096,
         "nodeType": "ImportDirective",
-        "scope": 1130,
-        "sourceUnit": 2273,
+        "scope": 1126,
+        "sourceUnit": 2269,
         "src": "25:36:8",
         "symbolAliases": [],
         "unitAlias": ""
@@ -718,63 +718,63 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1101,
+              "id": 1097,
               "name": "Token36Controller",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2272,
+              "referencedDeclaration": 2268,
               "src": "160:17:8",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Token36Controller_$2272",
+                "typeIdentifier": "t_contract$_Token36Controller_$2268",
                 "typeString": "contract Token36Controller"
               }
             },
-            "id": 1102,
+            "id": 1098,
             "nodeType": "InheritanceSpecifier",
             "src": "160:17:8"
           }
         ],
         "contractDependencies": [
-          1260,
-          2272,
-          2966
+          1256,
+          2268,
+          2962
         ],
         "contractKind": "contract",
         "documentation": "@title EUR36 Token Controller Contract\n @author element36.io",
         "fullyImplemented": true,
-        "id": 1129,
+        "id": 1125,
         "linearizedBaseContracts": [
-          1129,
-          2272,
-          2966,
-          1260
+          1125,
+          2268,
+          2962,
+          1256
         ],
         "name": "EUR36Controller",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 1127,
+              "id": 1123,
               "nodeType": "Block",
               "src": "280:132:8",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1113,
+                    "id": 1109,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1111,
+                      "id": 1107,
                       "name": "token",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1945,
+                      "referencedDeclaration": 1941,
                       "src": "290:5:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Token36_$1931",
+                        "typeIdentifier": "t_contract$_Token36_$1927",
                         "typeString": "contract Token36"
                       }
                     },
@@ -782,45 +782,45 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "id": 1112,
+                      "id": 1108,
                       "name": "_token",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1104,
+                      "referencedDeclaration": 1100,
                       "src": "298:6:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Token36_$1931",
+                        "typeIdentifier": "t_contract$_Token36_$1927",
                         "typeString": "contract Token36"
                       }
                     },
                     "src": "290:14:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Token36_$1931",
+                      "typeIdentifier": "t_contract$_Token36_$1927",
                       "typeString": "contract Token36"
                     }
                   },
-                  "id": 1114,
+                  "id": 1110,
                   "nodeType": "ExpressionStatement",
                   "src": "290:14:8"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1119,
+                    "id": 1115,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1115,
+                      "id": 1111,
                       "name": "compliance",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1947,
+                      "referencedDeclaration": 1943,
                       "src": "314:10:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Compliance_$942",
+                        "typeIdentifier": "t_contract$_Cash36Compliance_$938",
                         "typeString": "contract Cash36Compliance"
                       }
                     },
@@ -831,11 +831,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 1117,
+                          "id": 1113,
                           "name": "_compliance",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1106,
+                          "referencedDeclaration": 1102,
                           "src": "344:11:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -850,18 +850,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 1116,
+                        "id": 1112,
                         "name": "Cash36Compliance",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 942,
+                        "referencedDeclaration": 938,
                         "src": "327:16:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Cash36Compliance_$942_$",
+                          "typeIdentifier": "t_type$_t_contract$_Cash36Compliance_$938_$",
                           "typeString": "type(contract Cash36Compliance)"
                         }
                       },
-                      "id": 1118,
+                      "id": 1114,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -871,38 +871,38 @@
                       "nodeType": "FunctionCall",
                       "src": "327:29:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Compliance_$942",
+                        "typeIdentifier": "t_contract$_Cash36Compliance_$938",
                         "typeString": "contract Cash36Compliance"
                       }
                     },
                     "src": "314:42:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Cash36Compliance_$942",
+                      "typeIdentifier": "t_contract$_Cash36Compliance_$938",
                       "typeString": "contract Cash36Compliance"
                     }
                   },
-                  "id": 1120,
+                  "id": 1116,
                   "nodeType": "ExpressionStatement",
                   "src": "314:42:8"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1125,
+                    "id": 1121,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1121,
+                      "id": 1117,
                       "name": "exchanges",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1949,
+                      "referencedDeclaration": 1945,
                       "src": "366:9:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1031",
+                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1027",
                         "typeString": "contract Cash36Exchanges"
                       }
                     },
@@ -913,11 +913,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 1123,
+                          "id": 1119,
                           "name": "_exchanges",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1108,
+                          "referencedDeclaration": 1104,
                           "src": "394:10:8",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
@@ -932,18 +932,18 @@
                             "typeString": "address"
                           }
                         ],
-                        "id": 1122,
+                        "id": 1118,
                         "name": "Cash36Exchanges",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1031,
+                        "referencedDeclaration": 1027,
                         "src": "378:15:8",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_contract$_Cash36Exchanges_$1031_$",
+                          "typeIdentifier": "t_type$_t_contract$_Cash36Exchanges_$1027_$",
                           "typeString": "type(contract Cash36Exchanges)"
                         }
                       },
-                      "id": 1124,
+                      "id": 1120,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -953,55 +953,55 @@
                       "nodeType": "FunctionCall",
                       "src": "378:27:8",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1031",
+                        "typeIdentifier": "t_contract$_Cash36Exchanges_$1027",
                         "typeString": "contract Cash36Exchanges"
                       }
                     },
                     "src": "366:39:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Cash36Exchanges_$1031",
+                      "typeIdentifier": "t_contract$_Cash36Exchanges_$1027",
                       "typeString": "contract Cash36Exchanges"
                     }
                   },
-                  "id": 1126,
+                  "id": 1122,
                   "nodeType": "ExpressionStatement",
                   "src": "366:39:8"
                 }
               ]
             },
             "documentation": null,
-            "id": 1128,
+            "id": 1124,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1109,
+              "id": 1105,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1104,
+                  "id": 1100,
                   "name": "_token",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1128,
+                  "scope": 1124,
                   "src": "216:14:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_Token36_$1931",
+                    "typeIdentifier": "t_contract$_Token36_$1927",
                     "typeString": "contract Token36"
                   },
                   "typeName": {
                     "contractScope": null,
-                    "id": 1103,
+                    "id": 1099,
                     "name": "Token36",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 1931,
+                    "referencedDeclaration": 1927,
                     "src": "216:7:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_Token36_$1931",
+                      "typeIdentifier": "t_contract$_Token36_$1927",
                       "typeString": "contract Token36"
                     }
                   },
@@ -1010,10 +1010,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1106,
+                  "id": 1102,
                   "name": "_compliance",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1128,
+                  "scope": 1124,
                   "src": "232:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1022,7 +1022,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1105,
+                    "id": 1101,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "232:7:8",
@@ -1037,10 +1037,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1108,
+                  "id": 1104,
                   "name": "_exchanges",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1128,
+                  "scope": 1124,
                   "src": "253:18:8",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1049,7 +1049,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1107,
+                    "id": 1103,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "253:7:8",
@@ -1066,19 +1066,19 @@
               "src": "215:57:8"
             },
             "returnParameters": {
-              "id": 1110,
+              "id": 1106,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "280:0:8"
             },
-            "scope": 1129,
+            "scope": 1125,
             "src": "204:208:8",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1130,
+        "scope": 1126,
         "src": "132:282:8"
       }
     ],
@@ -1141,7 +1141,7 @@
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-11T09:38:27.631Z",
+  "updatedAt": "2019-09-12T14:54:07.665Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {

@@ -6,10 +6,6 @@ var CHF36 = artifacts.require('./CHF36/CHF36.sol')
 var EUR36Controller = artifacts.require('./EUR36/EUR36Controller.sol')
 var EUR36 = artifacts.require('./EUR36/EUR36.sol')
 var Cash36Company = artifacts.require('./Cash36Company.sol')
-// var GBP36Controller = artifacts.require('./GBP36/GBP36Controller.sol')
-// var GBP36 = artifacts.require('./GBP36/GBP36.sol')
-// var USD36Controller = artifacts.require('./USD36/USD36Controller.sol')
-// var USD36 = artifacts.require('./USD36/USD36.sol')
 
 module.exports = async (deployer, network, accounts) => {
   await deployer.deploy(Cash36Compliance)
@@ -46,30 +42,6 @@ module.exports = async (deployer, network, accounts) => {
   await eur36.renouncePauser()
   await eur36.changeController(EUR36Controller.address)
 
-  // Deploy GBP36
-  //await deployer.deploy(GBP36)
-  //await deployer.deploy(GBP36Controller, GBP36.address, Cash36Compliance.address, Cash36Exchanges.address)
-
-  //cash36.registerToken('GBP36', GBP36.address)
-
-  //let gbp36Controller = await GBP36Controller.deployed()
-  //gbp36Controller.transferOwnership(Cash36.address)
-
-  //let gbp36 = await GBP36.deployed()
-  //gbp36.changeController(GBP36Controller.address)
-
-  // Deploy USD36
-  //await deployer.deploy(USD36)
-  //await deployer.deploy(USD36Controller, USD36.address, Cash36Compliance.address, Cash36Exchanges.address)
-
-  //cash36.registerToken('USD36', USD36.address)
-
-  //let usd36Controller = await USD36Controller.deployed()
-  //usd36Controller.transferOwnership(Cash36.address)
-
-  //let usd36 = await USD36.deployed()
-  //usd36.changeController(USD36Controller.address)
-
   let cash36Compliance = await Cash36Compliance.deployed()
   let cash36Exchange = await Cash36Exchanges.deployed()
 
@@ -80,6 +52,7 @@ module.exports = async (deployer, network, accounts) => {
   if (network == 'local') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
+    await cash36Exchange.transferOwnership('0x9bed0471bd661a394793d4a9b11064da30b20ce5')
 
     await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
     await cash36.transferOwnership('0x9bed0471bd661a394793d4a9b11064da30b20ce5')
@@ -87,9 +60,7 @@ module.exports = async (deployer, network, accounts) => {
     // Current Owner Compliance Contract
     let element36Company = await Cash36Company.deployed()
     await element36Company.addOwner('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
-
-    console.log(await web3.eth.getBalance(accounts[0]));
-
+    
     await web3.eth.sendTransaction({
       to: '0x5c84e251671f94b5de719106fb34a1e99828d15d',
       from: accounts[0],
@@ -105,16 +76,9 @@ module.exports = async (deployer, network, accounts) => {
       from: accounts[0],
       value: web3.utils.toWei('25', 'ether')
     })
-
-    console.log(await web3.eth.getBalance('0x5c84e251671f94b5de719106fb34a1e99828d15d'));
-    console.log(await web3.eth.getBalance('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9'));
-    console.log(await web3.eth.getBalance('0x9bed0471bd661a394793d4a9b11064da30b20ce5'));
-
   } else if (network == 'test') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
-    //await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', USD36.address)
-    //await cash36Compliance.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', GBP36.address)
 
     await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
 
