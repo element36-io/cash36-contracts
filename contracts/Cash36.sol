@@ -70,7 +70,7 @@ contract Cash36 is Ownable {
      *   address: Address of compliance contract
      * }
      */
-    function getCompliance(string calldata _symbol) external view onlyOwner returns (address) {
+    function getCompliance(string calldata _symbol) external view returns (address) {
         require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         return controller.getComplianceContract();
@@ -96,7 +96,7 @@ contract Cash36 is Ownable {
      *   address: Address of exchanges contract
      * }
      */
-    function getExchangesContract(string calldata _symbol) external view onlyOwner returns (address) {
+    function getExchangesContract(string calldata _symbol) external view returns (address) {
         require(registeredSymbol[_symbol], "not a registered symbol");
         Token36Controller controller = Token36Controller(Token36(tokens[tokenIndexBySymbol[_symbol]]).controller());
         return controller.getExchangesContract();
