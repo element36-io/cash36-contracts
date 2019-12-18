@@ -80,7 +80,7 @@ publish:
     - npm install -g npm-publish-git-tag
     - echo "//npm.pkg.github.com/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - echo "registry=https://npm.pkg.github.com/element36-io" > .npmrc
-    - npm-publish-git-tag --access public
+    - npm-publish-git-tag --access private
   allow_failure: false
   only:
     - master
