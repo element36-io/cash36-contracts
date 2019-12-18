@@ -63,8 +63,8 @@ release:
   tags:
     - dokcer
   script:
-    - git config --global user.email "m@element36.io"
-    - git config --global user.name "mb-element36"
+    - git config --global user.email "w@element36.io"
+    - git config --global user.name "walter.strametz"
     - npm install -g semantic-release-gitlab
     - semantic-release-gitlab
   retry: 1
@@ -78,8 +78,8 @@ publish:
     - dokcer
   script:
     - npm install -g npm-publish-git-tag
-    - echo "registry=http://167.99.243.81:4873/" > ~/.npmrc
-    - echo "//167.99.243.81:4873/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
+    - echo "registry=http://npm.pkg.github.com/" > ~/.npmrc
+    - echo "//npm.pkg.github.com/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
     - npm-publish-git-tag --access public
   allow_failure: false
   only:
