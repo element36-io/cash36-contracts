@@ -27,6 +27,38 @@ contract Token36Controller is IToken36Controller, Ownable {
         _;
     }
 
+
+    /**
+    * @notice Controller Hook called in controlled Token on every transfer. Has no "_to" because this function is used in a wallet-free context. 
+    * @notice Does all required compliance checks and only allows the transfer if user passes them all.
+    * @param _from Sender account address
+    * @param _amount Amount
+    */
+    function onTransfer(address _from, uint _amount) public view returns (bool) {
+        // Only the Token itself can call this - msg.sender is not the "_from" value but the calling contract
+        require(msg.sender == address(token), "Only callable from controlled Token");
+
+        // Check Compliance, unless sending address is a contract
+        if (Address.isContract(_from) == false || compliance.isCompany(_from)) {
+            // Check if user _from is KYCed and not blacklisted
+            if (!compliance.checkUser(_from)) {
+                return false;
+            }
+
+            // Check if user _from within limits
+            if (!compliance.checkUserLimit(_from, _amount, token.balanceOf(_from))) {
+                return false;
+            }
+
+            if (!compliance.hasAttribute(_from, "ATTR_SEND")) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
     /**
     * @notice Controller Hook called in controlled Token on every transfer.
     * @notice Does all required compliance checks and only allows the transfer if user passes them all.
@@ -35,7 +67,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     * @param _amount Amount
     */
     function onTransfer(address _from, address _to, uint _amount) public view returns (bool) {
-        // Only the Token itself can call this
+        // Only the Token itself can call this - msg.sender is not the "_from" value but the calling contract
         require(msg.sender == address(token), "Only callable from controlled Token");
 
         // Check Compliance, unless receiving address is a contract
@@ -55,6 +87,7 @@ contract Token36Controller is IToken36Controller, Ownable {
             }
         }
 
+        // Check Compliance, unless sending address is a contract
         if (Address.isContract(_from) == false || compliance.isCompany(_from)) {
             // Check if user _from is KYCed and not blacklisted
             if (!compliance.checkUser(_from)) {

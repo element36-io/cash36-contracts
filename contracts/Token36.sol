@@ -28,6 +28,10 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
     // Burn Event
     event Burn(address indexed burner, uint256 value);
 
+    // Wallet free Transfer Event which is picked up by the server
+    event InitiateTransfer(address indexed source, bytes32 indexed transactionHash, uint256 value);
+
+
     // Constructor
     constructor(
         string memory name,
@@ -93,6 +97,23 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
         require(IToken36Controller(_controller).onTransfer(msg.sender, to, value) == true, "Token36Controller rejected the transfer");
 
         _transfer(msg.sender, to, value);
+        return true;
+    }
+
+
+    /**
+     * @dev Inititate transfer tokens or funds to  based on  hash of a transaction (DATA, 32 Bytes - hash of a transaction)
+     * The idea is following scenario/use case: User Alice has no wallet. Alice uses Cash36 to do a bank-payment to Bob -  
+     * means that  Cash36 will send funds (Cash36 Tokens) to Bob. If Bob wants to send funds back to Alice (e.g. for yield-payment),
+     * Then Bob has no wallet address of Alice. Bob uses the transaction-Id from the initial payment to refer to Alice and trigger a 
+     * transfer of his funds (tokens) to Alice.   
+     * @param transactionHash The hash of the transaction which holds to the identity of the receiver. Will be evaluated on the server side. 
+     * @param value The amount to be transferred.
+     */
+    function transfer(bytes32 transactionHash, uint256 value) public whenNotPaused returns (bool) {     
+        require(IToken36Controller(_controller).onTransfer(msg.sender, value) == true, "Token36Controller rejected the transfer");
+        // issue payment
+        emit InitiateTransfer(msg.sender,transactionHash,value);
         return true;
     }
 

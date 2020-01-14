@@ -2,7 +2,7 @@ require('@babel/polyfill')
 
 const HDWalletProvider = require('@truffle/hdwallet-provider')
 
-require('dotenv').config()  // Store environment-specific variable from '.env' to process.env
+//require('dotenv').config()  // Store environment-specific variable from '.env' to process.env
 
 
 function getProvider (keysFile, rpcUrl) {
@@ -39,6 +39,11 @@ module.exports = {
     },
     development: {
       host: '0.0.0.0',
+      port: 8545,
+      network_id: '85458545',
+    },
+    localTest: {
+      host: 'localhost',
       port: 8545,
       network_id: '85458545',
     },
