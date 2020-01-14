@@ -19,7 +19,8 @@
     "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
     "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
     "test": "./node_modules/.bin/truffle test --network localTest",
-    "testrpc": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545",
+    "testrpc": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545 ",
+    "testrpcdata": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545 --db=./data",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
     "oyente": "for f in ./contracts/*.sol; do python ~/element36/temp/oyente/oyente/oyente.py -s $f; done",
     "deploy:local": "./node_modules/.bin/truffle migrate --reset --compile-all --network local",
@@ -35,7 +36,7 @@
     "dotenv": "^8.2.0",
     "openzeppelin-solidity": "2.4.0",
     "solgraph": "^0.3.3",
-    "truffle": "5.1.7"
+    "truffle": "5.1.8"
   },
   "devDependencies": {
     "@babel/polyfill": "7.7.0",
@@ -58,7 +59,5 @@
   "main": "index.js",
   "bugs": {
     "url": "https://gitlab.com/cash36/contracts/issues"
-  },
-  "readme": "ERROR: No README data found!",
-  "_id": "cash36-contracts@0.3.14"
+  }
 }

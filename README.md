@@ -20,12 +20,22 @@ see https://yarnpkg.com/lang/en/docs/install/
 - Clone repo
 - Checkout Branch develop
 - run 'yarn'
-- run 'yarn tesrpc'
+- run 'yarn testrpc'
 - run 'yarn deploy:testrpc'
 
 This starts a local testrpc client and deploys the contracts.
 
+Start with exising data: 
+- run 'yarn testrpcdata'
+
+
 ### Useful links
 https://github.com/ConsenSys/smart-contract-best-practices
 
-Thank you...
+
+### Local development with current state in ./data
+
+w@x1:~/workspace/contracts$ ganache-cli -d -i 85458545 -b 5 -h 0.0.0.0 --db=./data -a 1
+
+0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e: 10 kCHF, 10k kEUR
+0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1: 20 kCHF, 20k kEUR
