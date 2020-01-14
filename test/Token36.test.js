@@ -1,7 +1,7 @@
 /**
  * Contains all Test specific for CHF36
  */
-const {BN, constants, expectEvent, expectRevert} = require('openzeppelin-test-helpers')
+const {BN, constants, expectEvent, expectRevert} = require('@openzeppelin/test-helpers')
 
 const Cash36 = artifacts.require('./Cash36.sol')
 const Cash36Compliance = artifacts.require('./Cash36Compliance.sol')
