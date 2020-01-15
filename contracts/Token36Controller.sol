@@ -22,14 +22,14 @@ contract Token36Controller is IToken36Controller, Ownable {
     Cash36Exchanges internal exchanges;
 
     // Only Exchanges are allowed to handle certain functions
-    modifier onlyAllowedExchanges {
-        require(exchanges.isAllowedExchange(msg.sender, address(token)), "only registered exchanges allowed");
+    modifier onlyExchangesOrOfficers {
+        require(exchanges.isAllowedExchange(msg.sender, address(token)) || compliance.isOfficer(msg.sender), "sender not registered");
         _;
     }
 
 
     /**
-    * @notice Controller Hook called in controlled Token on every transfer. Has no "_to" because this function is used in a wallet-free context. 
+    * @notice Controller Hook called in Token on transfer. Has no _to because this fx is used in a wallet-free context 
     * @notice Does all required compliance checks and only allows the transfer if user passes them all.
     * @param _from Sender account address
     * @param _amount Amount
@@ -117,7 +117,8 @@ contract Token36Controller is IToken36Controller, Ownable {
         require(msg.sender == address(token), "Only callable from controlled Token");
 
         // Check Compliance first
-        if (Address.isContract(_from) == false || compliance.isCompany(_from)) {
+        // Exceptions for contracts, compliacne officers and registered companies. 
+        if (Address.isContract(_from) == false || compliance.isCompany(_from) || compliance.isOfficer(_from) == false) {
             if (!compliance.checkUser(_from)) {
                 return false;
             }
@@ -135,7 +136,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     * @param _receiver Recipient account address
     * @param _amount Amount to mint
     */
-    function mint(address _receiver, uint256 _amount) external onlyAllowedExchanges {
+    function mint(address _receiver, uint256 _amount) external onlyExchangesOrOfficers {
         token.mint(_receiver, _amount);
     }
 
@@ -146,7 +147,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     * @param _amount Amount to burn
     */
 
-    function burn(address _from, uint256 _amount) external onlyAllowedExchanges {
+    function burn(address _from, uint256 _amount) external onlyExchangesOrOfficers {
         token.burnFrom(_from, _amount);
     }
 

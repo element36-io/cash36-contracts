@@ -94,7 +94,7 @@ contract('Create and Test Token36', function (accounts) {
 
   it('...it should mint 200 CHF36 and assign it to accounts[1].', async function () {
     await CHF36ControllerInstance.mint(accounts[1], 200, {from: exchangeAddress})
-
+    
     var newBalanceFor1 = await CHF36Instance.balanceOf(accounts[1])
     assert.equal(newBalanceFor1, '200', 'The balance was not correct.')
 
@@ -136,7 +136,7 @@ contract('Create and Test Token36', function (accounts) {
     await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_SEND"), 1, {from: accounts[0]})
     await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: accounts[0]})
 
-    await CHF36Instance.transfer(accounts[2], 25, {from: accounts[1]})
+    var txReceipt = await  CHF36Instance.transfer(accounts[2], 25, {from: accounts[1]})
 
     var newBalanceFor1 = await CHF36Instance.balanceOf(accounts[1])
     assert.equal(newBalanceFor1, '100', 'The balance was not correct.')
@@ -146,6 +146,22 @@ contract('Create and Test Token36', function (accounts) {
 
     var totalSupply = await CHF36Instance.totalSupply()
     assert.equal(totalSupply, '125', 'The totalSupply was not correct.')
+
+     
+ 
+    //InitiateTransfer(address indexed source, bytes32 indexed transactionHash, uint256 amount);
+    // https://forum.openzeppelin.com/t/how-to-test-for-events-that-are-dispatched-in-a-nested-operation/955/2
+    const txReceiptClue= await CHF36Instance.transferClue("0x1234567890",25, {from:accounts[1]})  
+    const event = expectEvent.inLogs(txReceiptClue.logs, 'InitiateTransfer', {
+      from: accounts[1],
+      transactionHash: "0x1234567890000000000000000000000000000000000000000000000000000000",
+      amount: '25'
+    });
+
+
+    var totalSupply = await CHF36Instance.totalSupply()
+    assert.equal(totalSupply, '100', 'The totalSupply was not correct.')
+
   })
 
   it('...it should allow to transferFrom 5 CHF36 to accounts[2] as accounts[3].', async function () {
@@ -160,13 +176,13 @@ contract('Create and Test Token36', function (accounts) {
     await CHF36Instance.transferFrom(accounts[1], accounts[2], 5, {from: accounts[3]})
 
     var newBalanceFor1 = await CHF36Instance.balanceOf(accounts[1])
-    assert.equal(newBalanceFor1, '95', 'The balance was not correct.')
+    assert.equal(newBalanceFor1, '70', 'The balance was not correct.')  //95
 
     var newBalanceFor2 = await CHF36Instance.balanceOf(accounts[2])
     assert.equal(newBalanceFor2, '30', 'The balance was not correct.')
 
     var totalSupply = await CHF36Instance.totalSupply()
-    assert.equal(totalSupply, '125', 'The totalSupply was not correct.')
+    assert.equal(totalSupply, '100', 'The totalSupply was not correct.') // 125
   })
 
   it('...it should not allow to transfer if accounts[2] is on blacklist.', async function () {
@@ -179,7 +195,7 @@ contract('Create and Test Token36', function (accounts) {
     assert.equal(enabled, false, 'The user was not disabled.')
 
     var newBalanceFor2 = await CHF36Instance.balanceOf(accounts[1])
-    assert.equal(newBalanceFor2, '95', 'The balance was not correct.')
+    assert.equal(newBalanceFor2, '70', 'The balance was not correct.')  //95
 
     await Cash36ComplianceInstance.unblockUser(accounts[2], {from: accounts[0]})
 
@@ -189,6 +205,56 @@ contract('Create and Test Token36', function (accounts) {
     await CHF36Instance.transfer(accounts[1], 5, {from: accounts[2]})
 
     var newBalanceFor2After = await CHF36Instance.balanceOf(accounts[1])
-    assert.equal(newBalanceFor2After, '100', 'The balance was not correct.')
+    assert.equal(newBalanceFor2After, '75', 'The balance was not correct.') //100
+  })
+
+
+  it('...it should not be possible for a normal user to MINT coins ', async function () {
+    await expectRevert.unspecified(CHF36ControllerInstance.mint(accounts[2], 5, {from: accounts[1]}))
+    
+    var isOfficer = await Cash36ComplianceInstance.isOfficer(accounts[0])
+    assert.equal(isOfficer, true, 'The user is not an officer')
+  
+    CHF36ControllerInstance.mint(accounts[1], 5, {from: accounts[0]})
+    var newBalanceFor2After = await CHF36Instance.balanceOf(accounts[1])
+    assert.equal(newBalanceFor2After, '80', 'The balance was not correct.') 
+    var totalSupply = await CHF36Instance.totalSupply()
+    assert.equal(totalSupply, '105', 'The totalSupply was not correct.') 
+
+  })
+
+  it('...it should not be possible for a normal user to BURN coins ', async function () {
+    await expectRevert.unspecified(CHF36ControllerInstance.burn(accounts[2], 5, {from: accounts[1]}))
+    
+    var isOfficer = await Cash36ComplianceInstance.isOfficer(accounts[0])
+    assert.equal(isOfficer, true, 'The user is not an officer')
+  
+    CHF36ControllerInstance.burn(accounts[1], 5, {from: accounts[0]})
+    var newBalanceFor2After = await CHF36Instance.balanceOf(accounts[1])
+    assert.equal(newBalanceFor2After, '75', 'The balance was not correct.') 
+    var totalSupply = await CHF36Instance.totalSupply()
+    assert.equal(totalSupply, '100', 'The totalSupply was not correct.') 
+
+  })
+
+
+  it('...it should not allow to transfer if accounts[2] is locked Forever.', async function () {
+    var enabled = await Cash36ComplianceInstance.checkUser(accounts[2])
+    assert.equal(enabled, true, 'The user was not enabled.')
+
+    await Cash36ComplianceInstance.lockAccountForever(accounts[2], {from: accounts[0]})
+
+    enabled = await Cash36ComplianceInstance.checkUser(accounts[2])
+    assert.equal(enabled, false, 'The user was not disabled.')
+
+    await Cash36ComplianceInstance.unblockUser(accounts[2], {from: accounts[0]})
+
+    enabled = await Cash36ComplianceInstance.checkUser(accounts[2])
+    assert.equal(enabled, false, 'The user should stay disabled.')
+
+    await expectRevert.unspecified(CHF36Instance.transfer(accounts[1], 5, {from: accounts[2]}))
+
+    //var newBalanceFor2After = await CHF36Instance.balanceOf(accounts[1])
+    //assert.equal(newBalanceFor2After, '75', 'The balance was not correct.') //100 */
   })
 })

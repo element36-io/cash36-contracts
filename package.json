@@ -18,7 +18,8 @@
   "scripts": {
     "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
     "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
-    "test": "./node_modules/.bin/truffle test --network localTest",
+    "test": "./node_modules/.bin/truffle test --show-events --network localTest",
+    "test36": "./node_modules/.bin/truffle test  ./test/Token36.test.js --show-events  --network localTest",
     "testrpc": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545 ",
     "testrpcdata": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545 --db=./data",
     "test:coverage": "rm -rf ./coverage && rm -rf ./doc/coverage && SKIP_GAS_CHECKS=true ./node_modules/.bin/solidity-coverage && mv ./coverage ./doc && rm -rf ./doc/coverage/lcov-report",
