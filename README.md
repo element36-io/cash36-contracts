@@ -32,10 +32,18 @@ Start with exising data:
 ### Useful links
 https://github.com/ConsenSys/smart-contract-best-practices
 
+### Successfully built with node 8.10
+
+Install nvm - see https://github.com/nvm-sh/nvm
+
+nvm install lts/carbon 
+nvm use lts/carbon
+yarn install
+yarn testrpc
+yarn test
+
+Debuggiong notes: including core 
 
 ### Local development with current state in ./data
 
 w@x1:~/workspace/contracts$ ganache-cli -d -i 85458545 -b 5 -h 0.0.0.0 --db=./data -a 1
-
-0x6d1cf1a3d5f7868f0a13c76262ed4683e1f61a0e: 10 kCHF, 10k kEUR
-0x90f8bf6a479f320ead074411a4b0e7944ea8c9c1: 20 kCHF, 20k kEUR

@@ -113,6 +113,7 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
     function transferClue(bytes32 identityClue, uint256 value) public whenNotPaused returns (bool) {     
         require(IToken36Controller(_controller).onTransfer(msg.sender, value) == true, "Token36Controller rejected tx");
         // issue payment
+        //msg sender is a contract
         _burn(msg.sender,value);
         emit InitiateTransfer(msg.sender,identityClue,value);
         return true;
@@ -270,11 +271,11 @@ contract Token36 is ERC20Detailed, Initializable, Pausable, Controlled {
         require(account != address(0), "address 0 not allowed");
         require(IToken36Controller(_controller).onBurn(account) == true, "Token36Controller rejected the burn");
 
-        // The controller of this contract can burn tokens at will - needed for recovery
+       
         if (msg.sender != _controller) {
             _burn(account, value);
             _approve(account, msg.sender, _allowed[account][msg.sender].sub(value));
-        } else {
+        } else {  // The controller of this contract can burn tokens at will - needed for recovery
             _burn(account, value);
         }
     }

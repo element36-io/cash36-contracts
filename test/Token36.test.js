@@ -146,8 +146,6 @@ contract('Create and Test Token36', function (accounts) {
 
     var totalSupply = await CHF36Instance.totalSupply()
     assert.equal(totalSupply, '125', 'The totalSupply was not correct.')
-
-     
  
     //InitiateTransfer(address indexed source, bytes32 indexed transactionHash, uint256 amount);
     // https://forum.openzeppelin.com/t/how-to-test-for-events-that-are-dispatched-in-a-nested-operation/955/2

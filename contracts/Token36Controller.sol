@@ -117,7 +117,9 @@ contract Token36Controller is IToken36Controller, Ownable {
         require(msg.sender == address(token), "Only callable from controlled Token");
 
         // Check Compliance first
-        // Exceptions for contracts, compliacne officers and registered companies. 
+        // Exceptions for contracts, compliacne officers and registered companies.
+        if (Address.isContract(_from) == true) return true; 
+       
         if (Address.isContract(_from) == false || compliance.isCompany(_from) || compliance.isOfficer(_from) == false) {
             if (!compliance.checkUser(_from)) {
                 return false;

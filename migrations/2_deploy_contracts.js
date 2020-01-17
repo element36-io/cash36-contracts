@@ -6,6 +6,8 @@ var CHF36 = artifacts.require('./CHF36/CHF36.sol')
 var EUR36Controller = artifacts.require('./EUR36/EUR36Controller.sol')
 var EUR36 = artifacts.require('./EUR36/EUR36.sol')
 var Cash36Company = artifacts.require('./Cash36Company.sol')
+var Ping = artifacts.require('./Ping.sol')
+
 
 module.exports = async (deployer, network, accounts) => {
   await deployer.deploy(Cash36Compliance)
@@ -48,6 +50,8 @@ module.exports = async (deployer, network, accounts) => {
   // Deploy element36 as Company on Blockchain and whitelist
   await deployer.deploy(Cash36Company, 'element36 AG')
   await cash36Compliance.addCompany(Cash36Company.address)
+
+  await deployer.deploy(Ping, CHF36.address)
 
   if (network == 'local') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
