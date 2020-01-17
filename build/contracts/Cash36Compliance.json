@@ -2,28 +2,10 @@
   "contractName": "Cash36Compliance",
   "abi": [
     {
-      "constant": true,
-      "inputs": [
-        {
-          "name": "addressToCheck",
-          "type": "address"
-        }
-      ],
-      "name": "isOfficer",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "newComplianceOfficer",
           "type": "address"
         }
@@ -40,8 +22,30 @@
       "name": "complianceOfficer",
       "outputs": [
         {
+          "internalType": "address",
           "name": "",
           "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "addressToCheck",
+          "type": "address"
+        }
+      ],
+      "name": "isOfficer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
         }
       ],
       "payable": false,
@@ -52,6 +56,7 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -66,6 +71,7 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_company",
           "type": "address"
         }
@@ -80,6 +86,7 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_company",
           "type": "address"
         }
@@ -87,6 +94,7 @@
       "name": "isCompany",
       "outputs": [
         {
+          "internalType": "bool",
           "name": "",
           "type": "bool"
         }
@@ -99,6 +107,7 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -106,6 +115,7 @@
       "name": "checkUser",
       "outputs": [
         {
+          "internalType": "bool",
           "name": "",
           "type": "bool"
         }
@@ -118,14 +128,17 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         },
         {
+          "internalType": "uint256",
           "name": "_amount",
           "type": "uint256"
         },
         {
+          "internalType": "uint256",
           "name": "_balance",
           "type": "uint256"
         }
@@ -133,6 +146,7 @@
       "name": "checkUserLimit",
       "outputs": [
         {
+          "internalType": "bool",
           "name": "",
           "type": "bool"
         }
@@ -145,6 +159,7 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -152,6 +167,7 @@
       "name": "getUserLimit",
       "outputs": [
         {
+          "internalType": "uint256",
           "name": "",
           "type": "uint256"
         }
@@ -164,10 +180,12 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         },
         {
+          "internalType": "uint256",
           "name": "_limit",
           "type": "uint256"
         }
@@ -182,6 +200,7 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -196,14 +215,17 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         },
         {
+          "internalType": "bytes32",
           "name": "_attribute",
           "type": "bytes32"
         },
         {
+          "internalType": "uint256",
           "name": "_value",
           "type": "uint256"
         }
@@ -218,10 +240,12 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         },
         {
+          "internalType": "bytes32",
           "name": "_attribute",
           "type": "bytes32"
         }
@@ -229,6 +253,7 @@
       "name": "hasAttribute",
       "outputs": [
         {
+          "internalType": "bool",
           "name": "",
           "type": "bool"
         }
@@ -241,6 +266,7 @@
       "constant": true,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -248,6 +274,7 @@
       "name": "isOnBlacklist",
       "outputs": [
         {
+          "internalType": "bool",
           "name": "",
           "type": "bool"
         }
@@ -260,6 +287,7 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -274,6 +302,7 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -288,6 +317,7 @@
       "constant": false,
       "inputs": [
         {
+          "internalType": "address",
           "name": "_user",
           "type": "address"
         }
@@ -297,23 +327,44 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "isOnLockedAccounts",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.9+commit.e560f70d\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"isOnBlacklist\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"checkUser\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"unblockUser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"blockUser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"addUser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"setUserLimitToUnlimited\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_company\",\"type\":\"address\"}],\"name\":\"addCompany\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"addressToCheck\",\"type\":\"address\"}],\"name\":\"isOfficer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"},{\"name\":\"_amount\",\"type\":\"uint256\"},{\"name\":\"_balance\",\"type\":\"uint256\"}],\"name\":\"checkUserLimit\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"},{\"name\":\"_attribute\",\"type\":\"bytes32\"}],\"name\":\"hasAttribute\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newComplianceOfficer\",\"type\":\"address\"}],\"name\":\"changeOfficer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_company\",\"type\":\"address\"}],\"name\":\"isCompany\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"},{\"name\":\"_attribute\",\"type\":\"bytes32\"},{\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"setAttribute\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"complianceOfficer\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"lockAccountForever\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"},{\"name\":\"_limit\",\"type\":\"uint256\"}],\"name\":\"setUserLimit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"getUserLimit\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"addCompany(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_company\":\"Address of the KYCed company\"}},\"addUser(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the KYCed user\"}},\"blockUser(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}},\"changeOfficer(address)\":{\"details\":\"onlyComplianceOfficer - only open to the currently assigned compliance Officer\",\"params\":{\"newComplianceOfficer\":\"The new compliance officer of the contract\"}},\"checkUser(address)\":{\"params\":{\"_user\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when User is KYCed and not on Blacklist\\\" }\"},\"checkUserLimit(address,uint256,uint256)\":{\"params\":{\"_amount\":\"Amount of the transaction\",\"_balance\":\"Current balance of the user\",\"_user\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when balance plus amount is smaller than the user limit\\\" }\"},\"getUserLimit(address)\":{\"params\":{\"_user\":\"Address of the user\"},\"return\":\"{  \\\"uint256\\\": \\\"The current user limit\\\" }\"},\"hasAttribute(address,bytes32)\":{\"params\":{\"_attribute\":\"Name of the attribute\",\"_user\":\"Address of the user\"}},\"isCompany(address)\":{\"params\":{\"_company\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when User is a registered company\\\" }\"},\"isOfficer(address)\":{\"params\":{\"addressToCheck\":\"Address to be checked\"},\"return\":\"{  \\\"bool\\\": \\\"True when address is the currently assigned complianceOfficer\\\" }\"},\"isOnBlacklist(address)\":{\"params\":{\"_user\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when User is listed on Blacklist\\\" }\"},\"lockAccountForever(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}},\"setAttribute(address,bytes32,uint256)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_attribute\":\"Name of the attribute\",\"_user\":\"Address of the user\",\"_value\":\"value of the attribute (1 or 0)\"}},\"setUserLimit(address,uint256)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_limit\":\"New limit of the user\",\"_user\":\"Address of the user\"}},\"setUserLimitToUnlimited(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}},\"unblockUser(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}}},\"title\":\"Cash36 Compliance Contract\"},\"userdoc\":{\"methods\":{\"addCompany(address)\":{\"notice\":\"Add company once it passed KYC process - after that Company is handled as a User\"},\"addUser(address)\":{\"notice\":\"Add user once he passed KYC process\"},\"blockUser(address)\":{\"notice\":\"Blocking User by adding him onto the Blacklist\"},\"changeOfficer(address)\":{\"notice\":\"Changes the ComplianceOfficer of the contract\"},\"checkUser(address)\":{\"notice\":\"Check User if registered and if on blacklist or account is locked\"},\"checkUserLimit(address,uint256,uint256)\":{\"notice\":\"Check if a given amount is within the current limit of the User\"},\"getUserLimit(address)\":{\"notice\":\"Get the limit of the user\"},\"hasAttribute(address,bytes32)\":{\"notice\":\"Check if a User has a given attribute\"},\"isCompany(address)\":{\"notice\":\"Check if a registered address is a KYCed element36 company\"},\"isOfficer(address)\":{\"notice\":\"Check if given address it the assigned Compliance Officer\"},\"isOnBlacklist(address)\":{\"notice\":\"Check User if on Blacklist\"},\"lockAccountForever(address)\":{\"notice\":\"Lock the account of a given user - Irreversible call - like Credit card\"},\"setAttribute(address,bytes32,uint256)\":{\"notice\":\"Set an attribute of the User\"},\"setUserLimit(address,uint256)\":{\"notice\":\"Set the limit of the user\"},\"setUserLimitToUnlimited(address)\":{\"notice\":\"Helper for web3j as passing -1 fails\"},\"unblockUser(address)\":{\"notice\":\"Unblocking User by removing him from the Blacklist\"}},\"notice\":\"Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.Changes to users can only be done be assigned compliance officer (=part of Compliance Backend Service)\"}},\"settings\":{\"compilationTarget\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Compliance.sol\":\"Cash36Compliance\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Compliance.sol\":{\"keccak256\":\"0x9321a1b9c8bf9691b9535baf8abbb8c65db854eccaff019bd860ef95d1f091af\",\"urls\":[\"bzzr://3195d167175d08de52228f447cdf9e7c98754f5354a298af9956a9d325823f8c\",\"dweb:/ipfs/QmUs65N4dSz6MUfwemfGovSYqYC8232M7ai5DDERrCMq9A\"]},\"/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol\":{\"keccak256\":\"0xe3355fe77725fe36bf475d92ece3b93185aedcd1286eedb267652a4c4535c04b\",\"urls\":[\"bzzr://38891d2b8bfc16e3fb1993219d879ccfcc8187d87abcc68b2914c2f31373483c\",\"dweb:/ipfs/QmeSx3cLWJsD9Ad69RMhiJENz2y6KC6pWgEBJosuJFMkpU\"]}},\"version\":1}",
-  "bytecode": "0x6080604052600080546001600160a01b03191633179055610aaa806100256000396000f3fe608060405234801561001057600080fd5b506004361061010b5760003560e01c80636b618ff9116100a2578063af3105e511610071578063af3105e514610300578063c4a56fc814610332578063cd54adea14610356578063dc9f235b1461037c578063e9587e86146103a85761010b565b80636b618ff9146102565780637338c25c1461028857806376ed9f5e146102b4578063a0406ce2146102da5761010b565b8063421b2d8b116100de578063421b2d8b146101be578063601c0a7a146101e4578063634513ca1461020a5780636816442d146102305761010b565b80631e622050146101105780631e9d48cf1461014a57806339d319e5146101705780633da0132514610198575b600080fd5b6101366004803603602081101561012657600080fd5b50356001600160a01b03166103e0565b604080519115158252519081900360200190f35b6101366004803603602081101561016057600080fd5b50356001600160a01b0316610402565b6101966004803603602081101561018657600080fd5b50356001600160a01b031661047d565b005b610196600480360360208110156101ae57600080fd5b50356001600160a01b03166104e7565b610196600480360360208110156101d457600080fd5b50356001600160a01b0316610554565b610196600480360360208110156101fa57600080fd5b50356001600160a01b0316610607565b6101966004803603602081101561022057600080fd5b50356001600160a01b031661066e565b6101366004803603602081101561024657600080fd5b50356001600160a01b03166107c6565b6101366004803603606081101561026c57600080fd5b506001600160a01b0381351690602081013590604001356107da565b6101366004803603604081101561029e57600080fd5b506001600160a01b03813516906020013561080e565b610196600480360360208110156102ca57600080fd5b50356001600160a01b031661083b565b610136600480360360208110156102f057600080fd5b50356001600160a01b03166108a6565b6101966004803603606081101561031657600080fd5b506001600160a01b0381351690602081013590604001356108c4565b61033a61094f565b604080516001600160a01b039092168252519081900360200190f35b6101966004803603602081101561036c57600080fd5b50356001600160a01b031661095e565b6101966004803603604081101561039257600080fd5b506001600160a01b0381351690602001356109cb565b6103ce600480360360208110156103be57600080fd5b50356001600160a01b0316610a30565b60408051918252519081900360200190f35b6001600160a01b03811660009081526005602052604090205460ff165b919050565b6001600160a01b03811660009081526001602052604081205460ff16801561044357506001600160a01b03821660009081526005602052604090205460ff16155b801561046857506001600160a01b03821660009081526006602052604090205460ff16155b15610475575060016103fd565b506000919050565b6000546001600160a01b031633146104c65760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19169055565b6000546001600160a01b031633146105305760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19166001179055565b6000546001600160a01b0316331461059d5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff1916841790556004825280842060001990558051808201825267415454525f42555960c01b80825281840185815296865260038452828620908652909252909220915182559151910155565b6000546001600160a01b031633146106505760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b031660009081526004602052604090206000199055565b6000546001600160a01b031633146106b75760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff199081168517909155600283528185208054909116841790556004825280842060001990558051808201825267415454525f42555960c01b808252818401858152968652600384528286209086528084528286209151825595519084015580518082018252681055151497d4d1531360ba1b808252818401858152908652868452828620915182555190840155805180820182526b415454525f5245434549564560a01b80825281840185815290865286845282862091518255519084015580518082018252681055151497d4d1539160ba1b80825281840185815290865295909252909220915182559151910155565b6000546001600160a01b0391821691161490565b6001600160a01b0383166000908152600460205260408120548284011161080357506001610807565b5060005b9392505050565b6001600160a01b039190911660009081526003602090815260408083209383529290522060010154151590565b6000546001600160a01b031633146108845760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6001600160a01b031660009081526002602052604090205460ff1690565b6000546001600160a01b0316331461090d5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b60408051808201825283815260208082019384526001600160a01b03909516600090815260038652828120948152939094529091209151825551600190910155565b6000546001600160a01b031690565b6000546001600160a01b031633146109a75760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000908152600660205260409020805460ff19166001179055565b6000546001600160a01b03163314610a145760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03909116600090815260046020526040902055565b6001600160a01b03166000908152600460205260409020549056fe616363657373206e6f7420616c6c6f7765642c206f6e6c7920636f6d706c69616e63654f666669636572a265627a7a723058207447ffd80a2d5ce8c78e61a4900281f932ecf15b6d088126511a7b60d9f77b1f64736f6c63430005090032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061010b5760003560e01c80636b618ff9116100a2578063af3105e511610071578063af3105e514610300578063c4a56fc814610332578063cd54adea14610356578063dc9f235b1461037c578063e9587e86146103a85761010b565b80636b618ff9146102565780637338c25c1461028857806376ed9f5e146102b4578063a0406ce2146102da5761010b565b8063421b2d8b116100de578063421b2d8b146101be578063601c0a7a146101e4578063634513ca1461020a5780636816442d146102305761010b565b80631e622050146101105780631e9d48cf1461014a57806339d319e5146101705780633da0132514610198575b600080fd5b6101366004803603602081101561012657600080fd5b50356001600160a01b03166103e0565b604080519115158252519081900360200190f35b6101366004803603602081101561016057600080fd5b50356001600160a01b0316610402565b6101966004803603602081101561018657600080fd5b50356001600160a01b031661047d565b005b610196600480360360208110156101ae57600080fd5b50356001600160a01b03166104e7565b610196600480360360208110156101d457600080fd5b50356001600160a01b0316610554565b610196600480360360208110156101fa57600080fd5b50356001600160a01b0316610607565b6101966004803603602081101561022057600080fd5b50356001600160a01b031661066e565b6101366004803603602081101561024657600080fd5b50356001600160a01b03166107c6565b6101366004803603606081101561026c57600080fd5b506001600160a01b0381351690602081013590604001356107da565b6101366004803603604081101561029e57600080fd5b506001600160a01b03813516906020013561080e565b610196600480360360208110156102ca57600080fd5b50356001600160a01b031661083b565b610136600480360360208110156102f057600080fd5b50356001600160a01b03166108a6565b6101966004803603606081101561031657600080fd5b506001600160a01b0381351690602081013590604001356108c4565b61033a61094f565b604080516001600160a01b039092168252519081900360200190f35b6101966004803603602081101561036c57600080fd5b50356001600160a01b031661095e565b6101966004803603604081101561039257600080fd5b506001600160a01b0381351690602001356109cb565b6103ce600480360360208110156103be57600080fd5b50356001600160a01b0316610a30565b60408051918252519081900360200190f35b6001600160a01b03811660009081526005602052604090205460ff165b919050565b6001600160a01b03811660009081526001602052604081205460ff16801561044357506001600160a01b03821660009081526005602052604090205460ff16155b801561046857506001600160a01b03821660009081526006602052604090205460ff16155b15610475575060016103fd565b506000919050565b6000546001600160a01b031633146104c65760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19169055565b6000546001600160a01b031633146105305760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19166001179055565b6000546001600160a01b0316331461059d5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff1916841790556004825280842060001990558051808201825267415454525f42555960c01b80825281840185815296865260038452828620908652909252909220915182559151910155565b6000546001600160a01b031633146106505760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b031660009081526004602052604090206000199055565b6000546001600160a01b031633146106b75760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff199081168517909155600283528185208054909116841790556004825280842060001990558051808201825267415454525f42555960c01b808252818401858152968652600384528286209086528084528286209151825595519084015580518082018252681055151497d4d1531360ba1b808252818401858152908652868452828620915182555190840155805180820182526b415454525f5245434549564560a01b80825281840185815290865286845282862091518255519084015580518082018252681055151497d4d1539160ba1b80825281840185815290865295909252909220915182559151910155565b6000546001600160a01b0391821691161490565b6001600160a01b0383166000908152600460205260408120548284011161080357506001610807565b5060005b9392505050565b6001600160a01b039190911660009081526003602090815260408083209383529290522060010154151590565b6000546001600160a01b031633146108845760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6001600160a01b031660009081526002602052604090205460ff1690565b6000546001600160a01b0316331461090d5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b60408051808201825283815260208082019384526001600160a01b03909516600090815260038652828120948152939094529091209151825551600190910155565b6000546001600160a01b031690565b6000546001600160a01b031633146109a75760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03166000908152600660205260409020805460ff19166001179055565b6000546001600160a01b03163314610a145760405162461bcd60e51b815260040180806020018281038252602a815260200180610a4c602a913960400191505060405180910390fd5b6001600160a01b03909116600090815260046020526040902055565b6001600160a01b03166000908152600460205260409020549056fe616363657373206e6f7420616c6c6f7765642c206f6e6c7920636f6d706c69616e63654f666669636572a265627a7a723058207447ffd80a2d5ce8c78e61a4900281f932ecf15b6d088126511a7b60d9f77b1f64736f6c63430005090032",
-  "sourceMap": "348:6228:4:-;;;468:18:11;:31;;-1:-1:-1;;;;;;468:31:11;489:10;468:31;;;348:6228:4;;;;;;",
-  "deployedSourceMap": "348:6228:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;348:6228:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5487:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;5487:105:4;-1:-1:-1;;;;;5487:105:4;;:::i;:::-;;;;;;;;;;;;;;;;;;2791:200;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2791:200:4;-1:-1:-1;;;;;2791:200:4;;:::i;6117:106::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6117:106:4;-1:-1:-1;;;;;6117:106:4;;:::i;:::-;;5801:103;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;5801:103:4;-1:-1:-1;;;;;5801:103:4;;:::i;1295:204::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1295:204:4;-1:-1:-1;;;;;1295:204:4;;:::i;4394:125::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;4394:125:4;-1:-1:-1;;;;;4394:125:4;;:::i;1754:474::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1754:474:4;-1:-1:-1;;;;;1754:474:4;;:::i;1258:129:11:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1258:129:11;-1:-1:-1;;;;;1258:129:11;;:::i;3337:220:4:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;3337:220:4;;;;;;;;;;;;;:::i;5152:148::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;5152:148:4;;;;;;;;:::i;865:140:11:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;865:140:11;-1:-1:-1;;;;;865:140:11;;:::i;2451:107:4:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2451:107:4;-1:-1:-1;;;;;2451:107:4;;:::i;4810:180::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;4810:180:4;;;;;;;;;;;;;:::i;512:101:11:-;;;:::i;:::-;;;;-1:-1:-1;;;;;512:101:11;;;;;;;;;;;;;;6457:117:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6457:117:4;-1:-1:-1;;;;;6457:117:4;;:::i;4070:125::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;4070:125:4;;;;;;;;:::i;3731:108::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3731:108:4;-1:-1:-1;;;;;3731:108:4;;:::i;:::-;;;;;;;;;;;;;;;;5487:105;-1:-1:-1;;;;;5569:16:4;;5546:4;5569:16;;;:9;:16;;;;;;;;5487:105;;;;:::o;2791:200::-;-1:-1:-1;;;;;2866:12:4;;2846:4;2866:12;;;:5;:12;;;;;;;;:33;;;;-1:-1:-1;;;;;;2883:16:4;;;;;;:9;:16;;;;;;;;2882:17;2866:33;:59;;;;-1:-1:-1;;;;;;2904:21:4;;;;;;:14;:21;;;;;;;;2903:22;2866:59;2862:101;;;-1:-1:-1;2948:4:4;2941:11;;2862:101;-1:-1:-1;2979:5:4;2791:200;;;:::o;6117:106::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;6192:16:4;6211:5;6192:16;;;:9;:16;;;;;:24;;-1:-1:-1;;6192:24:4;;;6117:106::o;5801:103::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;5874:16:4;;;;;:9;:16;;;;;:23;;-1:-1:-1;;5874:23:4;5893:4;5874:23;;;5801:103::o;1295:204::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1366:12:4;;;;;1381:4;1366:12;;;;;;;;:19;;-1:-1:-1;;1366:19:4;;;;;1395:10;:17;;;;;-1:-1:-1;;1395:31:4;;1468:24;;;;;;;-1:-1:-1;;;1468:24:4;;;;;;;;;1436:17;;;:10;:17;;;;;:29;;;;;;;;;:56;;;;;;;;;1295:204::o;4394:125::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;4481:17:4;;;;;:10;:17;;;;;-1:-1:-1;;4481:31:4;;4394:125::o;1754:474::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1831:15:4;;;;;1849:4;1831:15;;;;;;;;:22;;-1:-1:-1;;1831:22:4;;;;;;;;1863:9;:19;;;;;:26;;;;;;;;;1899:10;:20;;;;;-1:-1:-1;;1899:34:4;;1978:24;;;;;;;-1:-1:-1;;;1978:24:4;;;;;;;;;1943:20;;;:10;:20;;;;;:32;;;;;;;;;:59;;;;;;;;;;2048:25;;;;;;;-1:-1:-1;;;2048:25:4;;;;;;;;;2012:33;;;;;;;;;:61;;;;;;;;;2122:28;;;;;;;-1:-1:-1;;;2122:28:4;;;;;;;;;2083:36;;;;;;;;;:67;;;;;;;;;2196:25;;;;;;;-1:-1:-1;;;2196:25:4;;;;;;;;;2160:33;;;;;;;;;;:61;;;;;;;;;1754:474::o;1258:129:11:-;1322:4;1344:18;-1:-1:-1;;;;;1344:36:11;;;:18;;:36;;1258:129::o;3337:220:4:-;-1:-1:-1;;;;;3474:17:4;;3432:4;3474:17;;;:10;:17;;;;;;3452:18;;;:39;3448:81;;-1:-1:-1;3514:4:4;3507:11;;3448:81;-1:-1:-1;3545:5:4;3337:220;;;;;;:::o;5152:148::-;-1:-1:-1;;;;;5253:17:4;;;;5230:4;5253:17;;;:10;:17;;;;;;;;:29;;;;;;;:35;;;:40;;;5152:148::o;865:140:11:-;329:18;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;957:18;:41;;-1:-1:-1;;;;;;957:41:11;-1:-1:-1;;;;;957:41:11;;;;;;;;;;865:140::o;2451:107:4:-;-1:-1:-1;;;;;2532:19:4;2509:4;2532:19;;;:9;:19;;;;;;;;;2451:107::o;4810:180::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4954:29:4;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;4922:17:4;;;-1:-1:-1;4922:17:4;;;:10;:17;;;;;:29;;;;;;;;;;:61;;;;;;;;;;4810:180::o;512:101:11:-;562:7;588:18;-1:-1:-1;;;;;588:18:11;512:101;:::o;6457:117:4:-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;6539:21:4;;;;;:14;:21;;;;;:28;;-1:-1:-1;;6539:28:4;6563:4;6539:28;;;6457:117::o;4070:125::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;4162:17:4;;;;;;;:10;:17;;;;;:26;4070:125::o;3731:108::-;-1:-1:-1;;;;;3815:17:4;3789:7;3815:17;;;:10;:17;;;;;;;3731:108::o",
-  "source": "pragma solidity ^0.5.9;\n\nimport \"./HasOfficer.sol\";\n\n\n/// @title Cash36 Compliance Contract\n/// @notice Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.\n/// @notice Changes to users can only be done be assigned compliance officer (=part of Compliance Backend Service)\n/// @author element36.io\ncontract Cash36Compliance is HasOfficer {\n\n    // Tracks KYCed users and companies\n    mapping(address => bool) private users;\n    mapping(address => bool) private companies;\n\n    // Allow attributes for KYCed Users for a better ACL like BUY, SELL, SEND, RECEIVE\n    struct Attribute {\n        bytes32 attribute;\n        uint256 value;\n    }\n    mapping(address => mapping(bytes32 => Attribute)) private attributes;\n\n    // Tracks current User transfer limits\n    mapping(address => uint256) private userLimits;\n\n    // Tracks blacklisted users - 'overrides' KYCed users\n    mapping(address => bool) private blacklist;\n\n    // Tracks forever locked accounts - like Credit cards - no unlocks\n    mapping(address => bool) private lockedAccounts;\n\n    /**\n     * @notice Add user once he passed KYC process\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the KYCed user\n     */\n    function addUser(address _user) public onlyComplianceOfficer {\n        users[_user] = true;\n        userLimits[_user] = uint256(-1);\n        attributes[_user][\"ATTR_BUY\"] = Attribute(\"ATTR_BUY\", 1);\n    }\n\n    /**\n     * @notice Add company once it passed KYC process - after that Company is handled as a User\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _company Address of the KYCed company\n     */\n    function addCompany(address _company) public onlyComplianceOfficer {\n        users[_company] = true;\n        companies[_company] = true;\n        userLimits[_company] = uint256(-1);\n        attributes[_company][\"ATTR_BUY\"] = Attribute(\"ATTR_BUY\", 1);\n        attributes[_company][\"ATTR_SELL\"] = Attribute(\"ATTR_SELL\", 1);\n        attributes[_company][\"ATTR_RECEIVE\"] = Attribute(\"ATTR_RECEIVE\", 1);\n        attributes[_company][\"ATTR_SEND\"] = Attribute(\"ATTR_SEND\", 1);\n    }\n\n    /**\n     * @notice Check if a registered address is a KYCed element36 company\n     * @param _company Address of the user\n     * @return {\n     *   \"bool\": \"True when User is a registered company\"\n     * }\n     */\n    function isCompany(address _company) public view returns (bool) {\n        return companies[_company];\n    }\n\n    /**\n     * @notice Check User if registered and if on blacklist or account is locked\n     * @param _user Address of the user\n     * @return {\n     *   \"bool\": \"True when User is KYCed and not on Blacklist\"\n     * }\n     */\n    function checkUser(address _user) public view returns (bool) {\n        if (users[_user] && !blacklist[_user] && !lockedAccounts[_user]) {\n            return true;\n        }\n        return false;\n    }\n\n    /**\n     * @notice Check if a given amount is within the current limit of the User\n     * @param _user Address of the user\n     * @param _amount Amount of the transaction\n     * @param _balance Current balance of the user\n     * @return {\n     *   \"bool\": \"True when balance plus amount is smaller than the user limit\"\n     * }\n     */\n    function checkUserLimit(address _user, uint256 _amount, uint256 _balance) public view returns (bool) {\n        if (_balance + _amount <= userLimits[_user]) {\n            return true;\n        }\n        return false;\n    }\n\n    /**\n     * @notice Get the limit of the user\n     * @param _user Address of the user\n     * @return {\n     *   \"uint256\": \"The current user limit\"\n     * }\n     */\n    function getUserLimit(address _user) public view returns (uint256) {\n        return userLimits[_user];\n    }\n\n    /**\n     * @notice Set the limit of the user\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     * @param _limit New limit of the user\n     */\n    function setUserLimit(address _user, uint256 _limit) public onlyComplianceOfficer {\n        userLimits[_user] = _limit;\n    }\n\n    /**\n     * @notice Helper for web3j as passing -1 fails\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function setUserLimitToUnlimited(address _user) public onlyComplianceOfficer {\n        userLimits[_user] = uint256(-1);\n    }\n\n    /**\n     * @notice Set an attribute of the User\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     * @param _attribute Name of the attribute\n     * @param _value value of the attribute (1 or 0)\n     */\n    function setAttribute(address _user, bytes32 _attribute, uint256 _value) public onlyComplianceOfficer {\n        attributes[_user][_attribute] = Attribute(_attribute, _value);\n    }\n\n    /**\n     * @notice Check if a User has a given attribute\n     * @param _user Address of the user\n     * @param _attribute Name of the attribute\n     */\n    function hasAttribute(address _user, bytes32 _attribute) public view returns (bool) {\n        return attributes[_user][_attribute].value != 0;\n    }\n\n    /**\n     * @notice Check User if on Blacklist\n     * @param _user Address of the user\n     * @return {\n     *   \"bool\": \"True when User is listed on Blacklist\"\n     * }\n     */\n    function isOnBlacklist(address _user) public view returns (bool) {\n        return blacklist[_user];\n    }\n\n    /**\n     * @notice Blocking User by adding him onto the Blacklist\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function blockUser(address _user) public onlyComplianceOfficer {\n        blacklist[_user] = true;\n    }\n\n    /**\n     * @notice Unblocking User by removing him from the Blacklist\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function unblockUser(address _user) public onlyComplianceOfficer {\n        blacklist[_user] = false;\n    }\n\n    /**\n     * @notice Lock the account of a given user - Irreversible call - like Credit card\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function lockAccountForever(address _user) public onlyComplianceOfficer {\n        lockedAccounts[_user] = true;\n    }\n}",
-  "sourcePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Compliance.sol",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.15+commit.6a57276f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_company\",\"type\":\"address\"}],\"name\":\"addCompany\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"addUser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"blockUser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"newComplianceOfficer\",\"type\":\"address\"}],\"name\":\"changeOfficer\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"checkUser\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_balance\",\"type\":\"uint256\"}],\"name\":\"checkUserLimit\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"complianceOfficer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"getUserLimit\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"_attribute\",\"type\":\"bytes32\"}],\"name\":\"hasAttribute\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_company\",\"type\":\"address\"}],\"name\":\"isCompany\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"addressToCheck\",\"type\":\"address\"}],\"name\":\"isOfficer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"isOnBlacklist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"isOnLockedAccounts\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"lockAccountForever\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"_attribute\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"setAttribute\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_limit\",\"type\":\"uint256\"}],\"name\":\"setUserLimit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"setUserLimitToUnlimited\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"unblockUser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"element36.io\",\"methods\":{\"addCompany(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_company\":\"Address of the KYCed company\"}},\"addUser(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the KYCed user\"}},\"blockUser(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}},\"changeOfficer(address)\":{\"details\":\"onlyComplianceOfficer - only open to the currently assigned compliance Officer\",\"params\":{\"newComplianceOfficer\":\"The new compliance officer of the contract\"}},\"checkUser(address)\":{\"params\":{\"_user\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when User is KYCed and not on Blacklist\\\" }\"},\"checkUserLimit(address,uint256,uint256)\":{\"params\":{\"_amount\":\"Amount of the transaction\",\"_balance\":\"Current balance of the user\",\"_user\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when balance plus amount is smaller than the user limit\\\" }\"},\"getUserLimit(address)\":{\"params\":{\"_user\":\"Address of the user\"},\"return\":\"{  \\\"uint256\\\": \\\"The current user limit\\\" }\"},\"hasAttribute(address,bytes32)\":{\"params\":{\"_attribute\":\"Name of the attribute\",\"_user\":\"Address of the user\"}},\"isCompany(address)\":{\"params\":{\"_company\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when User is a registered company\\\" }\"},\"isOfficer(address)\":{\"params\":{\"addressToCheck\":\"Address to be checked\"},\"return\":\"{  \\\"bool\\\": \\\"True when address is the currently assigned complianceOfficer\\\" }\"},\"isOnBlacklist(address)\":{\"params\":{\"_user\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when User is listed on Blacklist\\\" }\"},\"isOnLockedAccounts(address)\":{\"params\":{\"_user\":\"Address of the user\"},\"return\":\"{  \\\"bool\\\": \\\"True when User is listed on LockedAccountsList\\\" }\"},\"lockAccountForever(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}},\"setAttribute(address,bytes32,uint256)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_attribute\":\"Name of the attribute\",\"_user\":\"Address of the user\",\"_value\":\"value of the attribute (1 or 0)\"}},\"setUserLimit(address,uint256)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_limit\":\"New limit of the user\",\"_user\":\"Address of the user\"}},\"setUserLimitToUnlimited(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}},\"unblockUser(address)\":{\"details\":\"onlyComplianceOfficer - only open to assigned Compliance Officer Account\",\"params\":{\"_user\":\"Address of the user\"}}},\"title\":\"Cash36 Compliance Contract\"},\"userdoc\":{\"methods\":{\"addCompany(address)\":{\"notice\":\"Add company once it passed KYC process - after that Company is handled as a User\"},\"addUser(address)\":{\"notice\":\"Add user once he passed KYC process\"},\"blockUser(address)\":{\"notice\":\"Blocking User by adding him onto the Blacklist\"},\"changeOfficer(address)\":{\"notice\":\"Changes the ComplianceOfficer of the contract\"},\"checkUser(address)\":{\"notice\":\"Check User if registered and if on blacklist or account is locked\"},\"checkUserLimit(address,uint256,uint256)\":{\"notice\":\"Check if a given amount is within the current limit of the User\"},\"getUserLimit(address)\":{\"notice\":\"Get the limit of the user\"},\"hasAttribute(address,bytes32)\":{\"notice\":\"Check if a User has a given attribute\"},\"isCompany(address)\":{\"notice\":\"Check if a registered address is a KYCed element36 company\"},\"isOfficer(address)\":{\"notice\":\"Check if given address it the assigned Compliance Officer\"},\"isOnBlacklist(address)\":{\"notice\":\"Check User if on Blacklist\"},\"isOnLockedAccounts(address)\":{\"notice\":\"Check User if on LockedAccountsList\"},\"lockAccountForever(address)\":{\"notice\":\"Lock the account of a given user - Irreversible call - like Credit card\"},\"setAttribute(address,bytes32,uint256)\":{\"notice\":\"Set an attribute of the User\"},\"setUserLimit(address,uint256)\":{\"notice\":\"Set the limit of the user\"},\"setUserLimitToUnlimited(address)\":{\"notice\":\"Helper for web3j as passing -1 fails\"},\"unblockUser(address)\":{\"notice\":\"Unblocking User by removing him from the Blacklist\"}},\"notice\":\"Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.Changes to users can only be done be assigned compliance officer (=part of Compliance Backend Service)\"}},\"settings\":{\"compilationTarget\":{\"/home/w/workspace/contracts/contracts/Cash36Compliance.sol\":\"Cash36Compliance\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/w/workspace/contracts/contracts/Cash36Compliance.sol\":{\"keccak256\":\"0x64f0474a9b3ee0206d925b3c37694e5626fb0c37247293bfd8f67709933c7927\",\"urls\":[\"bzz-raw://1e5ca0e628f4b9c00612127c1028f4478d75d0cd3faa3058f18f2a6c7339c69c\",\"dweb:/ipfs/QmfKHBBM9dJWSYPVrZCfEk57SsncrdBKSVYbghg2AGBBTf\"]},\"/home/w/workspace/contracts/contracts/HasOfficer.sol\":{\"keccak256\":\"0xe3355fe77725fe36bf475d92ece3b93185aedcd1286eedb267652a4c4535c04b\",\"urls\":[\"bzz-raw://93e1cecbe8e2a297ea5ca0b0759689ed50d006e3974960cb66de6ea6cc937c69\",\"dweb:/ipfs/QmeSx3cLWJsD9Ad69RMhiJENz2y6KC6pWgEBJosuJFMkpU\"]}},\"version\":1}",
+  "bytecode": "0x6080604052600080546001600160a01b03191633179055610af9806100256000396000f3fe608060405234801561001057600080fd5b50600436106101165760003560e01c80637338c25c116100a2578063bc9a1a6411610071578063bc9a1a641461033d578063c4a56fc814610363578063cd54adea14610387578063dc9f235b146103ad578063e9587e86146103d957610116565b80637338c25c1461029357806376ed9f5e146102bf578063a0406ce2146102e5578063af3105e51461030b57610116565b8063421b2d8b116100e9578063421b2d8b146101c9578063601c0a7a146101ef578063634513ca146102155780636816442d1461023b5780636b618ff91461026157610116565b80631e6220501461011b5780631e9d48cf1461015557806339d319e51461017b5780633da01325146101a3575b600080fd5b6101416004803603602081101561013157600080fd5b50356001600160a01b0316610411565b604080519115158252519081900360200190f35b6101416004803603602081101561016b57600080fd5b50356001600160a01b0316610433565b6101a16004803603602081101561019157600080fd5b50356001600160a01b03166104ae565b005b6101a1600480360360208110156101b957600080fd5b50356001600160a01b0316610518565b6101a1600480360360208110156101df57600080fd5b50356001600160a01b0316610585565b6101a16004803603602081101561020557600080fd5b50356001600160a01b0316610638565b6101a16004803603602081101561022b57600080fd5b50356001600160a01b031661069f565b6101416004803603602081101561025157600080fd5b50356001600160a01b03166107f7565b6101416004803603606081101561027757600080fd5b506001600160a01b03813516906020810135906040013561080b565b610141600480360360408110156102a957600080fd5b506001600160a01b03813516906020013561083f565b6101a1600480360360208110156102d557600080fd5b50356001600160a01b031661086c565b610141600480360360208110156102fb57600080fd5b50356001600160a01b03166108d7565b6101a16004803603606081101561032157600080fd5b506001600160a01b0381351690602081013590604001356108f5565b6101416004803603602081101561035357600080fd5b50356001600160a01b0316610980565b61036b61099e565b604080516001600160a01b039092168252519081900360200190f35b6101a16004803603602081101561039d57600080fd5b50356001600160a01b03166109ad565b6101a1600480360360408110156103c357600080fd5b506001600160a01b038135169060200135610a1a565b6103ff600480360360208110156103ef57600080fd5b50356001600160a01b0316610a7f565b60408051918252519081900360200190f35b6001600160a01b03811660009081526005602052604090205460ff165b919050565b6001600160a01b03811660009081526001602052604081205460ff16801561047457506001600160a01b03821660009081526005602052604090205460ff16155b801561049957506001600160a01b03821660009081526006602052604090205460ff16155b156104a65750600161042e565b506000919050565b6000546001600160a01b031633146104f75760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19169055565b6000546001600160a01b031633146105615760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19166001179055565b6000546001600160a01b031633146105ce5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff1916841790556004825280842060001990558051808201825267415454525f42555960c01b80825281840185815296865260038452828620908652909252909220915182559151910155565b6000546001600160a01b031633146106815760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b031660009081526004602052604090206000199055565b6000546001600160a01b031633146106e85760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff199081168517909155600283528185208054909116841790556004825280842060001990558051808201825267415454525f42555960c01b808252818401858152968652600384528286209086528084528286209151825595519084015580518082018252681055151497d4d1531360ba1b808252818401858152908652868452828620915182555190840155805180820182526b415454525f5245434549564560a01b80825281840185815290865286845282862091518255519084015580518082018252681055151497d4d1539160ba1b80825281840185815290865295909252909220915182559151910155565b6000546001600160a01b0391821691161490565b6001600160a01b0383166000908152600460205260408120548284011161083457506001610838565b5060005b9392505050565b6001600160a01b039190911660009081526003602090815260408083209383529290522060010154151590565b6000546001600160a01b031633146108b55760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6001600160a01b031660009081526002602052604090205460ff1690565b6000546001600160a01b0316331461093e5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b60408051808201825283815260208082019384526001600160a01b03909516600090815260038652828120948152939094529091209151825551600190910155565b6001600160a01b031660009081526006602052604090205460ff1690565b6000546001600160a01b031690565b6000546001600160a01b031633146109f65760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000908152600660205260409020805460ff19166001179055565b6000546001600160a01b03163314610a635760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03909116600090815260046020526040902055565b6001600160a01b03166000908152600460205260409020549056fe616363657373206e6f7420616c6c6f7765642c206f6e6c7920636f6d706c69616e63654f666669636572a265627a7a723158204fafb73e7e44c903e2ed89cc315855505d9263dab1ef9140517659fe0d8cc80d64736f6c634300050f0032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106101165760003560e01c80637338c25c116100a2578063bc9a1a6411610071578063bc9a1a641461033d578063c4a56fc814610363578063cd54adea14610387578063dc9f235b146103ad578063e9587e86146103d957610116565b80637338c25c1461029357806376ed9f5e146102bf578063a0406ce2146102e5578063af3105e51461030b57610116565b8063421b2d8b116100e9578063421b2d8b146101c9578063601c0a7a146101ef578063634513ca146102155780636816442d1461023b5780636b618ff91461026157610116565b80631e6220501461011b5780631e9d48cf1461015557806339d319e51461017b5780633da01325146101a3575b600080fd5b6101416004803603602081101561013157600080fd5b50356001600160a01b0316610411565b604080519115158252519081900360200190f35b6101416004803603602081101561016b57600080fd5b50356001600160a01b0316610433565b6101a16004803603602081101561019157600080fd5b50356001600160a01b03166104ae565b005b6101a1600480360360208110156101b957600080fd5b50356001600160a01b0316610518565b6101a1600480360360208110156101df57600080fd5b50356001600160a01b0316610585565b6101a16004803603602081101561020557600080fd5b50356001600160a01b0316610638565b6101a16004803603602081101561022b57600080fd5b50356001600160a01b031661069f565b6101416004803603602081101561025157600080fd5b50356001600160a01b03166107f7565b6101416004803603606081101561027757600080fd5b506001600160a01b03813516906020810135906040013561080b565b610141600480360360408110156102a957600080fd5b506001600160a01b03813516906020013561083f565b6101a1600480360360208110156102d557600080fd5b50356001600160a01b031661086c565b610141600480360360208110156102fb57600080fd5b50356001600160a01b03166108d7565b6101a16004803603606081101561032157600080fd5b506001600160a01b0381351690602081013590604001356108f5565b6101416004803603602081101561035357600080fd5b50356001600160a01b0316610980565b61036b61099e565b604080516001600160a01b039092168252519081900360200190f35b6101a16004803603602081101561039d57600080fd5b50356001600160a01b03166109ad565b6101a1600480360360408110156103c357600080fd5b506001600160a01b038135169060200135610a1a565b6103ff600480360360208110156103ef57600080fd5b50356001600160a01b0316610a7f565b60408051918252519081900360200190f35b6001600160a01b03811660009081526005602052604090205460ff165b919050565b6001600160a01b03811660009081526001602052604081205460ff16801561047457506001600160a01b03821660009081526005602052604090205460ff16155b801561049957506001600160a01b03821660009081526006602052604090205460ff16155b156104a65750600161042e565b506000919050565b6000546001600160a01b031633146104f75760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19169055565b6000546001600160a01b031633146105615760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000908152600560205260409020805460ff19166001179055565b6000546001600160a01b031633146105ce5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff1916841790556004825280842060001990558051808201825267415454525f42555960c01b80825281840185815296865260038452828620908652909252909220915182559151910155565b6000546001600160a01b031633146106815760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b031660009081526004602052604090206000199055565b6000546001600160a01b031633146106e85760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000818152600160208181526040808420805460ff199081168517909155600283528185208054909116841790556004825280842060001990558051808201825267415454525f42555960c01b808252818401858152968652600384528286209086528084528286209151825595519084015580518082018252681055151497d4d1531360ba1b808252818401858152908652868452828620915182555190840155805180820182526b415454525f5245434549564560a01b80825281840185815290865286845282862091518255519084015580518082018252681055151497d4d1539160ba1b80825281840185815290865295909252909220915182559151910155565b6000546001600160a01b0391821691161490565b6001600160a01b0383166000908152600460205260408120548284011161083457506001610838565b5060005b9392505050565b6001600160a01b039190911660009081526003602090815260408083209383529290522060010154151590565b6000546001600160a01b031633146108b55760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b600080546001600160a01b0319166001600160a01b0392909216919091179055565b6001600160a01b031660009081526002602052604090205460ff1690565b6000546001600160a01b0316331461093e5760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b60408051808201825283815260208082019384526001600160a01b03909516600090815260038652828120948152939094529091209151825551600190910155565b6001600160a01b031660009081526006602052604090205460ff1690565b6000546001600160a01b031690565b6000546001600160a01b031633146109f65760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03166000908152600660205260409020805460ff19166001179055565b6000546001600160a01b03163314610a635760405162461bcd60e51b815260040180806020018281038252602a815260200180610a9b602a913960400191505060405180910390fd5b6001600160a01b03909116600090815260046020526040902055565b6001600160a01b03166000908152600460205260409020549056fe616363657373206e6f7420616c6c6f7765642c206f6e6c7920636f6d706c69616e63654f666669636572a265627a7a723158204fafb73e7e44c903e2ed89cc315855505d9263dab1ef9140517659fe0d8cc80d64736f6c634300050f0032",
+  "sourceMap": "348:6552:4:-;;;468:18:11;:31;;-1:-1:-1;;;;;;468:31:11;489:10;468:31;;;348:6552:4;;;;;;",
+  "deployedSourceMap": "348:6552:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;348:6552:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5487:105;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;5487:105:4;-1:-1:-1;;;;;5487:105:4;;:::i;:::-;;;;;;;;;;;;;;;;;;2791:200;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2791:200:4;-1:-1:-1;;;;;2791:200:4;;:::i;6117:106::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6117:106:4;-1:-1:-1;;;;;6117:106:4;;:::i;:::-;;5801:103;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;5801:103:4;-1:-1:-1;;;;;5801:103:4;;:::i;1295:204::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1295:204:4;-1:-1:-1;;;;;1295:204:4;;:::i;4394:125::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;4394:125:4;-1:-1:-1;;;;;4394:125:4;;:::i;1754:474::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1754:474:4;-1:-1:-1;;;;;1754:474:4;;:::i;1258:129:11:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1258:129:11;-1:-1:-1;;;;;1258:129:11;;:::i;3337:220:4:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;3337:220:4;;;;;;;;;;;;;:::i;5152:148::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;5152:148:4;;;;;;;;:::i;865:140:11:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;865:140:11;-1:-1:-1;;;;;865:140:11;;:::i;2451:107:4:-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;2451:107:4;-1:-1:-1;;;;;2451:107:4;;:::i;4810:180::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;4810:180:4;;;;;;;;;;;;;:::i;6782:115::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6782:115:4;-1:-1:-1;;;;;6782:115:4;;:::i;512:101:11:-;;;:::i;:::-;;;;-1:-1:-1;;;;;512:101:11;;;;;;;;;;;;;;6457:117:4;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;6457:117:4;-1:-1:-1;;;;;6457:117:4;;:::i;4070:125::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;;;;;;4070:125:4;;;;;;;;:::i;3731:108::-;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;3731:108:4;-1:-1:-1;;;;;3731:108:4;;:::i;:::-;;;;;;;;;;;;;;;;5487:105;-1:-1:-1;;;;;5569:16:4;;5546:4;5569:16;;;:9;:16;;;;;;;;5487:105;;;;:::o;2791:200::-;-1:-1:-1;;;;;2866:12:4;;2846:4;2866:12;;;:5;:12;;;;;;;;:33;;;;-1:-1:-1;;;;;;2883:16:4;;;;;;:9;:16;;;;;;;;2882:17;2866:33;:59;;;;-1:-1:-1;;;;;;2904:21:4;;;;;;:14;:21;;;;;;;;2903:22;2866:59;2862:101;;;-1:-1:-1;2948:4:4;2941:11;;2862:101;-1:-1:-1;2979:5:4;2791:200;;;:::o;6117:106::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;6192:16:4;6211:5;6192:16;;;:9;:16;;;;;:24;;-1:-1:-1;;6192:24:4;;;6117:106::o;5801:103::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;5874:16:4;;;;;:9;:16;;;;;:23;;-1:-1:-1;;5874:23:4;5893:4;5874:23;;;5801:103::o;1295:204::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1366:12:4;;;;;1381:4;1366:12;;;;;;;;:19;;-1:-1:-1;;1366:19:4;;;;;1395:10;:17;;;;;-1:-1:-1;;1395:31:4;;1468:24;;;;;;;-1:-1:-1;;;1468:24:4;;;;;;;;;1436:17;;;:10;:17;;;;;:29;;;;;;;;;:56;;;;;;;;;1295:204::o;4394:125::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;4481:17:4;;;;;:10;:17;;;;;-1:-1:-1;;4481:31:4;;4394:125::o;1754:474::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;1831:15:4;;;;;1849:4;1831:15;;;;;;;;:22;;-1:-1:-1;;1831:22:4;;;;;;;;1863:9;:19;;;;;:26;;;;;;;;;1899:10;:20;;;;;-1:-1:-1;;1899:34:4;;1978:24;;;;;;;-1:-1:-1;;;1978:24:4;;;;;;;;;1943:20;;;:10;:20;;;;;:32;;;;;;;;;:59;;;;;;;;;;2048:25;;;;;;;-1:-1:-1;;;2048:25:4;;;;;;;;;2012:33;;;;;;;;;:61;;;;;;;;;2122:28;;;;;;;-1:-1:-1;;;2122:28:4;;;;;;;;;2083:36;;;;;;;;;:67;;;;;;;;;2196:25;;;;;;;-1:-1:-1;;;2196:25:4;;;;;;;;;2160:33;;;;;;;;;;:61;;;;;;;;;1754:474::o;1258:129:11:-;1322:4;1344:18;-1:-1:-1;;;;;1344:36:11;;;:18;;:36;;1258:129::o;3337:220:4:-;-1:-1:-1;;;;;3474:17:4;;3432:4;3474:17;;;:10;:17;;;;;;3452:18;;;:39;3448:81;;-1:-1:-1;3514:4:4;3507:11;;3448:81;-1:-1:-1;3545:5:4;3337:220;;;;;;:::o;5152:148::-;-1:-1:-1;;;;;5253:17:4;;;;5230:4;5253:17;;;:10;:17;;;;;;;;:29;;;;;;;:35;;;:40;;;5152:148::o;865:140:11:-;329:18;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;957:18;:41;;-1:-1:-1;;;;;;957:41:11;-1:-1:-1;;;;;957:41:11;;;;;;;;;;865:140::o;2451:107:4:-;-1:-1:-1;;;;;2532:19:4;2509:4;2532:19;;;:9;:19;;;;;;;;;2451:107::o;4810:180::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;4954:29:4;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;4922:17:4;;;-1:-1:-1;4922:17:4;;;:10;:17;;;;;:29;;;;;;;;;;:61;;;;;;;;;;4810:180::o;6782:115::-;-1:-1:-1;;;;;6869:21:4;6846:4;6869:21;;;:14;:21;;;;;;;;;6782:115::o;512:101:11:-;562:7;588:18;-1:-1:-1;;;;;588:18:11;512:101;:::o;6457:117:4:-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;6539:21:4;;;;;:14;:21;;;;;:28;;-1:-1:-1;;6539:28:4;6563:4;6539:28;;;6457:117::o;4070:125::-;329:18:11;;-1:-1:-1;;;;;329:18:11;315:10;:32;307:87;;;;-1:-1:-1;;;307:87:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;4162:17:4;;;;;;;:10;:17;;;;;:26;4070:125::o;3731:108::-;-1:-1:-1;;;;;3815:17:4;3789:7;3815:17;;;:10;:17;;;;;;;3731:108::o",
+  "source": "pragma solidity ^0.5.9;\n\nimport \"./HasOfficer.sol\";\n\n\n/// @title Cash36 Compliance Contract\n/// @notice Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.\n/// @notice Changes to users can only be done be assigned compliance officer (=part of Compliance Backend Service)\n/// @author element36.io\ncontract Cash36Compliance is HasOfficer {\n\n    // Tracks KYCed users and companies\n    mapping(address => bool) private users;\n    mapping(address => bool) private companies;\n\n    // Allow attributes for KYCed Users for a better ACL like BUY, SELL, SEND, RECEIVE\n    struct Attribute {\n        bytes32 attribute;\n        uint256 value;\n    }\n    mapping(address => mapping(bytes32 => Attribute)) private attributes;\n\n    // Tracks current User transfer limits\n    mapping(address => uint256) private userLimits;\n\n    // Tracks blacklisted users - 'overrides' KYCed users\n    mapping(address => bool) private blacklist;\n\n    // Tracks forever locked accounts - like Credit cards - no unlocks\n    mapping(address => bool) private lockedAccounts;\n\n    /**\n     * @notice Add user once he passed KYC process\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the KYCed user\n     */\n    function addUser(address _user) public onlyComplianceOfficer {\n        users[_user] = true;\n        userLimits[_user] = uint256(-1);\n        attributes[_user][\"ATTR_BUY\"] = Attribute(\"ATTR_BUY\", 1);\n    }\n\n    /**\n     * @notice Add company once it passed KYC process - after that Company is handled as a User\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _company Address of the KYCed company\n     */\n    function addCompany(address _company) public onlyComplianceOfficer {\n        users[_company] = true;\n        companies[_company] = true;\n        userLimits[_company] = uint256(-1);\n        attributes[_company][\"ATTR_BUY\"] = Attribute(\"ATTR_BUY\", 1);\n        attributes[_company][\"ATTR_SELL\"] = Attribute(\"ATTR_SELL\", 1);\n        attributes[_company][\"ATTR_RECEIVE\"] = Attribute(\"ATTR_RECEIVE\", 1);\n        attributes[_company][\"ATTR_SEND\"] = Attribute(\"ATTR_SEND\", 1);\n    }\n\n    /**\n     * @notice Check if a registered address is a KYCed element36 company\n     * @param _company Address of the user\n     * @return {\n     *   \"bool\": \"True when User is a registered company\"\n     * }\n     */\n    function isCompany(address _company) public view returns (bool) {\n        return companies[_company];\n    }\n\n    /**\n     * @notice Check User if registered and if on blacklist or account is locked\n     * @param _user Address of the user\n     * @return {\n     *   \"bool\": \"True when User is KYCed and not on Blacklist\"\n     * }\n     */\n    function checkUser(address _user) public view returns (bool) {\n        if (users[_user] && !blacklist[_user] && !lockedAccounts[_user]) {\n            return true;\n        }\n        return false;\n    }\n\n    /**\n     * @notice Check if a given amount is within the current limit of the User\n     * @param _user Address of the user\n     * @param _amount Amount of the transaction\n     * @param _balance Current balance of the user\n     * @return {\n     *   \"bool\": \"True when balance plus amount is smaller than the user limit\"\n     * }\n     */\n    function checkUserLimit(address _user, uint256 _amount, uint256 _balance) public view returns (bool) {\n        if (_balance + _amount <= userLimits[_user]) {\n            return true;\n        }\n        return false;\n    }\n\n    /**\n     * @notice Get the limit of the user\n     * @param _user Address of the user\n     * @return {\n     *   \"uint256\": \"The current user limit\"\n     * }\n     */\n    function getUserLimit(address _user) public view returns (uint256) {\n        return userLimits[_user];\n    }\n\n    /**\n     * @notice Set the limit of the user\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     * @param _limit New limit of the user\n     */\n    function setUserLimit(address _user, uint256 _limit) public onlyComplianceOfficer {\n        userLimits[_user] = _limit;\n    }\n\n    /**\n     * @notice Helper for web3j as passing -1 fails\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function setUserLimitToUnlimited(address _user) public onlyComplianceOfficer {\n        userLimits[_user] = uint256(-1);\n    }\n\n    /**\n     * @notice Set an attribute of the User\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     * @param _attribute Name of the attribute\n     * @param _value value of the attribute (1 or 0)\n     */\n    function setAttribute(address _user, bytes32 _attribute, uint256 _value) public onlyComplianceOfficer {\n        attributes[_user][_attribute] = Attribute(_attribute, _value);\n    }\n\n    /**\n     * @notice Check if a User has a given attribute\n     * @param _user Address of the user\n     * @param _attribute Name of the attribute\n     */\n    function hasAttribute(address _user, bytes32 _attribute) public view returns (bool) {\n        return attributes[_user][_attribute].value != 0;\n    }\n\n    /**\n     * @notice Check User if on Blacklist\n     * @param _user Address of the user\n     * @return {\n     *   \"bool\": \"True when User is listed on Blacklist\"\n     * }\n     */\n    function isOnBlacklist(address _user) public view returns (bool) {\n        return blacklist[_user];\n    }\n\n    /**\n     * @notice Blocking User by adding him onto the Blacklist\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function blockUser(address _user) public onlyComplianceOfficer {\n        blacklist[_user] = true;\n    }\n\n    /**\n     * @notice Unblocking User by removing him from the Blacklist\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function unblockUser(address _user) public onlyComplianceOfficer {\n        blacklist[_user] = false;\n    }\n\n    /**\n     * @notice Lock the account of a given user - Irreversible call - like Credit card\n     * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account\n     * @param _user Address of the user\n     */\n    function lockAccountForever(address _user) public onlyComplianceOfficer {\n        lockedAccounts[_user] = true;\n    }\n\n       /**\n     * @notice Check User if on LockedAccountsList\n     * @param _user Address of the user\n     * @return {\n     *   \"bool\": \"True when User is listed on LockedAccountsList\"\n     * }\n     */\n    function isOnLockedAccounts(address _user) public view returns (bool) {\n        return lockedAccounts[_user];\n    }\n\n}",
+  "sourcePath": "/home/w/workspace/contracts/contracts/Cash36Compliance.sol",
   "ast": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Compliance.sol",
+    "absolutePath": "/home/w/workspace/contracts/contracts/Cash36Compliance.sol",
     "exportedSymbols": {
       "Cash36Compliance": [
-        938
+        950
       ]
     },
-    "id": 939,
+    "id": 951,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -328,12 +379,12 @@
         "src": "0:23:4"
       },
       {
-        "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
+        "absolutePath": "/home/w/workspace/contracts/contracts/HasOfficer.sol",
         "file": "./HasOfficer.sol",
         "id": 592,
         "nodeType": "ImportDirective",
-        "scope": 939,
-        "sourceUnit": 1236,
+        "scope": 951,
+        "sourceUnit": 1248,
         "src": "25:26:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -347,10 +398,10 @@
               "id": 593,
               "name": "HasOfficer",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1235,
+              "referencedDeclaration": 1247,
               "src": "377:10:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_HasOfficer_$1235",
+                "typeIdentifier": "t_contract$_HasOfficer_$1247",
                 "typeString": "contract HasOfficer"
               }
             },
@@ -360,15 +411,15 @@
           }
         ],
         "contractDependencies": [
-          1235
+          1247
         ],
         "contractKind": "contract",
         "documentation": "@title Cash36 Compliance Contract\n @notice Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.\n @notice Changes to users can only be done be assigned compliance officer (=part of Compliance Backend Service)\n @author element36.io",
         "fullyImplemented": true,
-        "id": 938,
+        "id": 950,
         "linearizedBaseContracts": [
-          938,
-          1235
+          950,
+          1247
         ],
         "name": "Cash36Compliance",
         "nodeType": "ContractDefinition",
@@ -378,7 +429,7 @@
             "id": 598,
             "name": "users",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "435:38:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -423,7 +474,7 @@
             "id": 602,
             "name": "companies",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "479:42:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -522,7 +573,7 @@
             ],
             "name": "Attribute",
             "nodeType": "StructDefinition",
-            "scope": 938,
+            "scope": 950,
             "src": "615:74:4",
             "visibility": "public"
           },
@@ -531,7 +582,7 @@
             "id": 613,
             "name": "attributes",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "694:68:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -597,7 +648,7 @@
             "id": 617,
             "name": "userLimits",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "812:46:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -642,7 +693,7 @@
             "id": 621,
             "name": "blacklist",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "923:42:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -687,7 +738,7 @@
             "id": 625,
             "name": "lockedAccounts",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "1043:47:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1127,7 +1178,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "1334:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1180,7 +1231,7 @@
               "parameters": [],
               "src": "1356:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "1295:204:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2168,7 +2219,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "1799:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -2221,7 +2272,7 @@
               "parameters": [],
               "src": "1821:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "1754:474:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2355,7 +2406,7 @@
               ],
               "src": "2508:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "2451:107:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -2694,7 +2745,7 @@
               ],
               "src": "2845:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "2791:200:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -2999,7 +3050,7 @@
               ],
               "src": "3431:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "3337:220:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -3133,7 +3184,7 @@
               ],
               "src": "3788:9:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "3731:108:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -3234,7 +3285,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "4130:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3313,7 +3364,7 @@
               "parameters": [],
               "src": "4152:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "4070:125:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3473,7 +3524,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "4449:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3526,7 +3577,7 @@
               "parameters": [],
               "src": "4471:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "4394:125:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3707,7 +3758,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "4890:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3812,7 +3863,7 @@
               "parameters": [],
               "src": "4912:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "4810:180:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4052,7 +4103,7 @@
               ],
               "src": "5229:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "5152:148:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -4186,7 +4237,7 @@
               ],
               "src": "5545:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "5487:105:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -4292,7 +4343,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "5842:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -4345,7 +4396,7 @@
               "parameters": [],
               "src": "5864:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "5801:103:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4451,7 +4502,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "6160:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -4504,7 +4555,7 @@
               "parameters": [],
               "src": "6182:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "6117:106:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -4610,7 +4661,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "6507:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -4663,27 +4714,161 @@
               "parameters": [],
               "src": "6529:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "6457:117:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 948,
+              "nodeType": "Block",
+              "src": "6852:45:4",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 944,
+                      "name": "lockedAccounts",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 625,
+                      "src": "6869:14:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                        "typeString": "mapping(address => bool)"
+                      }
+                    },
+                    "id": 946,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 945,
+                      "name": "_user",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 939,
+                      "src": "6884:5:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "6869:21:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 943,
+                  "id": 947,
+                  "nodeType": "Return",
+                  "src": "6862:28:4"
+                }
+              ]
+            },
+            "documentation": "@notice Check User if on LockedAccountsList\n@param _user Address of the user\n@return {\n  \"bool\": \"True when User is listed on LockedAccountsList\"\n}",
+            "id": 949,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isOnLockedAccounts",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 940,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 939,
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 949,
+                  "src": "6810:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 938,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6810:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6809:15:4"
+            },
+            "returnParameters": {
+              "id": 943,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 942,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 949,
+                  "src": "6846:4:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 941,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6846:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6845:6:4"
+            },
+            "scope": 950,
+            "src": "6782:115:4",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
           }
         ],
-        "scope": 939,
-        "src": "348:6228:4"
+        "scope": 951,
+        "src": "348:6552:4"
       }
     ],
-    "src": "0:6576:4"
+    "src": "0:6900:4"
   },
   "legacyAST": {
-    "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/Cash36Compliance.sol",
+    "absolutePath": "/home/w/workspace/contracts/contracts/Cash36Compliance.sol",
     "exportedSymbols": {
       "Cash36Compliance": [
-        938
+        950
       ]
     },
-    "id": 939,
+    "id": 951,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -4698,12 +4883,12 @@
         "src": "0:23:4"
       },
       {
-        "absolutePath": "/Users/bum/element36/dev/cash36/contracts/contracts/HasOfficer.sol",
+        "absolutePath": "/home/w/workspace/contracts/contracts/HasOfficer.sol",
         "file": "./HasOfficer.sol",
         "id": 592,
         "nodeType": "ImportDirective",
-        "scope": 939,
-        "sourceUnit": 1236,
+        "scope": 951,
+        "sourceUnit": 1248,
         "src": "25:26:4",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4717,10 +4902,10 @@
               "id": 593,
               "name": "HasOfficer",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1235,
+              "referencedDeclaration": 1247,
               "src": "377:10:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_HasOfficer_$1235",
+                "typeIdentifier": "t_contract$_HasOfficer_$1247",
                 "typeString": "contract HasOfficer"
               }
             },
@@ -4730,15 +4915,15 @@
           }
         ],
         "contractDependencies": [
-          1235
+          1247
         ],
         "contractKind": "contract",
         "documentation": "@title Cash36 Compliance Contract\n @notice Is responsible for keeping track of all KYCed users (and possibly Companies), blacklist and attributes.\n @notice Changes to users can only be done be assigned compliance officer (=part of Compliance Backend Service)\n @author element36.io",
         "fullyImplemented": true,
-        "id": 938,
+        "id": 950,
         "linearizedBaseContracts": [
-          938,
-          1235
+          950,
+          1247
         ],
         "name": "Cash36Compliance",
         "nodeType": "ContractDefinition",
@@ -4748,7 +4933,7 @@
             "id": 598,
             "name": "users",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "435:38:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4793,7 +4978,7 @@
             "id": 602,
             "name": "companies",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "479:42:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4892,7 +5077,7 @@
             ],
             "name": "Attribute",
             "nodeType": "StructDefinition",
-            "scope": 938,
+            "scope": 950,
             "src": "615:74:4",
             "visibility": "public"
           },
@@ -4901,7 +5086,7 @@
             "id": 613,
             "name": "attributes",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "694:68:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4967,7 +5152,7 @@
             "id": 617,
             "name": "userLimits",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "812:46:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5012,7 +5197,7 @@
             "id": 621,
             "name": "blacklist",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "923:42:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5057,7 +5242,7 @@
             "id": 625,
             "name": "lockedAccounts",
             "nodeType": "VariableDeclaration",
-            "scope": 938,
+            "scope": 950,
             "src": "1043:47:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5497,7 +5682,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "1334:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -5550,7 +5735,7 @@
               "parameters": [],
               "src": "1356:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "1295:204:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -6538,7 +6723,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "1799:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -6591,7 +6776,7 @@
               "parameters": [],
               "src": "1821:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "1754:474:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -6725,7 +6910,7 @@
               ],
               "src": "2508:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "2451:107:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -7064,7 +7249,7 @@
               ],
               "src": "2845:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "2791:200:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -7369,7 +7554,7 @@
               ],
               "src": "3431:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "3337:220:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -7503,7 +7688,7 @@
               ],
               "src": "3788:9:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "3731:108:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -7604,7 +7789,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "4130:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -7683,7 +7868,7 @@
               "parameters": [],
               "src": "4152:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "4070:125:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -7843,7 +8028,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "4449:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -7896,7 +8081,7 @@
               "parameters": [],
               "src": "4471:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "4394:125:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -8077,7 +8262,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "4890:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -8182,7 +8367,7 @@
               "parameters": [],
               "src": "4912:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "4810:180:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -8422,7 +8607,7 @@
               ],
               "src": "5229:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "5152:148:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -8556,7 +8741,7 @@
               ],
               "src": "5545:6:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "5487:105:4",
             "stateMutability": "view",
             "superFunction": null,
@@ -8662,7 +8847,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "5842:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -8715,7 +8900,7 @@
               "parameters": [],
               "src": "5864:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "5801:103:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -8821,7 +9006,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "6160:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -8874,7 +9059,7 @@
               "parameters": [],
               "src": "6182:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "6117:106:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -8980,7 +9165,7 @@
                   "name": "onlyComplianceOfficer",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1193,
+                  "referencedDeclaration": 1205,
                   "src": "6507:21:4",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -9033,39 +9218,160 @@
               "parameters": [],
               "src": "6529:0:4"
             },
-            "scope": 938,
+            "scope": 950,
             "src": "6457:117:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 948,
+              "nodeType": "Block",
+              "src": "6852:45:4",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 944,
+                      "name": "lockedAccounts",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 625,
+                      "src": "6869:14:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                        "typeString": "mapping(address => bool)"
+                      }
+                    },
+                    "id": 946,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 945,
+                      "name": "_user",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 939,
+                      "src": "6884:5:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "6869:21:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 943,
+                  "id": 947,
+                  "nodeType": "Return",
+                  "src": "6862:28:4"
+                }
+              ]
+            },
+            "documentation": "@notice Check User if on LockedAccountsList\n@param _user Address of the user\n@return {\n  \"bool\": \"True when User is listed on LockedAccountsList\"\n}",
+            "id": 949,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isOnLockedAccounts",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 940,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 939,
+                  "name": "_user",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 949,
+                  "src": "6810:13:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 938,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6810:7:4",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6809:15:4"
+            },
+            "returnParameters": {
+              "id": 943,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 942,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 949,
+                  "src": "6846:4:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 941,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6846:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6845:6:4"
+            },
+            "scope": 950,
+            "src": "6782:115:4",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
           }
         ],
-        "scope": 939,
-        "src": "348:6228:4"
+        "scope": 951,
+        "src": "348:6552:4"
       }
     ],
-    "src": "0:6576:4"
+    "src": "0:6900:4"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.9+commit.e560f70d.Emscripten.clang"
+    "version": "0.5.15+commit.6a57276f.Emscripten.clang"
   },
-  "networks": {
-    "4": {
-      "events": {},
-      "links": {},
-      "address": "0x412F2525362D172508d886d49A42A8e2C9c0CA34",
-      "transactionHash": "0x9ee977274f64ee69285899c8ff9e2ffcdc83555c0fa3ea6317813fa49caed6c6"
-    },
-    "85458545": {
-      "events": {},
-      "links": {},
-      "address": "0x5b1869D9A4C187F2EAa108f3062412ecf0526b24",
-      "transactionHash": "0x9b86b79443d8ee63689fecaca90e9f87e26053c331415a8250abfba2256bc3cc"
-    }
-  },
-  "schemaVersion": "3.0.11",
-  "updatedAt": "2019-09-12T14:54:07.652Z",
+  "networks": {},
+  "schemaVersion": "3.0.20",
+  "updatedAt": "2020-01-17T08:40:04.865Z",
   "devdoc": {
     "author": "element36.io",
     "methods": {
@@ -9137,6 +9443,12 @@
         },
         "return": "{  \"bool\": \"True when User is listed on Blacklist\" }"
       },
+      "isOnLockedAccounts(address)": {
+        "params": {
+          "_user": "Address of the user"
+        },
+        "return": "{  \"bool\": \"True when User is listed on LockedAccountsList\" }"
+      },
       "lockAccountForever(address)": {
         "details": "onlyComplianceOfficer - only open to assigned Compliance Officer Account",
         "params": {
@@ -9207,6 +9519,9 @@
       },
       "isOnBlacklist(address)": {
         "notice": "Check User if on Blacklist"
+      },
+      "isOnLockedAccounts(address)": {
+        "notice": "Check User if on LockedAccountsList"
       },
       "lockAccountForever(address)": {
         "notice": "Lock the account of a given user - Irreversible call - like Credit card"

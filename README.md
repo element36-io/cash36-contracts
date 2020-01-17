@@ -20,12 +20,30 @@ see https://yarnpkg.com/lang/en/docs/install/
 - Clone repo
 - Checkout Branch develop
 - run 'yarn'
-- run 'yarn tesrpc'
+- run 'yarn testrpc'
 - run 'yarn deploy:testrpc'
 
 This starts a local testrpc client and deploys the contracts.
 
+Start with exising data: 
+- run 'yarn testrpcdata'
+
+
 ### Useful links
 https://github.com/ConsenSys/smart-contract-best-practices
 
-Thank you...
+### Successfully built with node 8.10
+
+Install nvm - see https://github.com/nvm-sh/nvm
+
+nvm install lts/carbon 
+nvm use lts/carbon
+yarn install
+yarn testrpc
+yarn test
+
+Debuggiong notes: including core 
+
+### Local development with current state in ./data
+
+w@x1:~/workspace/contracts$ ganache-cli -d -i 85458545 -b 5 -h 0.0.0.0 --db=./data -a 1

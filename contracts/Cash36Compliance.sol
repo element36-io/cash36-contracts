@@ -183,4 +183,16 @@ contract Cash36Compliance is HasOfficer {
     function lockAccountForever(address _user) public onlyComplianceOfficer {
         lockedAccounts[_user] = true;
     }
+
+       /**
+     * @notice Check User if on LockedAccountsList
+     * @param _user Address of the user
+     * @return {
+     *   "bool": "True when User is listed on LockedAccountsList"
+     * }
+     */
+    function isOnLockedAccounts(address _user) public view returns (bool) {
+        return lockedAccounts[_user];
+    }
+
 }

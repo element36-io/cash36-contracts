@@ -22,10 +22,42 @@ contract Token36Controller is IToken36Controller, Ownable {
     Cash36Exchanges internal exchanges;
 
     // Only Exchanges are allowed to handle certain functions
-    modifier onlyAllowedExchanges {
-        require(exchanges.isAllowedExchange(msg.sender, address(token)), "only registered exchanges allowed");
+    modifier onlyExchangesOrOfficers {
+        require(exchanges.isAllowedExchange(msg.sender, address(token)) || compliance.isOfficer(msg.sender), "sender not registered");
         _;
     }
+
+
+    /**
+    * @notice Controller Hook called in Token on transfer. Has no _to because this fx is used in a wallet-free context
+    * @notice Does all required compliance checks and only allows the transfer if user passes them all.
+    * @param _from Sender account address
+    * @param _amount Amount
+    */
+    function onTransfer(address _from, uint _amount) public view returns (bool) {
+        // Only the Token itself can call this - msg.sender is not the "_from" value but the calling contract
+        require(msg.sender == address(token), "Only callable from controlled Token");
+
+        // Check Compliance, unless sending address is a contract
+        if (Address.isContract(_from) == false || compliance.isCompany(_from)) {
+            // Check if user _from is KYCed and not blacklisted
+            if (!compliance.checkUser(_from)) {
+                return false;
+            }
+
+            // Check if user _from within limits
+            if (!compliance.checkUserLimit(_from, _amount, token.balanceOf(_from))) {
+                return false;
+            }
+
+            if (!compliance.hasAttribute(_from, "ATTR_SEND")) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     /**
     * @notice Controller Hook called in controlled Token on every transfer.
@@ -35,7 +67,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     * @param _amount Amount
     */
     function onTransfer(address _from, address _to, uint _amount) public view returns (bool) {
-        // Only the Token itself can call this
+        // Only the Token itself can call this - msg.sender is not the "_from" value but the calling contract
         require(msg.sender == address(token), "Only callable from controlled Token");
 
         // Check Compliance, unless receiving address is a contract
@@ -55,6 +87,7 @@ contract Token36Controller is IToken36Controller, Ownable {
             }
         }
 
+        // Check Compliance, unless sending address is a contract
         if (Address.isContract(_from) == false || compliance.isCompany(_from)) {
             // Check if user _from is KYCed and not blacklisted
             if (!compliance.checkUser(_from)) {
@@ -84,7 +117,11 @@ contract Token36Controller is IToken36Controller, Ownable {
         require(msg.sender == address(token), "Only callable from controlled Token");
 
         // Check Compliance first
-        if (Address.isContract(_from) == false || compliance.isCompany(_from)) {
+        // If contract, we are fine - Contracts cannot cash out directly.
+        if (Address.isContract(_from) == true) return true;
+
+        // Exceptions for contracts, compliacne officers and registered companies.
+        if (Address.isContract(_from) == false || compliance.isCompany(_from) || compliance.isOfficer(_from) == false) {
             if (!compliance.checkUser(_from)) {
                 return false;
             }
@@ -102,7 +139,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     * @param _receiver Recipient account address
     * @param _amount Amount to mint
     */
-    function mint(address _receiver, uint256 _amount) external onlyAllowedExchanges {
+    function mint(address _receiver, uint256 _amount) external onlyExchangesOrOfficers {
         token.mint(_receiver, _amount);
     }
 
@@ -113,7 +150,7 @@ contract Token36Controller is IToken36Controller, Ownable {
     * @param _amount Amount to burn
     */
 
-    function burn(address _from, uint256 _amount) external onlyAllowedExchanges {
+    function burn(address _from, uint256 _amount) external onlyExchangesOrOfficers {
         token.burnFrom(_from, _amount);
     }
 
