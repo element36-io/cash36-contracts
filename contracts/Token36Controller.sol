@@ -29,7 +29,7 @@ contract Token36Controller is IToken36Controller, Ownable {
 
 
     /**
-    * @notice Controller Hook called in Token on transfer. Has no _to because this fx is used in a wallet-free context 
+    * @notice Controller Hook called in Token on transfer. Has no _to because this fx is used in a wallet-free context
     * @notice Does all required compliance checks and only allows the transfer if user passes them all.
     * @param _from Sender account address
     * @param _amount Amount
@@ -117,9 +117,10 @@ contract Token36Controller is IToken36Controller, Ownable {
         require(msg.sender == address(token), "Only callable from controlled Token");
 
         // Check Compliance first
+        // If contract, we are fine - Contracts cannot cash out directly.
+        if (Address.isContract(_from) == true) return true;
+
         // Exceptions for contracts, compliacne officers and registered companies.
-        if (Address.isContract(_from) == true) return true; 
-       
         if (Address.isContract(_from) == false || compliance.isCompany(_from) || compliance.isOfficer(_from) == false) {
             if (!compliance.checkUser(_from)) {
                 return false;

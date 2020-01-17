@@ -3,10 +3,7 @@ pragma solidity ^0.5.9;
 import "./Token36.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/SafeERC20.sol";
 
-
-// Adapted from: 
 // https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/TokenTimelock.sol
-
 
 /**
  * @dev A token holder contract that will allow a beneficiary to extract the
@@ -35,18 +32,17 @@ contract Ping {
     }
 
     constructor(Token36 token) public {
-        _token=token;
+        _token = token;
     }
 
     /**
     * Load the contract with tokens for a beneficiary (or to be stolen with steal-function)
      */
     function ping(address beneficiary, uint256 value)  public  {
-        require ( (0 < value  && value <= 200),"ping (too many tokens) 0<tokens<=200");
-        uint256 balance=_token.balanceOf(address(this));
-        require( balance == 0, "ping occupied - use pong or steal first");
-
-        _pingSender=msg.sender;
+        require ((0 < value && value <= 200),"ping (too many tokens) 0<tokens<=200");
+        uint256 balance = _token.balanceOf(address(this));
+        require(balance == 0, "ping occupied - use pong or steal first");
+        _pingSender = msg.sender;
         _token.safeTransferFrom(msg.sender,address(this),value);
         _beneficiary = beneficiary;
     }
@@ -56,10 +52,9 @@ contract Ping {
      */
     function pongWalletFree(bytes32 clue,uint256 amount)  public  {
         require(_beneficiary == address(0), "beneficiary registered");
-        uint256 balance=_token.balanceOf(address(this));
-        require(0 < balance , "no balance");
-        require(balance>=amount, "too little balance");
-
+        uint256 balance = _token.balanceOf(address(this));
+        require(0 < balance, "no balance");
+        require(balance >= amount, "too little balance");
         _token.transferClue(clue, amount);
         //_token.burn(amount);
     }
@@ -68,13 +63,12 @@ contract Ping {
     /**
      * @notice Transfers tokens to beneficiary - cash36 will check KYC
      */
-    function pong() public {   
-        uint256 amount=_token.balanceOf(address(this));
-        require(amount >0, "ping 0 tokens here");
+    function pong() public {
+        uint256 amount = _token.balanceOf(address(this));
+        require(amount > 0, "ping 0 tokens here");
         require(_beneficiary != address(0), "no beneficiary registered");
-   
         _token.safeTransfer(_beneficiary, amount);
-        _beneficiary=address(0);
+        _beneficiary = address(0);
     }
 
 
@@ -82,11 +76,10 @@ contract Ping {
      * @notice Transfers tokens to the caller - remark: Cash36 contract will check validate KYC
      */
     function steal() public {
-        uint256 amount=_token.balanceOf(address(this));
-        require( amount > 0, " no tokens to release");
-        _beneficiary=address(0);
+        uint256 amount = _token.balanceOf(address(this));
+        require(amount > 0, "no tokens to release");
+        _beneficiary = address(0);
         _token.safeTransfer(msg.sender, amount);
-
     }
 
     /**
