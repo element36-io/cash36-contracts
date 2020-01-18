@@ -9,7 +9,7 @@ stages:
 
 before_script:
   - apt-get update && apt-get install -y git python g++ make curl
-  - curl -sL https://deb.nodesource.com/setup_8.x | bash
+  - curl -sL https://deb.nodesource.com/setup_10.x | bash
   - apt-get install -y nodejs
   - npm install -g yarn
 
@@ -65,8 +65,9 @@ release:
   script:
     - git config --global user.email "w@element36.io"
     - git config --global user.name "walter.strametz"
-    - npm install -g semantic-release-gitlab
-    - semantic-release-gitlab
+    - npm install -g @semantic-delivery/gitlab
+    - semantic-delivery-gitlab
+ 
   retry: 1
   allow_failure: false
   only:
