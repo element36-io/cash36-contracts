@@ -65,7 +65,7 @@ release:
   script:
     - git config --global user.email "w@element36.io"
     - git config --global user.name "walter.strametz"
-    - npm install -g @semantic-delivery/gitlab
+    - npm i -g @hutson/semantic-delivery-gitlab
     - semantic-delivery-gitlab
  
   retry: 1
