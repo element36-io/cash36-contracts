@@ -68,6 +68,10 @@ release:
     - npm i -g @hutson/semantic-delivery-gitlab
     - echo $GITLAB_AUTH_TOKEN
     - semantic-delivery-gitlab --token $GITLAB_AUTH_TOKEN
+    - echo "@element36-io:contracts=https://gitlab.com/api/v4/packages/npm/" > ~/.npmrc
+    - echo "//gitlab.com/api/v4/packages/npm/:_authToken=${GITLAB_AUTH_TOKEN}" > ~/.npmrc
+    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${GITLAB_AUTH_TOKEN}"  > .npmrc
+    - npm-publish-git-tag --access private
  
   retry: 1
   allow_failure: false
@@ -86,3 +90,4 @@ publish:
   allow_failure: false
   only:
     - master
+    - manual
