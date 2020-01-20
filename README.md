@@ -46,4 +46,5 @@ Debuggiong notes: including core
 
 ### Local development with current state in ./data
 
-w@x1:~/workspace/contracts$ ganache-cli -d -i 85458545 -b 5 -h 0.0.0.0 --db=./data -a 1
+ganache-cli -d -i 85458545 -b 5 -h 0.0.0.0 --db=./data -a 1
+

@@ -62,17 +62,35 @@ module.exports = {
       network_id: 42,
       gas:          6000000,
       gasPrice: 10000000000
+    },  
+    ropsten_infura: {
+      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://ropsten.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      network_id: 3,
+      gas:          6000000,
+      gasPrice: 10000000000
     },   
-    test: {
-      provider: getProvider('./keys.json', 'http://rinkeby.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c'),
-      network_id: 42,
-    },
-
-    main: {
-      provider: getProvider('./keys-prod.json', 'tbd33'),
-      network_id: 1,
-      gas: 0x2fefd5
+    rinkeby_infura: {
+      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://rinkeby.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      network_id: 4,
+      gas:          6000000,
+      gasPrice: 10000000000
+    },   
+    goerli_infura: {
+      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://goerli.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      network_id: 5,
+      gas:          6000000,
+      gasPrice: 10000000000
     }
+    // test: {
+    //   provider: getProvider('./keys.json', 'http://rinkeby.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c'),
+    //   network_id: 42,
+    // },
+
+    // main: {
+    //   provider: getProvider('./keys-prod.json', 'tbd33'),
+    //   network_id: 1,
+    //   gas: 0x2fefd5
+    // }
   },
 
   mocha: {
