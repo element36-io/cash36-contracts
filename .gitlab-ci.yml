@@ -65,9 +65,11 @@ release:
   script:
     - git config --global user.email "w@element36.io"
     - git config --global user.name "walter.strametz"
-    - npm i -g @hutson/semantic-delivery-gitlab
-    - echo $GITLAB_AUTH_TOKEN
+    - npm i" -g @hutson/semantic-delivery-gitlab
+    - echo "create tag"
     - semantic-delivery-gitlab --token $GITLAB_AUTH_TOKEN
+    - echo "publish to gitLAB repo for dev"
+    - npm install -g npm-publish-git-tag
     - echo "@element36-io:contracts=https://gitlab.com/api/v4/packages/npm/" > ~/.npmrc
     - echo "//gitlab.com/api/v4/packages/npm/:_authToken=${GITLAB_AUTH_TOKEN}" > ~/.npmrc
     - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=${GITLAB_AUTH_TOKEN}"  > .npmrc
