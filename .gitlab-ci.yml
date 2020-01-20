@@ -66,7 +66,8 @@ release:
     - git config --global user.email "w@element36.io"
     - git config --global user.name "walter.strametz"
     - npm i -g @hutson/semantic-delivery-gitlab
-    - semantic-delivery-gitlab --token ${GITLAB_AUTH_TOKEN}
+    - echo $GITLAB_AUTH_TOKEN
+    - semantic-delivery-gitlab --token $GITLAB_AUTH_TOKEN
  
   retry: 1
   allow_failure: false
