@@ -5,7 +5,7 @@ stages:
   - test
   #- deploy
   - release
-  # - publish  -- done by release
+  #- publish
 
 before_script:
   - apt-get update && apt-get install -y git python g++ make curl
@@ -80,16 +80,16 @@ release:
   only:
     - master
 
-publish:
-  stage: publish
-  tags:
-    - dokcer
-  script:
-    - npm install -g npm-publish-git-tag
-    - echo "//npm.pkg.github.com/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
-    - echo "registry=https://npm.pkg.github.com/element36-io" >> ~/.npmrc
-    - npm-publish-git-tag --access private
-  allow_failure: false
-  only:
-    - master
+# publish:
+#   stage: publish
+#   tags:
+#     - dokcer
+#   script:
+#     - npm install -g npm-publish-git-tag
+#     - echo "//npm.pkg.github.com/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
+#     - echo "registry=https://npm.pkg.github.com/element36-io" >> ~/.npmrc
+#     - npm-publish-git-tag --access private
+#   allow_failure: false
+#   only:
+#     - master
 
