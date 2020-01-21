@@ -5,7 +5,7 @@ stages:
   - test
   #- deploy
   - release
-  - publish
+  # - publish  -- done by release
 
 before_script:
   - apt-get update && apt-get install -y git python g++ make curl
@@ -92,5 +92,4 @@ publish:
   allow_failure: false
   only:
     - master
-  when:
-    - manual
+

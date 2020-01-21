@@ -68,17 +68,17 @@ module.exports = async (deployer, network, accounts) => {
     await web3.eth.sendTransaction({
       to: '0x5c84e251671f94b5de719106fb34a1e99828d15d',
       from: accounts[0],
-      value: web3.utils.toWei('25', 'ether')
+      value: web3.utils.toWei('3', 'ether')
     })
     await web3.eth.sendTransaction({
       to: '0xcd0dd78b1a09f860f39218d1124e121bf52d71a9',
       from: accounts[0],
-      value: web3.utils.toWei('25', 'ether')
+      value: web3.utils.toWei('3', 'ether')
     })
     await web3.eth.sendTransaction({
       to: '0x9bed0471bd661a394793d4a9b11064da30b20ce5',
       from: accounts[0],
-      value: web3.utils.toWei('25', 'ether')
+      value: web3.utils.toWei('3', 'ether')
     })
   } else if (network == 'test') {
     await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
