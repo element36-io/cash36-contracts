@@ -5,7 +5,7 @@ stages:
   - test
   #- deploy
   - release
-  - publish
+  #- publish
 
 before_script:
   - apt-get update && apt-get install -y git python g++ make curl
@@ -66,23 +66,30 @@ release:
     - git config --global user.email "w@element36.io"
     - git config --global user.name "walter.strametz"
     - npm i -g @hutson/semantic-delivery-gitlab
-    - echo $GITLAB_AUTH_TOKEN
+    - echo "create tag"
     - semantic-delivery-gitlab --token $GITLAB_AUTH_TOKEN
+    - echo "publish to gitLAB repo for dev"
+    - npm install -g npm-publish-git-tag
+    - echo "@element36-io:contracts=https://gitlab.com/api/v4/packages/npm/" > ~/.npmrc
+    - echo "//gitlab.com/api/v4/packages/npm/:_authToken=$GITLAB_AUTH_TOKEN" >> ~/.npmrc
+    - echo "//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken=$GITLAB_AUTH_TOKEN"  >> ~/.npmrc
+    - npm-publish-git-tag --access private
  
   retry: 1
   allow_failure: false
   only:
     - master
 
-publish:
-  stage: publish
-  tags:
-    - dokcer
-  script:
-    - npm install -g npm-publish-git-tag
-    - echo "//npm.pkg.github.com/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
-    - echo "registry=https://npm.pkg.github.com/element36-io" > .npmrc
-    - npm-publish-git-tag --access private
-  allow_failure: false
-  only:
-    - master
+# publish:
+#   stage: publish
+#   tags:
+#     - dokcer
+#   script:
+#     - npm install -g npm-publish-git-tag
+#     - echo "//npm.pkg.github.com/:_authToken='${NPM_TOKEN}'" > ~/.npmrc
+#     - echo "registry=https://npm.pkg.github.com/element36-io" >> ~/.npmrc
+#     - npm-publish-git-tag --access private
+#   allow_failure: false
+#   only:
+#     - master
+
