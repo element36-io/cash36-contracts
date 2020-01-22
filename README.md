@@ -32,7 +32,7 @@ Start with exising data:
 ### Useful links
 https://github.com/ConsenSys/smart-contract-best-practices
 
-### Successfully built with node 8.10
+### Successfully built with node  lts/dubnium (-> v10.18.1)
 
 Install nvm - see https://github.com/nvm-sh/nvm
 
@@ -42,9 +42,9 @@ yarn install
 yarn testrpc
 yarn test
 
-Debuggiong notes: including core 
 
 ### Local development with current state in ./data
 
 ganache-cli -d -i 85458545 -b 5 -h 0.0.0.0 --db=./data -a 1
 
+[Current network config is here ](network.md)
