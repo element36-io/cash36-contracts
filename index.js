@@ -9,6 +9,7 @@ var Ping = require('./build/contracts/Ping.json');
 
 
 module.exports = {
+    contracts_directory: "./contracts",
     Cash36Contract: Cash36,
     Cash36ComplianceContract: Cash36Compliance,
     Cash36ExchangesContract: Cash36Exchanges,

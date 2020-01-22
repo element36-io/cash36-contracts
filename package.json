@@ -16,7 +16,7 @@
   },  
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./build && ./node_modules/.bin/truffle compile --all",
+    "build": "./node_modules/.bin/truffle networks; rm -rf ./build && ./node_modules/.bin/truffle compile --all",
     "lint": "./node_modules/.bin/solium --dir contracts --reporter=pretty",
     "test": "./node_modules/.bin/truffle test --show-events --network localTest",
     "testrpc": "./node_modules/.bin/ganache-cli -p 8545 -i 85458545 ",
@@ -57,6 +57,8 @@
   },
   "files": [
     "build/contracts/",
+    "contracts",
+    "networks.md",
     "index.js"
   ],
   "repository": {
