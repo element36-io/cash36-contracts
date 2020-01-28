@@ -25,7 +25,7 @@ see https://yarnpkg.com/lang/en/docs/install/
 
 This starts a local testrpc client and deploys the contracts.
 
-Start with exising data: 
+Start with exising blockchain data 
 - run 'yarn testrpcdata'
 
 ### Successfully built with node  lts/dubnium (-> v10.18.1)
@@ -37,6 +37,47 @@ nvm use lts/carbon
 yarn install
 yarn testrpc
 yarn test
+
+### Migrate and new packages
+
+With Metamask (chrome)- go to Settings/Security/Reveal pass phrase words and set MNENOMIC to the passphase:
+export MNENOMIC="blat"
+
+yarn deploy:kovan
+yarn deploy:rinkeby
+yarn deploy:main
+
+
+Create local ganache docker image:
+
+mv ./data ./data-sik; mkdir ./data; 
+yarn testrpcdata &
+yarn deploy:local
+
+sudo docker login registry.gitlab.com/cash36/contracts
+sudo docker build -t  registry.gitlab.com/cash36/contracts:latest .
+sudo docker push registry.gitlab.com/cash36/contracts:latest
+
+yarn deloyed > networks.md
+
+Check in contrats and merge master which creates a new version of the contracts library. 
+
+Add new version to package.json: 
+- cash36-admin-frontend
+- cash36-compliance
+- cash36-exchange
+
+And rebuild dependencies and stubs:
+
+( cd cash36-admin-frontend; git pull; yarn; ) 
+( cd cash36-exchange; git pull; gradle build; gradle genToken36Controller genCash36Exchange ;gradle test ) 
+( cd cash36-compliance; git pull; gradle build; gradle genCash36Compliance genCash36Company; gradle t
+
+Push & merge to master to create new docker images, test local installation with 
+cd cash36-docker
+docker-compose up
+
+
 
 ### Network address from truffle migrate
 
