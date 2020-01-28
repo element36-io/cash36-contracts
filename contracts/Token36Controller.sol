@@ -120,7 +120,7 @@ contract Token36Controller is IToken36Controller, Ownable {
         // If contract, we are fine - Contracts cannot cash out directly.
         if (Address.isContract(_from) == true) return true;
 
-        // Exceptions for contracts, compliacne officers and registered companies.
+        // Exceptions for contracts, compliance officers and registered companies.
         if (Address.isContract(_from) == false || compliance.isCompany(_from) || compliance.isOfficer(_from) == false) {
             if (!compliance.checkUser(_from)) {
                 return false;

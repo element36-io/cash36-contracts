@@ -13,6 +13,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/SafeERC20.sol";
  */
 contract Ping {
     using SafeERC20 for Token36;
+    using SafeERC20 for Token36;
 
     // ERC20 basic token contract being held
     Token36 private _token;
@@ -39,7 +40,7 @@ contract Ping {
     * Load the contract with tokens for a beneficiary (or to be stolen with steal-function)
      */
     function ping(address beneficiary, uint256 value)  public  {
-        require ((0 < value && value <= 200),"ping (too many tokens) 0<tokens<=200");
+        require ((0 < value && value <= 200*1e18)," 0<tokens<=200");
         uint256 balance = _token.balanceOf(address(this));
         require(balance == 0, "ping occupied - use pong or steal first");
         _pingSender = msg.sender;
@@ -95,6 +96,4 @@ contract Ping {
     function beneficiary() public view returns (address) {
         return _beneficiary;
     }
-
-
 }
