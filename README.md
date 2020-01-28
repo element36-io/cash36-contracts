@@ -60,7 +60,8 @@ sudo docker push registry.gitlab.com/cash36/contracts:latest
 
 yarn deloyed > networks.md
 
-Check in contrats and merge master which creates a new version of the contracts library. 
+Check in contrats and merge master which creates a new version of the contracts 
+library in gitLAB (not on gitHUB).  
 
 Add new version to package.json: 
 - cash36-admin-frontend
