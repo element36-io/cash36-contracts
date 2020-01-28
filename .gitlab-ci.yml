@@ -1,10 +1,10 @@
 image: ubuntu:16.04 #luongnguyen/oyente
 
 stages:
-  # - build
-  # - test
-  # #- deploy
-  # - release
+  - build
+  - test
+  #- deploy
+  - release
   - publish
 
 before_script:
@@ -13,42 +13,42 @@ before_script:
   - apt-get install -y nodejs
   - npm install -g yarn
 
-# build:
-#   stage: build
-#   tags:
-#     - dokcer
-#   script:
-#     - yarn
-#     - yarn build
-#     - yarn lint
-#     #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
-#   except:
-#     - tags
+build:
+  stage: build
+  tags:
+    - dokcer
+  script:
+    - yarn
+    - yarn build
+    - yarn lint
+    #- for f in ./contracts/*.sol; do python /oyente/oyente/oyente.py -s $f; done
+  except:
+    - tags
 
-# test:
-#   stage: test
-#   tags:
-#     - dokcer
-#   script:
-#     - yarn
-#     - yarn testrpc &
-#     - yarn test
-#   except:
-#     - tags
+test:
+  stage: test
+  tags:
+    - dokcer
+  script:
+    - yarn
+    - yarn testrpc &
+    - yarn test
+  except:
+    - tags
 
-# release:
-#   stage: release
-#   tags:
-#     - dokcer
-#   script:
-#     - git config --global user.email "w@element36.io"
-#     - git config --global user.name "walter.strametz"
-#     - npm i -g @hutson/semantic-delivery-gitlab
-#     - semantic-delivery-gitlab --token $GITLAB_AUTH_TOKEN
-#     - npm install -g npm-publish-git-tag
-#   retry: 1
-#   allow_failure: false
-#   only:
+release:
+  stage: release
+  tags:
+    - dokcer
+  script:
+    - git config --global user.email "w@element36.io"
+    - git config --global user.name "walter.strametz"
+    - npm i -g @hutson/semantic-delivery-gitlab
+    - semantic-delivery-gitlab --token $GITLAB_AUTH_TOKEN
+    - npm install -g npm-publish-git-tag
+  retry: 1
+  allow_failure: false
+  only:
     - master
 
 publish:
@@ -66,7 +66,7 @@ publish:
     # uses NPM_TOKEN from gitlab
     - npm-deploy-git-tag  --access private
   allow_failure: false
-  #when: manual
+  when: manual
   only:
     - master
 
