@@ -36,9 +36,32 @@ contract Cash36Compliance is HasOfficer {
      */
     function addUser(address _user) public onlyComplianceOfficer {
         users[_user] = true;
-        userLimits[_user] = uint256(-1);
+        userLimits[_user] = uint256(-1); // infinity number
         attributes[_user]["ATTR_BUY"] = Attribute("ATTR_BUY", 1);
     }
+
+    /**
+     * @notice Sets ATTR_ attributes for initial activation (KYC-ing a user)
+     * @param _user Address of the user
+     */
+    function activateUser(address _user) public onlyComplianceOfficer {
+        attributes[_user]["ATTR_BUY"] = Attribute("ATTR_BUY", 1);
+        attributes[_user]["ATTR_SELL"] = Attribute("ATTR_SELL", 1);
+        attributes[_user]["ATTR_RECEIVE"] = Attribute("ATTR_RECEIVE", 1);
+        attributes[_user]["ATTR_SEND"] = Attribute("ATTR_SEND", 1);
+    }
+
+     /**
+     * @notice Sets ATTR_ attributes for deactivation of a user
+     * @param _user Address of the user
+     */
+    function deactivateUser(address _user) public onlyComplianceOfficer {
+        attributes[_user]["ATTR_BUY"] = Attribute("ATTR_BUY", 0);
+        attributes[_user]["ATTR_SELL"] = Attribute("ATTR_SELL", 0);
+        attributes[_user]["ATTR_RECEIVE"] = Attribute("ATTR_RECEIVE", 0);
+        attributes[_user]["ATTR_SEND"] = Attribute("ATTR_SEND", 0);
+    }
+
 
     /**
      * @notice Add company once it passed KYC process - after that Company is handled as a User
@@ -70,7 +93,7 @@ contract Cash36Compliance is HasOfficer {
      * @notice Check User if registered and if on blacklist or account is locked
      * @param _user Address of the user
      * @return {
-     *   "bool": "True when User is KYCed and not on Blacklist"
+     *   "bool": "True when User is registereds and not on Blacklist"
      * }
      */
     function checkUser(address _user) public view returns (bool) {

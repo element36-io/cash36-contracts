@@ -92,6 +92,7 @@ contract('Create and Test Token36', function (accounts) {
     assert.equal(checkUser1Attr, true, 'The checkUser1Attr was not correct.')
   })
 
+
   it('...it should mint 200 CHF36 and assign it to accounts[1].', async function () {
     await CHF36ControllerInstance.mint(accounts[1], 200, {from: exchangeAddress})
     
@@ -255,4 +256,38 @@ contract('Create and Test Token36', function (accounts) {
     //var newBalanceFor2After = await CHF36Instance.balanceOf(accounts[1])
     //assert.equal(newBalanceFor2After, '75', 'The balance was not correct.') //100 */
   })
+
+
+
+  it('...it should activate and deactivagte accounts[1] correctly.', async function () {
+    
+    await Cash36ComplianceInstance.deactivateUser(accounts[1], {from: accounts[0]})
+    var checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_SELL'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, false, 'The checkUser1 was not correct.')
+    checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_SEND'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, false, 'The checkUser1 was not correct.')
+    checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_RECEIVE'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, false, 'The checkUser1 was not correct.')
+    checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_BUY'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, false, 'The checkUser1 was not correct.')
+
+    var checkUser1 = await Cash36ComplianceInstance.checkUser(accounts[1], {from: accounts[0]})
+    // checkuser shall not be affected by attribs
+    assert.equal(checkUser1, true, 'The checkUser1 was not correct.  ')
+  
+    await Cash36ComplianceInstance.activateUser(accounts[1], {from: accounts[0]})
+    checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_SELL'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, true, 'The checkUser1 was not correct.')
+    checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_SEND'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, true, 'The checkUser1 was not correct.')
+    checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_RECEIVE'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, true, 'The checkUser1 was not correct.')
+    checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_BUY'), {from: accounts[0]})
+    assert.equal(checkUser1Attr, true, 'The checkUser1 was not correct.')
+
+
+    checkUser1 = await Cash36ComplianceInstance.checkUser(accounts[1], {from: accounts[0]})
+    assert.equal(checkUser1, true, 'The checkUser1 was not correct.')
+  })
+
 })
