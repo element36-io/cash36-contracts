@@ -47,56 +47,51 @@ module.exports = async (deployer, network, accounts) => {
   let cash36Compliance = await Cash36Compliance.deployed()
   let cash36Exchange = await Cash36Exchanges.deployed()
 
+
   // Deploy element36 as Company on Blockchain and whitelist
   await deployer.deploy(Cash36Company, 'element36 AG')
+  let element36Company = await Cash36Company.deployed()
   await cash36Compliance.addCompany(Cash36Company.address)
 
   await deployer.deploy(Ping, CHF36.address)
+  
+  let walletOfTheExchange='0x5c84e251671f94b5de719106fb34a1e99828d15d' // cash36-exchange/src/main/ressources/exchange.json
+  let walletOfComplianceServer='0xcd0dd78b1a09f860f39218d1124e121bf52d71a9'; // cash36-compliance/src/main/ressources/compliance.json
+  let ownerAccount= '0x6D1cf1a3d5f7868f0a13c76262eD4683E1F61A0E'; // First account of HD Wallet used to deploy the contracts
 
-  if (network == 'local') {
-    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
-    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
-    await cash36Exchange.transferOwnership('0x9bed0471bd661a394793d4a9b11064da30b20ce5')
+  console.log("network: "+network)
 
-    await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
-    await cash36.transferOwnership('0x9bed0471bd661a394793d4a9b11064da30b20ce5')
+  if (network == 'main') {
+    console.log(" setting values for main network "+network)
+    walletOfTheExchange='0xC8Ab38aCd8c4c7A53a431a5791B4898e105e3cd9' // cash36-exchange/src/main/ressources/exchange.prod.json
+    walletOfComplianceServer='0x50fbc244494bEBbcff285447B737871994321077'; // cash36-compliance/src/main/ressources/compliance.prod.json
+    ownerAccount= '0x56788E08C97d2677DAdED801e69bfE5D33ddACD5';
+  }
 
-    // Current Owner Compliance Contract
-    let element36Company = await Cash36Company.deployed()
-    await element36Company.addOwner('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
-    
+  await cash36Exchange.addExchange(walletOfTheExchange, CHF36.address)
+  await cash36Exchange.addExchange(walletOfTheExchange, EUR36.address)
+  await cash36Exchange.transferOwnership(ownerAccount)
+  await cash36Compliance.changeOfficer(walletOfComplianceServer)  
+  await cash36.transferOwnership(ownerAccount)
+  await element36Company.addOwner(ownerAccount)
+
+
+  if (network== 'local') {
+    console.log(" doing stuff for local network "+network)
     await web3.eth.sendTransaction({
-      to: '0x5c84e251671f94b5de719106fb34a1e99828d15d',
+      to: walletOfTheExchange,
       from: accounts[0],
       value: web3.utils.toWei('3', 'ether')
     })
     await web3.eth.sendTransaction({
-      to: '0xcd0dd78b1a09f860f39218d1124e121bf52d71a9',
+      to: walletOfComplianceServer,
       from: accounts[0],
       value: web3.utils.toWei('3', 'ether')
     })
     await web3.eth.sendTransaction({
-      to: '0x9bed0471bd661a394793d4a9b11064da30b20ce5',
+      to: walletOfComplianceServer,
       from: accounts[0],
       value: web3.utils.toWei('3', 'ether')
     })
-  } else if (network == 'test') {
-    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', CHF36.address)
-    await cash36Exchange.addExchange('0x5c84e251671f94b5de719106fb34a1e99828d15d', EUR36.address)
-
-    await cash36Compliance.changeOfficer('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
-
-    // Current Owner Compliance Contract
-    let element36Company = await Cash36Company.deployed()
-    await element36Company.addOwner('0xcd0dd78b1a09f860f39218d1124e121bf52d71a9')
-  } else if (network == 'main') {
-    await cash36Exchange.addExchange('0x5cf43737ccc03cfcb5af9841eaeb299f21f20003', CHF36.address)
-    await cash36Exchange.addExchange('0x5cf43737ccc03cfcb5af9841eaeb299f21f20003', EUR36.address)
-
-    await cash36Compliance.changeOfficer('0x502aac877a292c1f4b9c7f55359e72ff21f90002')
-
-    // Current Owner Compliance Contract
-    let element36Company = await Cash36Company.deployed()
-    await element36Company.addOwner('0x502aac877a292c1f4b9c7f55359e72ff21f90002')
   }
 }

@@ -21,6 +21,8 @@ see https://yarnpkg.com/lang/en/docs/install/
 - Checkout Branch develop
 - run 'yarn'
 - run 'yarn testrpc'
+
+Add MNENOMIC environment variable for HD Wallet. 
 - run 'yarn deploy:testrpc'
 
 This starts a local testrpc client and deploys the contracts.
@@ -48,7 +50,18 @@ yarn deploy:rinkeby
 yarn deploy:main
 
 
-Create local ganache docker image:
+### Create local ganache docker image:
+
+Update the local ganche-docker blockchain: 
+
+sudo docker ps
+export contid="7bb20a9a97ae"
+sudo docker exec -it $contid ls
+sudo docker exec -it $contid tar -zcvf data.tar.gz   ./data/
+sudo docker cp $contid:/app/data.tar.gz /home/w/workspace/contracts/
+
+w@x1:~/workspace/contracts/data$ mv data data_old
+w@x1:~/workspace/contracts/data$ tar -xvzf data.tar.gz 
 
 mv ./data ./data-sik; mkdir ./data; 
 yarn testrpcdata &
@@ -58,7 +71,7 @@ sudo docker login registry.gitlab.com/cash36/contracts
 sudo docker build -t  registry.gitlab.com/cash36/contracts:latest .
 sudo docker push registry.gitlab.com/cash36/contracts:latest
 
-yarn deloyed > networks.md
+yarn networks > networks.md
 
 Check in contrats and merge master which creates a new tag in gitlab and 
 deployment of the package on github
@@ -85,6 +98,9 @@ docker-compose up
 [Current network config is here ](network.md)
 
 
+### Public on github
+
+[github instructions ](publicgithub.md)
 
 ### Useful links
 https://github.com/ConsenSys/smart-contract-best-practices

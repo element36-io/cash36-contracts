@@ -34,16 +34,6 @@ module.exports = {
       gas: 0xfffffffffff,
       gasPrice: 0x01
     },
-    development: {
-      host: '0.0.0.0',
-      port: 8545,
-      network_id: '85458545',
-    },
-    localTest: {
-      host: 'localhost',
-      port: 8545,
-      network_id: '85458545',
-    },
     local: {
       host: 'localhost',
       port: 8545,
@@ -51,45 +41,39 @@ module.exports = {
       gas:          6000000,
       gasPrice: 10000000000
     },
-    ganache: {
-      host: 'localhost',
-      port: 7545,
-      network_id: '5777',
-    },
     kovan_infura: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://kovan.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://kovan.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
       network_id: 42,
       gas:          6000000,
       gasPrice: 10000000000
     },  
     ropsten_infura: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://ropsten.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://ropsten.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
       network_id: 3,
       gas:          6000000,
       gasPrice: 10000000000
     },   
     rinkeby_infura: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://rinkeby.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://rinkeby.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
       network_id: 4,
       gas:          6000000,
       gasPrice: 10000000000
     },   
     goerli_infura: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://goerli.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://goerli.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
       network_id: 5,
       gas:          6000000,
       gasPrice: 10000000000
-    }
-    // test: {
-    //   provider: getProvider('./keys.json', 'http://rinkeby.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c'),
-    //   network_id: 42,
-    // },
-
-    // main: {
-    //   provider: getProvider('./keys-prod.json', 'tbd33'),
-    //   network_id: 1,
-    //   gas: 0x2fefd5
-    // }
+    },
+    main_infura: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://mainnet.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      network_id: 1,
+      gas: 6500000,           // Default gas to send per transaction
+      gasPrice: 52000000000,  // 10 gwei (default: 20 gwei) https://ethgasstation.info/ --52 000 000 000
+      confirmations: 2,       // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,     // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: false 
+     }
   },
 
   mocha: {
