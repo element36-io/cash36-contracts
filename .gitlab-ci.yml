@@ -31,7 +31,7 @@ test:
     - dokcer
   script:
     - yarn
-    - yarn testrpcdata &
+    - yarn testrpc &
     - yarn test
   except:
     - tags
