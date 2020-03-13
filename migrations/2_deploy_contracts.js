@@ -57,15 +57,21 @@ module.exports = async (deployer, network, accounts) => {
   
   let walletOfTheExchange='0x5c84e251671f94b5de719106fb34a1e99828d15d' // cash36-exchange/src/main/ressources/exchange.json
   let walletOfComplianceServer='0xcd0dd78b1a09f860f39218d1124e121bf52d71a9'; // cash36-compliance/src/main/ressources/compliance.json
-  let ownerAccount= '0x6D1cf1a3d5f7868f0a13c76262eD4683E1F61A0E'; // First account of HD Wallet used to deploy the contracts
+  let ownerAccount= walletOfTheExchange; // First account of HD Wallet used to deploy the contracts
 
   console.log("network: "+network)
-
-  if (network == 'main') {
+  if (network == 'local') {
+    console.log(" setting values for local network "+network)
+    walletOfTheExchange= accounts[3] //'0x6Cb905f14601f6Bf7C6604560f8931335D6Ab68a' // account[3]
+    walletOfComplianceServer= accounts[0] //'0xcd0dd78b1a09f860f39218d1124e121bf52d71a9'; // cash36-compliance/src/main/ressources/compliance.prod.json
+    ownerAccount=  accounts[0] //'0x2A94867025D2C415CFd2e9D7e86356aF53Ae1161'; // account[0]
+  } else if (network == 'main') {
     console.log(" setting values for main network "+network)
     walletOfTheExchange='0xC8Ab38aCd8c4c7A53a431a5791B4898e105e3cd9' // cash36-exchange/src/main/ressources/exchange.prod.json
     walletOfComplianceServer='0x50fbc244494bEBbcff285447B737871994321077'; // cash36-compliance/src/main/ressources/compliance.prod.json
     ownerAccount= '0x56788E08C97d2677DAdED801e69bfE5D33ddACD5';
+  } else {
+    console.log("taking default values for network "+network)
   }
 
   await cash36Exchange.addExchange(walletOfTheExchange, CHF36.address)
@@ -77,7 +83,7 @@ module.exports = async (deployer, network, accounts) => {
 
 
   if (network== 'local') {
-    console.log(" doing stuff for local network "+network)
+    console.log(" .... doing stuff for local network "+network)
     await web3.eth.sendTransaction({
       to: walletOfTheExchange,
       from: accounts[0],
@@ -89,7 +95,7 @@ module.exports = async (deployer, network, accounts) => {
       value: web3.utils.toWei('3', 'ether')
     })
     await web3.eth.sendTransaction({
-      to: walletOfComplianceServer,
+      to: ownerAccount,
       from: accounts[0],
       value: web3.utils.toWei('3', 'ether')
     })
