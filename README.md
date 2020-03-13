@@ -78,14 +78,17 @@ deployment of the package on github
 
 Add new version to package.json: 
 - cash36-admin-frontend
+- cash36-frontend
 - cash36-compliance
 - cash36-exchange
 
 And rebuild dependencies and stubs:
 
 ( cd cash36-admin-frontend; git pull; yarn; ) 
+( cd cash36-frontend; git pull; yarn; ) 
+
 ( cd cash36-exchange; git pull; gradle build; gradle genToken36Controller genCash36Exchange ;gradle test ) 
-( cd cash36-compliance; git pull; gradle build; gradle genCash36Compliance genCash36Company; gradle t
+( cd cash36-compliance; git pull; gradle build; gradle genCash36Compliance genCash36Company; gradle test ) 
 
 Push & merge to master to create new docker images, test local installation with 
 cd cash36-docker
