@@ -670,7 +670,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 20,
-        "sourceUnit": 2225,
+        "sourceUnit": 2373,
         "src": "25:26:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -684,10 +684,10 @@
               "id": 3,
               "name": "Token36",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2224,
+              "referencedDeclaration": 2372,
               "src": "129:7:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Token36_$2224",
+                "typeIdentifier": "t_contract$_Token36_$2372",
                 "typeString": "contract Token36"
               }
             },
@@ -697,14 +697,14 @@
           }
         ],
         "contractDependencies": [
-          1085,
-          1332,
-          2224,
-          2862,
-          3050,
-          3138,
-          3936,
-          4005
+          1228,
+          1475,
+          2372,
+          3018,
+          3206,
+          3294,
+          4092,
+          4161
         ],
         "contractKind": "contract",
         "documentation": "@title CHF36 Token Contract\n @author element36.io",
@@ -712,14 +712,14 @@
         "id": 19,
         "linearizedBaseContracts": [
           19,
-          2224,
-          1085,
-          3138,
-          3050,
-          2862,
-          1332,
-          3936,
-          4005
+          2372,
+          1228,
+          3294,
+          3206,
+          3018,
+          1475,
+          4092,
+          4161
         ],
         "name": "CHF36",
         "nodeType": "ContractDefinition",
@@ -892,10 +892,10 @@
                   "name": "Token36",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2224,
+                  "referencedDeclaration": 2372,
                   "src": "292:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_Token36_$2224_$",
+                    "typeIdentifier": "t_type$_t_contract$_Token36_$2372_$",
                     "typeString": "type(contract Token36)"
                   }
                 },
@@ -957,7 +957,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 20,
-        "sourceUnit": 2225,
+        "sourceUnit": 2373,
         "src": "25:26:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -971,10 +971,10 @@
               "id": 3,
               "name": "Token36",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2224,
+              "referencedDeclaration": 2372,
               "src": "129:7:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Token36_$2224",
+                "typeIdentifier": "t_contract$_Token36_$2372",
                 "typeString": "contract Token36"
               }
             },
@@ -984,14 +984,14 @@
           }
         ],
         "contractDependencies": [
-          1085,
-          1332,
-          2224,
-          2862,
-          3050,
-          3138,
-          3936,
-          4005
+          1228,
+          1475,
+          2372,
+          3018,
+          3206,
+          3294,
+          4092,
+          4161
         ],
         "contractKind": "contract",
         "documentation": "@title CHF36 Token Contract\n @author element36.io",
@@ -999,14 +999,14 @@
         "id": 19,
         "linearizedBaseContracts": [
           19,
-          2224,
-          1085,
-          3138,
-          3050,
-          2862,
-          1332,
-          3936,
-          4005
+          2372,
+          1228,
+          3294,
+          3206,
+          3018,
+          1475,
+          4092,
+          4161
         ],
         "name": "CHF36",
         "nodeType": "ContractDefinition",
@@ -1179,10 +1179,10 @@
                   "name": "Token36",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 2224,
+                  "referencedDeclaration": 2372,
                   "src": "292:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_Token36_$2224_$",
+                    "typeIdentifier": "t_type$_t_contract$_Token36_$2372_$",
                     "typeString": "type(contract Token36)"
                   }
                 },
@@ -1222,489 +1222,6 @@
     "version": "0.5.15+commit.6a57276f.Emscripten.clang"
   },
   "networks": {
-    "3": {
-      "events": {
-        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Approval",
-          "type": "event",
-          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
-        },
-        "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "burner",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Burn",
-          "type": "event",
-          "signature": "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5"
-        },
-        "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "transactionHash",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
-          ],
-          "name": "InitiateTransfer",
-          "type": "event",
-          "signature": "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe"
-        },
-        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "Paused",
-          "type": "event",
-          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
-        },
-        "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "PauserAdded",
-          "type": "event",
-          "signature": "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8"
-        },
-        "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "PauserRemoved",
-          "type": "event",
-          "signature": "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e"
-        },
-        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Transfer",
-          "type": "event",
-          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-        },
-        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "Unpaused",
-          "type": "event",
-          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
-        }
-      },
-      "links": {},
-      "address": "0xddE227f9650afA0Ed5aAAB34fA3dCEF4B27Dbea7",
-      "transactionHash": "0xd1e72a12d309bf1cddf33f3ea9ef69b932fe42ccaf50935cda7ccca570016f66"
-    },
-    "4": {
-      "events": {
-        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Approval",
-          "type": "event",
-          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
-        },
-        "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "burner",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Burn",
-          "type": "event",
-          "signature": "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5"
-        },
-        "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "transactionHash",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
-          ],
-          "name": "InitiateTransfer",
-          "type": "event",
-          "signature": "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe"
-        },
-        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "Paused",
-          "type": "event",
-          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
-        },
-        "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "PauserAdded",
-          "type": "event",
-          "signature": "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8"
-        },
-        "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "PauserRemoved",
-          "type": "event",
-          "signature": "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e"
-        },
-        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Transfer",
-          "type": "event",
-          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-        },
-        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "Unpaused",
-          "type": "event",
-          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
-        }
-      },
-      "links": {},
-      "address": "0xbA748E29EF0582dFC14B82C11caB2ef395EaD43d",
-      "transactionHash": "0x2d776dd9d718b64028b1dfd53c184bb6c91863568b553d4c10734a64171e2a3d"
-    },
-    "42": {
-      "events": {
-        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "spender",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Approval",
-          "type": "event",
-          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
-        },
-        "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "burner",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Burn",
-          "type": "event",
-          "signature": "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5"
-        },
-        "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "bytes32",
-              "name": "transactionHash",
-              "type": "bytes32"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
-          ],
-          "name": "InitiateTransfer",
-          "type": "event",
-          "signature": "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe"
-        },
-        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "Paused",
-          "type": "event",
-          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
-        },
-        "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "PauserAdded",
-          "type": "event",
-          "signature": "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8"
-        },
-        "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "PauserRemoved",
-          "type": "event",
-          "signature": "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e"
-        },
-        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "value",
-              "type": "uint256"
-            }
-          ],
-          "name": "Transfer",
-          "type": "event",
-          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-        },
-        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "Unpaused",
-          "type": "event",
-          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
-        }
-      },
-      "links": {},
-      "address": "0xdaD1772142423e3a8a9B1492e0Da562C65c4288F",
-      "transactionHash": "0xf57e45df6a3d508b3f4b08950df1bda87a9417e659fc180fa24d5dec6803955d"
-    },
     "85458545": {
       "events": {
         "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
@@ -1863,12 +1380,12 @@
         }
       },
       "links": {},
-      "address": "0x3feF73B0C44Bd350cd53eC99Ef793052b72F8E8e",
-      "transactionHash": "0x0025bb1ed05890d0d798e6837bcdae256d01f1f1166eaffa7209a7617375e201"
+      "address": "0xB02cAC508dFba652AfB276F88C63Cd75Bb861189",
+      "transactionHash": "0x967dee10602e5127ff98ecc18d8a5d8296f5494aef5a553cbb83d63c46a13b19"
     }
   },
   "schemaVersion": "3.0.20",
-  "updatedAt": "2020-03-13T09:30:06.529Z",
+  "updatedAt": "2020-03-15T06:34:06.778Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "element36.io",

@@ -66,33 +66,38 @@ contract('Create and Test Token36', function (accounts) {
     await Cash36ExchangesInstance.addExchange(exchangeAddress, tokenAddressCHF)
     //await Cash36ExchangesInstance.addExchange(exchangeAddress, tokenAddressEUR)
     pingInstance = await Ping.deployed()
+
+    if (Cash36Compliance.Attribs == undefined) {
+      console.log(" --> setting enums for Cash36Compoliance.Attribs")
+      Cash36Compliance.Attribs={ EXST:0, BUY:1, SELL:2, RCV:3, SEND:4, CPNY:5, BLACK:6, LOCK:7 }
+    }
   })
 
   
 
   it('...it should add accounts[1] as user we initial rights.', async function () {
     await Cash36ComplianceInstance.addUser(accounts[1], {from: accounts[0]})
-    await Cash36ComplianceInstance.setAttribute(accounts[1], web3.utils.fromAscii("ATTR_SELL"), 1, {from: accounts[0]})
-    await Cash36ComplianceInstance.setAttribute(accounts[1], web3.utils.fromAscii("ATTR_SEND"), 1, {from: accounts[0]})
-    await Cash36ComplianceInstance.setAttribute(accounts[1], web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[1], Cash36Compliance.Attribs.SELL,true, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[1], Cash36Compliance.Attribs.SEND, true, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[1], Cash36Compliance.Attribs.RCV, true, {from: accounts[0]})
 
     var checkUser1 = await Cash36ComplianceInstance.checkUser(accounts[1], {from: accounts[0]})
     assert.equal(checkUser1, true, 'The checkUser1 was not correct.')
 
-    var checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], web3.utils.fromAscii('ATTR_SELL'), {from: accounts[0]})
+    var checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[1], Cash36Compliance.Attribs.SELL, {from: accounts[0]})
     assert.equal(checkUser1Attr, true, 'The checkUser1Attr was not correct.')
   })
 
   it('...it should add accounts[2] as user we initial rights.', async function () {
     await Cash36ComplianceInstance.addUser(accounts[2], {from: accounts[0]})
-    await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_SELL"), 1, {from: accounts[0]})
-    await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_SEND"), 1, {from: accounts[0]})
-    await Cash36ComplianceInstance.setAttribute(accounts[2], web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[2], Cash36Compliance.Attribs.SELL,true, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[2],Cash36Compliance.Attribs.SEND, true, {from: accounts[0]})
+    await Cash36ComplianceInstance.setAttribute(accounts[2],Cash36Compliance.Attribs.RCV,true, {from: accounts[0]})
 
     var checkUser1 = await Cash36ComplianceInstance.checkUser(accounts[2], {from: accounts[0]})
     assert.equal(checkUser1, true, 'The checkUser1 was not correct.')
 
-    var checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[2], web3.utils.fromAscii('ATTR_SELL'), {from: accounts[0]})
+    var checkUser1Attr = await Cash36ComplianceInstance.hasAttribute(accounts[2], Cash36Compliance.Attribs.SELL, {from: accounts[0]})
     assert.equal(checkUser1Attr, true, 'The checkUser1Attr was not correct.')
     await testBalance(0,0,0,0)
   })
@@ -105,6 +110,9 @@ contract('Create and Test Token36', function (accounts) {
 
   it('...it should send 2x25 chf from accounts[1] and exchange to Ping.', async function () {
     await CHF36Instance.transfer(accounts[2], 2, {from: accounts[1]})
+
+    console.log(".=====.."+pingInstance.address)
+    
     await CHF36Instance.transfer(pingInstance.address, 2, {from: accounts[1]})
     await testBalance(16,2,2,20)
     await CHF36ControllerInstance.mint(pingInstance.address, 10, {from: exchangeAddress})

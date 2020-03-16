@@ -50,7 +50,7 @@ contract Token36Controller is IToken36Controller, Ownable {
                 return false;
             }
 
-            if (!compliance.hasAttribute(_from, "ATTR_SEND")) {
+            if (!compliance.hasAttribute(_from, Cash36Compliance.Attribs.SEND)) {
                 return false;
             }
         }
@@ -82,7 +82,7 @@ contract Token36Controller is IToken36Controller, Ownable {
                 return false;
             }
 
-            if (!compliance.hasAttribute(_to, "ATTR_RECEIVE")) {
+            if (!compliance.hasAttribute(_to, Cash36Compliance.Attribs.RCV)) {
                 return false;
             }
         }
@@ -99,7 +99,7 @@ contract Token36Controller is IToken36Controller, Ownable {
                 return false;
             }
 
-            if (!compliance.hasAttribute(_from, "ATTR_SEND")) {
+            if (!compliance.hasAttribute(_from, Cash36Compliance.Attribs.SEND)) {
                 return false;
             }
         }
@@ -125,7 +125,7 @@ contract Token36Controller is IToken36Controller, Ownable {
             if (!compliance.checkUser(_from)) {
                 return false;
             }
-            if (!compliance.hasAttribute(_from, "ATTR_SELL")) {
+            if (!compliance.hasAttribute(_from, Cash36Compliance.Attribs.SELL)) { // Attr.SELL
                 return false;
             }
         }

@@ -55,7 +55,7 @@ yarn deploy:main
 Update the local ganche-docker blockchain: 
 
 sudo docker ps
-export contid="7bb20a9a97ae"
+export contid="your Container ID"
 sudo docker exec -it $contid ls
 sudo docker exec -it $contid tar -zcvf data.tar.gz   ./data/
 sudo docker cp $contid:/app/data.tar.gz /home/w/workspace/contracts/
@@ -82,13 +82,12 @@ Add new version to package.json:
 - cash36-compliance
 - cash36-exchange
 
-And rebuild dependencies and stubs:
+And rebuild dependencies and stubs (eventually set NPM_TOKEN=...2bb)
 
-( cd cash36-admin-frontend; git pull; yarn; ) 
-( cd cash36-frontend; git pull; yarn; ) 
-
-( cd cash36-exchange; git pull; gradle build; gradle genToken36Controller genCash36Exchange ;gradle test ) 
-( cd cash36-compliance; git pull; gradle build; gradle genCash36Compliance genCash36Company; gradle test ) 
+( cd cash36-admin-frontend; git pull; nvm use lts/dubnium; yarn; ) 
+( cd cash36-frontend; git pull; nvm use lts/dubnium; yarn; ) 
+( cd cash36-exchange; git pull; nvm use lts/dubnium; gradle build; gradle genToken36Controller genCash36Exchange ;gradle test ) 
+( cd cash36-compliance; git pull; nvm use lts/dubnium; gradle build; gradle genCash36Compliance genCash36Company; gradle test ) 
 
 Push & merge to master to create new docker images, test local installation with 
 cd cash36-docker

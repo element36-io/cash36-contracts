@@ -22,7 +22,10 @@ const Token36 = artifacts.require('./Token36.sol')
 const Token36Controller = artifacts.require('./CHF36Controller.sol')
 const ERC20 = artifacts.require('./mocks/ERC20Mock.sol')
 
-
+if (Cash36Compliance.Attribs == undefined) {
+  console.log(" --> setting enums for Cash36Compoliance.Attribs")
+  Cash36Compliance.Attribs={ EXST:0, BUY:1, SELL:2, RCV:3, SEND:4, CPNY:5, BLACK:6, LOCK:7 }
+}
 
 
 contract('ERC20 Basics', function (accounts) {
@@ -33,6 +36,7 @@ contract('ERC20 Basics', function (accounts) {
   before(async function () {
     const Cash36Instance = await Cash36.deployed()
     const Cash36ComplianceInstance = await Cash36Compliance.deployed()
+    this.complianceInstance=Cash36ComplianceInstance;
     const Cash36ExchangeInstance = await Cash36Exchanges.deployed()
 
     const tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36')
@@ -41,17 +45,19 @@ contract('ERC20 Basics', function (accounts) {
     this.token = await ERC20.at(tokenAddress)
 
     await Cash36ComplianceInstance.addUser(initialHolder, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(recipient, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(anotherAccount, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
+
+
   })
 
   describe('detailed token', function () {
@@ -105,21 +111,23 @@ contract('ERC20 Transfer', function (accounts) {
     const tokenAddress = await Cash36Instance.getTokenBySymbol('CHF36')
     await Cash36ExchangeInstance.addExchange(accounts[3], tokenAddress)
 
+  
     //this.token = await Token36.new(initialHolder, initialSupply);
     this.token = await ERC20.at(tokenAddress)
+    this.complianceInstance=Cash36ComplianceInstance;
 
     await Cash36ComplianceInstance.addUser(initialHolder, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(recipient, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(anotherAccount, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
 
     // Minting via implemented token36
     let token36 = await Token36.at(tokenAddress)
@@ -138,8 +146,12 @@ contract('ERC20 Transfer', function (accounts) {
         })
       })
 
+
       describe('when the sender has enough balance', function () {
+
+
         it('transfers the requested amount', async function () {
+          
           await this.token.transfer(to, amount, {from: initialHolder});
 
           (await this.token.balanceOf(initialHolder)).should.be.bignumber.equal('4');
@@ -148,6 +160,7 @@ contract('ERC20 Transfer', function (accounts) {
         })
 
         it('emits a transfer event', async function () {
+        
           const {logs} = await this.token.transfer(to, amount, {from: initialHolder})
 
           expectEvent.inLogs(logs, 'Transfer', {
@@ -187,19 +200,22 @@ contract('ERC20 Transfer From', function (accounts) {
 
     //this.token = await Token36.new(initialHolder, initialSupply);
     this.token = await ERC20.at(tokenAddress)
+    this.complianceInstance=Cash36ComplianceInstance;
 
     await Cash36ComplianceInstance.addUser(initialHolder, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(recipient, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(anotherAccount, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
+
+    this.complianceInstance=Cash36ComplianceInstance;
 
     // Minting via implemented token36
     let token36 = await Token36.at(tokenAddress)
@@ -211,6 +227,8 @@ contract('ERC20 Transfer From', function (accounts) {
   describe('transfer from', function () {
     const spender = recipient
 
+
+
     describe('when the recipient is not the zero address', function () {
       const to = anotherAccount
 
@@ -219,8 +237,35 @@ contract('ERC20 Transfer From', function (accounts) {
           await this.token.approve(spender, amount, {from: initialHolder})
         })
 
+        async function printAddress ( context,address) {
+          var bal= await context.token.balanceOf(address)
+          var limit=await context.complianceInstance.checkUserLimit(address, 1, bal)
+          var attr="Cash36Compliance misses fx";//var attr= await context.complianceInstance.getAttribs(address)
+          console.log("....address "+address+": "+attr.toString(2)+"; b:"+bal+"; spend 1:"+limit );
+        }
+        
         describe('when the initial holder has enough balance', function () {
           it('transfers the requested amount', async function () {
+
+            await printAddress(this,initialHolder);
+            await printAddress(this,to);
+            await printAddress(this,spender);
+
+            // await this.complianceInstance.getAttribs(initialHolder)
+            //   .then(attr => { console.log("....initialHolder "+attr.toString(2))});
+             
+
+            // await this.complianceInstance.getAttribs(spender)
+            //   .then(attr => { console.log("....spender "+attr.toString(2))});
+            // await this.complianceInstance.getAttribs(to)
+            //   .then(attr => { console.log("....to "+attr.toString(2))});
+            //   await this.complianceInstance.getAttribs(to)
+            //   .then(attr => { console.log("....to "+attr.toString(2))});
+            
+            
+            
+            (await this.token.balanceOf(initialHolder)).should.be.bignumber.equal('5');
+
             await this.token.transferFrom(initialHolder, to, amount, {from: spender});
 
             (await this.token.balanceOf(initialHolder)).should.be.bignumber.equal('4');
@@ -274,6 +319,7 @@ contract('ERC20 Transfer From', function (accounts) {
             await expectRevert.unspecified(this.token.transferFrom(initialHolder, to, 5 * amountTooHigh, {from: spender}))
           })
         })
+        
 
         describe('when the initial holder does not have enough balance', function () {
           const amount = amountTooHigh
@@ -470,19 +516,20 @@ contract('ERC20 Burn', function (accounts) {
 
     //this.token = await Token36.new(initialHolder, initialSupply);
     this.token = await ERC20.at(tokenAddress)
+    this.complianceInstance=Cash36ComplianceInstance;
 
     await Cash36ComplianceInstance.addUser(initialHolder, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(recipient, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(anotherAccount, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
 
     // Minting via implemented token36
     let token36 = await Token36.at(tokenAddress)
@@ -549,19 +596,20 @@ contract('ERC20 Burn From', function (accounts) {
 
     //this.token = await Token36.new(initialHolder, initialSupply);
     this.token = await ERC20.at(tokenAddress)
+    this.complianceInstance=Cash36ComplianceInstance;
 
     await Cash36ComplianceInstance.addUser(initialHolder, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(initialHolder, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(initialHolder, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(recipient, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(recipient, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(recipient, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
     await Cash36ComplianceInstance.addUser(anotherAccount, { from: initialHolder })
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SELL"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_SEND"), 1, {from: initialHolder})
-    await Cash36ComplianceInstance.setAttribute(anotherAccount, web3.utils.fromAscii("ATTR_RECEIVE"), 1, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SELL, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.SEND, true, {from: initialHolder})
+    await Cash36ComplianceInstance.setAttribute(anotherAccount, Cash36Compliance.Attribs.RCV, true, {from: initialHolder})
 
     // Minting via implemented token36
     let token36 = await Token36.at(tokenAddress)
@@ -634,3 +682,4 @@ contract('ERC20 Burn From', function (accounts) {
     });
   });
 })
+

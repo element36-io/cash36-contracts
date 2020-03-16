@@ -68,12 +68,13 @@ module.exports = {
     main_infura: {
       provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://mainnet.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
       network_id: 1,
-      gas: 6500000,           // Default gas to send per transaction
-      gasPrice: 52000000000,  // 10 gwei (default: 20 gwei) https://ethgasstation.info/ --52 000 000 000
+      gas: 9500000,
+      gasPrice: 25900000000,  // 10 gwei (default: 20 gwei) https://ethgasstation.info/ --52 000 000 000
       confirmations: 2,       // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,     // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: false 
      }
+   
   },
 
   mocha: {

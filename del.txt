@@ -1,0 +1,415 @@
+Using network 'local'.
+
+
+Compiling your contracts...
+===========================
+> Compiling ./contracts/CHF36/CHF36Controller.sol
+> Compiling ./contracts/Cash36.sol
+> Compiling ./contracts/Cash36Compliance.sol
+> Compiling ./contracts/EUR36/EUR36Controller.sol
+> Compiling ./contracts/GBP36/GBP36Controller.sol
+> Compiling ./contracts/Token36Controller.sol
+> Compiling ./contracts/USD36/USD36Controller.sol
+> Compilation warnings encountered:
+
+    /home/w/workspace/contracts/contracts/Cash36Compliance.sol:70:52: Warning: Result of exponentiation has type uint8 and thus might overflow. Silence this warning by converting the literal to the expected type.
+        return uint8(attributes[_company]) & uint8(2**uint8(Attribs.CPNY)) == uint8(2**uint8(Attribs.CPNY));
+                                                   ^--------------------^
+,/home/w/workspace/contracts/contracts/Cash36Compliance.sol:70:85: Warning: Result of exponentiation has type uint8 and thus might overflow. Silence this warning by converting the literal to the expected type.
+        return uint8(attributes[_company]) & uint8(2**uint8(Attribs.CPNY)) == uint8(2**uint8(Attribs.CPNY));
+                                                                                    ^--------------------^
+,/home/w/workspace/contracts/contracts/Cash36Compliance.sol:149:59: Warning: Result of exponentiation has type uint8 and thus might overflow. Silence this warning by converting the literal to the expected type.
+            attributes[_user] = attributes[_user] | uint8(2**uint8(_attrib));
+                                                          ^---------------^
+,/home/w/workspace/contracts/contracts/Cash36Compliance.sol:151:41: Warning: Result of exponentiation has type uint8 and thus might overflow. Silence this warning by converting the literal to the expected type.
+            uint256 mask = (2**256)-1 ^ 2**uint8(_attrib);
+                                        ^---------------^
+,/home/w/workspace/contracts/contracts/Cash36Compliance.sol:163:34: Warning: Result of exponentiation has type uint8 and thus might overflow. Silence this warning by converting the literal to the expected type.
+        return uint8(val & uint8(2 ** uint8(_attrib))) == uint8(2 ** uint8(_attrib));
+                                 ^-----------------^
+,/home/w/workspace/contracts/contracts/Cash36Compliance.sol:163:65: Warning: Result of exponentiation has type uint8 and thus might overflow. Silence this warning by converting the literal to the expected type.
+        return uint8(val & uint8(2 ** uint8(_attrib))) == uint8(2 ** uint8(_attrib));
+                                                                ^-----------------^
+
+
+network: local
+ setting values for local network local
+ .... doing stuff for local network local
+ --> setting enums for Cash36Compoliance.Attribs
+
+[0m[0m
+[0m  Contract: ERC20 Basics[0m
+[0m    detailed token[0m
+    [32m  ✓[0m[90m has a name[0m[31m (111ms)[0m
+    [32m  ✓[0m[90m has a symbol[0m[31m (85ms)[0m
+    [32m  ✓[0m[90m has an amount of decimals[0m[31m (117ms)[0m
+[0m    total supply[0m
+    [32m  ✓[0m[90m returns the total amount of tokens[0m[31m (86ms)[0m
+[0m    balanceOf[0m
+[0m      when the requested account has no tokens[0m
+      [32m  ✓[0m[90m returns zero[0m[33m (75ms)[0m
+[0m      when the requested account has no tokens[0m
+      [32m  ✓[0m[90m returns zero[0m[33m (69ms)[0m
+
+[0m  Contract: ERC20 Transfer[0m
+[0m    transfer[0m
+[0m      when the recipient is not the zero address[0m
+[0m        when the sender does not have enough balance[0m
+        [32m  ✓[0m[90m reverts[0m[31m (251ms)[0m
+[0m        when the sender has enough balance[0m
+        [31m  1) transfers the requested amount[0m
+    > No events were emitted
+        [31m  2) emits a transfer event[0m
+    > No events were emitted
+[0m      when the recipient is the zero address[0m
+      [32m  ✓[0m[90m reverts[0m[31m (207ms)[0m
+
+[0m  Contract: ERC20 Transfer From[0m
+[0m    transfer from[0m
+[0m      when the recipient is not the zero address[0m
+[0m        when the spender has enough approved balance[0m
+[0m          when the initial holder has enough balance[0m
+....initialHolder 11111
+....spender 11111
+          [31m  3) transfers the requested amount[0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Approval(
+      owner: <indexed> [33m0x5D046e1A8eb11a4e752B75aD7A6C7fc649e8F837[39m (type: address),
+      spender: <indexed> [33m0x1363a7c2d0b7B847D9B5F90efC57489D7530322f[39m (type: address),
+      value: [33m1[39m (type: uint256)
+    )
+
+
+    ---------------------------
+          [31m  4) decreases the spender allowance[0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Approval(
+      owner: <indexed> [33m0x5D046e1A8eb11a4e752B75aD7A6C7fc649e8F837[39m (type: address),
+      spender: <indexed> [33m0x1363a7c2d0b7B847D9B5F90efC57489D7530322f[39m (type: address),
+      value: [33m1[39m (type: uint256)
+    )
+
+
+    ---------------------------
+          [31m  5) emits a transfer event[0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Approval(
+      owner: <indexed> [33m0x5D046e1A8eb11a4e752B75aD7A6C7fc649e8F837[39m (type: address),
+      spender: <indexed> [33m0x1363a7c2d0b7B847D9B5F90efC57489D7530322f[39m (type: address),
+      value: [33m1[39m (type: uint256)
+    )
+
+
+    ---------------------------
+          [31m  6) emits an approval event[0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Approval(
+      owner: <indexed> [33m0x5D046e1A8eb11a4e752B75aD7A6C7fc649e8F837[39m (type: address),
+      spender: <indexed> [33m0x1363a7c2d0b7B847D9B5F90efC57489D7530322f[39m (type: address),
+      value: [33m1[39m (type: uint256)
+    )
+
+
+    ---------------------------
+[0m          when the initial holder does not have enough balance[0m
+          [32m  ✓[0m[90m reverts[0m[31m (260ms)[0m
+[0m        when the spender does not have enough approved balance[0m
+[0m          when the initial holder has enough balance[0m
+          [32m  ✓[0m[90m reverts[0m[31m (211ms)[0m
+[0m          when the initial holder does not have enough balance[0m
+          [32m  ✓[0m[90m reverts[0m[31m (218ms)[0m
+[0m      when the recipient is the zero address[0m
+      [32m  ✓[0m[90m reverts[0m[31m (184ms)[0m
+[0m    decrease allowance[0m
+[0m      when the spender is not the zero address[0m
+[0m        when the sender has enough balance[0m
+[0m          when there was no approved amount before[0m
+          [32m  ✓[0m[90m reverts[0m[31m (307ms)[0m
+[0m          when the spender had an approved amount[0m
+          [32m  ✓[0m[90m emits an approval event[0m[31m (214ms)[0m
+          [32m  ✓[0m[90m decreases the spender allowance subtracting the requested amount[0m[31m (232ms)[0m
+          [32m  ✓[0m[90m sets the allowance to zero when all allowance is removed[0m[31m (246ms)[0m
+          [32m  ✓[0m[90m reverts when more than the full allowance is removed[0m[31m (189ms)[0m
+[0m        when the sender does not have enough balance[0m
+[0m          when there was no approved amount before[0m
+          [32m  ✓[0m[90m reverts[0m[31m (206ms)[0m
+[0m          when the spender had an approved amount[0m
+          [32m  ✓[0m[90m emits an approval event[0m[31m (137ms)[0m
+          [32m  ✓[0m[90m decreases the spender allowance subtracting the requested amount[0m[31m (208ms)[0m
+          [32m  ✓[0m[90m sets the allowance to zero when all allowance is removed[0m[31m (197ms)[0m
+          [32m  ✓[0m[90m reverts when more than the full allowance is removed[0m[31m (240ms)[0m
+[0m      when the spender is the zero address[0m
+      [32m  ✓[0m[90m reverts[0m[31m (175ms)[0m
+[0m    increase allowance[0m
+[0m      when the spender is not the zero address[0m
+[0m        when the sender has enough balance[0m
+        [32m  ✓[0m[90m emits an approval event[0m[31m (291ms)[0m
+[0m          when there was no approved amount before[0m
+          [32m  ✓[0m[90m approves the requested amount[0m[31m (279ms)[0m
+[0m          when the spender had an approved amount[0m
+          [32m  ✓[0m[90m increases the spender allowance adding the requested amount[0m[31m (220ms)[0m
+[0m        when the sender does not have enough balance[0m
+        [32m  ✓[0m[90m emits an approval event[0m[31m (161ms)[0m
+[0m          when there was no approved amount before[0m
+          [32m  ✓[0m[90m approves the requested amount[0m[31m (272ms)[0m
+[0m          when the spender had an approved amount[0m
+          [32m  ✓[0m[90m increases the spender allowance adding the requested amount[0m[31m (319ms)[0m
+[0m      when the spender is the zero address[0m
+      [32m  ✓[0m[90m reverts[0m[31m (210ms)[0m
+
+[0m  Contract: ERC20 Burn[0m
+[0m    _burn[0m
+[0m      for a non null account[0m
+      [32m  ✓[0m[90m rejects burning more than balance[0m[31m (297ms)[0m
+[0m        for entire balance[0m
+        [32m  ✓[0m[90m decrements totalSupply[0m[33m (55ms)[0m
+        [32m  ✓[0m[90m decrements initialHolder balance[0m[33m (67ms)[0m
+        [32m  ✓[0m[90m emits Transfer event[0m
+
+[0m  Contract: ERC20 Burn From[0m
+[0m    _burnFrom[0m
+[0m      for a non null account[0m
+      [32m  ✓[0m[90m rejects burning more than allowance[0m[31m (262ms)[0m
+      [32m  ✓[0m[90m rejects burning more than balance[0m[31m (168ms)[0m
+[0m        for entire allowance[0m
+        [32m  ✓[0m[90m decrements totalSupply[0m[33m (50ms)[0m
+        [32m  ✓[0m[90m decrements initialHolder balance[0m[33m (65ms)[0m
+        [32m  ✓[0m[90m decrements spender allowance[0m[31m (78ms)[0m
+        [32m  ✓[0m[90m emits a Transfer event[0m
+        [32m  ✓[0m[90m emits an Approval event[0m[31m (85ms)[0m
+
+[0m  Contract: Create and Test Token36[0m
+ --> setting enums for Cash36Compoliance.Attribs
+  [32m  ✓[0m[90m ...it should add accounts[1] as user we initial rights.[0m[31m (607ms)[0m
+      > test balances - ping:0 a1:0 a2:0 total:0
+  [32m  ✓[0m[90m ...it should add accounts[2] as user we initial rights.[0m[31m (908ms)[0m
+      > test balances - ping:0 a1:20 a2:0 total:20
+  [32m  ✓[0m[90m ...it should mint 200 CHF36 and assign it to accounts[1].[0m[31m (374ms)[0m
+  [31m  7) ...it should send 2x25 chf from accounts[1] and exchange to Ping.[0m
+    > No events were emitted
+  [31m  8) ...it should steal funds from ping contract[0m
+    > No events were emitted
+  [31m  9) ...it should give more funds to ping - requires approval; and get it back with pong [0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Approval(
+      owner: <indexed> [33m0x1363a7c2d0b7B847D9B5F90efC57489D7530322f[39m (type: address),
+      spender: <indexed> [33m0x2320291AE7D1C9E67d6C8C40182893eC29a82CA4[39m (type: address),
+      value: [33m2[39m (type: uint256)
+    )
+
+
+    ---------------------------
+      > test balances - ping:7 a1:26 a2:4 total:37
+  [31m  10) ...it should do a wallet-free ping transaction [0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Transfer(
+      from: <indexed> [33m0x0000000000000000000000000000000000000000[39m (type: address),
+      to: <indexed> [33m0x2320291AE7D1C9E67d6C8C40182893eC29a82CA4[39m (type: address),
+      value: [33m7[39m (type: uint256)
+    )
+
+
+    ---------------------------
+
+[0m  Contract: Create and Test Token36[0m
+ --> setting enums for Cash36Compoliance.Attribs
+  [32m  ✓[0m[90m ...it should allow to administrate cash36 contracts.[0m
+  [32m  ✓[0m[90m ...it should add accounts[1] as user we initial rights.[0m[31m (580ms)[0m
+  [32m  ✓[0m[90m ...it should mint 200 CHF36 and assign it to accounts[1].[0m[31m (267ms)[0m
+  [32m  ✓[0m[90m ...it should not allow minting from another account.[0m
+  [32m  ✓[0m[90m ...it should allow accounts[1] to burn 50 CHF36.[0m[31m (273ms)[0m
+  [32m  ✓[0m[90m ...it should not allow to burn 50 CHF36 from account[2].[0m[31m (281ms)[0m
+  [32m  ✓[0m[90m ...it should allow exchange to burn 25 CHF36 from accounts[1].[0m[31m (389ms)[0m
+  [31m  11) ...it should allow to transfer 25 CHF36 to accounts[2].[0m
+    > No events were emitted
+  [31m  12) ...it should allow to transferFrom 5 CHF36 to accounts[2] as accounts[3].[0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Approval(
+      owner: <indexed> [33m0x1363a7c2d0b7B847D9B5F90efC57489D7530322f[39m (type: address),
+      spender: <indexed> [33m0x14D44d41E6D36604dEf88990d5F202a3Daa340f9[39m (type: address),
+      value: [33m5[39m (type: uint256)
+    )
+
+
+    ---------------------------
+  [31m  13) ...it should not allow to transfer if accounts[2] is on blacklist.[0m
+    > No events were emitted
+  [31m  14) ...it should not be possible for a normal user to MINT coins [0m
+
+    Events emitted during test:
+    ---------------------------
+
+    IERC20.Transfer(
+      from: <indexed> [33m0x0000000000000000000000000000000000000000[39m (type: address),
+      to: <indexed> [33m0x1363a7c2d0b7B847D9B5F90efC57489D7530322f[39m (type: address),
+      value: [33m5[39m (type: uint256)
+    )
+
+
+    ---------------------------
+  [32m  ✓[0m[90m ...it should not be possible for a normal user to BURN coins [0m
+  [31m  15) ...it should not allow to transfer if accounts[2] is locked Forever.[0m
+    > No events were emitted
+  [32m  ✓[0m[90m ...it should activate and deactivagte accounts[1] correctly.[0m[31m (945ms)[0m
+
+
+[92m [0m[32m 53 passing[0m[90m (40s)[0m
+[31m  15 failing[0m
+
+[0m  1) Contract: ERC20 Transfer
+       transfer
+         when the recipient is not the zero address
+           when the sender has enough balance
+             transfers the requested amount:
+[0m[31m     ReferenceError: Cash36ComplianceInstance is not defined[0m[90m
+      at Context.<anonymous> (test/ERC20.test.js:148:51)
+[0m
+[0m  2) Contract: ERC20 Transfer
+       transfer
+         when the recipient is not the zero address
+           when the sender has enough balance
+             emits a transfer event:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transfer (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/ERC20.test.js:160:43)
+[0m
+[0m  3) Contract: ERC20 Transfer From
+       transfer from
+         when the recipient is not the zero address
+           when the spender has enough approved balance
+             when the initial holder has enough balance
+               transfers the requested amount:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer
+ -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transferFrom (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/ERC20.test.js:242:30)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  4) Contract: ERC20 Transfer From
+       transfer from
+         when the recipient is not the zero address
+           when the spender has enough approved balance
+             when the initial holder has enough balance
+               decreases the spender allowance:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transferFrom (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/ERC20.test.js:250:30)
+[0m
+[0m  5) Contract: ERC20 Transfer From
+       transfer from
+         when the recipient is not the zero address
+           when the spender has enough approved balance
+             when the initial holder has enough balance
+               emits a transfer event:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transferFrom (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/ERC20.test.js:256:45)
+[0m
+[0m  6) Contract: ERC20 Transfer From
+       transfer from
+         when the recipient is not the zero address
+           when the spender has enough approved balance
+             when the initial holder has enough balance
+               emits an approval event:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transferFrom (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/ERC20.test.js:266:45)
+[0m
+[0m  7) Contract: Create and Test Token36
+       ...it should send 2x25 chf from accounts[1] and exchange to Ping.:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transfer (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/Ping.test.js:112:25)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  8) Contract: Create and Test Token36
+       ...it should steal funds from ping contract:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert no tokens to release -- Reason given: no tokens to release.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.steal (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/Ping.test.js:124:24)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  9) Contract: Create and Test Token36
+       ...it should give more funds to ping - requires approval; and get it back with pong :
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert SafeERC20: low-level call failed -- Reason given: SafeERC20: low-level call failed.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.ping (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/Ping.test.js:132:24)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  10) Contract: Create and Test Token36
+       ...it should do a wallet-free ping transaction :
+[0m[31m     AssertionError: The balance a1 was not correct.: expected <BN: 14> to equal 26[0m[90m
+      at testBalance (test/Ping.test.js:164:12)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  11) Contract: Create and Test Token36
+       ...it should allow to transfer 25 CHF36 to accounts[2].:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transfer (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/Token36.test.js:147:42)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  12) Contract: Create and Test Token36
+       ...it should allow to transferFrom 5 CHF36 to accounts[2] as accounts[3].:
+[0m[31m     Error: Returned error: VM Exception while processing transaction: revert Token36Controller rejected the transfer -- Reason given: Token36Controller rejected the transfer.[0m[90m
+     at PromiEvent (node_modules/truffle/build/webpack:/packages/contract/lib/promievent.js:9:1)
+      at TruffleContract.transferFrom (node_modules/truffle/build/webpack:/packages/contract/lib/execute.js:169:1)
+      at Context.<anonymous> (test/Token36.test.js:183:25)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  13) Contract: Create and Test Token36
+       ...it should not allow to transfer if accounts[2] is on blacklist.:
+[0m[31m     AssertionError: The balance was not correct.: expected <BN: 7d> to equal '70'[0m[90m
+      at Context.<anonymous> (test/Token36.test.js:205:12)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  14) Contract: Create and Test Token36
+       ...it should not be possible for a normal user to MINT coins :
+[0m[31m     AssertionError: The balance was not correct.: expected <BN: 82> to equal '80'[0m[90m
+      at Context.<anonymous> (test/Token36.test.js:227:12)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+[0m  15) Contract: Create and Test Token36
+       ...it should not allow to transfer if accounts[2] is locked Forever.:
+
+      [31mThe user was not enabled.[0m
+      [32m+ expected[0m [31m- actual[0m
+
+      [31m-false[0m
+      [32m+true[0m
+      [0m[90m
+      at Context.<anonymous> (test/Token36.test.js:251:12)
+      at process._tickCallback (internal/process/next_tick.js:68:7)
+[0m
+
+
