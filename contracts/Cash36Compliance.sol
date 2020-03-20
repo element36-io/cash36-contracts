@@ -36,8 +36,8 @@ contract Cash36Compliance is HasOfficer {
      */
     function activateUser(address _user) public onlyComplianceOfficer userExists(_user) {
         uint8 attribs = uint8(attributes[_user] & (2**8)-1);
-        require(attribs<64, "invalid action"); // do not change if  locked or on blacklist
-        attributes[_user] = attributes[_user] | 30; // buy, send, rcv, send
+        require(attribs<64, "invalid: accnt b-locked"); // do not change if  locked or on blacklist
+        attributes[_user] = attributes[_user] | 31; // ex, buy, send, rcv, send
     }
 
      /**

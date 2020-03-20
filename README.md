@@ -101,8 +101,10 @@ docker-compose up
 
 
 ### Public on github
+[github instructions ](publichgithub.md)
 
-[github instructions ](publicgithub.md)
+### Start and connect via geth
+
 
 ### Useful links
 https://github.com/ConsenSys/smart-contract-best-practices

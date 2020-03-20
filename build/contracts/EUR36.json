@@ -703,8 +703,8 @@
           3046,
           3234,
           3322,
-          4120,
-          4189
+          4124,
+          4193
         ],
         "contractKind": "contract",
         "documentation": "@title EUR36 Token Contract\n @author element36.io",
@@ -718,8 +718,8 @@
           3234,
           3046,
           1503,
-          4120,
-          4189
+          4124,
+          4193
         ],
         "name": "EUR36",
         "nodeType": "ContractDefinition",
@@ -990,8 +990,8 @@
           3046,
           3234,
           3322,
-          4120,
-          4189
+          4124,
+          4193
         ],
         "contractKind": "contract",
         "documentation": "@title EUR36 Token Contract\n @author element36.io",
@@ -1005,8 +1005,8 @@
           3234,
           3046,
           1503,
-          4120,
-          4189
+          4124,
+          4193
         ],
         "name": "EUR36",
         "nodeType": "ContractDefinition",
@@ -1247,8 +1247,7 @@
             }
           ],
           "name": "Approval",
-          "type": "event",
-          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+          "type": "event"
         },
         "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
           "anonymous": false,
@@ -1267,8 +1266,7 @@
             }
           ],
           "name": "Burn",
-          "type": "event",
-          "signature": "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5"
+          "type": "event"
         },
         "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
           "anonymous": false,
@@ -1293,8 +1291,7 @@
             }
           ],
           "name": "InitiateTransfer",
-          "type": "event",
-          "signature": "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe"
+          "type": "event"
         },
         "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
           "anonymous": false,
@@ -1307,8 +1304,7 @@
             }
           ],
           "name": "Paused",
-          "type": "event",
-          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
+          "type": "event"
         },
         "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
           "anonymous": false,
@@ -1321,8 +1317,7 @@
             }
           ],
           "name": "PauserAdded",
-          "type": "event",
-          "signature": "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8"
+          "type": "event"
         },
         "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
           "anonymous": false,
@@ -1335,8 +1330,7 @@
             }
           ],
           "name": "PauserRemoved",
-          "type": "event",
-          "signature": "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e"
+          "type": "event"
         },
         "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
           "anonymous": false,
@@ -1361,8 +1355,7 @@
             }
           ],
           "name": "Transfer",
-          "type": "event",
-          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+          "type": "event"
         },
         "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
           "anonymous": false,
@@ -1375,13 +1368,318 @@
             }
           ],
           "name": "Unpaused",
-          "type": "event",
-          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0x80D442b913Fafe4C26a73A2DEaeE611C8a56A6aa",
-      "transactionHash": "0x4265db7fb400e3b169d71a4c75c1d0f01135f2339aadac8fe518705ab8597d6e"
+      "address": "0x7a80EfDf0974414469d4CFc57049B348d6Efe5DA",
+      "transactionHash": "0x7db1451772809c8fe147189f80e67c3780b0e6b0e95bd7755897d9457aca94b0"
+    },
+    "4": {
+      "events": {
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "burner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Burn",
+          "type": "event"
+        },
+        "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "transactionHash",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "InitiateTransfer",
+          "type": "event"
+        },
+        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event"
+        },
+        "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "PauserAdded",
+          "type": "event"
+        },
+        "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "PauserRemoved",
+          "type": "event"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        },
+        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x133718321fa777472FE1d3ed0D55B0594e6B31D2",
+      "transactionHash": "0xc84f03e95731c491158fd79746f9e295621bfe43dee956496699e313fcfd286b"
+    },
+    "5": {
+      "events": {
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "burner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Burn",
+          "type": "event"
+        },
+        "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "transactionHash",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "InitiateTransfer",
+          "type": "event"
+        },
+        "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Paused",
+          "type": "event"
+        },
+        "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "PauserAdded",
+          "type": "event"
+        },
+        "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "PauserRemoved",
+          "type": "event"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        },
+        "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "Unpaused",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x8e18283EE0e93C7C15E22B7e5A09EB5190B33A14",
+      "transactionHash": "0x93b94136c059b0ddf83c9ae1dd3b7627e701373254fca6862ff198994e6e2e2a"
     },
     "42": {
       "events": {
@@ -1408,8 +1706,7 @@
             }
           ],
           "name": "Approval",
-          "type": "event",
-          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+          "type": "event"
         },
         "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
           "anonymous": false,
@@ -1428,8 +1725,7 @@
             }
           ],
           "name": "Burn",
-          "type": "event",
-          "signature": "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5"
+          "type": "event"
         },
         "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
           "anonymous": false,
@@ -1454,8 +1750,7 @@
             }
           ],
           "name": "InitiateTransfer",
-          "type": "event",
-          "signature": "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe"
+          "type": "event"
         },
         "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
           "anonymous": false,
@@ -1468,8 +1763,7 @@
             }
           ],
           "name": "Paused",
-          "type": "event",
-          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
+          "type": "event"
         },
         "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
           "anonymous": false,
@@ -1482,8 +1776,7 @@
             }
           ],
           "name": "PauserAdded",
-          "type": "event",
-          "signature": "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8"
+          "type": "event"
         },
         "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
           "anonymous": false,
@@ -1496,8 +1789,7 @@
             }
           ],
           "name": "PauserRemoved",
-          "type": "event",
-          "signature": "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e"
+          "type": "event"
         },
         "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
           "anonymous": false,
@@ -1522,8 +1814,7 @@
             }
           ],
           "name": "Transfer",
-          "type": "event",
-          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+          "type": "event"
         },
         "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
           "anonymous": false,
@@ -1536,13 +1827,12 @@
             }
           ],
           "name": "Unpaused",
-          "type": "event",
-          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0x638880fF47F579dA0d7C736C3c1497376d061c49",
-      "transactionHash": "0xf074c2aa80da7b9a74fb34ed22f9924707747acc8639ae4bdfdb1f863424a6e3"
+      "address": "0xA339cf860DC63855F00e3475B5Bd007F6ec61BF9",
+      "transactionHash": "0xc334e480aee399df5be78069707293a99386a474b2c55752c11a708e26f19500"
     },
     "85458545": {
       "events": {
@@ -1569,8 +1859,7 @@
             }
           ],
           "name": "Approval",
-          "type": "event",
-          "signature": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+          "type": "event"
         },
         "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5": {
           "anonymous": false,
@@ -1589,8 +1878,7 @@
             }
           ],
           "name": "Burn",
-          "type": "event",
-          "signature": "0xcc16f5dbb4873280815c1ee09dbd06736cffcc184412cf7a71a0fdb75d397ca5"
+          "type": "event"
         },
         "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe": {
           "anonymous": false,
@@ -1615,8 +1903,7 @@
             }
           ],
           "name": "InitiateTransfer",
-          "type": "event",
-          "signature": "0xd347225bf0a27d694aad46b004147b29a715560ae59eebc52c6852c30c73dbbe"
+          "type": "event"
         },
         "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258": {
           "anonymous": false,
@@ -1629,8 +1916,7 @@
             }
           ],
           "name": "Paused",
-          "type": "event",
-          "signature": "0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258"
+          "type": "event"
         },
         "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8": {
           "anonymous": false,
@@ -1643,8 +1929,7 @@
             }
           ],
           "name": "PauserAdded",
-          "type": "event",
-          "signature": "0x6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f8"
+          "type": "event"
         },
         "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e": {
           "anonymous": false,
@@ -1657,8 +1942,7 @@
             }
           ],
           "name": "PauserRemoved",
-          "type": "event",
-          "signature": "0xcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e"
+          "type": "event"
         },
         "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
           "anonymous": false,
@@ -1683,8 +1967,7 @@
             }
           ],
           "name": "Transfer",
-          "type": "event",
-          "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+          "type": "event"
         },
         "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa": {
           "anonymous": false,
@@ -1697,17 +1980,16 @@
             }
           ],
           "name": "Unpaused",
-          "type": "event",
-          "signature": "0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa"
+          "type": "event"
         }
       },
       "links": {},
-      "address": "0xdac9c0C80af8bdAcbC911c20F433bCcD7da2B65C",
-      "transactionHash": "0x69945b6b5d400892ce8a3fb47ba130dcbd4514db54de32b0b3333658bbe3c80b"
+      "address": "0x9C0bBdB0Ac933A663F7f3FdA0376d27F8E6e9afB",
+      "transactionHash": "0xf2af08671380077205628dbc3df3b068f5baf0eadfa295f7952ca2f62be22829"
     }
   },
-  "schemaVersion": "3.0.20",
-  "updatedAt": "2020-03-16T13:08:02.043Z",
+  "schemaVersion": "3.0.23",
+  "updatedAt": "2020-03-20T10:51:42.893Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "element36.io",

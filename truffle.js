@@ -1,7 +1,7 @@
 require('@babel/polyfill')
 
 const HDWalletProvider = require('@truffle/hdwallet-provider')
-
+let infuraUrl="/v3/dd5e8382a93a4f9b8799542e06ecd43d";
 function getProvider (keysFile, rpcUrl) {
   let keys = {}
   try {
@@ -14,6 +14,8 @@ function getProvider (keysFile, rpcUrl) {
 }
 
 module.exports = {
+
+
   solc: {
     optimizer: {
       enabled: true,
@@ -42,39 +44,51 @@ module.exports = {
       gasPrice: 10000000000
     },
     kovan_infura: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://kovan.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://kovan.infura.io"+infuraUrl),
       network_id: 42,
       gas:          6000000,
       gasPrice: 10000000000
     },  
     ropsten_infura: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://ropsten.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://ropsten.infura.io"+infuraUrl),
       network_id: 3,
       gas:          6000000,
       gasPrice: 10000000000
     },   
     rinkeby_infura: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://rinkeby.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://rinkeby.infura.io"+infuraUrl),
       network_id: 4,
       gas:          6000000,
       gasPrice: 10000000000
     },   
     goerli_infura: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://goerli.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://goerli.infura.io"+infuraUrl),
       network_id: 5,
       gas:          6000000,
       gasPrice: 10000000000
     },
     main_infura: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://mainnet.infura.io/v3/46919ce6487b4a8b83d0a870ad59588c"),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://mainnet.infura.io"+infuraUrl),
       network_id: 1,
-      gas: 9500000,
-      gasPrice: 25900000000,  // 10 gwei (default: 20 gwei) https://ethgasstation.info/ --52 000 000 000
-      confirmations: 2,       // # of confs to wait between deployments. (default: 0)
+      gas: 5000000,
+      gasPrice: 4000000000,  // 10 gwei (default: 20 gwei) https://ethgasstation.info/ --52 000 000 000
+      confirmations: 1,       // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,     // # of blocks before a deployment times out  (minimum/default: 50)
+      websockets: true,
+      skipDryRun: true 
+     },
+     main_geth: {
+      host: "127.0.0.1",     
+      port: 8545,            
+      network_id: "1", // Rinkeby's id          
+      from: "56788E08C97d2677DAdED801e69bfE5D33ddACD5", // your Ethereum account address here, we will get back to this soon
+      gas: 0x1388,
+      gasPrice: 4000000000,  // 10 gwei (default: 20 gwei) https://ethgasstation.info/ --52 000 000 000
+      confirmations: 1,       // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,     // # of blocks before a deployment times out  (minimum/default: 50)
+      websockets: false,
       skipDryRun: false 
-     }
-   
+    },
   },
 
   mocha: {

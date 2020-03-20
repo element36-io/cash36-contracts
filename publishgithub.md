@@ -21,9 +21,16 @@ registry=https://npm.pkg.github.com/element36-io
 Deploy github manually: 
 npm i -g @hutson/npm-deploy-git-tag
 
-Remark: uses NPM_TOKEN from gitlab, https://gitlab.com/profile/personal_access_tokens, (see setenv.txt current token ends with 2bb, or create a new one: https://github.com/settings/tokens, )
+git pull
+
+Remark: uses NPM_TOKEN from gitlab, https://gitlab.com/profile/personal_access_tokens, (see setenv.txt current token ends with d7, or create a new one: https://github.com/settings/tokens, )
 
 npm-deploy-git-tag --token _tokenhere_ 
+
+On troubles: 
+- generate new token (github, Settings, Developer Settings, Private..)
+- export NPM_TOKEN=dksfj
+- npm-deploy-git-tag --token _tokenhere_ 
 
 
  
