@@ -72,9 +72,9 @@ module.exports = {
       network_id: 1,
       gas: 5000000,
       gasPrice: 4000000000,  // 10 gwei (default: 20 gwei) https://ethgasstation.info/ --52 000 000 000
-      confirmations: 1,       // # of confs to wait between deployments. (default: 0)
+      confirmations: 0,       // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,     // # of blocks before a deployment times out  (minimum/default: 50)
-      websockets: true,
+      websockets: false,
       skipDryRun: true 
      },
      main_geth: {
