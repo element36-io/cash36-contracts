@@ -19,18 +19,23 @@ registry=https://npm.pkg.github.com/element36-io
 //npm.pkg.github.com/:_authToken=token
 
 Deploy github manually: 
-npm i -g @hutson/npm-deploy-git-tag
+npm i -g @hutson/npm-deploy-git-tag 
 
 git pull
 
-Remark: uses NPM_TOKEN from gitlab, https://gitlab.com/profile/personal_access_tokens, (see setenv.txt current token ends with d7, or create a new one: https://github.com/settings/tokens, )
+Remark: uses NPM_TOKEN from gitlab, https://gitlab.com/profile/personal_access_tokens, (see setenv.txt, NPM_TOKEN, current token ends with d7, or create a new one: https://github.com/settings/tokens, )
 
 npm-deploy-git-tag --token _tokenhere_ 
+yarn --registry https://registry.yarnpkg.com 
 
 On troubles: 
 - generate new token (github, Settings, Developer Settings, Private..)
 - export NPM_TOKEN=dksfj
 - npm-deploy-git-tag --token _tokenhere_ 
 
+sudo npm i @hutson/npm-deploy-git-tag
+npm ERR! Cannot read property 'match' of undefined
+OR Scrypt errors
 
+==> nvm use lts/dubnium; rm -rf package-log and node_modules, npm install
  
