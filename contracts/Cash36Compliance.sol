@@ -11,7 +11,7 @@ contract Cash36Compliance is HasOfficer {
     enum Attribs { EXST, BUY, SELL, RCV, SEND, CPNY, BLACK, LOCK }
 
     modifier userExists(address _user) {
-        require(uint8(attributes[_user] & 1) == 1,  "account not found");
+        require(uint8(attributes[_user] & 1) == 1,  "account not found"); // String used in ComplianceContractServiceImpl.java
         _;
     }
     modifier userNotExists(address _user) {
