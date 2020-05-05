@@ -1,4 +1,14 @@
-  
+
+
+How to publish: 
+ - Make your changes, push to gitlab, make sure repo is active:  "repository": {  is in package.json
+ - git pull (you see new tag & version), make sure  repo is deactivated in package.json :    "repository_": {  is in package.json
+ - npm-deploy-git-tag --token _tokenhere_   (see setenv.txt, NPM_TOKEN, current token ends with d7)
+
+
+
+
+
 Remove from package.json:
 
  "repository": {
@@ -25,14 +35,6 @@ Remark: uses NPM_TOKEN from gitlab, https://gitlab.com/profile/personal_access_t
 
 npm-deploy-git-tag --token _tokenhere_ 
 yarn --registry https://registry.yarnpkg.com 
-
-
-Workflow-Flow: 
- - Make your changes, push to gitlab, make sure repo is active:  "repository": {  is in package.json
- - git pull, make sure  repo is deactivated in package.json :    "repository_": {  is in package.json
- - npm-deploy-git-tag --token _tokenhere_ 
- 
-
 
 On troubles: 
 - generate new token (github, Settings, Developer Settings, Private..)

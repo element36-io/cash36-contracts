@@ -19,8 +19,7 @@ contract Cash36Compliance is HasOfficer {
         _;
     }
     mapping(address => uint256) private attributes;
-  
-   
+
     /**
      * @notice Add user once he passed KYC process
      * @dev onlyComplianceOfficer - only open to assigned Compliance Officer Account

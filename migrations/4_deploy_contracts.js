@@ -15,9 +15,19 @@ module.exports = async (deployer, network, accounts) => {
 
 
   // fixed wallet addresses for testnetworks
-  let walletOfTheExchange='0x5c84e251671f94b5de719106fb34a1e99828d15d' // cash36-exchange/src/main/ressources/exchange.json
-  let walletOfComplianceServer='0xcd0dd78b1a09f860f39218d1124e121bf52d71a9'; // cash36-compliance/src/main/ressources/compliance.json
+  // cash36-exchange/src/main/ressources/exchange.json
+  // 
+  let walletOfTheExchange='0x5c84e251671f94b5de719106fb34a1e99828d15d' 
+  // cash36-compliance/src/main/ressources/compliance.json
+  let walletOfComplianceServer='0xcd0dd78b1a09f860f39218d1124e121bf52d71a9'; 
   let ownerAccount= walletOfTheExchange; // First account of HD Wallet used to deploy the contracts
+
+//   demo  configs: // cash36-compliance/src/main/ressources/compliance-testnetwork.json
+//  Compliance address: 0x2a94867025d2c415cfd2e9d7e86356af53ae1161
+// cash36-exchange/src/main/ressources/exchange-testnetwork.json
+//  Exchange Address:   0x6cb905f14601f6bf7c6604560f8931335d6ab68a
+
+
 
   console.log("network: "+network)
   if (network == 'local') {
